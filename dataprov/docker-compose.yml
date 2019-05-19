@@ -1,0 +1,18 @@
+version: '2.0'
+
+services:
+  rss_scraper:
+    container_name: dataprov
+
+    hostname: dataprov.pi
+
+    #image: kwazar90/rss_scraper
+
+    #build: .
+
+    volumes:
+      - ./app:/home/dataprov/app
+
+    command: supervisord -nc /home/dataprov/supervisor/supervisord.conf
+
+    restart: always

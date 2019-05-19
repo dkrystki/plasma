@@ -1,0 +1,11 @@
+app:
+  name: "dataprov"
+  dir: "/home/dataprov"
+  django_dir: "/home/dataprov/dataprov"
+  supervisor_dir: "/home/dataprov/supervisor"
+
+registry_url: "pi-gitlab.com:5050/crypto/dataprov"
+
+vagrant_dir: "/home/vagrant/dataprov"
+
+django_src_dir: "../django_proj"
