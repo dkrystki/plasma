@@ -101,5 +101,10 @@ fi
 
 #####################
 # plasma interactive
+
+# Custom aliases
+alias l='ls -a'
+alias ll='ls -la'
+
 source .venv/bin/activate
 echo -e "`cat /etc/motd`"

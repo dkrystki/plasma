@@ -8,7 +8,7 @@ from api import Api
 logger = logging.getLogger(__name__)
 ptcomm.logs.setup(logger, '/app/dataprov/logs/dataprov.log')
 
-d
+
 class DataProv(object):
     def __init__(self):
         self.influx = Influx()

@@ -1,18 +1,19 @@
 version: '2.0'
 
 services:
-  rss_scraper:
+  dataprov:
     container_name: dataprov
 
     hostname: dataprov.pi
 
     #image: kwazar90/rss_scraper
 
-    #build: .
+    build: .
 
     volumes:
-      - ./app:/home/dataprov/app
+      - ./app:/srv
 
-    command: supervisord -nc /home/dataprov/supervisor/supervisord.conf
+#    command: "./manage.py runserver"
+    command: "tail -f /dev/null"
 
     restart: always

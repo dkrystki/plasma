@@ -1,7 +1,0 @@
----
-
-- name: test
-  hosts: all
-
-  roles:
-    - pi-roles/django-fixture
