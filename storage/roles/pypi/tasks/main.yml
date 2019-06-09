@@ -1,0 +1,14 @@
+
+- name: Create user
+  user:
+    name: pypi
+    group: pypi
+
+- name: Copy files
+  synchronize:
+    src: "{{ role_path }}/templates/"
+    dest: "/home/pypi/"
+
+- name: start docker;
+  docker_service:
+    project_src: /home/pypi/

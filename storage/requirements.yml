@@ -1,0 +1,7 @@
+---
+# pull down common roles
+- src: git@pi-gitlab.com:crypto/ansible-roles.git
+  name: pi-roles
+  version: master
+  scm: git
+

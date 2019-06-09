@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: yes
+  roles:
+    - { role: roles/bootstrap, tags: bootstrap }
+    - { role: pi-roles/motd, tags: motd }
+    - { role: pi-roles/install-docker, tags: docker }
+    - { role: roles/nfs-server, tags: nfs-server }
+    #- { role: roles/pypi, tags: pypi }
+    - { role: roles/bind }
