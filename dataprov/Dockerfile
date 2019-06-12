@@ -15,7 +15,7 @@ WORKDIR /srv
 ENV PIPENV_VENV_IN_PROJECT true
 
 # Setup data provider
-COPY app .
+COPY flesh .
 
 RUN pipenv install
 

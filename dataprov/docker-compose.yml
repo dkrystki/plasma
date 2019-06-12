@@ -11,7 +11,7 @@ services:
     build: .
 
     volumes:
-      - ./app:/srv
+      - ./flesh:/srv
 
 #    command: "./manage.py runserver"
     command: "tail -f /dev/null"
