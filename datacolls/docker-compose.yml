@@ -1,0 +1,20 @@
+version: '2.0'
+
+services:
+  bitstamp:
+    container_name: bitstamp
+
+    build: ./bitstamp
+
+    volumes:
+      - ./bitstamp/flesh:/srv
+
+    command: "tail -f /dev/null"
+
+    restart: always
+
+  redis:
+    image: redis
+    container_name: cache
+    expose:
+      - 6379
