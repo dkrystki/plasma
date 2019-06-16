@@ -20,10 +20,11 @@ COPY docker/motd/.bashrc /home/bitstamp/.bashrc
 RUN chown -R bitstamp:bitstamp /srv
 WORKDIR /srv
 
-USER bitstamp
-
 # Setup data provider
 COPY --chown=bitstamp:bitstamp flesh .
+
+RUN rm -rf .venv
+USER bitstamp
 
 # PipEnv
 ENV PIPENV_VENV_IN_PROJECT true

@@ -6,6 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+flake8 = "*"
+websocket-client = "*"
+influxdb = "*"
+ipython = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.7"
