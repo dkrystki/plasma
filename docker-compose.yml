@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+  bitstamp:
+    container_name: bitstamp
+    build: ./dataprovs/bitstamp
+    volumes:
+      - "./dataprovs/bitstamp/flesh:/srv"
+      - "/srv/.venv"
+    command: "tail -f /dev/null"
+    restart: always
+
+    networks:
+      - network
+
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+
+    networks:
+      - network
+
+  lib:
+    container_name: lib
+    build: ./lib
+    volumes:
+      - "./lib/flesh:/srv"
+      logs logs
+COPY --chown=lib:lib sentry sentry
+COPY --chown=lib:lib systests systests
+COPY --chown=lib:lib systests systests
+COPY --chown=lib:lib tests tests
+    command: "tail -f /dev/null"
+    restart: always
+
+    networks:
+      - network
+
+
+networks:
+  network:
