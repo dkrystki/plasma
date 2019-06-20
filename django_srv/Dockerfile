@@ -14,17 +14,20 @@ COPY docker/motd/motd /etc/motd
 COPY docker/motd/.bashrc /root/.bashrc
 
 # uid is set to 1000 for development purposes
-RUN useradd -ms /bin/bash -u 1000 bitstamp
-COPY docker/motd/.bashrc /home/bitstamp/.bashrc
+RUN useradd -ms /bin/bash -u 1000 django_srv
+COPY docker/motd/.bashrc /home/django_srv/.bashrc
 
-RUN chown -R bitstamp:bitstamp /srv
+RUN chown -R django_srv:django_srv /srv
 WORKDIR /srv
 
 # Setup data provider
-COPY --chown=bitstamp:bitstamp flesh .
+COPY --chown=django_srv:django_srv flesh .
 
-USER bitstamp
+USER django_srv
 
 # PipEnv
 ENV PIPENV_VENV_IN_PROJECT true
 RUN pipenv install
+
+
+EXPOSE 5000

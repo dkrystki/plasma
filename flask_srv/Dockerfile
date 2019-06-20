@@ -14,17 +14,25 @@ COPY docker/motd/motd /etc/motd
 COPY docker/motd/.bashrc /root/.bashrc
 
 # uid is set to 1000 for development purposes
-RUN useradd -ms /bin/bash -u 1000 bitstamp
-COPY docker/motd/.bashrc /home/bitstamp/.bashrc
+RUN useradd -ms /bin/bash -u 1000 flask_srv
+COPY docker/motd/.bashrc /home/flask_srv/.bashrc
 
-RUN chown -R bitstamp:bitstamp /srv
+RUN chown -R flask_srv:flask_srv /srv
 WORKDIR /srv
 
 # Setup data provider
-COPY --chown=bitstamp:bitstamp flesh .
+COPY --chown=flask_srv:flask_srv flesh .
 
-USER bitstamp
+USER flask_srv
 
 # PipEnv
 ENV PIPENV_VENV_IN_PROJECT true
 RUN pipenv install
+
+ENV FLASK_APP app.py
+ENV FLASK_ENV development
+ENV FLASK_DEBUG 1
+#ENV HOST "0.0.0.0"
+#ENV PORT "5000"
+
+EXPOSE 5000
