@@ -1,8 +1,8 @@
 from flask import Flask
 
-from shengren.systests import injector_slot
+from shengren.systests.flask import inject
 
 app = Flask(__name__)
 
-app.register_blueprint(injector_slot)
+app.register_blueprint(inject)
 

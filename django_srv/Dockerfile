@@ -29,5 +29,4 @@ USER django_srv
 ENV PIPENV_VENV_IN_PROJECT true
 RUN pipenv install
 
-
 EXPOSE 5000

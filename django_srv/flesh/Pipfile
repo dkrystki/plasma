@@ -8,9 +8,11 @@ verify_ssl = true
 [packages]
 flake8 = "*"
 ipython = "*"
-flask = "*"
 requests = "*"
 furl = "*"
+django = "*"
+django-braces = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"

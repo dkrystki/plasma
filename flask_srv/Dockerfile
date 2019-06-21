@@ -32,7 +32,5 @@ RUN pipenv install
 ENV FLASK_APP app.py
 ENV FLASK_ENV development
 ENV FLASK_DEBUG 1
-#ENV HOST "0.0.0.0"
-#ENV PORT "5000"
 
 EXPOSE 5000
