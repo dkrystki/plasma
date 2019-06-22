@@ -1,22 +1,37 @@
 version: '3.5'
 
 services:
-  bitstamp:
-    container_name: bitstamp
+  bitstamp-prov:
+    container_name: bitstamp-prov
     build: ./dataprovs/bitstamp
     volumes:
       - "./dataprovs/bitstamp/flesh:/srv"
       - "/srv/.venv"
     command: "tail -f /dev/null"
     restart: always
-
     networks:
       - network
 
   influxdb:
     image: influxdb:latest
     container_name: influxdb
+    networks:
+      - network
 
+  bitstamp-mock:
+    container_name: bitstamp-mock
+    build: ./mockexchs/bitstamp
+    volumes:
+      - "./mockexchs/bitstamp/flesh:/srv"
+      - "/srv/.venv"
+    command: "tail -f /dev/null"
+    restart: always
+    networks:
+      - network
+
+  influxdb-mock:
+    image: influxdb:latest
+    container_name: influxdb-mock
     networks:
       - network
 
@@ -28,7 +43,6 @@ services:
       - "/srv/.venv"
     command: "tail -f /dev/null"
     restart: always
-
     networks:
       - network
 
@@ -41,7 +55,6 @@ services:
       - "/srv/.venv"
     command: "pipenv run flask run --host=0.0.0.0 --port=5000"
     restart: always
-
     networks:
       - network
 
@@ -56,7 +69,6 @@ services:
             bash -c "pipenv run python manage.py migrate &&
                      pipenv run python manage.py runserver 0.0.0.0:8000"
     restart: always
-
     networks:
       - network
 
