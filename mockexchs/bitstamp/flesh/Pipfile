@@ -13,6 +13,7 @@ django = "*"
 django-channels = "*"
 websocket-client = "*"
 django-click = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.7"

@@ -7,6 +7,7 @@ services:
     volumes:
       - "./dataprovs/bitstamp/flesh:/srv"
       - "/srv/.venv"
+      - "./lib/shengren:/srv/.venv/lib/python3.7/site-packages/shengren"
     command: "tail -f /dev/null"
     restart: always
     networks:
@@ -24,14 +25,9 @@ services:
     volumes:
       - "./mockexchs/bitstamp/flesh:/srv"
       - "/srv/.venv"
+      - "./lib/shengren:/srv/.venv/lib/python3.7/site-packages/shengren"
     command: "tail -f /dev/null"
     restart: always
-    networks:
-      - network
-
-  influxdb-mock:
-    image: influxdb:latest
-    container_name: influxdb-mock
     networks:
       - network
 
@@ -42,32 +38,6 @@ services:
       - "./lib:/srv"
       - "/srv/.venv"
     command: "tail -f /dev/null"
-    restart: always
-    networks:
-      - network
-
-  flask_srv:
-    container_name: flask-srv
-    build: ./flask_srv
-    volumes:
-      - "./flask_srv/flesh:/srv"
-      - "./lib/shengren:/srv/shengren"
-      - "/srv/.venv"
-    command: "pipenv run flask run --host=0.0.0.0 --port=5000"
-    restart: always
-    networks:
-      - network
-
-  django_srv:
-    container_name: django-srv
-    build: ./django_srv
-    volumes:
-      - "./django_srv/flesh:/srv"
-      - "./lib/shengren:/srv/shengren"
-      - "/srv/.venv"
-    command: >
-            bash -c "pipenv run python manage.py migrate &&
-                     pipenv run python manage.py runserver 0.0.0.0:8000"
     restart: always
     networks:
       - network

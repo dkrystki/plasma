@@ -105,9 +105,6 @@ venv.bak/
 # pycharm
 .idea/
 
-# docker data
-/data
-
 .vagrant
 
 deploy.retry

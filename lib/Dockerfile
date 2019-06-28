@@ -27,3 +27,4 @@ USER lib
 # PipEnv
 ENV PIPENV_VENV_IN_PROJECT true
 RUN pipenv install
+RUN pipenv run python setup.py clean
