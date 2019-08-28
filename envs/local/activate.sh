@@ -25,6 +25,10 @@ deactivate nondestructive
 
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
 export KUBECONFIG=~/.kube/config
+eval "$(minikube -p shangren docker-env)"
+{
+  skaffold config set --global local-cluster true
+} &> /dev/null
 
 _OLD_VIRTUAL_PS1="${PS1:-}"
 if [ "x \e[32m(local) " != x ] ; then
