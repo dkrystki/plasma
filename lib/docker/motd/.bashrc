@@ -106,5 +106,5 @@ fi
 alias l='ls -a'
 alias ll='ls -la'
 
-source .venv/bin/activate
+source .venv/bin/activate.sh
 echo -e "`cat /etc/motd`"

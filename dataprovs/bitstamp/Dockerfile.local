@@ -1,0 +1,22 @@
+FROM python:3.7-slim-stretch
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+ENV SHELL /bin/bash
+ENV STAGE local
+
+WORKDIR /srv
+COPY docker_comm docker_comm
+COPY dataprovs/bitstamp/docker docker
+RUN bash docker_comm/debug/setup.sh ctm
+
+COPY dataprovs/bitstamp/flesh .
+
+# Install common
+RUN pip3 install pipenv
+RUN apt-get update
+RUN apt-get install libpq-dev gcc -y
+
+COPY ctm .
+RUN pipenv install -d --system
