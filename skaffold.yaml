@@ -7,12 +7,18 @@ profiles:
       - image: shangren/bitstamp
         docker:
           dockerfile: dataprovs/bitstamp/Dockerfile.local
-        context: ../../
+        context: .
         sync:
           infer:
            - 'dataprovs/bitstamp/flesh/*.py'
 
     deploy:
-      kubectl:
-        manifests:
-        - k8s/app.yaml
+      helm:
+        releases:
+          - name: bitstamp
+            chartPath: dataprovs/bitstamp
+            namespace: dataprovs
+            valuesFiles:
+                - dataprovs/bitstamp/values_local.yaml
+            values:
+              image: shangren/bitstamp

@@ -14,7 +14,8 @@ Shangren uses docker to create an isolated development environment so your syste
 Requirements
 ############
 In order to run local development you have to have Docker and Docker Compose installed.
-
+telepresence
+minikube
 
 Starting things up
 ##################

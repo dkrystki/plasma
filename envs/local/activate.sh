@@ -1,4 +1,7 @@
 
+ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ROOT_DIR=`dirname "$ROOT_DIR"`
+ROOT_DIR=`dirname "$ROOT_DIR"`
 
 deactivate () {
     # reset old environment variables
@@ -18,6 +21,8 @@ deactivate () {
     # Self destruct!
         unset -f deactivate
     fi
+
+    unset
 }
 
 # unset irrelevant variables
@@ -25,13 +30,14 @@ deactivate nondestructive
 
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
 export KUBECONFIG=~/.kube/config
-eval "$(minikube -p shangren docker-env)"
+minikube config set WantUpdateNotification false
 {
   skaffold config set --global local-cluster true
 } &> /dev/null
+source ""$ROOT_DIR"/dataprovs/.env"
 
 _OLD_VIRTUAL_PS1="${PS1:-}"
-if [ "x \e[32m(local) " != x ] ; then
-    PS1="\e[32m(local) ${PS1:-}"
+if [ "x 🐣" != x ] ; then
+    PS1="🐣${PS1:-}"
 fi
 export PS1

@@ -9,15 +9,13 @@ ENV STAGE local
 WORKDIR /srv
 COPY docker_comm docker_comm
 COPY dataprovs/bitstamp/docker docker
-RUN bash docker_comm/debug/setup.sh ctm
+RUN bash docker_comm/debug/setup.sh
 
 COPY dataprovs/bitstamp/flesh/Pipfile Pipfile
 COPY dataprovs/bitstamp/flesh/Pipfile.lock Pipfile.lock
 
 # Install common
 RUN pip3 install pipenv
-RUN apt-get update
-RUN apt-get install libpq-dev gcc -y
 
 RUN pipenv install -d --system
 
@@ -26,3 +24,4 @@ COPY dataprovs/bitstamp/flesh .
 EXPOSE 8000
 
 CMD tail -f /dev/null
+
