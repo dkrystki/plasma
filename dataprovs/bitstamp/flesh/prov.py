@@ -75,7 +75,7 @@ class Provider:
     def get_channel(self, name: str):
         results = list(filter(lambda x: x.name == name, self.channels))
         if len(results) != 1:
-            raise RuntimeError(f'Duplicate channels ({name}) detected!')
+            raise RuntimeError('Duplicate channels ({name}) detected!')
 
         return results[0]
 

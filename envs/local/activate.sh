@@ -35,6 +35,7 @@ minikube config set WantUpdateNotification false
   skaffold config set --global local-cluster true
 } &> /dev/null
 source ""$ROOT_DIR"/dataprovs/.env"
+export SHANGREN_IP=`minikube -p shangren ip`
 
 _OLD_VIRTUAL_PS1="${PS1:-}"
 if [ "x 🐣" != x ] ; then

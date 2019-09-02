@@ -14,6 +14,9 @@ deactivate () {
         unset _OLD_VIRTUAL_PS1
     fi
 
+    hostess del shangren.local
+    hostess del shangren.sentry.local
+
     if [ ! "$1" = "nondestructive" ] ; then
     # Self destruct!
         unset -f deactivate
