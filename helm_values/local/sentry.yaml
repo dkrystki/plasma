@@ -1,0 +1,30 @@
+image:
+  tag: 9.1.2
+
+user:
+  email: admin@sentry.local
+  password: password
+  create: true
+
+web:
+  replicacount: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1000Mi
+    requests:
+      cpu: 300m
+      memory: 800Mi
+
+worker:
+  replicacount: 1
+
+service:
+  type: NodePort
+  externalPort: 80
+
+filestore:
+  filesystem:
+    persistence:
+      size: 10Gi
+      accessMode: ReadWriteMany
