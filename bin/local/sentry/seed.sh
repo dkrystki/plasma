@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd `dirname $0`
+cd "$(dirname $0)" || exit
 cd ../../../
 SENTRY_POD=$(kubectl -n sentry get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$")
 

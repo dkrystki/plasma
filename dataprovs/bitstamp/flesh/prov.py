@@ -58,16 +58,18 @@ class LiveTrades(Channel):
 class Provider:
     def __init__(self):
         self.url = 'wss://ws.bitstamp.net'
-        self.influx = InfluxDBClient(host='influxdb',
+        self.influx = InfluxDBClient(host='influxdb.dataprovs',
                                      port=8086,
                                      username='root',
                                      password='root',
                                      database='bitstamp')
         self.influx.create_database('bitstamp')
 
+        a = 1/0
+
         self.channels = []
 
-        for curr in settings.Bitstamp.supported_currencties:
+        for curr in settings.Bitstamp.SUPPORTED_CURRENCIES:
             self.channels.append(LiveTrades(self, curr))
 
         self._connect()
@@ -110,7 +112,7 @@ class Provider:
             ch.subscribe()
 
     def _on_error(self, error: str):
-        pass
+        raise RuntimeError(error)
 
 
 if __name__ == '__main__':

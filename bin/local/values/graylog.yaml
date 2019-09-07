@@ -1,0 +1,37 @@
+---
+graylog:
+  replicas: 1
+  password:
+    rootPassword: password
+
+  image:
+    repository: "graylog/graylog:3.0.2-2"
+    pullPolicy: "IfNotPresent"
+
+  ingress:
+    enabled: true
+    hosts:
+      - shangren.graylog.local
+
+  input:
+     tcp:
+       service:
+         type: ClusterIP
+       ports:
+       - name: gelf
+         port: 12201
+
+  podAnnotations:
+    fluentbit.io/exclude: "true"
+
+  elasticsearch:
+    hosts: "http://elasticsearch-master:9200"
+
+tags:
+  install-elasticsearch: false
+
+
+mongodb-replicaset:
+  replicas: 1
+  podAnnotations:
+    fluentbit.io/exclude: "true"

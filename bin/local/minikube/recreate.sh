@@ -1,23 +1,20 @@
 #!/usr/bin/env bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 cd `dirname $0`
 # cd into root dir
 cd ../../../
 
-minikube delete --profile=shangren
-minikube start --profile=shangren --cpus 5 --memory 12288 --vm-driver=none
+minikube --profile=shangren delete
+minikube --profile=shangren start --cpus 5 --memory 15000 --vm-driver=kvm2
 source envs/local/activate.sh
+minikube --profile=shangren addons enable dashboard
+minikube --profile=shangren addons enable ingress
 
 helm init --wait
-#suod minikube --profile=shangren dashboard &
 
-SHANGREN_DASHBOARD_IP=$(kubectl -n kube-system get service kubernetes-dashboard -o yaml | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}")
-hostess add shangren.dashboard.local "$SHANGREN_DASHBOARD_IP"
+MINIKUBE_IP=$(minikube --profile=shangren ip)
+sudo hostess add shangren.dashboard.local "$MINIKUBE_IP"
+kubectl apply -f bin/local/k8s/dashboard_ingress.yaml
 
 bash bin/deploy.sh
 

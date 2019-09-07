@@ -11,6 +11,9 @@ websocket-client = "*"
 influxdb = "*"
 ipython = "*"
 numpy = "*"
+sentry-sdk = "*"
+environs = "*"
+graypy = "*"
 
 [requires]
 python_version = "3.7"

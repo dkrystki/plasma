@@ -15,6 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "chart.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        role: bitstamp
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -36,6 +37,11 @@ spec:
 #            httpGet:
 #              path: /
 #              port: http
+          envFrom:
+            - configMapRef:
+                name: {{ include "chart.name" . }}
+            - secretRef:
+                name: {{ include "chart.name" . }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

@@ -1,0 +1,35 @@
+---
+rawConfig: |
+  @INCLUDE fluent-bit-service.conf
+  @INCLUDE fluent-bit-input.conf
+  @INCLUDE fluent-bit-filter.conf
+
+  [OUTPUT]
+      Name  gelf
+      Match *
+      Host  graylog-tcp
+      Port  12201
+      Mode tcp
+      Retry_Limit False
+      Gelf_Short_Message_Key log
+
+input:
+  systemd:
+    enabled: true
+    tag: kubelet
+
+on_minikube: true
+
+parsers:
+  enabled: true
+  json:
+    - name: docker
+      timeKey: time
+      timeFormat: "%Y-%m-%dT%H:%M:%S.%L"
+      extraEntries: Decode_Field_As escaped    log
+  regex:
+    - name: syslog
+      regex: ^\<(?<pri>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
+      timeKey: time
+      timeFormat: "%b %d %H:%M:%S"
+

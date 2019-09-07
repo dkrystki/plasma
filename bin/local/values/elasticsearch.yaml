@@ -1,0 +1,9 @@
+---
+replicas: 1
+minimumMasterNodes: 1
+podAnnotations:
+  fluentbit.io/exclude: "true"
+image: "docker.elastic.co/elasticsearch/elasticsearch-oss"
+imageTag: "6.5.4"
+
+esMajorVersion: "6"

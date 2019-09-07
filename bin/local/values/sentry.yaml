@@ -1,3 +1,4 @@
+---
 image:
   tag: 9.1.2
 
@@ -15,9 +16,17 @@ web:
     requests:
       cpu: 300m
       memory: 800Mi
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
 worker:
   replicacount: 1
+  podAnnotations:
+    fluentbit.io/exclude: "true"
+
+cron:
+  podAnnotations:
+    fluentbit.io/exclude: "true"
 
 service:
   type: NodePort
@@ -28,3 +37,7 @@ filestore:
     persistence:
       size: 10Gi
       accessMode: ReadWriteMany
+
+ingress:
+  enabled: true
+  hostname: shangren.sentry.local

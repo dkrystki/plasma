@@ -1,4 +1,15 @@
+import sentry_sdk
+from environs import Env
+
+env = Env()
 
 
 class Bitstamp:
-    supported_currencties = ['btc', 'bch', 'eth', 'ltc', 'xrp']
+    SUPPORTED_CURRENCIES = ['btc', 'bch', 'eth', 'ltc', 'xrp']
+
+
+class Sentry:
+    DSN = env("SENTRY_DSN")
+
+
+sentry_sdk.init(Sentry.DSN)
