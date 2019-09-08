@@ -10,26 +10,38 @@ rawConfig: |
       Host  graylog-tcp
       Port  12201
       Mode tcp
-      Retry_Limit False
-      Gelf_Short_Message_Key log
+      Gelf_Short_Message_Key short_message
 
-input:
-  systemd:
-    enabled: true
-    tag: kubelet
+  [FILTER]
+      Name                kubernetes
+      Match               kube.*
+      Kube_URL            https://kubernetes.default.svc.cluster.local:443
+      Merge_Log           On
+      K8S-Logging.Parser  On
+      K8S-Logging.Exclude On
+      Labels              Off
+      Annotations         Off
+
+  [FILTER]
+      Name modify
+      Match *
+      Rename log short_message
+      Rename stream _stream
+      Rename @timestamp timestamp
+      Rename pod_name _k8s_pod_name
+      Rename namespace_name _k8s_namespace_name
+      Rename pod_id _k8s_pod_id
+      Rename labels _k8s_labels
+      Rename container_name _k8s_container_name
+      Rename docker_id _docker_id
+      Add version 1.1
+
+  [FILTER]
+      Name record_modifier
+      Match *
+      Remove_key annotations
+      Remove_key _k8s_labels
+      Remove_key kubrnetes
+      Remove_key kubernetes
 
 on_minikube: true
-
-parsers:
-  enabled: true
-  json:
-    - name: docker
-      timeKey: time
-      timeFormat: "%Y-%m-%dT%H:%M:%S.%L"
-      extraEntries: Decode_Field_As escaped    log
-  regex:
-    - name: syslog
-      regex: ^\<(?<pri>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
-      timeKey: time
-      timeFormat: "%b %d %H:%M:%S"
-
