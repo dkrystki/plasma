@@ -5,8 +5,8 @@ if [ "${BASH_SOURCE-}" = "$0" ]; then
 fi
 
 ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-ROOT_DIR=`dirname "$ROOT_DIR"`
-ROOT_DIR=`dirname "$ROOT_DIR"`
+ROOT_DIR=$(dirname "$ROOT_DIR")
+ROOT_DIR=$(dirname "$ROOT_DIR")
 
 deactivate () {
     # reset old environment variables

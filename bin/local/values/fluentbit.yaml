@@ -1,8 +1,5 @@
 ---
 rawConfig: |
-  @INCLUDE fluent-bit-service.conf
-  @INCLUDE fluent-bit-input.conf
-  @INCLUDE fluent-bit-filter.conf
 
   [OUTPUT]
       Name  gelf
@@ -11,6 +8,24 @@ rawConfig: |
       Port  12201
       Mode tcp
       Gelf_Short_Message_Key short_message
+
+  [SERVICE]
+      Flush         1
+      Log_Level     info
+      Daemon        off
+      Parsers_File  parsers.conf
+      HTTP_Server   On
+      HTTP_Listen   0.0.0.0
+      HTTP_Port     2020
+  [INPUT]
+      Name              tail
+      Tag               kube.*
+      Path              /var/log/containers/*.log
+      Parser            docker
+      DB                /var/log/flb_kube.db
+      Mem_Buf_Limit     5MB
+      Skip_Long_Lines   On
+      Refresh_Interval  10
 
   [FILTER]
       Name                kubernetes
@@ -23,25 +38,26 @@ rawConfig: |
       Annotations         Off
 
   [FILTER]
+      Name nest
+      Match *
+      Operation lift
+      Nested_under kubernetes
+
+  [FILTER]
       Name modify
       Match *
       Rename log short_message
-      Rename stream _stream
-      Rename @timestamp timestamp
-      Rename pod_name _k8s_pod_name
-      Rename namespace_name _k8s_namespace_name
-      Rename pod_id _k8s_pod_id
-      Rename labels _k8s_labels
-      Rename container_name _k8s_container_name
-      Rename docker_id _docker_id
-      Add version 1.1
+      Add version 1.0
 
   [FILTER]
       Name record_modifier
       Match *
       Remove_key annotations
-      Remove_key _k8s_labels
+      Remove_key labels
       Remove_key kubrnetes
       Remove_key kubernetes
 
 on_minikube: true
+
+parsers:
+  enabled: true

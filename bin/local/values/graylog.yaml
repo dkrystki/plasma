@@ -1,8 +1,8 @@
 ---
 graylog:
+  rootTimezone: Australia/Brisbane
   replicas: 1
-  password:
-    rootPassword: password
+  rootPassword: passwordpassword
 
   image:
     repository: "graylog/graylog:3.0.2-2"
@@ -27,11 +27,9 @@ graylog:
   elasticsearch:
     hosts: "http://elasticsearch-master:9200"
 
+  mongodb:
+    uri: mongodb://mongodb-graylog:27017/graylog?replicaSet=rs0
+
 tags:
   install-elasticsearch: false
-
-
-mongodb-replicaset:
-  replicas: 1
-  podAnnotations:
-    fluentbit.io/exclude: "true"
+  install-mongodb: false
