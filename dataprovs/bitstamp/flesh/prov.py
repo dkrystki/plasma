@@ -51,7 +51,7 @@ class LiveTrades(Channel):
                 }
             }
         ]
-
+g
         self.prov.influx.write_points(json_body)
 
 

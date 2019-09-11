@@ -36,7 +36,7 @@ filestore:
   filesystem:
     persistence:
       size: 10Gi
-      accessMode: ReadWriteMany
+      accessMode: ReadWriteOnce
 
 ingress:
   enabled: true

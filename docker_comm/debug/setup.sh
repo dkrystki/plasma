@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 apt-get update && apt-get install -y iputils-ping
 
 #addgroup --gid 1000 "$1"

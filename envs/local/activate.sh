@@ -4,9 +4,10 @@ if [ "${BASH_SOURCE-}" = "$0" ]; then
     exit 33
 fi
 
-ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-ROOT_DIR=$(dirname "$ROOT_DIR")
-ROOT_DIR=$(dirname "$ROOT_DIR")
+export ROOT
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ROOT=$(dirname "$ROOT")
+ROOT=$(dirname "$ROOT")
 
 deactivate () {
     # reset old environment variables
@@ -62,8 +63,6 @@ minikube config set WantUpdateNotification false
 {
   skaffold config set --global local-cluster true
 } &> /dev/null
-
-source ""$ROOT_DIR"/dataprovs/.env"
 
 _OLD_VIRTUAL_PS1="${PS1:-}"
 if [ "x 🐣" != x ] ; then

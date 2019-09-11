@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 
-cd "$(dirname $0)" || exit
-# cd into root dir
-cd ../../../
+. "$ROOT"/shangren.sh
+
+printf "Bootstraping Minikube\n"
 
 minikube --profile=shangren delete
 minikube --profile=shangren start --cpus=5 --memory=15000 --disk-size="40000mb" --vm-driver=kvm2
-source envs/local/activate.sh
 minikube --profile=shangren addons enable dashboard
 minikube --profile=shangren addons enable ingress
 
 helm init --wait
 
 MINIKUBE_IP=$(minikube --profile=shangren ip)
+
+beep 1500 0.1
 sudo hostess add shangren.dashboard.local "$MINIKUBE_IP"
-kubectl apply -f bin/local/k8s/dashboard_ingress.yaml
+kubectl apply -f k8s/dashboard_ingress.yaml
 
-bash bin/deploy.sh
-
-bash bin/local/skaffold.sh
+printf "Bootstraped Minikube\n\n"
