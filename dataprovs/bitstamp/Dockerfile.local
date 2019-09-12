@@ -18,7 +18,6 @@ COPY dataprovs/bitstamp/flesh/Pipfile.lock Pipfile.lock
 RUN pip3 install pipenv
 
 RUN pipenv install -d --system
-
 COPY dataprovs/bitstamp/flesh .
 
 EXPOSE 8000

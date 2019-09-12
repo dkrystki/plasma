@@ -16,17 +16,23 @@ deactivate () {
         export PATH
         unset _OLD_VIRTUAL_PATH
     fi
-    if ! [ -z "${_OLD_VIRTUAL_PYTHONHOME+_}" ] ; then
+    if ! [ -z "${_OLD_VIRTUAL_PYTHONHOME:+_}" ] ; then
         PYTHONHOME="$_OLD_VIRTUAL_PYTHONHOME"
         export PYTHONHOME
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
 
-    if [ -n "${_OLD_KUBECONFIG_PATH:-}" ] ; then
-        KUBECONFIG="${_OLD_KUBECONFIG_PATH:-}"
+    if ! [ -z "${_OLD_KUBECONFIG_PATH:+_}" ] ; then
+        KUBECONFIG="$_OLD_KUBECONFIG_PATH"
         export KUBECONFIG
         unset _OLD_KUBECONFIG_PATH
     fi
+#
+#    if ! [ -z "${_OLD_PYTHON_PATH:+_}" ] ; then
+#        PYTHONPATH="$_OLD_PYTHON_PATH"
+#        export PYTHONPATH
+#        unset _OLD_PYTHON_PATH
+#    fi
 
     if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
         PS1="${_OLD_VIRTUAL_PS1:-}"
@@ -43,7 +49,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV=".venv"
+VIRTUAL_ENV="$ROOT/.venv"
 export VIRTUAL_ENV
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
@@ -55,9 +61,18 @@ if ! [ -z "${PYTHONHOME+_}" ] ; then
     unset PYTHONHOME
 fi
 
+#_OLD_PYTHON_PATH="$PYTHONPATH"
+#export PYTHONPATH
+#PYTHONPATH="$ROOT/lib:$PYTHONPATH"
+
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
 export KUBECONFIG=~/.kube/config
 minikube config set WantUpdateNotification false
+
+eval "$(minikube -p shangren docker-env)"
+
+# load settings
+export $(grep -v '^#' "$ROOT"/settings.env | xargs -d '\n')
 
 # do not try to push images after building
 {
@@ -69,3 +84,6 @@ if [ "x 🐣" != x ] ; then
     PS1="🐣${PS1:-}"
 fi
 export PS1
+
+
+printenv > "$ROOT"/activate.env

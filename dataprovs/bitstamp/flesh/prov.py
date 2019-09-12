@@ -51,21 +51,19 @@ class LiveTrades(Channel):
                 }
             }
         ]
-g
+
         self.prov.influx.write_points(json_body)
 
 
 class Provider:
     def __init__(self):
         self.url = 'wss://ws.bitstamp.net'
-        self.influx = InfluxDBClient(host='influxdb.dataprovs',
+        self.influx = InfluxDBClient(host='influxdb',
                                      port=8086,
                                      username='root',
                                      password='root',
                                      database='bitstamp')
         self.influx.create_database('bitstamp')
-
-        a = 1/0
 
         self.channels = []
 

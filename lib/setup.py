@@ -4,7 +4,7 @@ import os
 from setuptools import setup, Command
 
 version = {}
-exec(Path("shengren/__version__.py").read_text(), version)
+exec(Path("shangren/__version__.py").read_text(), version)
 
 
 class CleanCommand(Command):
@@ -22,12 +22,11 @@ class CleanCommand(Command):
 
 
 setup(
-    name='shengren',
+    name='shangren',
     version=version['__version__'],
-    packages=['shengren'],
-    description='Library for functionality shared between Shengren microservices',
-    install_requires=['requests', 'furl'
-    ],
+    packages=['shangren'],
+    description='Library for functionality shared between Shangren microservices',
+    install_requires=[],
     cmdclass={
         'clean': CleanCommand,
     }

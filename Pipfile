@@ -7,7 +7,13 @@ verify_ssl = true
 
 [packages]
 ipython = "*"
-honcho = "*"
+pexpect = "*"
+pyhelm = "*"
+delegator-py = "*"
+sarge = "*"
+shangren = {editable = true,path = "./lib"}
+kubernetes = "*"
+loguru = "*"
 
 [requires]
 python_version = "3.7"

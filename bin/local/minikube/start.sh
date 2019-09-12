@@ -2,6 +2,4 @@
 
 . "$ROOT"/shangren.sh
 
-minikube start
-
-SHANGREN_DASHBOARD_IP=$(kubectl -n kube-system get service kubernetes-dashboard -o yaml | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}")
+minikube --profile=shangren start --cpus=5 --memory=15000 --disk-size="40000mb" --vm-driver=kvm2

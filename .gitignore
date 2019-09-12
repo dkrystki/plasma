@@ -106,6 +106,6 @@ venv.bak/
 
 .vagrant
 
-deploy.retry
-
 .telepresence_env
+
+activate.env
