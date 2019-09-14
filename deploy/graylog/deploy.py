@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import os
-import sys
 from loguru import logger
 from .seed import seed
 
@@ -8,7 +7,7 @@ from shangren.utils.deploy import run
 
 
 def deploy() -> None:
-    os.chdir(sys.path[0])
+    os.chdir(os.path.dirname(__file__))
 
     ip: str = run("minikube --profile=shangren ip")
 
@@ -41,8 +40,8 @@ def deploy() -> None:
         -f values/local/fluentbit.yaml --force --wait=true \
          fluentbit stable/fluent-bit""")
 
-    logger.info("👌Deployed graylog\n")
     seed()
+    logger.info("👌Deployed graylog\n")
 
 
 if __name__ == "__main__":

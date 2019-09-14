@@ -38,6 +38,16 @@ filestore:
       size: 10Gi
       accessMode: ReadWriteOnce
 
+redis:
+  password: password
+  enabled: false
+  host: redis-master
+
+postgresql:
+  enabled: false
+  postgresHost: postgresql
+  postgresPassword: password
+
 ingress:
   enabled: true
   hostname: shangren.sentry.local

@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 import os
-import sys
 from . import bitstamp
 
 
 def delete() -> None:
-    os.chdir(sys.path[0])
+    os.chdir(os.path.dirname(__file__))
 
     bitstamp.delete()
 

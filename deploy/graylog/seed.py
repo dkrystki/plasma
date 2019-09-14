@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 import os
-import sys
 from loguru import logger
 
 from shangren.utils.deploy import run
 
 
 def seed() -> None:
-    os.chdir(sys.path[0])
+    os.chdir(os.path.dirname(__file__))
 
     logger.info("🌱Seeding graylog")
 
@@ -16,7 +15,7 @@ def seed() -> None:
     run(f'kubectl -n graylog cp dump {mongo_pod}:home/restore/graylog')
     run(f'kubectl -n graylog exec {mongo_pod} -- bash -c "mongorestore --quiet /home/restore"')
 
-    logger.info("👌Seeding graylog done\n")
+    logger.info("👌Seeding graylog done")
 
 
 if __name__ == "__main__":

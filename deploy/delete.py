@@ -13,4 +13,4 @@ def delete() -> None:
 
 
 if __name__ == "__main__":
-    deploy()
+    delete()

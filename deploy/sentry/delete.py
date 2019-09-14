@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 import os
-import sys
 from loguru import logger
 
 from shangren.utils.deploy import run
 
 
 def delete() -> None:
-    os.chdir(sys.path[0])
+    os.chdir(os.path.dirname(__file__))
 
-    logger.info("Deleting bitstamp")
+    logger.info("Deleting sentry")
+    run("helm delete --purge redis")
     run("helm delete --purge sentry")
-    logger.info("Deleting bitstamp done")
+    run("helm delete --purge postgresql")
+    logger.info("Deleting sentry done")
 
 
 if __name__ == "__main__":
