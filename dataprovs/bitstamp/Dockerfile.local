@@ -22,4 +22,4 @@ COPY dataprovs/bitstamp/flesh .
 
 EXPOSE 8000
 
-CMD tail -f /dev/null
+CMD python prov.py

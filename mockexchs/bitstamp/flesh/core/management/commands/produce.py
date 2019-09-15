@@ -10,7 +10,7 @@ from shengren.timer import Timer
 from datetime import datetime
 
 
-class Collector:
+class Producer:
     def __init__(self, record_time: int, currencies: List[str]) -> None:
         self.record_time = record_time
         self.currencies = currencies
@@ -80,8 +80,7 @@ class Collector:
 
 
 @click.command()
-@click.option("--record_time", type=int, default=10, help="How long the data will be recorded for in seconds.")
-@click.option("--curr", type=str, default='btc', help="What currencies will be collected.", multiple=True)
-def command(record_time, curr):
+@click.option("--recording_name", type=str, help="Which recording to start producing.")
+def command(record_time):
     coll = Collector(record_time, curr)
     coll.start()

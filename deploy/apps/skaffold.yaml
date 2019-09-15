@@ -7,7 +7,7 @@ profiles:
       - image: shangren/bitstamp
         docker:
           dockerfile: dataprovs/bitstamp/Dockerfile.local
-        context: ../../../
+        context: ../../
         sync:
           infer:
            - 'dataprovs/bitstamp/flesh/*.py'
@@ -16,9 +16,9 @@ profiles:
       helm:
         releases:
           - name: bitstamp
-            chartPath: ../../../dataprovs/bitstamp
+            chartPath: ../../dataprovs/bitstamp
             namespace: dataprovs
             valuesFiles:
-                - values/local.yaml
+                - dataprovs/bitstamp/values/local.yaml
             values:
               image: shangren/bitstamp

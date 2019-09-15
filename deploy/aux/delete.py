@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 from loguru import logger
-import graylog
-import sentry
-import dataprovs
+from aux import graylog, sentry
+from apps import dataprovs
 
 
 def delete() -> None:

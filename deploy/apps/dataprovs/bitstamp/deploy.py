@@ -11,8 +11,8 @@ def deploy() -> pexpect.pty_spawn.spawn:
     os.chdir(os.path.dirname(__file__))
 
     logger.info("Deploying bitstamp")
-    skaffold: pexpect.pty_spawn.spawn = pexpect.spawn("skaffold dev -p local")
-    skaffold.expect(r".*Watching for changes.*",)
+    skaffold: pexpect.pty_spawn.spawn = pexpect.spawn("")
+    skaffold.expect(r".*Watching for changes.*", timeout=60*5)
     return skaffold
 
 

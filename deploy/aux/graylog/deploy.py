@@ -15,17 +15,17 @@ def deploy() -> None:
     run("helm repo add elastic https://helm.elastic.co")
 
     logger.info("🚀Deploying elasticsearch")
-    run("""helm upgrade --install --namespace graylog elasticsearch \\
-        -f values/local/elasticsearch.yaml \\
-        --force --wait=true \\
-        --timeout=25000 \\
+    run("""helm upgrade --install --namespace graylog elasticsearch \
+        -f values/local/elasticsearch.yaml \
+        --force --wait=true \
+        --timeout=25000 \
         elastic/elasticsearch""")
 
     logger.info("🚀Deploying mongodb")
-    run("""helm upgrade --install --namespace graylog mongodb \\
-     -f values/local/mongodb.yaml \\
-        --force --wait=true \\
-        --timeout=25000 \\
+    run("""helm upgrade --install --namespace graylog mongodb \
+     -f values/local/mongodb.yaml \
+        --force --wait=true \
+        --timeout=25000 \
         stable/mongodb-replicaset""")
 
     logger.info("🚀Deploying graylog")

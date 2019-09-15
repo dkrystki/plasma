@@ -40,6 +40,8 @@ deactivate () {
         unset _OLD_VIRTUAL_PS1
     fi
 
+    unset SHANGREN_STAGE
+
     if [ ! "$1" = "nondestructive" ] ; then
     # Self destruct!
         unset -f deactivate
@@ -64,6 +66,9 @@ fi
 #_OLD_PYTHON_PATH="$PYTHONPATH"
 #export PYTHONPATH
 #PYTHONPATH="$ROOT/lib:$PYTHONPATH"
+
+export SHANGREN_STAGE
+SHANGREN_STAGE="local"
 
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
 export KUBECONFIG=~/.kube/config

@@ -13,7 +13,7 @@ ipython = "*"
 numpy = "*"
 sentry-sdk = "*"
 environs = "*"
-graypy = "*"
+loguru = "*"
 
 [requires]
 python_version = "3.7"

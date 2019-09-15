@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 from loguru import logger
-import graylog
-import sentry
-import dataprovs
+from aux import graylog, sentry
 
 
 def deploy() -> None:
-    logger.info("Deploying services")
+    logger.info("Deploying auxiliary services.")
     graylog.deploy()
     sentry.deploy()
-    dataprovs.deploy()
 
 
 if __name__ == "__main__":

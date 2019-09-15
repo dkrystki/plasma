@@ -5,6 +5,8 @@ from abc import ABC, abstractmethod
 import settings
 from influxdb import InfluxDBClient
 
+from loguru import logger
+
 
 class Channel(ABC):
     type: str = ""
