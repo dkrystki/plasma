@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 from pathlib import Path
 
 from loguru import logger
@@ -7,9 +8,9 @@ from shangren.utils.deploy import run
 
 
 def deploy() -> None:
-    Path(__file__).absolute().parent.cwd()
+    os.chdir(Path(__file__).absolute().parent)
     logger.info("🚀Deploying influxdb")
-    run("""helm upgrade --install --namespace=$DATAPROVS_NAMESPACE influxdb \
+    run("""helm upgrade --install --namespace=dataprovs influxdb \
            --force --wait=true \
            --timeout=15000 \
            stable/influxdb \

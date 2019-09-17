@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+from pathlib import Path
 from loguru import logger
 
 from shangren.utils.deploy import run
@@ -7,7 +8,7 @@ from .helpers import get_pod_name
 
 
 def seed() -> None:
-    os.chdir(os.path.dirname(__file__))
+    os.chdir(Path(__file__).absolute().parent)
 
     logger.info("🌱Seeding sentry")
 

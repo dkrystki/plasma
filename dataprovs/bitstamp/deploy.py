@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 import os
-from loguru import logger
-
-from shangren.utils.deploy import run
-
-import pexpect
+from pathlib import Path
 
 
 def deploy():
-    os.chdir(os.path.dirname(__file__))
+    os.chdir(Path(__file__).absolute().parent)
 
 
 if __name__ == "__main__":

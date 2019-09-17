@@ -1,10 +1,11 @@
 ---
 image:
+  registry: docker.io
   repository: postgres
-  tag: 9.6.15
+  tag: 11.5
+  pullPolicy: IfNotPresent
 
 postgresqlPassword: password
-postgresqlUsername: sentry
-postgresqlDatabase: sentry
+postgresqlUsername: mockexchs
 
 fullnameOverride: postgresql

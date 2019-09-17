@@ -3,4 +3,9 @@ kind: ConfigMap
 metadata:
   name: {{ include "chart.name" . }}
 data:
-  SENTRY_DSN: {{ .Values.sentry.dsn }}
+  SENTRY_DSN: "{{ .Values.sentry.dsn }}"
+  DB_NAME: "{{ .Values.db.name }}"
+  DB_USER: "{{ .Values.db.user }}"
+  DB_HOST: "{{ .Values.db.host }}"
+  DB_PORT: "{{ .Values.db.port }}"
+

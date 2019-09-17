@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+import os
 import subprocess
 import sys
 
 from pathlib import Path
 from loguru import logger
 import dataprovs
+import atexit
 
 
 def deploy() -> None:
@@ -12,20 +14,20 @@ def deploy() -> None:
     dataprovs.deploy()
     logger.info("🚀starting skaffold")
 
-    Path(__file__).absolute().parent.cwd()
-    logger.info(Path(__file__).absolute().parent)
-    logger.info(Path(__file__).absolute())
+    os.chdir(Path(__file__).absolute().parent)
+
     process = subprocess.Popen("skaffold dev -p local", shell=True, stderr=sys.stdout,
                                stdout=sys.stdout)
+    try:
+        process.wait()
+    except KeyboardInterrupt:
+        process.terminate()
+        print("TEST")
 
-    while process.stdout.readable():
-        line = process.stdout.readline()
-
-        if not line:
-            break
-
-        print(line.strip().decode("utf-8"))
+# def on_exit():
+#     process.e
 
 
 if __name__ == "__main__":
+    # atexit.register(on_exit)
     deploy()

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+from pathlib import Path
 from loguru import logger
 from .seed import seed
 
@@ -7,7 +8,7 @@ from shangren.utils.deploy import run
 
 
 def deploy() -> None:
-    os.chdir(os.path.dirname(__file__))
+    os.chdir(Path(__file__).absolute().parent)
 
     ip: str = run("minikube --profile=shangren ip")
 

@@ -59,7 +59,10 @@ class LiveTrades(Channel):
 
 class Provider:
     def __init__(self):
-        self.url = 'wss://ws.bitstamp.net'
+        logger.info("Starting Bitstamp Dataprovider.")
+        self.url = settings.Bitstamp.URL
+
+        logger.info("Connecting to influxdb.")
         self.influx = InfluxDBClient(host='influxdb',
                                      port=8086,
                                      username='root',
@@ -82,6 +85,7 @@ class Provider:
         return results[0]
 
     def _connect(self):
+        logger.info("Connecting to the websocket.")
         websocket.enableTrace(True)
         self.ws = websocket.WebSocketApp(self.url,
                                          on_message=lambda ws, msg: self._on_message(msg),

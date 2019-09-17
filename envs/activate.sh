@@ -7,7 +7,6 @@ fi
 export ROOT
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ROOT=$(dirname "$ROOT")
-ROOT=$(dirname "$ROOT")
 
 deactivate () {
     # reset old environment variables
@@ -67,9 +66,6 @@ fi
 #export PYTHONPATH
 #PYTHONPATH="$ROOT/lib:$PYTHONPATH"
 
-export SHANGREN_STAGE
-SHANGREN_STAGE="local"
-
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
 export KUBECONFIG=~/.kube/config
 minikube config set WantUpdateNotification false
@@ -77,8 +73,7 @@ minikube config set WantUpdateNotification false
 eval "$(minikube -p shangren docker-env)"
 
 # load settings
-export $(grep -v '^#' "$ROOT"/settings.env | xargs -d '\n')
-
+export $(grep -v '^#' "$ROOT"/envs/values/local.env | xargs -d '\n')
 # do not try to push images after building
 {
   skaffold config set --global local-cluster true

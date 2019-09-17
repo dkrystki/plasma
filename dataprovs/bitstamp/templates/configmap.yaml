@@ -4,3 +4,4 @@ metadata:
   name: {{ include "chart.name" . }}
 data:
   SENTRY_DSN: {{ .Values.sentry.dsn }}
+  BITSTAMP_URL: {{ .Values.bitstamp.url }}

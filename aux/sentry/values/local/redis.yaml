@@ -9,3 +9,5 @@ redisPort: 6379
 
 usePassword: true
 password: password
+
+fullnameOverride: redis

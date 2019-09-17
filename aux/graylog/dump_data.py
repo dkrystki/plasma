@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 import os
+from pathlib import Path
 from loguru import logger
 
 from shangren.utils.deploy import run
 
 
 def dump_data() -> None:
-    os.chdir(os.path.dirname(__file__))
+    os.chdir(Path(__file__).absolute().parent)
 
     logger.info("♻️Dumping graylog♻")
 
