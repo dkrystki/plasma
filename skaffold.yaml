@@ -1,0 +1,39 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+profiles:
+  - name: local
+    build:
+      artifacts:
+      - image: shangren/dataprovs-bitstamp
+        docker:
+          dockerfile: dataprovs/bitstamp/Dockerfile.local
+        context: .
+        sync:
+          infer:
+           - 'dataprovs/bitstamp/flesh/*.py'
+      - image: shangren/mockexchs-bitstamp
+        docker:
+          dockerfile: mockexchs/bitstamp/Dockerfile
+        context: .
+        sync:
+          infer:
+            - 'mockexchs/bitstamp/flesh/*.py'
+
+    deploy:
+      helm:
+        releases:
+          - name: dataprovs-bitstamp
+            chartPath: dataprovs/bitstamp
+            namespace: dataprovs
+            valuesFiles:
+              - dataprovs/bitstamp/values/local.yaml
+            values:
+              image: shangren/dataprovs-bitstamp
+
+          - name: mockexchs-bitstamp
+            chartPath: mockexchs/bitstamp
+            namespace: mockexchs
+            valuesFiles:
+              - mockexchs/bitstamp/values/local.yaml
+            values:
+              image: shangren/mockexchs-bitstamp

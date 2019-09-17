@@ -3,7 +3,7 @@ import os
 from loguru import logger
 
 from shangren.utils.deploy import run
-from helpers import get_pod_name
+from .helpers import get_pod_name
 
 
 def seed() -> None:

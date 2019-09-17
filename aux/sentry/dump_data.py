@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-import os
+from pathlib import Path
 from loguru import logger
 
 from shangren.utils.deploy import run
-from .helpers import get_pod_name
+from helpers import get_pod_name
 
 
 def dump_data() -> None:
-    os.chdir(os.path.dirname(__file__))
+    Path(__file__).absolute().parent.cwd()
 
     logger.info("♻️Dumping sentry")
     sentry_pod: str = get_pod_name()

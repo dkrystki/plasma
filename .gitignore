@@ -106,6 +106,6 @@ venv.bak/
 
 .vagrant
 
-.telepresence_env
+telepresence.env
 
 activate.env

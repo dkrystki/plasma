@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'sockets'
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ASGI_APPLICATION = 'mysite.routing.application'
+ASGI_APPLICATION = 'bitstamp.routing.application'
 
 # Bitstamp
 RECORDINGS_DIR = Path(BASE_DIR).parent/"data/recordings"

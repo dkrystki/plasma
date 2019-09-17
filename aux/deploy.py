@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from loguru import logger
-from aux import graylog, sentry
+import graylog
+import sentry
 
 
 def deploy() -> None:

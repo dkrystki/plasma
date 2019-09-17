@@ -6,6 +6,7 @@ env = Env()
 
 class Bitstamp:
     SUPPORTED_CURRENCIES = ['btc', 'bch', 'eth', 'ltc', 'xrp']
+    URL = env("BITSTAMP_URL")
 
 
 class Sentry:

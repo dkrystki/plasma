@@ -18,6 +18,6 @@ COPY mockexchs/bitstamp/flesh/Pipfile.lock Pipfile.lock
 RUN pip3 install pipenv
 
 RUN pipenv install -d --system
-COPY dataprovs/bitstamp/flesh .
+COPY mockexchs/bitstamp/flesh .
 
-CMD python manage.py runserver 0.0.0.0:80
+CMD python manage.py runserver 0.0.0.0:8000

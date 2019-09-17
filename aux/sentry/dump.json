@@ -1,0 +1,471 @@
+[
+{
+  "pk": 1,
+  "model": "sites.site",
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.email",
+  "fields": {
+    "date_added": "2019-09-16T09:48:46.009Z",
+    "email": "admin@sentry.local"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-17T01:03:21.482Z",
+    "value": 1568682201.482595,
+    "key": "sentry:last_worker_ping"
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-17T01:03:21.490Z",
+    "value": "gAJYBQAAADkuMS4ycQEu",
+    "key": "sentry:last_worker_version"
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-16T10:46:23.664Z",
+    "value": "gAJYKAAAAGM1OWE5YWRhYjFhYmM5MWI0M2I2OGQwOGE1OTk2OGM0YjdhNTg0MGVxAS4=",
+    "key": "sentry:install-id"
+  }
+},
+{
+  "pk": 4,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-17T00:47:33.423Z",
+    "value": "gAJYBQAAADkuMS4ycQEu",
+    "key": "sentry:latest_version"
+  }
+},
+{
+  "pk": 5,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-16T23:41:21.392Z",
+    "value": false,
+    "key": "auth.allow-registration"
+  }
+},
+{
+  "pk": 6,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-16T23:41:21.395Z",
+    "value": "gAJYEgAAAGFkbWluQHNlbnRyeS5sb2NhbHEBLg==",
+    "key": "system.admin-email"
+  }
+},
+{
+  "pk": 7,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-16T23:41:21.400Z",
+    "value": "gAJYHAAAAGh0dHA6Ly9zaGFuZ3Jlbi5zZW50cnkubG9jYWxxAS4=",
+    "key": "system.url-prefix"
+  }
+},
+{
+  "pk": 8,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-16T23:41:21.404Z",
+    "value": true,
+    "key": "beacon.anonymous"
+  }
+},
+{
+  "pk": 9,
+  "model": "sentry.option",
+  "fields": {
+    "last_updated": "2019-09-16T23:41:21.407Z",
+    "value": "gAJYBQAAADkuMS4ycQEu",
+    "key": "sentry:version-configured"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.user",
+  "fields": {
+    "username": "admin@sentry.local",
+    "session_nonce": null,
+    "name": "",
+    "last_active": "2019-09-17T01:01:13.487Z",
+    "is_active": true,
+    "is_sentry_app": null,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2019-09-16T23:41:14.592Z",
+    "last_password_change": "2019-09-16T09:48:46.001Z",
+    "is_managed": false,
+    "flags": "0",
+    "password": "pbkdf2_sha256$12000$YaiZn44fLmxR$CA6D4uSSWCCZXzQSXB9YlR01b7S9AEEOuzg3nk/CI2o=",
+    "email": "admin@sentry.local",
+    "date_joined": "2019-09-16T09:48:45.963Z",
+    "is_password_expired": false
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.useremail",
+  "fields": {
+    "date_hash_added": "2019-09-16T09:48:46.006Z",
+    "validation_hash": "9eFYWxqkE8RmEgcIbIPmwIhWfWgWIzXW",
+    "is_verified": false,
+    "user": [
+      "admin@sentry.local"
+    ],
+    "email": "admin@sentry.local"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.userip",
+  "fields": {
+    "region_code": null,
+    "user": [
+      "admin@sentry.local"
+    ],
+    "country_code": null,
+    "first_seen": "2019-09-16T23:41:14.804Z",
+    "ip_address": "192.168.99.1",
+    "last_seen": "2019-09-17T01:01:46.143Z"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.organization",
+  "fields": {
+    "status": 0,
+    "name": "Sentry",
+    "default_role": "member",
+    "flags": "1",
+    "date_added": "2019-09-16T09:48:28.751Z",
+    "slug": "sentry"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.team",
+  "fields": {
+    "status": 0,
+    "organization": 1,
+    "slug": "sentry",
+    "date_added": "2019-09-16T09:48:28.755Z",
+    "name": "Sentry"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.project",
+  "fields": {
+    "status": 0,
+    "name": "Internal",
+    "date_added": "2019-09-16T09:48:28.757Z",
+    "slug": "internal",
+    "first_event": "2019-09-16T11:18:52.476Z",
+    "platform": null,
+    "flags": "0",
+    "forced_color": null,
+    "organization": 1,
+    "public": false
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.project",
+  "fields": {
+    "status": 0,
+    "name": "Python",
+    "date_added": "2019-09-02T12:34:53.445Z",
+    "slug": "dataprov-bitstamp",
+    "first_event": "2019-09-16T11:18:43.578Z",
+    "platform": "python",
+    "flags": "0",
+    "forced_color": null,
+    "organization": 1,
+    "public": false
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.project",
+  "fields": {
+    "status": 0,
+    "name": "Python",
+    "date_added": "2019-09-17T01:01:13.506Z",
+    "slug": "mockexchs-bitstamp",
+    "first_event": null,
+    "platform": "python",
+    "flags": "0",
+    "forced_color": null,
+    "organization": 1,
+    "public": false
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.projectteam",
+  "fields": {
+    "project": 1,
+    "team": 1
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.projectteam",
+  "fields": {
+    "project": 2,
+    "team": 1
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.projectteam",
+  "fields": {
+    "project": 3,
+    "team": 1
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.organizationmember",
+  "fields": {
+    "has_global_access": true,
+    "token_expires_at": null,
+    "token": null,
+    "flags": "0",
+    "user": [
+      "admin@sentry.local"
+    ],
+    "date_added": "2019-09-16T09:48:46.017Z",
+    "organization": 1,
+    "role": "owner",
+    "type": 50,
+    "email": null
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.organizationmemberteam",
+  "fields": {
+    "is_active": true,
+    "organizationmember": 1,
+    "team": 1
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.counter",
+  "fields": {
+    "project": 2,
+    "value": 2
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.counter",
+  "fields": {
+    "project": 1,
+    "value": 1
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.projectkey",
+  "fields": {
+    "status": 0,
+    "public_key": "38e5cfbe74ab44f78c8be30a6c52de8c",
+    "roles": "1",
+    "rate_limit_count": null,
+    "rate_limit_window": null,
+    "label": "Default",
+    "project": 1,
+    "date_added": "2019-09-16T09:48:28.761Z",
+    "secret_key": "104d6ff75c9d451986f13d301aa0976b",
+    "data": {}
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.projectkey",
+  "fields": {
+    "status": 0,
+    "public_key": "4f571e554f224e5ab0a91727da85b5e4",
+    "roles": "1",
+    "rate_limit_count": null,
+    "rate_limit_window": null,
+    "label": "Default",
+    "project": 2,
+    "date_added": "2019-09-02T12:34:53.449Z",
+    "secret_key": "4be9df4517124bc1ae697c3556e8a47b",
+    "data": {}
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.projectkey",
+  "fields": {
+    "status": 0,
+    "public_key": "12dbd60d73814a7f9dfc2cf9f1b101b7",
+    "roles": "1",
+    "rate_limit_count": null,
+    "rate_limit_window": null,
+    "label": "Default",
+    "project": 3,
+    "date_added": "2019-09-17T01:01:13.513Z",
+    "secret_key": "7b5ce23a18324ecba1cc612d92c1022f",
+    "data": {}
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 1,
+    "value": "gAJYIAAAADIyYzFmZWNlZDg2NzExZTk5YzI3MDI0MmFjMTEwMDEwcQEu",
+    "key": "sentry:relay-rev"
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 1,
+    "value": "2019-09-16T09:48:28.789Z",
+    "key": "sentry:relay-rev-lastchange"
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 1,
+    "value": "gAJdcQFVASphLg==",
+    "key": "sentry:origins"
+  }
+},
+{
+  "pk": 4,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 2,
+    "value": "gAJYIAAAAGVkYjdiNGYyY2VmZDExZTk4NGU4MDI0MmFjMTIwMDE2cQEu",
+    "key": "sentry:relay-rev"
+  }
+},
+{
+  "pk": 5,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 2,
+    "value": "gAJYGAAAADIwMTktMDktMDRUMTA6MjI6NDIuMTgzWnEBLg==",
+    "key": "sentry:relay-rev-lastchange"
+  }
+},
+{
+  "pk": 6,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 2,
+    "value": "gAJYIAAAADEwN2I0ZjcwY2Q3ZTExZTliZDdkMDI0MmFjMTIwMDE2cQEu",
+    "key": "sentry:token"
+  }
+},
+{
+  "pk": 7,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 3,
+    "value": "gAJYIAAAAGI3MjM3MjMwZDhlNjExZTk5ZjI5MDI0MmFjMTEwMDBkcQEu",
+    "key": "sentry:relay-rev"
+  }
+},
+{
+  "pk": 8,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 3,
+    "value": "2019-09-17T01:01:43.818Z",
+    "key": "sentry:relay-rev-lastchange"
+  }
+},
+{
+  "pk": 9,
+  "model": "sentry.projectoption",
+  "fields": {
+    "project": 3,
+    "value": "gAJYIAAAAGE1M2VlYjMwZDhlNjExZTliMTBiMDI0MmFjMTEwMDBkcQEu",
+    "key": "sentry:token"
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.projectredirect",
+  "fields": {
+    "project": 2,
+    "organization": 1,
+    "date_added": "2019-09-04T10:22:42.188Z",
+    "redirect_slug": "dataprov-bitstamp"
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.projectredirect",
+  "fields": {
+    "project": 3,
+    "organization": 1,
+    "date_added": "2019-09-17T01:01:43.824Z",
+    "redirect_slug": "python"
+  }
+},
+{
+  "pk": 1,
+  "model": "sentry.rule",
+  "fields": {
+    "status": 0,
+    "environment_id": null,
+    "label": "Send a notification for new issues",
+    "project": 1,
+    "date_added": "2019-09-16T09:48:28.763Z",
+    "data": "eJxljr0OwyAMhHe/CEyopP9jFbVjFx4gQkBaJAoI00p5+5ooUYduvvPZ33GbJShmUrS++hSRQe6Ah7wFbvOOVt6StacBXaxlEuUdHIrfgRh9wTqgc3FwH8qIWzMU6WuT/ZqkNwdAjYq9dDVPkkf6qkOg6QRka7M2OLcGctMqSAmPP/qSFDFVP04L9j6LmXkxC1B2jSi+gKlNZQ=="
+  }
+},
+{
+  "pk": 2,
+  "model": "sentry.rule",
+  "fields": {
+    "status": 0,
+    "environment_id": null,
+    "label": "Send a notification for new issues",
+    "project": 2,
+    "date_added": "2019-09-16T09:49:00.872Z",
+    "data": "eJxljr0OwyAMhHe/CEyopP9jFbVjFx4gQkBaJAoI00p5+5ooUYduvvPZ33GbJShmUrS++hSRQe6Ah7wFbvOOVt6StacBXaxlEuUdHIrfgRh9wTqgc3FwH8qIWzMU6WuT/ZqkNwdAjYq9dDVPkkf6qkOg6QRka7M2OLcGctMqSAmPP/qSFDFVP04L9j6LmXkxC1B2jSi+gKlNZQ=="
+  }
+},
+{
+  "pk": 3,
+  "model": "sentry.rule",
+  "fields": {
+    "status": 0,
+    "environment_id": null,
+    "label": "Send a notification for new issues",
+    "project": 3,
+    "date_added": "2019-09-17T01:01:13.517Z",
+    "data": "eJxljr0OwyAMhHe/CEyopP9jFbVjFx4gQkBaJAoI00p5+5ooUYduvvPZ33GbJShmUrS++hSRQe6Ah7wFbvOOVt6StacBXaxlEuUdHIrfgRh9wTqgc3FwH8qIWzMU6WuT/ZqkNwdAjYq9dDVPkkf6qkOg6QRka7M2OLcGctMqSAmPP/qSFDFVP04L9j6LmXkxC1B2jSi+gKlNZQ=="
+  }
+}
+]

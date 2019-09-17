@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "chart.fullname" . -}}
+{{- $fullName := include "chart.name" . -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:

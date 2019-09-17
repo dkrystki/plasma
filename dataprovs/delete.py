@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from . import bitstamp
+from dataprovs import bitstamp
 
 
 def delete() -> None:
