@@ -87,6 +87,7 @@ class Provider:
     def _connect(self):
         logger.info("Connecting to the websocket.")
         websocket.enableTrace(True)
+        #"wss://ws.bitstamp.net"
         self.ws = websocket.WebSocketApp(self.url,
                                          on_message=lambda ws, msg: self._on_message(msg),
                                          on_close=lambda ws: self._on_close(),

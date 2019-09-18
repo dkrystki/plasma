@@ -26,8 +26,7 @@ sentry:
 
 db:
   name: bitstamp
-  user: mockexchs
+  user: postgres
   password: cGFzc3dvcmQ=
   host: postgresql.mockexchs
   port: 5432
-
