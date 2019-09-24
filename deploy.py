@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 from loguru import logger
-import dataprovs
+import datacolls
 from .skaffold import skaffold
 
 
 def deploy() -> None:
     logger.info("Deploying apps")
-    dataprovs.deploy()
+    datacolls.deploy()
     skaffold()
 
 

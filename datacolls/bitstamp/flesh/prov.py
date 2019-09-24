@@ -11,8 +11,8 @@ from loguru import logger
 class Channel(ABC):
     type: str = ""
 
-    def __init__(self, prov: 'Provider', currency: str):
-        self.prov: 'Provider' = prov
+    def __init__(self, prov: 'Collector', currency: str):
+        self.prov: 'Collector' = prov
         self.currency: str = currency
 
     @abstractmethod
@@ -57,9 +57,9 @@ class LiveTrades(Channel):
         self.prov.influx.write_points(json_body)
 
 
-class Provider:
+class Collector:
     def __init__(self):
-        logger.info("Starting Bitstamp Dataprovider.")
+        logger.info("Starting Bitstamp Data Collector.")
         self.url = settings.Bitstamp.URL
 
         logger.info("Connecting to influxdb.")
@@ -121,4 +121,4 @@ class Provider:
 
 
 if __name__ == '__main__':
-    prov = Provider()
+    prov = Collector()

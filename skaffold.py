@@ -18,7 +18,6 @@ def skaffold() -> None:
         process.wait()
     except KeyboardInterrupt:
         process.terminate()
-        print("TEST")
 
 
 if __name__ == "__main__":

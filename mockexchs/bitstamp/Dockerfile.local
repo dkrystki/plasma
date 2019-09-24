@@ -8,18 +8,16 @@ ENV STAGE local
 
 WORKDIR /srv
 COPY docker_comm docker_comm
-COPY dataprovs/bitstamp/docker docker
+COPY mockexchs/bitstamp/docker docker
 RUN bash docker_comm/debug/setup.sh
 
-COPY dataprovs/bitstamp/flesh/Pipfile Pipfile
-COPY dataprovs/bitstamp/flesh/Pipfile.lock Pipfile.lock
+COPY mockexchs/bitstamp/flesh/Pipfile Pipfile
+COPY mockexchs/bitstamp/flesh/Pipfile.lock Pipfile.lock
 
 # Install common
 RUN pip3 install pipenv
 
-RUN pipenv install -d --system
-COPY dataprovs/bitstamp/flesh .
+RUN pipenv install --system
+COPY mockexchs/bitstamp/flesh .
+COPY lib/shangren /usr/local/lib/python3.7/shangren
 
-EXPOSE 8000
-
-CMD python prov.py

@@ -191,7 +191,7 @@
     "status": 0,
     "name": "Python",
     "date_added": "2019-09-02T12:34:53.445Z",
-    "slug": "dataprov-bitstamp",
+    "slug": "datacolls-bitstamp",
     "first_event": "2019-09-16T11:18:43.578Z",
     "platform": "python",
     "flags": "0",
@@ -419,7 +419,7 @@
     "project": 2,
     "organization": 1,
     "date_added": "2019-09-04T10:22:42.188Z",
-    "redirect_slug": "dataprov-bitstamp"
+    "redirect_slug": "datacolls-bitstamp"
   }
 },
 {

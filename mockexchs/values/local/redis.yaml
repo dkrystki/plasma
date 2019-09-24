@@ -1,0 +1,14 @@
+---
+image:
+  registry: docker.io
+  repository: bitnami/redis
+  tag: 5.0.5-debian-9-r124
+  pullPolicy: IfNotPresent
+
+fullnameOverride: redis
+
+usePassword: true
+password: password
+
+cluster:
+  enabled: false

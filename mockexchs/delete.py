@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 from pathlib import Path
-from dataprovs import bitstamp
+from datacolls import bitstamp
 
 
 def delete() -> None:

@@ -4,16 +4,16 @@ profiles:
   - name: local
     build:
       artifacts:
-      - image: shangren/dataprovs-bitstamp
+      - image: shangren/datacolls-bitstamp
         docker:
-          dockerfile: dataprovs/bitstamp/Dockerfile.local
+          dockerfile: datacolls/bitstamp/Dockerfile.local
         context: .
         sync:
           infer:
-           - 'dataprovs/bitstamp/flesh/*.py'
+           - 'datacolls/bitstamp/flesh/*.py'
       - image: shangren/mockexchs-bitstamp
         docker:
-          dockerfile: mockexchs/bitstamp/Dockerfile
+          dockerfile: mockexchs/bitstamp/Dockerfile.local
         context: .
         sync:
           infer:
@@ -22,13 +22,13 @@ profiles:
     deploy:
       helm:
         releases:
-          - name: dataprovs-bitstamp
-            chartPath: dataprovs/bitstamp
-            namespace: dataprovs
+          - name: datacolls-bitstamp
+            chartPath: datacolls/bitstamp
+            namespace: datacolls
             valuesFiles:
-              - dataprovs/bitstamp/values/local.yaml
+              - datacolls/bitstamp/values/local.yaml
             values:
-              image: shangren/dataprovs-bitstamp
+              image: shangren/datacolls-bitstamp
 
           - name: mockexchs-bitstamp
             chartPath: mockexchs/bitstamp

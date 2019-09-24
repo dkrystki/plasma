@@ -9,8 +9,8 @@ from influxdb import InfluxDBClient
 class Channel(ABC):
     type: str = ""
 
-    def __init__(self, prov: 'Provider', currency: str):
-        self.prov: 'Provider' = prov
+    def __init__(self, prov: 'Collector', currency: str):
+        self.prov: 'Collector' = prov
         self.currency: str = currency
 
     @abstractmethod
@@ -55,7 +55,7 @@ class LiveTrades(Channel):
         self.prov.influx.write_points(json_body)
 
 
-class Provider:
+class Collector:
     def __init__(self):
         self.url = 'wss://ws.bitstamp.net'
         self.influx = InfluxDBClient(host='influxdb',
@@ -114,4 +114,4 @@ class Provider:
 
 
 if __name__ == '__main__':
-    prov = Provider()
+    prov = Collector()

@@ -43,3 +43,13 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+hooks:
+  affinity: {}
+  dbInit:
+    resources:
+      limits:
+        memory: 1200Mi
+      requests:
+        memory: 800Mi

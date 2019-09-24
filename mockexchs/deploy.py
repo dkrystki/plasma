@@ -16,10 +16,18 @@ def deploy() -> None:
     run("helm repo update")
     run("""helm upgrade --install --namespace=mockexchs mockexchs-postgresql \
            --force --wait=true \
-           -f values/local.yaml \
+           -f values/local/postgres.yaml \
            --timeout=15000 \
            stable/postgresql \
            --version 6.3.7""")
+
+    logger.info("🚀Deploying redis")
+    run("""helm upgrade --install --namespace=mockexchs mockexchs-redis \
+           --force --wait=true \
+           -f values/local/redis.yaml \
+           --timeout=15000 \
+           stable/redis \
+           --version 9.2.0""")
 
     bitstamp.deploy()
 

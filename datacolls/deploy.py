@@ -10,7 +10,7 @@ from shangren.utils.deploy import run
 def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
     logger.info("🚀Deploying influxdb")
-    run("""helm upgrade --install --namespace=dataprovs influxdb \
+    run("""helm upgrade --install --namespace=datacolls influxdb \
            --force --wait=true \
            --timeout=15000 \
            stable/influxdb \

@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+shangren = {editable = true,path = "./../../../lib"}
 
 [packages]
 flake8 = "*"
@@ -13,9 +14,10 @@ django = "*"
 websocket-client = "*"
 django-click = "*"
 tqdm = "*"
-channels = "*"
 psycopg2-binary = "*"
 django-environ = "*"
+channels = "*"
+channels-redis = "*"
 
 [requires]
 python_version = "3.7"

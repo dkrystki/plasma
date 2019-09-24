@@ -140,3 +140,13 @@ ASGI_APPLICATION = 'bitstamp.routing.application'
 # Bitstamp
 RECORDINGS_DIR = Path(BASE_DIR).parent/"data/recordings"
 BITSTAMP_WS_URL = 'wss://ws.bitstamp.net'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis-master", 6379)],
+        },
+    },
+}

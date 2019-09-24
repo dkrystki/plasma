@@ -8,16 +8,18 @@ ENV STAGE local
 
 WORKDIR /srv
 COPY docker_comm docker_comm
-COPY mockexchs/bitstamp/docker docker
+COPY datacolls/bitstamp/docker docker
 RUN bash docker_comm/debug/setup.sh
 
-COPY mockexchs/bitstamp/flesh/Pipfile Pipfile
-COPY mockexchs/bitstamp/flesh/Pipfile.lock Pipfile.lock
+COPY datacolls/bitstamp/flesh/Pipfile Pipfile
+COPY datacolls/bitstamp/flesh/Pipfile.lock Pipfile.lock
 
 # Install common
 RUN pip3 install pipenv
 
 RUN pipenv install -d --system
-COPY mockexchs/bitstamp/flesh .
+COPY datacolls/bitstamp/flesh .
 
-CMD python manage.py runserver 0.0.0.0:8000
+EXPOSE 8000
+
+CMD python prov.py

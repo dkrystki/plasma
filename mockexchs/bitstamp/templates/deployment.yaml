@@ -24,19 +24,21 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image }}
+          command: ["/bin/sh", "-c"]
+          args: ["python manage.py runserver 0.0.0.0:8000"]
           imagePullPolicy: {{ .Values.pullPolicy }}
           ports:
             - name: http
               containerPort: 8000
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
+          #          livenessProbe:
+          #            httpGet:
+          #              path: /
+          #              port: http
+          #          readinessProbe:
+          #            httpGet:
+          #              path: /
+          #              port: http
           envFrom:
             - configMapRef:
                 name: {{ include "chart.name" . }}

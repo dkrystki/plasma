@@ -20,7 +20,7 @@ COPY docker/motd/.bashrc /home/bitstamp/.bashrc
 RUN chown -R bitstamp:bitstamp /srv
 WORKDIR /srv
 
-# Setup data provider
+# Setup data collector
 COPY --chown=bitstamp:bitstamp flesh .
 
 USER bitstamp

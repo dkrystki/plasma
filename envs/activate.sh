@@ -4,9 +4,11 @@ if [ "${BASH_SOURCE-}" = "$0" ]; then
     exit 33
 fi
 
-export ROOT
-ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-ROOT=$(dirname "$ROOT")
+export SCRIPT_ROOT
+SCRIPT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+export SHANGREN_ROOT
+SHANGREN_ROOT=$(dirname $SCRIPT_ROOT)
 
 deactivate () {
     # reset old environment variables
@@ -50,7 +52,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="$ROOT/.venv"
+VIRTUAL_ENV="$SHANGREN_ROOT/.venv"
 export VIRTUAL_ENV
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
@@ -73,7 +75,7 @@ minikube config set WantUpdateNotification false
 eval "$(minikube -p shangren docker-env)"
 
 # load settings
-export $(grep -v '^#' "$ROOT"/envs/values/local.env | xargs -d '\n')
+export "$(grep -v '^#' "$SHANGREN_ROOT"/envs/values/local.env | xargs -d '\n')"
 # do not try to push images after building
 {
   skaffold config set --global local-cluster true
@@ -85,5 +87,4 @@ if [ "x 🐣" != x ] ; then
 fi
 export PS1
 
-
-printenv > "$ROOT"/activate.env
+printenv > "$SHANGREN_ROOT"/activate.env
