@@ -1,3 +1,0 @@
-CREATE USER bitstamp;
-CREATE DATABASE bitstamp;
-GRANT ALL PRIVILEGES ON DATABASE bitstamp TO bitstamp;

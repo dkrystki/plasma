@@ -6,7 +6,7 @@ from django.conf import settings
 import djclick as click
 import websocket
 import json
-from shangren.timer import Timer
+from lib.shangren import Timer
 from datetime import datetime
 
 

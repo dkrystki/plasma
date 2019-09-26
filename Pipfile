@@ -11,7 +11,7 @@ pexpect = "*"
 pyhelm = "*"
 delegator-py = "*"
 sarge = "*"
-shangren = {editable = true,path = "./lib"}
+shangren = {editable = true,path = "./comm/lib"}
 kubernetes = "*"
 loguru = "*"
 

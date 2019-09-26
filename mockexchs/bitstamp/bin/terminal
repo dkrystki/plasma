@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+. "$SHANGREN_ROOT"/shangren.sh
+
+bash "$SHANGREN_ROOT"/comm/bash/terminal.sh mockexchs bitstamp

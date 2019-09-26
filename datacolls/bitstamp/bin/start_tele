@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+. "$SHANGREN_ROOT"/shangren.sh
+
+ENV_DIR="$(dirname "$(dirname "$SH_SCRIPTDIR")")"
+bash "$SHANGREN_ROOT"/comm/bash/tele/start.sh datacolls bitstamp "$ENV_DIR"

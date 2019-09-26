@@ -1,4 +1,4 @@
-from shangren.utils.deploy import run
+from lib.shangren import run
 
 
 def get_pod_name() -> str:

@@ -2,11 +2,10 @@
 from pathlib import Path
 import os
 
-from kubernetes.stream import stream
 from loguru import logger
 
-from shangren.utils.deploy import run, kube
-import bitstamp
+from lib.shangren import run
+from . import bitstamp
 
 
 def deploy() -> None:

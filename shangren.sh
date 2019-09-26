@@ -1,2 +1,5 @@
 set -euo pipefail
-cd "$(dirname $0)" || exit
+
+SH_SCRIPTDIR="$( cd "$(dirname "$0")" ; pwd -P )"
+
+cd "$(dirname "$0")" || exit

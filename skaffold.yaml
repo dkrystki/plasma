@@ -11,9 +11,18 @@ profiles:
         sync:
           infer:
            - 'datacolls/bitstamp/flesh/*.py'
+
       - image: shangren/mockexchs-bitstamp
         docker:
           dockerfile: mockexchs/bitstamp/Dockerfile.local
+        context: .
+        sync:
+          infer:
+            - 'mockexchs/bitstamp/flesh/*.py'
+
+      - image: shangren/tests
+        docker:
+          dockerfile: tests/Dockerfile.local
         context: .
         sync:
           infer:
@@ -37,3 +46,11 @@ profiles:
               - mockexchs/bitstamp/values/local.yaml
             values:
               image: shangren/mockexchs-bitstamp
+
+          - name: tests
+            chartPath: tests
+            namespace: tests
+            valuesFiles:
+              - tests/values/local.yaml
+            values:
+              image: shangren/tests

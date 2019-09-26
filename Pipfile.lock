@@ -383,7 +383,7 @@
         },
         "shangren": {
             "editable": true,
-            "path": "./lib"
+            "path": "./comm/lib"
         },
         "six": {
             "hashes": [

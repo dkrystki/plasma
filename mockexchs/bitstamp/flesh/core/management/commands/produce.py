@@ -21,7 +21,7 @@ class Producer:
         content: str = json.loads(self.recording_filename.read_text())
         channel_layer = get_channel_layer()
 
-        await channel_layer.send(Client.objects.first(), {
+        channel_layer.send(Client.objects.first(), {
             "type": "chat.message",
             "text": "Hello there!",
         })

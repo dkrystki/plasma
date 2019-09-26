@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+[[ -z $SHANGREN_ROOT ]] && { echo "Activate an environment first" ; exit; }
 
 . "$SHANGREN_ROOT"/shangren.sh
 
