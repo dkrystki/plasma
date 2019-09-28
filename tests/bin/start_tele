@@ -2,5 +2,4 @@
 
 . "$SHANGREN_ROOT"/shangren.sh
 
-ENV_DIR="$(dirname "$(dirname "$SH_SCRIPTDIR")")"
-bash "$SHANGREN_ROOT"/comm/bash/tele/start.sh tests tester "$ENV_DIR"
+bash "$SHANGREN_ROOT"/comm/bash/tele/start.sh tests tester "$PROJECT_DIR"

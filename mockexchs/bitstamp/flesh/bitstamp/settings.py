@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.postgres",
     'core',
-    'sockets'
+    'sockets',
+    'stickybeak'
 ]
 
 MIDDLEWARE = [

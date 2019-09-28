@@ -19,6 +19,7 @@ django-environ = "*"
 channels = "*"
 channels-redis = "*"
 pytest-django = "*"
+stickybeak = "*"
 
 [requires]
 python_version = "3.7"

@@ -5,4 +5,4 @@
 PROJECT_ROOT="$( cd "$( dirname $1 )" >/dev/null 2>&1 && pwd )"
 PROJECT_ROOT="$(dirname "$PROJECT_ROOT")"
 
-test -f "$PROJECT_ROOT"/telepresence.dec && source "$PROJECT_ROOT"/telepresence.dec
+test -f "$PROJECT_ROOT"/telepresence.dec && source "$PROJECT_ROOT"/telepresence.env

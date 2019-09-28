@@ -2,4 +2,4 @@
 
 . "$SHANGREN_ROOT"/shangren.sh
 
-minikube --profile=shangren start --vm-driver=none
+ssh shangren-local@shangren-local
