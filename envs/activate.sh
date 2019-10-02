@@ -42,13 +42,14 @@ deactivate () {
 deactivate nondestructive
 
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
-export KUBECONFIG=~/.kube/config
+scp root@shangren-local:/home/shangren-local/.minikube/config "$SHANGREN_ROOT"/envs/local/kubeconfig
+export KUBECONFIG="$SHANGREN_ROOT"/envs/local/kubeconfig
 minikube config set WantUpdateNotification false
 
 eval "$(minikube -p shangren docker-env)"
 
 # load settings
-export "$(grep -v '^#' "$SHANGREN_ROOT"/envs/values/local.env | xargs -d '\n')"
+export "$(grep -v '^#' "$SHANGREN_ROOT"/envs/local/.env | xargs -d '\n')"
 # do not try to push images after building
 {
   skaffold config set --global local-cluster true
