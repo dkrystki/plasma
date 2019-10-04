@@ -5,7 +5,7 @@ import os
 from kubernetes.stream import stream
 from loguru import logger
 
-from lib.shangren import kube
+from shangren.utils.deploy import kube
 
 
 def deploy() -> None:

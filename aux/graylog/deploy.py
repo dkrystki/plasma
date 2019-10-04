@@ -4,13 +4,11 @@ from pathlib import Path
 from loguru import logger
 from .seed import seed
 
-from lib.shangren import run
+from shangren.utils.deploy import run
 
 
 def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
-
-    ip: str = run("minikube --profile=shangren ip")
 
     logger.info("🚀Deploying graylog")
     run("helm repo add elastic https://helm.elastic.co")
@@ -39,12 +37,13 @@ def deploy() -> None:
     logger.info("🚀Deploying fluentbit")
     run("""helm upgrade --install --namespace graylog \
         -f values/local/fluentbit.yaml --force --wait=true \
-         fluentbit stable/fluent-bit""")
+         graylog-fluentbit stable/fluent-bit \
+         --version="2.7.1" \
+         """)
 
     seed()
     logger.info("👌Deployed graylog\n")
 
 
 if __name__ == "__main__":
-
     deploy()

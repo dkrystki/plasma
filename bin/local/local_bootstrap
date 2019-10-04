@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+. "$SHANGREN_ROOT"/shangren.sh
+
+sudo hostess add shangren.dashboard.local "$SHANGREN_LOCAL_IP"
+sudo hostess add shangren.pypi.local "$SHANGREN_LOCAL_IP"
+sudo hostess add shangren.graylog.local "$SHANGREN_LOCAL_IP"
+sudo hostess add shangren.sentry.local "$SHANGREN_LOCAL_IP"
+
+kubectl config set-cluster microk8s-cluster --server=https://"$SHANGREN_LOCAL_IP":16443 --insecure-skip-tls-verify

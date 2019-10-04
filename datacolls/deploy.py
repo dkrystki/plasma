@@ -4,7 +4,7 @@ from pathlib import Path
 
 from loguru import logger
 
-from lib.shangren import run
+from shangren.utils.deploy import run
 
 
 def deploy() -> None:

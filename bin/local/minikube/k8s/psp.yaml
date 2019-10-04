@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  annotations:
+    kubernetes.io/description: privileged allows full unrestricted access to pod features,
+      as if the PodSecurityPolicy controller was not enabled.
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+  creationTimestamp: 2018-04-02T22:55:42Z
+  labels:
+    addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/cluster-service: "true"
+  name: k8s.priv
+  resourceVersion: "358329"
+  selfLink: /apis/extensions/v1beta1/podsecuritypolicies/k8s.priv
+  uid: f8b75ff2-36c8-11e8-ae83-000d3a35faea
+spec:
+  allowPrivilegeEscalation: true
+  allowedCapabilities:
+  - '*'
+  fsGroup:
+    rule: RunAsAny
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
+  hostPorts:
+  - max: 65535
+    min: 0
+  privileged: true
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+  - '*'

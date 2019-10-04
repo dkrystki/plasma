@@ -42,9 +42,8 @@ deactivate () {
 deactivate nondestructive
 
 _OLD_KUBECONFIG_PATH="$KUBECONFIG"
-scp root@shangren-local:/home/shangren-local/.minikube/config "$SHANGREN_ROOT"/envs/local/kubeconfig
-export KUBECONFIG="$SHANGREN_ROOT"/envs/local/kubeconfig
-minikube config set WantUpdateNotification false
+
+#minikube config set WantUpdateNotification false
 
 eval "$(minikube -p shangren docker-env)"
 
@@ -58,3 +57,7 @@ export "$(grep -v '^#' "$SHANGREN_ROOT"/envs/local/.env | xargs -d '\n')"
 export CUSTOM_PS1=🐣
 export PIPENV_IGNORE_VIRTUALENVS=1
 printenv > "$SHANGREN_ROOT"/activate.env
+
+export SHANGREN_LOCAL_IP=192.168.1.5
+export KUBECONFIG="$SHANGREN_ROOT"/envs/local/kubeconfig
+

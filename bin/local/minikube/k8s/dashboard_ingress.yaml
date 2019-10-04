@@ -4,6 +4,9 @@ kind: Ingress
 metadata:
   name: dashboard-ingress
   namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   rules:
   - host: shangren.dashboard.local
@@ -12,4 +15,4 @@ spec:
       - path: /
         backend:
           serviceName: kubernetes-dashboard
-          servicePort: 80
+          servicePort: 443
