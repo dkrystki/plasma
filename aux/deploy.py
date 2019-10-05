@@ -7,7 +7,7 @@ import pypi
 
 def deploy() -> None:
     logger.info("Deploying auxiliary services.")
-    # graylog.deploy()
+    graylog.deploy()
     sentry.deploy()
     pypi.deploy()
 

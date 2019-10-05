@@ -10,4 +10,21 @@ esMajorVersion: "6"
 
 rbac:
   create: true
-  name: elasticsearch
+
+podSecurityPolicy:
+  create: True
+  spec:
+    privileged: true
+    runAsUser:
+      rule: RunAsAny
+    seLinux:
+      rule: RunAsAny
+    fsGroup:
+      rule: RunAsAny
+    supplementalGroups:
+      rule: RunAsAny
+    volumes:
+      - '*'
+
+securityContext:
+  allowPrivilegeEscalation: true
