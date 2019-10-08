@@ -4,9 +4,8 @@
 
 replicaCount: 1
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+imagePullSecrets:
+  - name: pullsecret
 
 service:
   type: ClusterIP

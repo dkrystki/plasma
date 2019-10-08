@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$SHANGREN_ROOT"/shangren.sh
+. "$SHANGREN_ROOT"/header.sh
 
 cd ../../
 

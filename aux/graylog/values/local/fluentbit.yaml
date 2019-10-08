@@ -61,6 +61,3 @@ on_minikube: true
 
 parsers:
   enabled: true
-
-fullnameOverride: fluentbit
-nameOverride: fluentbit

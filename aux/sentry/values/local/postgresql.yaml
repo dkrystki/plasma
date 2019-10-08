@@ -7,4 +7,3 @@ postgresqlPassword: password
 postgresqlUsername: sentry
 postgresqlDatabase: sentry
 
-fullnameOverride: postgresql

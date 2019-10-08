@@ -2,14 +2,14 @@
 from loguru import logger
 import datacolls
 import mockexchs
-from skaffold import skaffold
+import tests
 
 
 def deploy() -> None:
     logger.info("Deploying apps")
     datacolls.deploy()
     mockexchs.deploy()
-    skaffold()
+    tests.deploy()
 
 
 if __name__ == "__main__":

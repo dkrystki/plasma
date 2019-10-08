@@ -1,10 +1,12 @@
-apiVersion: skaffold/v1beta13
+apiVersion: skaffold/v1beta15
 kind: Config
 profiles:
   - name: local
     build:
+      tagPolicy:
+        sha256: {}
       artifacts:
-      - image: shangren/datacolls-bitstamp
+      - image: shangren.registry.local/datacolls-bitstamp
         docker:
           dockerfile: datacolls/bitstamp/Dockerfile.local
         context: .
@@ -12,7 +14,7 @@ profiles:
           infer:
            - 'datacolls/bitstamp/flesh/*.py'
 
-      - image: shangren/mockexchs-bitstamp
+      - image: shangren.registry.local/mockexchs-bitstamp
         docker:
           dockerfile: mockexchs/bitstamp/Dockerfile.local
         context: .
@@ -20,13 +22,15 @@ profiles:
           infer:
             - 'mockexchs/bitstamp/flesh/*.py'
 
-      - image: shangren/tests
+      - image: shangren.registry.local/tests
         docker:
           dockerfile: tests/Dockerfile.local
         context: .
         sync:
           infer:
             - 'mockexchs/bitstamp/flesh/*.py'
+      local:
+        push: true
 
     deploy:
       helm:
@@ -37,7 +41,7 @@ profiles:
             valuesFiles:
               - datacolls/bitstamp/values/local.yaml
             values:
-              image: shangren/datacolls-bitstamp
+              image: shangren.registry.local/datacolls-bitstamp
 
           - name: mockexchs-bitstamp
             chartPath: mockexchs/bitstamp
@@ -45,7 +49,7 @@ profiles:
             valuesFiles:
               - mockexchs/bitstamp/values/local.yaml
             values:
-              image: shangren/mockexchs-bitstamp
+              image: shangren.registry.local/mockexchs-bitstamp
 
           - name: tests
             chartPath: tests
@@ -53,4 +57,4 @@ profiles:
             valuesFiles:
               - tests/values/local.yaml
             values:
-              image: shangren/tests
+              image: shangren.registry.local/tests

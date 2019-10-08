@@ -7,5 +7,3 @@ image:
 
 postgresqlPassword: password
 postgresqlUsername: postgres
-
-fullnameOverride: postgresql

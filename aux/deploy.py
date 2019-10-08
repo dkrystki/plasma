@@ -2,14 +2,14 @@
 from loguru import logger
 import graylog
 import sentry
-import pypi
+import misc
 
 
 def deploy() -> None:
     logger.info("Deploying auxiliary services.")
     graylog.deploy()
     sentry.deploy()
-    pypi.deploy()
+    misc.deploy()
 
 
 if __name__ == "__main__":

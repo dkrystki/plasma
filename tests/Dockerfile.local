@@ -19,3 +19,6 @@ RUN pip3 install pipenv
 
 RUN pipenv install --system
 COPY mockexchs/bitstamp/flesh .
+
+# remove that
+EXPOSE 8000

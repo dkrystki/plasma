@@ -1,5 +1,4 @@
 replicas: 1
-fullnameOverride: "mongodb-graylog"
 podAnnotations:
   fluentbit.io/exclude: "true"
 mongodbRootPassword: "password"

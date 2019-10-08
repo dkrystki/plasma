@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 from loguru import logger
-import datacolls
-import mockexchs
-from skaffold import skaffold
+from shangren.utils.deploy import add_pullsecret
 
 
 def deploy() -> None:
+    namespace = "tests"
     logger.info("Deploying apps")
-    datacolls.deploy()
-    mockexchs.deploy()
-    skaffold()
+
+    add_pullsecret(namespace)
 
 
 if __name__ == "__main__":

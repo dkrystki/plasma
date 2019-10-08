@@ -2,8 +2,8 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: dashboard-ingress
-  namespace: kubernetes-dashboard
+  name: datadog-ingress
+  namespace: datadog
 spec:
   rules:
   - host: shangren.dashboard.local

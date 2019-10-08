@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-. "$SHANGREN_ROOT"/shangren.sh
+. "$SHANGREN_ROOT"/header.sh
 
 bash "$SHANGREN_ROOT"/comm/bash/tele/start.sh mockexchs bitstamp "$PROJECT_DIR"

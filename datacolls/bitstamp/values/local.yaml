@@ -5,11 +5,10 @@
 replicaCount: 1
 
 image: shangren/bitstamp
-pullPolicy: Never
+pullPolicy: IfNotPresent
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+imagePullSecrets:
+  - name: pullsecret
 
 service:
   type: ClusterIP

@@ -2,21 +2,15 @@
 import os
 from pathlib import Path
 
-from loguru import logger
-
-from shangren.utils.deploy import run
+from shangren.utils.deploy import helm_install, run, add_pullsecret
 
 
 def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
-    logger.info("🚀Deploying influxdb")
-    run("""helm upgrade --install --namespace=datacolls influxdb \
-           --force --wait=true \
-           --timeout=15000 \
-           stable/influxdb \
-           --version 1.4.0""")
-    logger.info("🚀Starting skaffold")
-    logger.info("👌Deployed influxdb\n")
+
+    namespace = "datacolls"
+    add_pullsecret(namespace)
+    helm_install(namespace, "influxdb", "stable/influxdb", "1.4.0")
 
 
 if __name__ == "__main__":
