@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-. "$SHANGREN_ROOT"/header.sh
-
-bash "$SHANGREN_ROOT"/comm/bash/tele/start.sh datacolls bitstamp "$PROJECT_DIR"

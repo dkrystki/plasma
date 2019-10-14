@@ -27,5 +27,5 @@ db:
   name: bitstamp
   user: postgres
   password: cGFzc3dvcmQ=
-  host: postgresql.mockexchs
+  host: postgresql
   port: 5432

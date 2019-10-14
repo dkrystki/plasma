@@ -28,7 +28,7 @@ graylog:
     hosts: "http://elasticsearch-master:9200"
 
   mongodb:
-    uri: mongodb://mongodb-graylog:27017/graylog?replicaSet=rs0
+    uri: mongodb://mongodb:27017/graylog?replicaSet=rs0
 
 tags:
   install-elasticsearch: false

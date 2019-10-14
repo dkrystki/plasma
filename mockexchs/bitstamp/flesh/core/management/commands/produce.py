@@ -10,6 +10,7 @@ import websocket
 import json
 
 from sockets.models import Client
+from asgiref.sync import async_to_sync
 
 
 class Producer:
@@ -21,7 +22,7 @@ class Producer:
         content: str = json.loads(self.recording_filename.read_text())
         channel_layer = get_channel_layer()
 
-        channel_layer.send(Client.objects.first(), {
+        b = async_to_sync(channel_layer.send)(Client.objects.first().channel, {
             "type": "chat.message",
             "text": "Hello there!",
         })

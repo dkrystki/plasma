@@ -2,7 +2,10 @@
 
 . "$SHANGREN_ROOT"/header.sh
 
+SHANGREN_LOCAL_IP=192.168.0.5
+
 sudo hostess add shangren.dashboard.local "$SHANGREN_LOCAL_IP"
+sudo hostess add shangren.local "$SHANGREN_LOCAL_IP"
 sudo hostess add shangren.pypi.local "$SHANGREN_LOCAL_IP"
 sudo hostess add shangren.graylog.local "$SHANGREN_LOCAL_IP"
 sudo hostess add shangren.sentry.local "$SHANGREN_LOCAL_IP"

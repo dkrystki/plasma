@@ -1,5 +1,7 @@
 apiVersion: skaffold/v1beta15
 kind: Config
+metadata:
+  name: shangren
 profiles:
   - name: local
     build:

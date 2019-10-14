@@ -12,7 +12,6 @@ class Consumer(WebsocketConsumer):
 
     def disconnect(self, close_code):
         Client.objects.filter(channel=self.channel_name).delete()
-        pass
 
     def receive(self, text_data=None, bytes_data=None):
         data: Dict[str, Any] = json.loads(text_data)
@@ -23,3 +22,7 @@ class Consumer(WebsocketConsumer):
         }
 
         self.send(text_data=json.dumps(message))
+
+    def chat_message(self, event):
+        # Handles the "chat.message" event when it's sent to us.
+        self.send(text_data=event["text"])
