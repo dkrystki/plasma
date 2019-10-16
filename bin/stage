@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+case $1 in
+    local|stage|prod) ;;
+    *) printf "Must be \"stage\" \"local\" or \"prod\"\n"
+      exit 1 ;;
+esac
+
+echo "export STAGE="$1"" > current_stage
+
+source "$SHANGREN_ROOT"/setup_stage.sh

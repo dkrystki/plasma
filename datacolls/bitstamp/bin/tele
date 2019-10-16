@@ -11,7 +11,7 @@ function shell {
   export PROJECT_DIR
   PROJECT_DIR=$(pwd)
 
-  source ../../envs.sh
+  source "$SHANGREN_ROOT"/setup_stage.sh
   source bin/activate
   export CUSTOM_PS1="$CUSTOM_PS1(dc-bitstamp)"
 

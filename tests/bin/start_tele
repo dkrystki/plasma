@@ -2,4 +2,4 @@
 
 . "$SHANGREN_ROOT"/header.sh
 
-bash "$SHANGREN_ROOT"/comm/bash/tele/start.sh tests tester "$PROJECT_DIR"
+source "$SHANGREN_ROOT"/comm/bash/tele/start.sh tests tester "$PROJECT_DIR"
