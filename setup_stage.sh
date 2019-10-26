@@ -1,17 +1,17 @@
-source current_stage
+source "$SHANGREN_ROOT"/.current_stage
 
 case "$STAGE" in
   local)
-    export CUSTOM_PS1=🐣 ;;
+    export STAGE_EMOJI=🐣 ;;
   stage)
-    export CUSTOM_PS1=🤖 ;;
+    export STAGE_EMOJI=🤖 ;;
   prod)
-    export CUSTOM_PS1=🔥 ;;
+    export STAGE_EMOJI=🔥 ;;
 esac
 
 export PIPENV_IGNORE_VIRTUALENVS=1
 
 export SHANGREN_IP=192.168.0.5
-export KUBECONFIG="$SHANGREN_ROOT"/envs/"$STAGE"/kubeconfig
+export KUBECONFIG="$SHANGREN_ROOT"/envs/"$STAGE"/kubeconfig.yaml
 
-scp shangren-"$STAGE"@"$SHANGREN_IP":/home/shangren-"$STAGE"/.kube/config "$SHANGREN_ROOT"/envs/"$STAGE"/kubeconfig > /dev/null
+eval $SETUP_PS1

@@ -90,3 +90,8 @@ telepresence.dec
 .remote_sources
 
 kubeconfig
+.current_stage
+.telepresence.sh
+.telepresence.env
+
+envs

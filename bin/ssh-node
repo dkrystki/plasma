@@ -2,4 +2,4 @@
 
 . "$SHANGREN_ROOT"/header.sh
 
-ssh shangren-local@shangren-local
+ssh shangren-local@shangren.local

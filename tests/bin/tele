@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+source "$SHANGREN_ROOT"/comm/bash/utils.sh
+
+export PROMPT_COMMAND_BEFORE
+
+case $1 in
+  start)
+    if ! test -f "$PROJECT_DIR/.telepresence.sh"; then
+      "$SHANGREN_ROOT"/comm/bash/tele/start.sh tests tester "$PROJECT_DIR"
+    else
+      printf "Already started\n"
+      exit 1
+    fi
+    ;;
+  shell)
+    if [ "$0" = "$BASH_SOURCE" ]; then
+        print_style "Error: Script must be sourced\n" "error"
+        exit 1
+    fi
+
+    cleanup() {
+      export PROMPT_COMMAND=$PROMPT_COMMAND_BEFORE
+    }
+    check_tele() {
+      if ! test -f "$PROJECT_DIR/.telepresence.sh"; then
+        print_style "Telepresence is down.\n" "error"
+        direnv reload
+        cleanup
+      fi
+    }
+    if test -f "$PROJECT_DIR/.telepresence.sh"; then
+      source "$PROJECT_DIR"/.telepresence.sh
+      export CUSTOM_PS1="$STAGE_EMOJI(tests)📻"
+      if [[ $PROMPT_COMMAND != *"check_tele"* ]]; then
+        export PROMPT_COMMAND_BEFORE=$PROMPT_COMMAND
+        export PROMPT_COMMAND="check_tele;$PROMPT_COMMAND"
+      fi
+    else
+      print_style "run \"tele start\" first.\n" "error"
+    fi
+    ;;
+esac

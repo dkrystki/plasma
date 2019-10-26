@@ -34,6 +34,6 @@ def add_pullsecret(namespace: str) -> None:
 
 
 config.load_kube_config(
-    os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig'))
+    os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
 
 kube = client.CoreV1Api()
