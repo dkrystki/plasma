@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List
+from typing import List, Dict, Any
 from tqdm import tqdm
 
 from django.conf import settings
@@ -19,13 +19,14 @@ class Producer:
         # self.progressbar: tqdm = tqdm(total=self.record_time, ncols=100)
 
     def start(self):
-        content: str = json.loads(self.recording_filename.read_text())
+        content: Dict[str, Any] = json.loads(self.recording_filename.read_text())
         channel_layer = get_channel_layer()
 
-        b = async_to_sync(channel_layer.send)(Client.objects.first().channel, {
-            "type": "chat.message",
-            "text": "Hello there!",
-        })
+        for event in content:
+            async_to_sync(channel_layer.send)(Client.objects.last().channel, {
+                "type": "chat.message",
+                "text": event["payload"]
+            })
         a = 1
         # self.timer.start()
         # self.ws.run_forever()

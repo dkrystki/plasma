@@ -25,4 +25,4 @@ class Consumer(WebsocketConsumer):
 
     def chat_message(self, event):
         # Handles the "chat.message" event when it's sent to us.
-        self.send(text_data=event["text"])
+        self.send(text_data=json.dumps(event["text"]))

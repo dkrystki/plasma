@@ -1,2 +1,1 @@
-from .deploy import deploy
-from .delete import delete
+from tests.tester.deploy import deploy

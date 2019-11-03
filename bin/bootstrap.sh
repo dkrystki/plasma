@@ -6,7 +6,6 @@ cd ../../
 
 printf "Bootstraping\n"
 
-export PIPENV_VENV_IN_PROJECT=true
 pipenv install
 
 sudo apt install direnv

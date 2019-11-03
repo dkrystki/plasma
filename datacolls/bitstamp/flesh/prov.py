@@ -1,3 +1,5 @@
+from typing import Optional
+
 import websocket
 from datetime import datetime
 import json
@@ -9,6 +11,8 @@ from loguru import logger
 
 
 class Channel(ABC):
+    # Type of channel, in instance:
+    # live_trades
     type: str = ""
 
     def __init__(self, prov: 'Collector', currency: str):
@@ -32,7 +36,7 @@ class Channel(ABC):
     def name(self):
         return f'{self.type}_{self.currency}usd'
 
-
+test = 1515566
 class LiveTrades(Channel):
     type: str = 'live_trades'
 
@@ -73,14 +77,16 @@ class Collector:
         self.channels = []
 
         for curr in settings.Bitstamp.SUPPORTED_CURRENCIES:
-            self.channels.append(LiveTrades(self, curr))
+            self.channels.append(LiveTrades(self, currency=curr))
 
         self._connect()
 
-    def get_channel(self, name: str):
+    def get_channel(self, name: str) -> Optional[Channel]:
         results = list(filter(lambda x: x.name == name, self.channels))
-        if len(results) != 1:
-            raise RuntimeError('Duplicate channels ({name}) detected!')
+        if len(results) == 0:
+            return None
+        if len(results) > 1:
+            raise RuntimeError(f'Duplicate channels ({name}) detected!')
 
         return results[0]
 
@@ -101,8 +107,9 @@ class Collector:
         if data['event'] == 'bts:subscription_succeeded':
             return
 
-        ch = self.get_channel(data['channel'])
-        ch.process(data['data'])
+        channel = self.get_channel(data['channel'])
+        if channel:
+            channel.process(data['data'])
 
     def _on_close(self):
         pass

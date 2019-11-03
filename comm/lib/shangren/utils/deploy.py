@@ -33,6 +33,17 @@ def add_pullsecret(namespace: str) -> None:
           --dry-run -o yaml | kubectl apply -f -""")
 
 
+def create_namespace(name: str) -> None:
+    """
+    Create namespace if not exists.
+    :param name:
+    :return:
+    """
+    if name not in [ns.metadata.name for ns in kube.list_namespace().items]:
+        namespace = client.V1Namespace()
+        namespace.metadata = client.V1ObjectMeta(name=name)
+        kube.create_namespace(namespace)
+
 config.load_kube_config(
     os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
 

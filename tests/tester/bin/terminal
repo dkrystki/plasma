@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# SSH into a pod
+
+. "$SHANGREN_ROOT"/header.sh
+
+bash "$SHANGREN_ROOT"/comm/bash/terminal.sh tests tester

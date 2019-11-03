@@ -16,6 +16,7 @@ kubernetes = "*"
 loguru = "*"
 stickybeak = "*"
 pytest = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"

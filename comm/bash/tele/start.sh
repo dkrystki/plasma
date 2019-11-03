@@ -10,8 +10,8 @@ cd "$(dirname "$0")" || exit
 ENVS_DIR=$3
 
 function cleanup {
-  rm "$ENVS_DIR"/.telepresence.env
-  rm "$ENVS_DIR"/.telepresence.sh
+  rm "$ENVS_DIR"/.telepresence.env > /dev/null
+  rm "$ENVS_DIR"/.telepresence.sh > /dev/null
   unset TELE_ON
 }
 

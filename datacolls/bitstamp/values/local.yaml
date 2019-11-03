@@ -10,10 +10,6 @@ pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: pullsecret
 
-service:
-  type: ClusterIP
-  port: 80
-
 nodeSelector: {}
 
 tolerations: []
@@ -25,3 +21,9 @@ sentry:
 
 bitstamp:
   url: "ws://bitstamp.mockexchs:8000/ws/"
+  supportedCurrencies:
+    - btc
+    - bch
+    - eth
+    - ltc
+    - xrp

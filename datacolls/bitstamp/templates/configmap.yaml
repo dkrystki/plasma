@@ -5,3 +5,5 @@ metadata:
 data:
   SENTRY_DSN: {{ .Values.sentry.dsn }}
   BITSTAMP_URL: {{ .Values.bitstamp.url }}
+  SUPPORTED_CURRENCIES: "{{- range $key := .Values.bitstamp.supportedCurrencies }}{{ $key }}:{{- end }}"
+
