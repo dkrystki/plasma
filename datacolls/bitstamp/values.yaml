@@ -4,7 +4,11 @@
 
 replicaCount: 1
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: pullsecret
+
+image: shangren.registry.local/datacolls-bitstamp:latest
+pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
@@ -35,9 +39,3 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}

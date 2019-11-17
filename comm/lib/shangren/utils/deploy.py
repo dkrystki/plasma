@@ -14,14 +14,29 @@ def run(command: str) -> str:
         raise RuntimeError(error_msg)
 
 
-def helm_install(namespace: str, name: str, chart: str, version: str) -> None:
+def helm_install(namespace: str, name: str, chart: str, version: str, upgrade=True) -> None:
+    """
+    :param namespace:
+    :param name:
+    :param chart: chart repository name
+    :param version:
+    :param upgrade: Try to upgrade when True. Delete and install when False.
+    """
     logger.info(f"🚀Deploying {name}")
-    run(f"""helm upgrade --install --namespace {namespace} {namespace}-{name} \
+
+    if not upgrade:
+        try:
+            run(f"""helm delete --purge {namespace}-{name}""")
+        except RuntimeError:
+            pass
+
+    run(f"""helm {"upgrade --install" if upgrade else "install"} \
+            {chart} \
+            --namespace {namespace} {"" if upgrade else "--name"} {namespace}-{name} \
             --set fullnameOverride={name} \
             -f values/local/{name}.yaml \
-            --force --wait=true \
+            {"--force" if upgrade else ""} --wait=true \
             --timeout=25000 \
-            {chart} \
             --version="{version}" \
             """)
 

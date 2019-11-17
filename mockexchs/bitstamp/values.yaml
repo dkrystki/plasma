@@ -4,7 +4,11 @@
 
 replicaCount: 1
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: pullsecret
+
+image: shangren.registry.local/mockexchs-bitstamp:latest
+pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
@@ -51,3 +55,10 @@ hooks:
         memory: 1200Mi
       requests:
         memory: 800Mi
+
+db:
+  name: bitstamp
+  user: postgres
+  password: cGFzc3dvcmQ=
+  host: postgresql
+  port: 5432

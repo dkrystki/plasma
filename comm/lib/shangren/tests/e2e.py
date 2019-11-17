@@ -1,3 +1,5 @@
+from typing import Dict, Any
+
 import yaml
 from pathlib import Path
 
@@ -5,7 +7,7 @@ from shangren.utils.deploy import run
 
 
 class Chart:
-    def __init__(self, path: str, values: Dict[str, str]) -> None:
+    def __init__(self, path: str, values: Dict[str, Any]) -> None:
         self.path: Path = Path(path)
         self.name: str = f"{self.path.stem}-e2e"
         self.namespace: str = self.path.parents[0].stem
@@ -13,10 +15,10 @@ class Chart:
 
     def start(self) -> None:
         values_file: Path = Path(".values.yaml")
-        values_file.write(yaml.dump(self.values))
+        values_file.write_text(yaml.dump(self.values))
 
-        run(f"helm install {str(self.path)} --name={self.name} --namespace={self.namespace}"
-            f" --wait -f {str(values_file)}")
+        run(f"helm install {str(self.path)} --name={self.namespace}-{self.name} --namespace={self.namespace}"
+            f" --set nameOverride={self.name} -f {str(values_file)} --wait")
         values_file.unlink()
 
     def delete(self) -> None:

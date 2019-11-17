@@ -20,4 +20,3 @@ RUN pip3 install pipenv
 RUN pipenv install --system
 COPY mockexchs/bitstamp/flesh .
 COPY comm/lib/shangren /usr/local/lib/python3.7/shangren
-

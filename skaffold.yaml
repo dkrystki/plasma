@@ -30,7 +30,7 @@ profiles:
         context: .
         sync:
           infer:
-            - '**/**.py'
+            - 'datacolls/**.py'
             - '**/.idea/**'
       local:
         push: true

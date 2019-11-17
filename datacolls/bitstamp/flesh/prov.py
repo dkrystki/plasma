@@ -36,7 +36,7 @@ class Channel(ABC):
     def name(self):
         return f'{self.type}_{self.currency}usd'
 
-test = 1515566
+
 class LiveTrades(Channel):
     type: str = 'live_trades'
 

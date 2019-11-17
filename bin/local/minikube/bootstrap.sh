@@ -7,16 +7,17 @@ cd "$(dirname "$0")" || exit
 printf "Bootstraping Minikube\n"
 
 unset KUBECONFIG
+KUBERNETES_VERSION=v1.16.0
 
 sudo minikube delete
 sudo rm /home/shangren-local/.kube -rf
-sudo minikube start --vm-driver=none --kubernetes-version=v1.15.0
+sudo minikube start --vm-driver=none --kubernetes-version="$KUBERNETES_VERSION"
 
 sudo minikube addons enable dashboard
 sudo minikube addons enable registry
 sudo minikube addons enable ingress
 
-sudo minikube start --vm-driver=none --embed-certs --kubernetes-version=v1.15.0
+sudo minikube start --vm-driver=none --embed-certs --kubernetes-version="$KUBERNETES_VERSION"
 
 sudo chown -R $USER /home/shangren-local/.kube
 
