@@ -10,9 +10,8 @@ def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
     logger.info("🚀Deploying datadog")
-    run("helm repo update")
-
     run("helm repo add elastic https://helm.elastic.co")
+    run("helm repo update")
     helm_install("datadog", "datadog", "stable/datadog", "1.37.0")
 
     logger.info("👌Deployed datadog\n")

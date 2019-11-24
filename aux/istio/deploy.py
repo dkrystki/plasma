@@ -12,7 +12,7 @@ def deploy() -> None:
     logger.info("🚀Deploying istio")
     run("istioctl manifest generate -f values/local/istio.yaml > manifest.yaml")
     run("kubectl apply -f manifest.yaml")
-    run("rm manifest.yaml")
+    # run("rm manifest.yaml")
     logger.info("👌Deployed istio\n")
 
 

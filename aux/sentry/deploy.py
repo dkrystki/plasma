@@ -11,7 +11,6 @@ def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
     logger.info("🚀Deploying sentry")
-    run("helm repo update")
     namespace = "sentry"
 
     helm_install(namespace, "redis", "stable/redis", "9.1.10")

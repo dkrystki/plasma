@@ -12,6 +12,7 @@ def deploy() -> None:
     logger.info("🚀Deploying pypi")
 
     run("helm repo add owkin https://owkin.github.io/charts")
+    run("helm repo update")
     helm_install("misc", "pypi", "owkin/pypiserver", "1.1.0")
     helm_install("default", "registry", "stable/docker-registry", "1.8.3")
     helm_install("", "registry", "stable/docker-registry", "1.8.3")

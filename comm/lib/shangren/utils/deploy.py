@@ -5,13 +5,14 @@ from kubernetes import client, config
 from loguru import logger
 
 
-def run(command: str) -> str:
+def run(command: str, ignore_errors=False) -> str:
     try:
         return subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode("utf-8").strip()
     except subprocess.CalledProcessError as e:
-        output: str = e.stdout.decode('utf-8').strip()
-        error_msg: str = f"Command \"{e.cmd}\" produced errozr ({output})"
-        raise RuntimeError(error_msg)
+        if not ignore_errors:
+            output: str = e.stdout.decode('utf-8').strip()
+            error_msg: str = f"Command \"{e.cmd}\" produced errozr ({output})"
+            raise RuntimeError(error_msg)
 
 
 def helm_install(namespace: str, name: str, chart: str, version: str, upgrade=True) -> None:
@@ -23,22 +24,26 @@ def helm_install(namespace: str, name: str, chart: str, version: str, upgrade=Tr
     :param upgrade: Try to upgrade when True. Delete and install when False.
     """
     logger.info(f"🚀Deploying {name}")
-
     if not upgrade:
         try:
             run(f"""helm delete --purge {namespace}-{name}""")
         except RuntimeError:
             pass
 
+    run(f"kubectl create namespace {namespace}", ignore_errors=True)
+    run(f"kubectl config set-context minikube --namespace={namespace}")
+
     run(f"""helm {"upgrade --install" if upgrade else "install"} \
-            {chart} \
-            --namespace {namespace} {"" if upgrade else "--name"} {namespace}-{name} \
+            {"" if upgrade else "--name"} {namespace}-{name} \
             --set fullnameOverride={name} \
             -f values/local/{name}.yaml \
             {"--force" if upgrade else ""} --wait=true \
-            --timeout=25000 \
+            --timeout=250s \
+            {chart} \
             --version="{version}" \
             """)
+
+    run(f"kubectl config set-context minikube --namespace=default")
 
 
 def add_pullsecret(namespace: str) -> None:
