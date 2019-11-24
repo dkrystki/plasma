@@ -7,7 +7,7 @@ cd "$(dirname "$0")" || exit
 printf "Bootstraping Minikube\n"
 
 unset KUBECONFIG
-KUBERNETES_VERSION=v1.16.0
+KUBERNETES_VERSION=v1.15.0
 
 sudo minikube delete
 sudo rm /home/shangren-local/.kube -rf

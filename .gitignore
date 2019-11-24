@@ -85,7 +85,6 @@ celerybeat-schedule
 
 telepresence.env
 
-activate.env
 telepresence.dec
 .remote_sources
 
@@ -95,3 +94,4 @@ kubeconfig
 .telepresence.env
 
 envs
+shangren.env
