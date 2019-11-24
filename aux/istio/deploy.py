@@ -3,16 +3,19 @@ import os
 from pathlib import Path
 from loguru import logger
 
-from shangren.utils.deploy import run, helm_install, kube
+from shangren.utils.deploy import run, Namespace
 
 
 def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
+    istio_version = "1.3.0"
+    run(f"helm repo add istio.io https://storage.googleapis.com/istio-release/releases/{istio_version}/charts/")
+
+    istio = Namespace("istio-system")
     logger.info("🚀Deploying istio")
-    run("istioctl manifest generate -f values/local/istio.yaml > manifest.yaml")
-    run("kubectl apply -f manifest.yaml")
-    # run("rm manifest.yaml")
+    istio.helm_install("init", "istio.io/istio-init", istio_version, upgrade=False)
+    istio.helm_install("istio", "istio.io/istio", istio_version, upgrade=False)
     logger.info("👌Deployed istio\n")
 
 

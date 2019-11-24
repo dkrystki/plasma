@@ -5,6 +5,12 @@ from kubernetes import client, config
 from loguru import logger
 
 
+config.load_kube_config(
+    os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
+
+kube = client.CoreV1Api()
+
+
 def run(command: str, ignore_errors=False) -> str:
     try:
         return subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode("utf-8").strip()
@@ -15,56 +21,60 @@ def run(command: str, ignore_errors=False) -> str:
             raise RuntimeError(error_msg)
 
 
-def helm_install(namespace: str, name: str, chart: str, version: str, upgrade=True) -> None:
-    """
-    :param namespace:
-    :param name:
-    :param chart: chart repository name
-    :param version:
-    :param upgrade: Try to upgrade when True. Delete and install when False.
-    """
-    logger.info(f"🚀Deploying {name}")
-    if not upgrade:
-        try:
-            run(f"""helm delete --purge {namespace}-{name}""")
-        except RuntimeError:
-            pass
+class Namespace:
+    def __init__(self, name):
+        self.name: str = name
+        self._create()
+        self._enable_istio()
+        self._add_pullsecret()
 
-    run(f"kubectl create namespace {namespace}", ignore_errors=True)
-    run(f"kubectl config set-context minikube --namespace={namespace}")
+    def helm_install(self, release_name: str, chart: str, version: str, upgrade=True) -> None:
+        """
+        :param namespace:
+        :param release_name:
+        :param chart: chart repository name
+        :param version:
+        :param upgrade: Try to upgrade when True. Delete and install when False.
+        """
+        logger.info(f"🚀Deploying {release_name}")
+        if not upgrade:
+            try:
+                run(f"""helm delete --purge {self.name}-{release_name}""")
+            except RuntimeError:
+                pass
 
-    run(f"""helm {"upgrade --install" if upgrade else "install"} \
-            {"" if upgrade else "--name"} {namespace}-{name} \
-            --set fullnameOverride={name} \
-            -f values/local/{name}.yaml \
-            {"--force" if upgrade else ""} --wait=true \
-            --timeout=250s \
-            {chart} \
-            --version="{version}" \
-            """)
+        run(f"kubectl create namespace {self.name}", ignore_errors=True)
+        run(f"kubectl config set-context minikube --namespace={self.name}")
 
-    run(f"kubectl config set-context minikube --namespace=default")
+        namespaced_name = f"""{self.name + "-" if self.name else ""}{release_name}"""
+        run(f"""helm {"upgrade --install" if upgrade else "install"} \
+                {"" if upgrade else "--name"} {namespaced_name} \
+                --set fullnameOverride={release_name} \
+                -f values/local/{release_name}.yaml \
+                {"--force" if upgrade else ""} --wait=true \
+                --timeout=250000 \
+                "{chart}" \
+                --version="{version}" \
+                """)
 
+        run(f"kubectl config set-context minikube --namespace=default")
 
-def add_pullsecret(namespace: str) -> None:
-    logger.info(f"🚀Adding pull secret to {namespace}")
-    run(f"""kubectl create secret docker-registry pullsecret -n {namespace} --docker-server=shangren.registry.local \
-          --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
-          --dry-run -o yaml | kubectl apply -f -""")
+    def _enable_istio(self) -> None:
+        run(f"kubectl label namespace {self.name} istio-injection=enabled")
 
+    def _add_pullsecret(self) -> None:
+        logger.info(f"🚀Adding pull secret to {self.name}")
+        run(f"""kubectl create secret docker-registry pullsecret -n {self.name} --docker-server=shangren.registry.local \
+              --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
+              --dry-run -o yaml | kubectl apply -f -""")
 
-def create_namespace(name: str) -> None:
-    """
-    Create namespace if not exists.
-    :param name:
-    :return:
-    """
-    if name not in [ns.metadata.name for ns in kube.list_namespace().items]:
-        namespace = client.V1Namespace()
-        namespace.metadata = client.V1ObjectMeta(name=name)
-        kube.create_namespace(namespace)
-
-config.load_kube_config(
-    os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
-
-kube = client.CoreV1Api()
+    def _create(self) -> None:
+        """
+        Create namespace if not exists.
+        :param name:
+        :return:
+        """
+        if self.name not in [ns.metadata.name for ns in kube.list_namespace().items]:
+            namespace = client.V1Namespace()
+            namespace.metadata = client.V1ObjectMeta(name=self.name)
+            kube.create_namespace(namespace)

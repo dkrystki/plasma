@@ -42,3 +42,6 @@ sudo mv hostess_linux_386 /usr/local/bin/hostess
 sudo hostess add shangren.registry.local 127.0.0.1
 
 printf "Bootstraped Minikube\n\n"
+
+printf "Starting LoadBalancer tunnel."
+sudo minikube tunnel

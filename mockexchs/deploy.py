@@ -4,7 +4,7 @@ import os
 
 from loguru import logger
 
-from shangren.utils.deploy import helm_install, run, add_pullsecret, create_namespace
+from shangren.utils.deploy import Namespace
 from . import bitstamp
 
 
@@ -12,11 +12,10 @@ def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
     logger.info("🚀Deploying mockexchs")
 
-    namespace: str = "mockexchs"
-    create_namespace(namespace)
-    add_pullsecret(namespace)
-    helm_install(namespace, "postgresql", "stable/postgresql", "6.3.7")
-    helm_install(namespace, "redis", "stable/redis", "9.2.0")
+    namespace = Namespace("mockexchs")
+    namespace.helm_install("postgresql", "stable/postgresql", "6.3.7")
+    namespace.helm_install("redis", "stable/redis", "9.2.0")
+
     bitstamp.deploy()
 
     logger.info("👌Deployed mockexchs\n")

@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from loguru import logger
 
-from shangren.utils.deploy import run, helm_install, kube
+from shangren.utils.deploy import run
 
 
 def deploy() -> None:
