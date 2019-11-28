@@ -1,5 +1,70 @@
 ---
 
+gateways:
+  enabled: true
+  istio-ingressgateway:
+    enabled: true
+    type: ClusterIP
+    ports:
+      - port: 15020
+        targetPort: 15020
+        name: status-port
+      - port: 80
+        targetPort: 80
+        name: http2
+      - port: 443
+        name: https
+      ### PORTS FOR UI/metrics #####
+      ## Disable if not needed
+      - port: 15029
+        targetPort: 15029
+        name: https-kiali
+      - port: 15030
+        targetPort: 15030
+        name: https-prometheus
+      - port: 15031
+        targetPort: 15031
+        name: https-grafana
+      - port: 15032
+        targetPort: 15032
+        name: https-tracing
+        # This is the port where sni routing happens
+      - port: 15443
+        targetPort: 15443
+        name: tls
+
+sidecarInjectorWebhook:
+  enabled: true
+
+galley:
+  enabled: true
+
 kiali:
   enabled: true
 
+grafana:
+  enabled: true
+
+prometheus:
+  enabled: true
+
+tracing:
+  enabled: true
+
+mixer:
+  policy:
+    enabled: true
+  telemetry:
+    enabled: true
+  podAnnotations:
+    fluentbit.io/exclude: "true"
+
+
+global:
+  proxy:
+    accessLogFile: "/dev/stdout"
+    accessLogFormat: >
+                "%START_TIME% "%REQ(:METHOD)% %REQ(X-ENVOY-ORIGINAL-PATH?:PATH)% %PROTOCOL%"
+                 %RESPONSE_CODE% %RESPONSE_FLAGS% %BYTES_RECEIVED% %BYTES_SENT% %DURATION%
+                 %RESP(X-ENVOY-UPSTREAM-SERVICE-TIME)% "%REQ(X-FORWARDED-FOR)%" "%REQ(USER-AGENT)%"
+                 "%REQ(X-REQUEST-ID)%" "%REQ(:AUTHORITY)%" "%UPSTREAM_HOST%"\n"

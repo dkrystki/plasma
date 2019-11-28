@@ -6,6 +6,9 @@ from loguru import logger
 from shangren.utils.deploy import run
 
 
+# TODO: FIx that
+
+
 def delete() -> None:
     os.chdir(Path(__file__).absolute().parent)
 

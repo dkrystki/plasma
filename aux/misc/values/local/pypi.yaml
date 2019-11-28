@@ -9,3 +9,6 @@ ingress:
   enabled: true
   hosts:
     - shangren.pypi.local
+
+podAnnotations:
+  fluentbit.io/exclude: "true"

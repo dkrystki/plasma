@@ -22,11 +22,18 @@ def run(command: str, ignore_errors=False) -> str:
 
 
 class Namespace:
-    def __init__(self, name):
+    def __init__(self, name: str, enable_istio: bool = True, add_pull_secret: bool = True):
         self.name: str = name
         self._create()
-        self._enable_istio()
-        self._add_pullsecret()
+
+        if enable_istio:
+            self._enable_istio()
+
+        if add_pull_secret:
+            self._add_pullsecret()
+
+    def kubectl(self, command: str) -> str:
+        return run(f"kubectl -n {self.name} {command}")
 
     def helm_install(self, release_name: str, chart: str, version: str, upgrade=True) -> None:
         """
@@ -60,7 +67,7 @@ class Namespace:
         run(f"kubectl config set-context minikube --namespace=default")
 
     def _enable_istio(self) -> None:
-        run(f"kubectl label namespace {self.name} istio-injection=enabled")
+        run(f"kubectl label namespace {self.name} istio-injection=enabled --overwrite")
 
     def _add_pullsecret(self) -> None:
         logger.info(f"🚀Adding pull secret to {self.name}")
@@ -70,7 +77,7 @@ class Namespace:
 
     def _create(self) -> None:
         """
-        Create namespace if not exists.
+        Create namespace if doesn't exist.
         :param name:
         :return:
         """
