@@ -1,6 +1,6 @@
 from loguru import logger
 
-from shangren.utils.deploy import Namespace
+from shang.utils.deploy import Namespace
 
 
 def deploy() -> None:

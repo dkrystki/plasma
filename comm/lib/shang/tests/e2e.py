@@ -3,7 +3,7 @@ from typing import Dict, Any
 import yaml
 from pathlib import Path
 
-from shangren.utils.deploy import run
+from shang.utils.deploy import run
 
 
 class Chart:

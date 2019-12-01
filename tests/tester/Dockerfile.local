@@ -29,5 +29,5 @@ RUN curl -LO https://git.io/get_helm.sh
 RUN bash get_helm.sh
 RUN rm get_helm.sh
 
-COPY comm/lib/shangren /usr/local/lib/python3.7/site-packages/shangren
+COPY comm/lib/shang /usr/local/lib/python3.7/site-packages/shangren
 COPY datacolls datacolls

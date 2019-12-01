@@ -1,1 +1,0 @@
-source "$SHANGREN_ROOT"/comm/bash/tele/activate.sh "${BASH_SOURCE[0]}"

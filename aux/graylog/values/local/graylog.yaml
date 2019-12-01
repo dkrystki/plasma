@@ -4,10 +4,6 @@ graylog:
   replicas: 1
   rootPassword: passwordpassword
 
-  image:
-    repository: "graylog/graylog:3.0.2-2"
-    pullPolicy: "IfNotPresent"
-
   ingress:
     enabled: true
     hosts:
@@ -24,12 +20,18 @@ graylog:
   podAnnotations:
     fluentbit.io/exclude: "true"
 
-  elasticsearch:
-    hosts: "http://elasticsearch-master:9200"
+mongodb-replicaset:
+  podAnnotations:
+    fluentbit.io/exclude: "true"
+  mongodbRootPassword: "password"
 
-  mongodb:
-    uri: mongodb://mongodb:27017/graylog?replicaSet=rs0
+  securityContext:
+    runAsUser: 0
+    runAsNonRoot: false
 
-tags:
-  install-elasticsearch: false
-  install-mongodb: false
+
+elasticsearch:
+  replicas: 1
+  minimumMasterNodes: 1
+  podAnnotations:
+    fluentbit.io/exclude: "true"

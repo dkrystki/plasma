@@ -21,7 +21,7 @@ tolerations: []
 affinity: {}
 
 sentry:
-  dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@shangren.sentry.local/3"
+  dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
 
 db:
   name: bitstamp

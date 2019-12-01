@@ -2,13 +2,14 @@
 import os
 from pathlib import Path
 
-from shangren.utils.deploy import Namespace
+from shang.utils.deploy import Namespace
 
 
 def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
     datacolls = Namespace("datacolls")
+    datacolls.create()
     datacolls.helm_install("influxdb", "stable/influxdb", "1.4.0")
 
 

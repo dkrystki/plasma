@@ -1,6 +1,6 @@
 from stickybeak.injector import DjangoInjector
 from rhei import Stopwatch
-from shangren.tests.e2e import Chart
+from shang.tests.e2e import Chart
 import pytest
 
 

@@ -1,0 +1,4 @@
+CREATE USER bitstamp WITH PASSWORD 'password';
+CREATE DATABASE bitstamp;
+GRANT ALL PRIVILEGES ON DATABASE bitstamp TO bitstamp;
+ALTER DATABASE bitstamp OWNER TO bitstamp;

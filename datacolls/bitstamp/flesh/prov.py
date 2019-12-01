@@ -92,7 +92,7 @@ class Collector:
 
     def _connect(self):
         logger.info("Connecting to the websocket.")
-        websocket.enableTrace(True)
+        # websocket.enableTrace(True)
         #"wss://ws.bitstamp.net"
         self.ws = websocket.WebSocketApp(self.url,
                                          on_message=lambda ws, msg: self._on_message(msg),
@@ -128,4 +128,5 @@ class Collector:
 
 
 if __name__ == '__main__':
+    logger.info("Starting datacolls-bitstamp.")
     prov = Collector()

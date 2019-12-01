@@ -1,7 +1,9 @@
 import sentry_sdk
 import environ
+import shang.logs
 
 env = environ.Env()
+shang.logs.setup("datacolls.bitstamp")
 
 
 class Bitstamp:
@@ -9,12 +11,8 @@ class Bitstamp:
     URL = env.str("BITSTAMP_URL")
 
 
-class Sentry:
+class SENTRY:
     DSN = env.str("SENTRY_DSN")
 
 
-sentry_sdk.init(Sentry.DSN)
-
-
-a = 11611824
-
+sentry_sdk.init(SENTRY.DSN)

@@ -36,7 +36,7 @@ case $1 in
       export CUSTOM_PS1="$STAGE_EMOJI📻($PROJECT_NAME)"
 
       export VIRTUAL_ENV
-      VIRTUAL_ENV=$( dirname "$(dirname "$(cd "$PROJECT_DIR/flesh" && pipenv run which python)")")
+      VIRTUAL_ENV=$( dirname "$(dirname "$(cd "$PROJECT_DIR/flesh" && poetry run which python)")")
       export PATH="$VIRTUAL_ENV/bin:$PATH"
 
       if [[ $PROMPT_COMMAND != *"check_tele"* ]]; then

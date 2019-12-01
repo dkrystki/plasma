@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from loguru import logger
 
-from shangren.utils.deploy import Namespace
+from shang.utils.deploy import Namespace
 
 
 def dump_data() -> None:
@@ -10,7 +10,7 @@ def dump_data() -> None:
 
     logger.info("♻️Dumping sentry")
 
-    sentry = Namespace("sentry", enable_istio=False)
+    sentry = Namespace("sentry")
 
     sentry_pod: str = sentry.kubectl('get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$"')
 
@@ -25,7 +25,7 @@ def seed() -> None:
 
     logger.info("🌱Seeding sentry")
 
-    sentry = Namespace("sentry", enable_istio=False)
+    sentry = Namespace("sentry")
 
     sentry_pod: str = sentry.kubectl('get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$"')
 
@@ -39,13 +39,20 @@ def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
     logger.info("🚀Deploying sentry")
-    sentry = Namespace("sentry", enable_istio=False)
+    sentry = Namespace("sentry")
+    sentry.create(enable_istio=False)
 
-    sentry.helm_install("redis", "stable/redis", "9.1.10")
-    sentry.helm_install("postgresql", "stable/postgresql", "6.3.6")
     sentry.helm_install("sentry", "stable/sentry", "2.1.1")
     seed()
     logger.info("👌Deployed sentry\n")
+
+
+def delete() -> None:
+    os.chdir(Path(__file__).absolute().parent)
+
+    sentry = Namespace("sentry")
+
+    sentry.helm_delete("sentry")
 
 
 if __name__ == "__main__":

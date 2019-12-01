@@ -5,6 +5,10 @@ gateways:
   istio-ingressgateway:
     enabled: true
     type: ClusterIP
+    resources:
+      requests:
+        cpu: 10m
+        memory: 40Mi
     ports:
       - port: 15020
         targetPort: 15020
@@ -33,8 +37,28 @@ gateways:
         targetPort: 15443
         name: tls
 
+  istio-egressgateway:
+    enabled: true
+    autoscaleEnabled: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 40Mi
+
 sidecarInjectorWebhook:
   enabled: true
+  # If true, webhook or istioctl injector will rewrite PodSpec for liveness
+  # health check to redirect request to sidecar. This makes liveness check work
+  # even when mTLS is enabled.
+  rewriteAppHTTPProbe: false
+
+pilot:
+  autoscaleEnabled: false
+  traceSampling: 100.0
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
 
 galley:
   enabled: true

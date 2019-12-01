@@ -14,7 +14,18 @@ import os
 from pathlib import Path
 import environ
 
+import sentry_sdk
+import shang.logs
+from sentry_sdk.integrations.django import DjangoIntegration
+
+from loguru import logger
+
 env = environ.Env()
+
+shang.logs.setup("mockexchs.bitstamp")
+logger.info("Starting mockexchs.bitstamp")
+
+a = 12112
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +38,6 @@ SECRET_KEY = 'vdp@p%oylj%brh+2l4@kx801lw!c3tu4qleh_7geqyz=p42r#3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 
@@ -151,3 +161,20 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
+class SENTRY:
+    DSN = env.str("SENTRY_DSN")
+
+
+STAGE = "local"
+
+sentry_sdk.init(
+        dsn=SENTRY.DSN,
+        environment=STAGE,
+        release="",
+        ignore_errors=[SystemExit],
+        integrations=[
+            DjangoIntegration(),
+        ],
+    )

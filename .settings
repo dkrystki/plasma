@@ -1,1 +1,2 @@
 export ISTIO_BIN=~/istio/bin
+export VENVS_DIR=~/.shangren/venvs

@@ -1,9 +1,0 @@
----
-image:
-  repository: postgres
-  tag: 9.6.15
-
-postgresqlPassword: password
-postgresqlUsername: sentry
-postgresqlDatabase: sentry
-

@@ -11,14 +11,16 @@ COPY docker_comm docker_comm
 COPY datacolls/bitstamp/docker docker
 RUN bash docker_comm/debug/setup.sh
 
-COPY datacolls/bitstamp/flesh/Pipfile Pipfile
-COPY datacolls/bitstamp/flesh/Pipfile.lock Pipfile.lock
+COPY datacolls/bitstamp/flesh/pyproject.toml pyproject.toml
+COPY datacolls/bitstamp/flesh/poetry.lock poetry.lock
 
 # Install common
-RUN pip3 install pipenv
+RUN pip3 install poetry
+RUN poetry config settings.virtualenvs.create false
 
-RUN pipenv install -d --system
+RUN poetry install
 COPY datacolls/bitstamp/flesh .
+COPY comm/lib/shang /usr/local/lib/python3.7/shang
 
 EXPOSE 8000
 

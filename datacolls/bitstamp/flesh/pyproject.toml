@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "datacolls.bitstamp"
+version = "0.1.0"
+description = ""
+authors = ["Damian Krystkiewicz <damian.krystkiewicz@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+flake8 = "^3.7"
+websocket-client = "^0.56.0"
+influxdb = "^5.2"
+ipython = "^7.10"
+numpy = "^1.17"
+environs = "^6.1"
+loguru = "^0.3.2"
+django-environ = "^0.4.5"
+watchdog = "^0.9.0"
+sentry_sdk = "^0.13.4"
+graypy = "^2.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

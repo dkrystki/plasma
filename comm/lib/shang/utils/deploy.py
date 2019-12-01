@@ -22,18 +22,28 @@ def run(command: str, ignore_errors=False) -> str:
 
 
 class Namespace:
-    def __init__(self, name: str, enable_istio: bool = True, add_pull_secret: bool = True):
+    def __init__(self, name: str):
         self.name: str = name
-        self._create()
-
-        if enable_istio:
-            self._enable_istio()
-
-        if add_pull_secret:
-            self._add_pullsecret()
 
     def kubectl(self, command: str) -> str:
         return run(f"kubectl -n {self.name} {command}")
+
+    def exec(self, pod: str, command: str) -> str:
+        return self.kubectl(f'exec {pod} -- bash -c "{command}"')
+
+    def apply(self, filename: str) -> None:
+        self.kubectl(f"apply -f k8s/{filename}")
+
+    def copy(self, src_path: str, dst_path: str):
+        self.kubectl(f"cp {src_path} {dst_path}")
+
+    def wait_for_pod(self, pod_name: str, timeout: int = 20) -> None:
+        """
+        :param pod_name:
+        :param timeout: Timeout in seconds
+        :return:
+        """
+        self.kubectl(f"wait --for=condition=ready pod {pod_name} --timeout={timeout}s")
 
     def helm_install(self, release_name: str, chart: str, version: str, upgrade=True) -> None:
         """
@@ -66,8 +76,10 @@ class Namespace:
 
         run(f"kubectl config set-context minikube --namespace=default")
 
-    def _enable_istio(self) -> None:
-        run(f"kubectl label namespace {self.name} istio-injection=enabled --overwrite")
+    def helm_delete(self, release_name: str) -> None:
+        logger.info(f"Deleting {release_name}")
+        namespaced_name = f"""{self.name + "-" if self.name else ""}{release_name}"""
+        run(f"helm delete --purge {namespaced_name}")
 
     def _add_pullsecret(self) -> None:
         logger.info(f"🚀Adding pull secret to {self.name}")
@@ -75,13 +87,24 @@ class Namespace:
               --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
               --dry-run -o yaml | kubectl apply -f -""")
 
-    def _create(self) -> None:
+    def create(self, enable_istio: bool = True, add_pull_secret: bool = True) -> None:
         """
         Create namespace if doesn't exist.
-        :param name:
+        :param enable_istio:
+        :param add_pull_secret:
         :return:
         """
         if self.name not in [ns.metadata.name for ns in kube.list_namespace().items]:
             namespace = client.V1Namespace()
             namespace.metadata = client.V1ObjectMeta(name=self.name)
             kube.create_namespace(namespace)
+
+        if enable_istio:
+            run(f"kubectl label namespace {self.name} istio-injection=enabled --overwrite")
+
+        if add_pull_secret:
+            logger.info(f"🚀Adding pull secret to {self.name}")
+            run(f"""kubectl create secret docker-registry pullsecret -n {self.name} --docker-server=shangren.registry.local \
+                          --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
+                          --dry-run -o yaml | kubectl apply -f -""")
+
