@@ -1,0 +1,65 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: shangren
+profiles:
+  - name: local
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/datacolls-bitstamp
+        docker:
+          dockerfile: datacolls/bitstamp/Dockerfile.local
+        context: .
+        sync:
+          infer:
+           - 'datacolls/bitstamp/flesh/**/*.py'
+           - '**/.idea/**'
+
+      - image: shangren.registry.local/mockexchs-bitstamp
+        docker:
+          dockerfile: mockexchs/bitstamp/Dockerfile.local
+        context: .
+        sync:
+          infer:
+            - 'mockexchs/bitstamp/flesh/**/*.py'
+            - '**/.idea/**'
+
+      - image: shangren.registry.local/tests-tester
+        docker:
+          dockerfile: tests/tester/Dockerfile.local
+        context: .
+        sync:
+          infer:
+            - 'datacolls/**/*.py'
+            - '**/.idea/**'
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: datacolls-bitstamp
+            chartPath: datacolls/bitstamp
+            namespace: datacolls
+            valuesFiles:
+              - datacolls/bitstamp/values/local.yaml
+            values:
+              image: shangren.registry.local/datacolls-bitstamp
+
+          - name: mockexchs-bitstamp
+            chartPath: mockexchs/bitstamp
+            namespace: mockexchs
+            valuesFiles:
+              - mockexchs/bitstamp/values/local.yaml
+            values:
+              image: shangren.registry.local/mockexchs-bitstamp
+
+          - name: tests-tester
+            chartPath: tests/tester
+            namespace: tests
+            valuesFiles:
+              - tests/tester/values/local.yaml
+            values:
+              image: shangren.registry.local/tests-tester
