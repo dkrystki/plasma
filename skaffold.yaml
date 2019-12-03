@@ -29,6 +29,8 @@ profiles:
       - image: shangren.registry.local/tests-tester
         docker:
           dockerfile: tests/tester/Dockerfile.local
+          buildArgs:
+            HELM_VERSION: v2.15.2
         context: .
         sync:
           infer:

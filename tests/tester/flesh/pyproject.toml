@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tester"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+flake8 = "^3.7"
+rhei = "^0.5.2"
+django = "^2.2"
+pytest = "^5.3"
+stickybeak = "^0.4.9"
+loguru = "^0.3.2"
+graypy = "^2.1"
+kubernetes = "^10.0"
+pyyaml = "^5.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

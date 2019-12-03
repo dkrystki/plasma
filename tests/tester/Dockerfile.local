@@ -11,23 +11,29 @@ COPY docker_comm docker_comm
 COPY tests/tester/docker docker
 RUN bash docker_comm/debug/setup.sh
 
-COPY tests/tester/flesh/Pipfile Pipfile
-COPY tests/tester/flesh/Pipfile.lock Pipfile.lock
+COPY tests/tester/flesh/pyproject.toml pyproject.toml
+COPY tests/tester/flesh/poetry.lock poetry.lock
 
-# Install common
-RUN pip3 install pipenv
-
-RUN pipenv install --system
-
+# Install kubectl
 RUN apt install curl -y
-
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 RUN chmod +x ./kubectl
 RUN mv ./kubectl /usr/local/bin/kubectl
 
-RUN curl -LO https://git.io/get_helm.sh
-RUN bash get_helm.sh
-RUN rm get_helm.sh
+# Install helm
+ARG HELM_VERSION
+ENV HELM_NAME="helm-$HELM_VERSION-linux-386"
+RUN curl -o "$HELM_NAME.tar.gz" "https://get.helm.sh/$HELM_NAME.tar.gz"
+RUN tar -zxvf "$HELM_NAME.tar.gz"
+RUN mv linux-386/helm /usr/local/bin/helm
+RUN rm "$HELM_NAME.tar.gz"
+RUN rm -r linux-386
+
+# Install common
+RUN pip3 install poetry
+RUN poetry config settings.virtualenvs.create false
+RUN poetry install
+
 
 COPY comm/lib/shang /usr/local/lib/python3.7/site-packages/shangren
 COPY datacolls datacolls

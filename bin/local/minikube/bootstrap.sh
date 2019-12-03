@@ -4,10 +4,11 @@ set -xeuo pipefail
 
 cd "$(dirname "$0")" || exit
 
+source "$SHANGREN_ROOT/settings"
+
 printf "Bootstraping Minikube\n"
 
 unset KUBECONFIG
-KUBERNETES_VERSION=v1.15.0
 
 sudo minikube delete
 sudo rm /home/shangren-local/.kube -rf
@@ -23,7 +24,7 @@ sudo chown -R $USER /home/shangren-local/.kube
 
 sudo snap install kubectl --classic
 
-HELM_NAME=helm-v2.15.2-linux-386
+HELM_NAME="helm-$HELM_VERSION-linux-386"
 wget "https://get.helm.sh/$HELM_NAME.tar.gz"
 tar -zxvf "$HELM_NAME.tar.gz"
 sudo mv linux-386/helm /usr/local/bin/helm

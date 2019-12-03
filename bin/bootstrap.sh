@@ -2,15 +2,13 @@
 
 . "$SHANGREN_ROOT"/header.sh
 
-cd ../../
+cd $SHANGREN_ROOT
 
 printf "Bootstraping\n"
 
-pipenv install
+poetry install
 
 sudo apt install direnv
-
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 DIRENV_SETUP="
 render_ps1() {
