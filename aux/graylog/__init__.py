@@ -49,15 +49,7 @@ def deploy() -> None:
     logger.info("🚀Deploying graylog")
     namespace.create(enable_istio=False, add_pull_secret=False)
 
-    # run("helm repo add elastic https://helm.elastic.co")
-    # run("helm repo update")
-
-    # namespace.helm_install("elasticsearch", "elastic/elasticsearch", "7.4.1")
-    # run("helm repo add stable https://kubernetes-charts.storage.googleapis.com/")
-    # run("helm repo update")
-
-    # namespace.helm_install("mongodb", "stable/mongodb-replicaset", "3.10.1")
-    namespace.helm_install("graylog", "stable/graylog", "1.3.9")
+    namespace.helm_install("graylog", "stable/graylog", "1.3.10")
     namespace.kubectl("apply -f k8s/fluentbit-configmap.yaml")
     namespace.helm_install("fluentbit", "stable/fluent-bit", "2.8.2")
     seed()

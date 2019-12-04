@@ -42,7 +42,7 @@ def deploy() -> None:
     sentry = Namespace("sentry")
     sentry.create(enable_istio=False)
 
-    sentry.helm_install("sentry", "stable/sentry", "2.1.1")
+    sentry.helm_install("sentry", "stable/sentry", "3.1.5")
     seed()
     logger.info("👌Deployed sentry\n")
 

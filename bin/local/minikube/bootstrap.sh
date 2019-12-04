@@ -4,7 +4,7 @@ set -xeuo pipefail
 
 cd "$(dirname "$0")" || exit
 
-source "$SHANGREN_ROOT/settings"
+source "$SHANGREN_ROOT/.settings"
 
 printf "Bootstraping Minikube\n"
 
@@ -45,4 +45,3 @@ sudo hostess add shangren.registry.local 127.0.0.1
 printf "Bootstraped Minikube\n\n"
 
 printf "Starting LoadBalancer tunnel."
-sudo minikube tunnel
