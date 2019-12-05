@@ -35,6 +35,7 @@ sudo apt install socat -y
 helm init --wait
 
 kubectl apply -f k8s/dashboard_ingress.yaml
+kubectl apply -f k8s/rbac-storage-provisioner.yaml
 
 wget https://github.com/cbednarski/hostess/releases/download/v0.3.0/hostess_linux_386
 sudo chmod u+x hostess_linux_386
