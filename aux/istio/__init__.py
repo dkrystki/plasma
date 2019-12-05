@@ -16,7 +16,7 @@ def deploy() -> None:
     istio.create()
 
     logger.info("🚀Deploying istio")
-    run("kubectl apply -f k8s/service-account.yaml")
+    # run("kubectl apply -f k8s/service-account.yaml")
 
     time.sleep(2)
     istio.helm_install("init", "istio.io/istio-init", istio_version, upgrade=False)

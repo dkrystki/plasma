@@ -4,15 +4,22 @@ import subprocess
 from kubernetes import client, config
 from loguru import logger
 
+import environ
+env = environ.Env()
+
 
 config.load_kube_config(
     os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
 
 kube = client.CoreV1Api()
 
+DEBUG: bool = env.bool("SHANG_DEBUG")
+
 
 def run(command: str, ignore_errors=False) -> str:
     try:
+        if DEBUG:
+            logger.debug(command)
         return subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode("utf-8").strip()
     except subprocess.CalledProcessError as e:
         if not ignore_errors:
@@ -47,7 +54,6 @@ class Namespace:
 
     def helm_install(self, release_name: str, chart: str, version: str, upgrade=True) -> None:
         """
-        :param namespace:
         :param release_name:
         :param chart: chart repository name
         :param version:
@@ -60,12 +66,10 @@ class Namespace:
             except RuntimeError:
                 pass
 
-        run(f"kubectl create namespace {self.name}", ignore_errors=True)
-        run(f"kubectl config set-context minikube --namespace={self.name}")
-
         namespaced_name = f"""{self.name + "-" if self.name else ""}{release_name}"""
         run(f"""helm {"upgrade --install" if upgrade else "install"} \
                 {"" if upgrade else "--name"} {namespaced_name} \
+                --namespace={self.name} \
                 --set fullnameOverride={release_name} \
                 -f values/local/{release_name}.yaml \
                 {"--force" if upgrade else ""} --wait=true \
@@ -73,8 +77,6 @@ class Namespace:
                 "{chart}" \
                 --version="{version}" \
                 """)
-
-        run(f"kubectl config set-context minikube --namespace=default")
 
     def helm_delete(self, release_name: str) -> None:
         logger.info(f"Deleting {release_name}")

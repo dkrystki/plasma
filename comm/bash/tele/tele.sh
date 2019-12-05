@@ -37,7 +37,7 @@ case $1 in
 
       export VIRTUAL_ENV
       VIRTUAL_ENV=$( dirname "$(dirname "$(cd "$PROJECT_DIR/flesh" && poetry run which python)")")
-      export PATH="$VIRTUAL_ENV/bin:$PATH"
+      source "$VIRTUAL_ENV/activate"
 
       if [[ $PROMPT_COMMAND != *"check_tele"* ]]; then
         export PROMPT_COMMAND_BEFORE=$PROMPT_COMMAND
