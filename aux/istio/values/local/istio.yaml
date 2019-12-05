@@ -65,6 +65,10 @@ galley:
 
 kiali:
   enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - shangren.kiali.local
 
 grafana:
   enabled: true

@@ -31,7 +31,9 @@ mongodb-replicaset:
 
 
 elasticsearch:
-  replicas: 1
-  minimumMasterNodes: 1
-  podAnnotations:
-    fluentbit.io/exclude: "true"
+  master:
+    podAnnotations:
+      fluentbit.io/exclude: "true"
+  data:
+    podAnnotations:
+      fluentbit.io/exclude: "true"
