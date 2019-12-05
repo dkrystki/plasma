@@ -19,8 +19,6 @@ microk8s.enable dashboard
 microk8s.enable helm
 sudo microk8s.enable storage
 microk8s.enable ingress
-microk8s.kubectl apply -f k8s/dashboard_ingress.yaml
-microk8s.helm init --wait
 
 wget https://github.com/cbednarski/hostess/releases/download/v0.3.0/hostess_linux_386
 sudo chmod u+x hostess_linux_386
