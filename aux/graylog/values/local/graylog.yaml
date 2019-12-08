@@ -1,7 +1,6 @@
 ---
 graylog:
   rootTimezone: Australia/Brisbane
-  replicas: 1
   rootPassword: passwordpassword
 
   ingress:

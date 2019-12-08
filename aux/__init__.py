@@ -7,7 +7,7 @@ from aux import istio
 
 def deploy() -> None:
     logger.info("Deploying auxiliary services.")
-    istio.deploy()
+    # istio.deploy()
     graylog.deploy()
     sentry.deploy()
     misc.deploy()

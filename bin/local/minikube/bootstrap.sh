@@ -14,6 +14,7 @@ sudo snap remove microk8s
 sudo snap install microk8s --classic --channel=1.15/stable
 
 sudo microk8s.start
+sleep 10
 
 mkdir -p "$(dirname "$KUBECONFIG")"
 microk8s.config > "$KUBECONFIG"
@@ -35,8 +36,8 @@ if [ ! -f /usr/local/bin/helm ]; then
   rm "$HELM_NAME.tar.gz"
   rm -r linux-386
 fi
-
-helm init --wait
+sleep 15
+helm init
 microk8s.kubectl create serviceaccount -n kube-system tiller
 microk8s.kubectl create clusterrolebinding tiller-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 microk8s.kubectl --namespace kube-system patch deploy tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'

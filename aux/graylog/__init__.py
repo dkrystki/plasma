@@ -49,7 +49,7 @@ def deploy() -> None:
     logger.info("🚀Deploying graylog")
     namespace.create(enable_istio=False, add_pull_secret=False)
 
-    namespace.helm_install("graylog", "stable/graylog", "1.3.10")
+    namespace.helm_install("graylog", "stable/graylog", "1.3.9")
     namespace.kubectl("apply -f k8s/fluentbit-configmap.yaml")
     namespace.helm_install("fluentbit", "stable/fluent-bit", "2.8.2")
     seed()
