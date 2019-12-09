@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"graylog.lut_caches"},{"v":2,"unique":true,"key":{"name":1},"name":"name_1","ns":"graylog.lut_caches"}],"uuid":"3f15ffd65af744438e673b9ba2164dad"}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"graylog.lut_caches"},{"v":2,"unique":true,"key":{"name":1},"name":"name_1","ns":"graylog.lut_caches"}],"uuid":"e54231fa379348a7a5a71c5638dde699"}

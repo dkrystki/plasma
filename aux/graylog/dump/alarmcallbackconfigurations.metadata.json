@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"graylog.alarmcallbackconfigurations"},{"v":2,"key":{"stream_id":1},"name":"stream_id_1","ns":"graylog.alarmcallbackconfigurations"}],"uuid":"95e444d1daeb42f5a73e03e9344dc74e"}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"graylog.alarmcallbackconfigurations"},{"v":2,"key":{"stream_id":1},"name":"stream_id_1","ns":"graylog.alarmcallbackconfigurations"}],"uuid":"bd367d90f0124d68aa293bc849d9c930"}

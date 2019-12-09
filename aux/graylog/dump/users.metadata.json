@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"graylog.users"},{"v":2,"key":{"roles":1},"name":"roles_1","ns":"graylog.users"}],"uuid":"c708e23813b14544978a68b0014cafa0"}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"graylog.users"},{"v":2,"key":{"roles":1},"name":"roles_1","ns":"graylog.users"}],"uuid":"3c372c9b1c0148e29ac6fd668117abc4"}
