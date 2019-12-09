@@ -42,6 +42,11 @@ microk8s.kubectl create serviceaccount -n kube-system tiller
 microk8s.kubectl create clusterrolebinding tiller-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 microk8s.kubectl --namespace kube-system patch deploy tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
+tee -a "/var/snap/microk8s/current/args/containerd-template.toml" << END
+  [plugins.cri.registry.mirrors."shangren.registry.local"]
+          endpoint = ["http://shangren.registry.local"]
+END
+
 wget https://github.com/cbednarski/hostess/releases/download/v0.3.0/hostess_linux_386
 sudo chmod u+x hostess_linux_386
 sudo mv hostess_linux_386 /usr/local/bin/hostess
