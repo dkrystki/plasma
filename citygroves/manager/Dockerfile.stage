@@ -10,15 +10,12 @@ WORKDIR /srv
 COPY docker_comm docker_comm
 COPY mockexchs/bitstamp/docker docker
 RUN bash docker_comm/debug/setup.sh
-RUN rm -r docker
 
-COPY mockexchs/bitstamp/flesh/pyproject.toml pyproject.toml
-COPY mockexchs/bitstamp/flesh/poetry.lock poetry.lock
+COPY mockexchs/bitstamp/flesh/Pipfile Pipfile
+COPY mockexchs/bitstamp/flesh/Pipfile.lock Pipfile.lock
 
 # Install common
-RUN pip3 install poetry
-RUN poetry config settings.virtualenvs.create false
+RUN pip3 install pipenv
 
-RUN poetry install
+RUN pipenv install --system
 COPY mockexchs/bitstamp/flesh .
-COPY comm/lib/shang /usr/local/lib/python3.7/shang

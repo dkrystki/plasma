@@ -1,0 +1,31 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: shangren
+profiles:
+  - name: local
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves/manager
+        docker:
+          dockerfile: citygroves/manager/Dockerfile.local
+        context: ../
+        sync:
+          infer:
+           - 'manager/flesh/**/*.py'
+           - '**/.idea/**'
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-manager
+            chartPath: manager
+            namespace: citygroves
+            valuesFiles:
+              - manager/values/local.yaml
+            values:
+              image: shangren.registry.local/citygroves/manager

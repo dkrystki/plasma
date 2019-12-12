@@ -1,0 +1,29 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image: shangren/bitstamp
+pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: pullsecret
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+sentry:
+  dsn: "http://4f571e554f224e5ab0a91727da85b5e4@sentry.sentry/2"
+
+bitstamp:
+  url: "ws://bitstamp.mockexchs:8000/ws/"
+  supportedCurrencies:
+    - btc
+    - bch
+    - eth
+    - ltc
+    - xrp
