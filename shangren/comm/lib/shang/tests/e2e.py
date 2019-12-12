@@ -3,22 +3,25 @@ from typing import Dict, Any
 import yaml
 from pathlib import Path
 
-from shang.utils.deploy import run
+from shang.utils.deploy import run, Namespace, Helm
 
 
 class Chart:
     def __init__(self, path: str, values: Dict[str, Any]) -> None:
         self.path: Path = Path(path)
         self.name: str = f"{self.path.stem}-e2e"
-        self.namespace: str = self.path.parents[0].stem
+        self.namespace = Namespace(self.path.parents[0].stem)
         self.values: Dict[str, str] = values
 
     def start(self) -> None:
         values_file: Path = Path(".values.yaml")
         values_file.write_text(yaml.dump(self.values))
 
-        run(f"helm install {str(self.path)} --name={self.namespace}-{self.name} --namespace={self.namespace}"
-            f" --set nameOverride={self.name} -f {str(values_file)} --wait")
+        helm: Helm = self.namespace.helm(self.name)
+        if helm.exists():
+            helm.delete()
+        helm.install(chart=str(self.path), values_path=str(values_file))
+
         values_file.unlink()
 
     def delete(self) -> None:

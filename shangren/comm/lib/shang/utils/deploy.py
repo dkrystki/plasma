@@ -5,8 +5,8 @@ from kubernetes import client, config
 from loguru import logger
 
 import environ
-env = environ.Env()
 
+env = environ.Env()
 
 config.load_kube_config(
     os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
@@ -14,6 +14,10 @@ config.load_kube_config(
 kube = client.CoreV1Api()
 
 DEBUG: bool = env.bool("SHANG_DEBUG")
+
+
+class CommandError(RuntimeError):
+    pass
 
 
 def run(command: str, ignore_errors=False) -> str:
@@ -24,12 +28,58 @@ def run(command: str, ignore_errors=False) -> str:
     except subprocess.CalledProcessError as e:
         if not ignore_errors:
             output: str = e.stdout.decode('utf-8').strip()
-            error_msg: str = f"Command \"{e.cmd}\" produced errozr ({output})"
-            raise RuntimeError(error_msg)
+            error_msg: str = f"Command \"{e.cmd}\" produced error ({output})"
+            raise CommandError(error_msg)
+
+
+class Helm:
+    """Namespaced helm representation."""
+
+    def __init__(self, namespace: 'Namespace', release_name: str) -> None:
+        self.namespace = namespace
+        self.release_name = release_name
+        self.namespaced_name = f"""{self.namespace.name + "-" if self.namespace.name else ""}{release_name}"""
+
+    def install(self, chart: str, values_path: str, version: str = None, upgrade=True) -> None:
+        """
+        :param values_path:
+        :param chart: chart repository name
+        :param version: install default if None
+        :param upgrade: Try to upgrade when True. Delete and install when False.
+        """
+        logger.info(f"🚀Deploying {self.release_name}")
+        if not upgrade:
+            try:
+                run(f"""helm delete --purge {self.namespaced_name}""")
+            except RuntimeError:
+                pass
+
+        run(f"""helm {"upgrade --install" if upgrade else "install"} \
+                {"" if upgrade else "--name"} {self.namespaced_name} \
+                --namespace={self.namespace.name} \
+                --set nameOverride={self.release_name} \
+                -f {values_path} \
+                {"--force" if upgrade else ""} --wait=true \
+                --timeout=250000 \
+                "{chart}" \
+                {f"--version='{version}'" if version else ""} \
+                """)
+
+    def delete(self) -> None:
+        logger.info(f"Deleting {self.namespaced_name}")
+        run(f"helm delete --purge {self.namespaced_name}")
+
+    def exists(self) -> bool:
+        try:
+            run(f"helm ls | grep {self.namespaced_name}")
+        except CommandError:
+            return False
+        else:
+            return True
 
 
 class Namespace:
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self.name: str = name
 
     def kubectl(self, command: str) -> str:
@@ -51,37 +101,6 @@ class Namespace:
         :return:
         """
         self.kubectl(f"wait --for=condition=ready pod {pod_name} --timeout={timeout}s")
-
-    def helm_install(self, release_name: str, chart: str, version: str, upgrade=True) -> None:
-        """
-        :param release_name:
-        :param chart: chart repository name
-        :param version:
-        :param upgrade: Try to upgrade when True. Delete and install when False.
-        """
-        logger.info(f"🚀Deploying {release_name}")
-        if not upgrade:
-            try:
-                run(f"""helm delete --purge {self.name}-{release_name}""")
-            except RuntimeError:
-                pass
-
-        namespaced_name = f"""{self.name + "-" if self.name else ""}{release_name}"""
-        run(f"""helm {"upgrade --install" if upgrade else "install"} \
-                {"" if upgrade else "--name"} {namespaced_name} \
-                --namespace={self.name} \
-                --set fullnameOverride={release_name} \
-                -f values/local/{release_name}.yaml \
-                {"--force" if upgrade else ""} --wait=true \
-                --timeout=250000 \
-                "{chart}" \
-                --version="{version}" \
-                """)
-
-    def helm_delete(self, release_name: str) -> None:
-        logger.info(f"Deleting {release_name}")
-        namespaced_name = f"""{self.name + "-" if self.name else ""}{release_name}"""
-        run(f"helm delete --purge {namespaced_name}")
 
     def _add_pullsecret(self) -> None:
         logger.info(f"🚀Adding pull secret to {self.name}")
@@ -106,7 +125,16 @@ class Namespace:
 
         if add_pull_secret:
             logger.info(f"🚀Adding pull secret to {self.name}")
-            run(f"""kubectl create secret docker-registry pullsecret -n {self.name} --docker-server=shangren.registry.local \
-                          --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
+            run(f"""kubectl create secret docker-registry pullsecret -n {self.name} \
+            --docker-server=shangren.registry.local \
+            --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
                           --dry-run -o yaml | kubectl apply -f -""")
 
+    def helm(self, release_name: str) -> Helm:
+        """
+        Helm factory for a given release.
+
+        :param release_name:
+        :return:
+        """
+        return Helm(namespace=self, release_name=release_name)

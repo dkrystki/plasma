@@ -1,10 +1,9 @@
-from loguru import logger
-import datacolls
-import mockexchs
-import tests
-
-
 def deploy() -> None:
+    from loguru import logger
+    import datacolls
+    import mockexchs
+    import tests
+
     logger.info("Deploying apps")
     datacolls.deploy()
     mockexchs.deploy()
