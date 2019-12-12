@@ -2,14 +2,14 @@
 
 CURRENT_DIR=$(pwd)
 
-source "$SHANGREN_ROOT"/comm/bash/utils.sh
+source "$PROJECT_ROOT"/comm/bash/utils.sh
 
 export PROMPT_COMMAND_BEFORE
 
 case $1 in
   start)
     if ! test -f "$PROJECT_DIR/.telepresence.sh"; then
-      "$SHANGREN_ROOT"/comm/bash/tele/start.sh "$NAMESPACE" "$PROJECT_NAME" "$PROJECT_DIR"
+      "$PROJECT_ROOT"/comm/bash/tele/start.sh "$NAMESPACE" "$PROJECT_NAME" "$PROJECT_DIR"
     else
       printf "Already started\n"
       exit 1
@@ -34,10 +34,6 @@ case $1 in
     if test -f "$PROJECT_DIR/.telepresence.sh"; then
       source "$PROJECT_DIR"/.telepresence.sh
       export CUSTOM_PS1="$STAGE_EMOJI📻($PROJECT_NAME)"
-
-      export VIRTUAL_ENV
-      VIRTUAL_ENV=$( dirname "$(cd "$PROJECT_DIR/flesh" && poetry run which python)")
-      export PATH="$VIRTUAL_ENV:$PATH"
 
       if [[ $PROMPT_COMMAND != *"check_tele"* ]]; then
         export PROMPT_COMMAND_BEFORE=$PROMPT_COMMAND

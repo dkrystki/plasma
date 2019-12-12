@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-. "$SHANGREN_ROOT"/header.sh
+. "$PROJECT_ROOT"/header.sh
 
-bash "$SHANGREN_ROOT"/comm/bash/terminal.sh datacolls bitstamp
+bash "$PROJECT_ROOT"/comm/bash/terminal.sh datacolls bitstamp

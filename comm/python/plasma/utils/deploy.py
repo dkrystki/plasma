@@ -9,7 +9,7 @@ import environ
 env = environ.Env()
 
 config.load_kube_config(
-    os.path.join(os.environ["SHANGREN_ROOT"], 'envs/local/kubeconfig.yaml'))
+    os.path.join(os.environ["PROJECT_ROOT"], 'envs/local/kubeconfig.yaml'))
 
 kube = client.CoreV1Api()
 

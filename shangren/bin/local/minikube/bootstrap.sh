@@ -4,7 +4,7 @@ set -xeuo pipefail
 
 cd "$(dirname "$0")" || exit
 
-source "$SHANGREN_ROOT/.settings"
+source "$PROJECT_ROOT/.settings"
 
 printf "Bootstraping Minikube\n"
 

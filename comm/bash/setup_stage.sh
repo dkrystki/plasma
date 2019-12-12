@@ -1,4 +1,4 @@
-source "$SHANGREN_ROOT"/.current_stage
+source "$PROJECT_ROOT"/.current_stage
 
 case "$STAGE" in
   local)
@@ -12,6 +12,6 @@ esac
 export PIPENV_IGNORE_VIRTUALENVS=1
 
 export SHANGREN_IP=192.168.0.5
-export KUBECONFIG="$SHANGREN_ROOT"/envs/"$STAGE"/kubeconfig.yaml
+export KUBECONFIG="$PROJECT_ROOT"/envs/"$STAGE"/kubeconfig.yaml
 
 eval $SETUP_PS1

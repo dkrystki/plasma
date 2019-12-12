@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$SHANGREN_ROOT"/header.sh
+. "$PROJECT_ROOT"/header.sh
 
 if [[ -v TELE_ON ]]
 then

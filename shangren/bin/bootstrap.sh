@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-. "$SHANGREN_ROOT"/header.sh
+. "$PROJECT_ROOT"/header.sh
 
-cd $SHANGREN_ROOT
+cd $PROJECT_ROOT
 
 printf "Bootstraping\n"
 

@@ -9,6 +9,6 @@ case $1 in
       exit 1 ;;
 esac
 
-echo "export STAGE="$1"" > "$SHANGREN_ROOT"/.current_stage
+echo "export STAGE="$1"" > "$PROJECT_ROOT"/.current_stage
 
-source "$SHANGREN_ROOT"/setup_stage.sh
+source "$PROJECT_ROOT"/setup_stage.sh

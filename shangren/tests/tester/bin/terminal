@@ -2,6 +2,6 @@
 
 # SSH into a pod
 
-. "$SHANGREN_ROOT"/header.sh
+. "$PROJECT_ROOT"/header.sh
 
-bash "$SHANGREN_ROOT"/comm/bash/terminal.sh tests tester
+bash "$PROJECT_ROOT"/comm/bash/terminal.sh tests tester
