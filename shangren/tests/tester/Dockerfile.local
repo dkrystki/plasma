@@ -29,7 +29,7 @@ RUN rm -r linux-386
 
 # Install common
 RUN pip3 install poetry
-RUN poetry config settings.virtualenvs.create false
+RUN poetry config virtualenvs.create false
 
 COPY tests/tester/flesh/pyproject.toml pyproject.toml
 COPY tests/tester/flesh/poetry.lock poetry.lock

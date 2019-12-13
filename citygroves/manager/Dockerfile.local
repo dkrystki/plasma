@@ -11,12 +11,12 @@ COPY comm/docker/debug.sh /tmp/debug.sh
 COPY citygroves/manager/docker /tmp/docker
 RUN bash /tmp/debug.sh
 
-COPY citygroves/manager/flesh/pyproject.toml pyproject.toml
-COPY citygroves/manager/flesh/poetry.lock poetry.lock
-
 # Install common
 RUN pip3 install poetry
-RUN poetry config settings.virtualenvs.create false
+RUN poetry config virtualenvs.create false
+
+COPY citygroves/manager/flesh/pyproject.toml pyproject.toml
+COPY citygroves/manager/flesh/poetry.lock poetry.lock
 
 RUN poetry install
 COPY citygroves/manager/flesh .

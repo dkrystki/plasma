@@ -1,6 +1,8 @@
 # Args
 # Directory where envs should be stored
 
+cd "$APP_ROOT" || exit
+
 printenv | sed '/^.*CUSTOM_PS1.*$/d' |
   sed '/^.*LS_COLORS.*$/d' |
   sed '/^.*LESSCLOSE.*$/d' |
@@ -8,12 +10,12 @@ printenv | sed '/^.*CUSTOM_PS1.*$/d' |
   sed '/^.*DIRENV.*$/d' |
   sed '/^.*PYTHONPATH.*$/d' |
   sed 's/^/export /' \
-  > "$1"/.telepresence.sh &&
+  > .telepresence.sh &&
   printenv | sed '/^.*CUSTOM_PS1.*$/d' |
   sed '/^.*LS_COLORS.*$/d' |
   sed '/^.*PROMPT_COMMAND.*$/d' |
   sed '/^.*DIRENV.*$/d' |
   sed '/^.*PYTHONPATH.*$/d' |
   sed '/^.*LESSCLOSE.*$/d' \
-  > "$1"/.telepresence.env \
+  > .telepresence.env \
  && tail -f /dev/null

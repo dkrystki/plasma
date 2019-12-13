@@ -2,37 +2,41 @@
 
 CURRENT_DIR=$(pwd)
 
-source "$PROJECT_ROOT"/comm/bash/utils.sh
+source "$PLASMA_COMM_ROOT"/bash/utils.sh
 
 export PROMPT_COMMAND_BEFORE
 
 case $1 in
   start)
     if ! test -f "$PROJECT_DIR/.telepresence.sh"; then
-      "$PROJECT_ROOT"/comm/bash/tele/start.sh "$NAMESPACE" "$PROJECT_NAME" "$PROJECT_DIR"
+      function cleanup {
+        rm "$APP_ROOT/.telepresence.env" > /dev/null
+        rm "$APP_ROOT/.telepresence.sh" > /dev/null
+        unset TELE_ON
+      }
+
+      trap cleanup EXIT
+
+      telepresence --method inject-tcp --namespace "$NAMESPACE" --swap-deployment "$APP_NAME" \
+                   --run bash "$PLASMA_COMM_ROOT/bash/tele/command.sh"
     else
       printf "Already started\n"
       exit 1
     fi
     ;;
   shell)
-    if [ "$0" = "$BASH_SOURCE" ]; then
-        print_style "Error: Script must be sourced\n" "error"
-        exit 1
-    fi
-
     cleanup() {
       export PROMPT_COMMAND=$PROMPT_COMMAND_BEFORE
     }
     check_tele() {
-      if ! test -f "$PROJECT_DIR/.telepresence.sh"; then
+      if ! test -f "$APP_ROOT/.telepresence.sh"; then
         print_style "Telepresence is down.\n" "error"
         direnv reload
         cleanup
       fi
     }
-    if test -f "$PROJECT_DIR/.telepresence.sh"; then
-      source "$PROJECT_DIR"/.telepresence.sh
+    if test -f "$APP_ROOT/.telepresence.sh"; then
+      source "$APP_ROOT/.telepresence.sh"
       export CUSTOM_PS1="$STAGE_EMOJI📻($PROJECT_NAME)"
 
       if [[ $PROMPT_COMMAND != *"check_tele"* ]]; then

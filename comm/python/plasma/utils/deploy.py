@@ -1,5 +1,6 @@
 import os
 import subprocess
+from typing import List
 
 from kubernetes import client, config
 from loguru import logger
@@ -13,7 +14,7 @@ config.load_kube_config(
 
 kube = client.CoreV1Api()
 
-DEBUG: bool = env.bool("SHANG_DEBUG")
+PLASMA_DEBUG: bool = env.bool("PLASMA_DEBUG")
 
 
 class CommandError(RuntimeError):
@@ -22,7 +23,7 @@ class CommandError(RuntimeError):
 
 def run(command: str, ignore_errors=False) -> str:
     try:
-        if DEBUG:
+        if PLASMA_DEBUG:
             logger.debug(command)
         return subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode("utf-8").strip()
     except subprocess.CalledProcessError as e:
@@ -40,7 +41,7 @@ class Helm:
         self.release_name = release_name
         self.namespaced_name = f"""{self.namespace.name + "-" if self.namespace.name else ""}{release_name}"""
 
-    def install(self, chart: str, values_path: str, version: str = None, upgrade=True) -> None:
+    def install(self, chart: str, values_path: str = "Default", version: str = None, upgrade=True) -> None:
         """
         :param values_path:
         :param chart: chart repository name
@@ -54,10 +55,13 @@ class Helm:
             except RuntimeError:
                 pass
 
+        if values_path == "Default":
+            values_path = f"values/local/{self.release_name}.yaml"
+
         run(f"""helm {"upgrade --install" if upgrade else "install"} \
                 {"" if upgrade else "--name"} {self.namespaced_name} \
                 --namespace={self.namespace.name} \
-                --set nameOverride={self.release_name} \
+                --set fullnameOverride={self.release_name} \
                 -f {values_path} \
                 {"--force" if upgrade else ""} --wait=true \
                 --timeout=250000 \
@@ -93,6 +97,9 @@ class Namespace:
 
     def copy(self, src_path: str, dst_path: str):
         self.kubectl(f"cp {src_path} {dst_path}")
+
+    def get_pods(self) -> List[str]:
+        return [p.metadata.name for p in kube.list_namespaced_pod(self.name).items]
 
     def wait_for_pod(self, pod_name: str, timeout: int = 20) -> None:
         """

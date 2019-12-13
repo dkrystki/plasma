@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 
 if __name__ == "__main__":
-    from citygroves.manager import deploy
+    from __init__ import deploy
     deploy()

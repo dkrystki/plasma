@@ -2,4 +2,4 @@ export ISTIO_BIN=~/istio/bin
 export VENVS_DIR=~/.shangren/venvs
 export KUBERNETES_VERSION=v1.15.0
 export HELM_VERSION=v2.15.2
-export SHANG_DEBUG=False
+export PLASMA_DEBUG=False

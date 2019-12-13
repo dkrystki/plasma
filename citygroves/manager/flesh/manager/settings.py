@@ -11,6 +11,18 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import environ
+
+# import sentry_sdk
+import plasma.logs
+# from sentry_sdk.integrations.django import DjangoIntegration
+
+from loguru import logger
+
+env = environ.Env()
+
+plasma.logs.setup("citygroves", "manager")
+logger.info("Starting citygroves.manager")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +40,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+class DB:
+    NAME = env.str(var="DB_NAME")
+    USER = env.str(var="DB_USER")
+    PASSWORD = env.str(var="DB_PASSWORD")
+    HOST = env.str(var="DB_HOST")
+    PORT = env.str(var="DB_PORT")
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.postgres",
     "tenants",
     "housing"
 ]
@@ -76,9 +95,13 @@ WSGI_APPLICATION = 'manager.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": DB.NAME,
+        "USER": DB.USER,
+        "PASSWORD": DB.PASSWORD,
+        "HOST": DB.HOST,
+        "PORT": DB.PORT,
     }
 }
 
@@ -120,3 +143,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STAGE = "local"
+
+
+# class SENTRY:
+#     DSN = env.str("SENTRY_DSN")
+
+
+# sentry_sdk.init(
+#         dsn=SENTRY.DSN,
+#         environment=STAGE,
+#         release="",
+#         ignore_errors=[SystemExit],
+#         integrations=[
+#             DjangoIntegration(),
+#         ],
+#     )

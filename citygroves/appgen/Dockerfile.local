@@ -1,0 +1,23 @@
+FROM python:3.7-slim-stretch
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+ENV SHELL /bin/bash
+ENV STAGE local
+
+WORKDIR /srv
+COPY comm/docker/debug.sh /tmp/debug.sh
+COPY citygroves/appgen/docker /tmp/docker
+RUN bash /tmp/debug.sh
+
+# Install common
+RUN pip3 install poetry
+RUN poetry config virtualenvs.create false
+
+COPY citygroves/appgen/flesh/pyproject.toml pyproject.toml
+COPY citygroves/appgen/flesh/poetry.lock poetry.lock
+
+RUN poetry install
+COPY citygroves/appgen/flesh .
+COPY comm/python/plasma /usr/local/lib/python3.7/plasma

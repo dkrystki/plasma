@@ -1,7 +1,5 @@
 set -eo pipefail
 
-CURRENT_DIR=$(pwd)
-
 export PROJECT_ROOT
 PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 export PLASMA_ROOT
@@ -17,5 +15,3 @@ source "$PLASMA_COMM_ROOT/bash/setup_stage.sh"
 PATH=$PATH:"$PROJECT_ROOT"/bin
 
 eval $SETUP_PS1
-
-cd "$CURRENT_DIR"

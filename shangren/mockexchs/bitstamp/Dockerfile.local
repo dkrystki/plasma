@@ -17,7 +17,7 @@ COPY mockexchs/bitstamp/flesh/poetry.lock poetry.lock
 
 # Install common
 RUN pip3 install poetry
-RUN poetry config settings.virtualenvs.create false
+RUN poetry config virtualenvs.create false
 
 RUN poetry install
 COPY mockexchs/bitstamp/flesh .

@@ -42,7 +42,7 @@ class Application(models.Model):
     is_local_student = models.BooleanField()
     international_student = models.BooleanField()
     is_young_professional = models.BooleanField()
-    referrers = models.ManyToManyField(Referrer, null=True)
+    referrers = models.ManyToManyField(Referrer)
     digital_signature = models.ImageField()
 
 

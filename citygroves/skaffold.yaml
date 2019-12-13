@@ -1,7 +1,7 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: shangren
+  name: citygroves
 profiles:
   - name: local
     build:
@@ -16,6 +16,14 @@ profiles:
           infer:
            - 'manager/flesh/**/*.py'
            - '**/.idea/**'
+      - image: shangren.registry.local/citygroves/appgen
+        docker:
+          dockerfile: citygroves/appgen/Dockerfile.local
+        context: ../
+        sync:
+          infer:
+            - 'appgen/flesh/**/*.py'
+            - '**/.idea/**'
       local:
         push: true
 
@@ -29,3 +37,11 @@ profiles:
               - manager/values/local.yaml
             values:
               image: shangren.registry.local/citygroves/manager
+
+          - name: citygroves-appgen
+            chartPath: appgen
+            namespace: citygroves
+            valuesFiles:
+              - appgen/values/local.yaml
+            values:
+              image: shangren.registry.local/citygroves/appgen
