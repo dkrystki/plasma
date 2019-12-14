@@ -25,7 +25,7 @@ class AddressSerializer(serializers.ModelSerializer):
 
 class ReferrerSerializer(serializers.ModelSerializer):
     address = AddressSerializer()
-    applicant = serializers.IntegerField(required=False)
+    applicant = serializers.PrimaryKeyRelatedField(required=False, queryset=Person.objects.all())
 
     class Meta:
         model = Referrer
@@ -33,7 +33,7 @@ class ReferrerSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data) -> Referrer:
         address = Address.objects.create(**validated_data.pop('address'))
-        applicant = Person.objects.get(id=validated_data.pop('applicant'))
+        applicant = validated_data.pop('applicant')
         referrer = Referrer.objects.create(address=address, applicant=applicant, **validated_data)
         return referrer
 
@@ -42,11 +42,16 @@ class ApplicationSerializer(serializers.ModelSerializer):
     person = PersonSerializer()
     current_address = AddressSerializer()
     referrers = ReferrerSerializer(many=True)
-    room = serializers.PrimaryKeyRelatedField(read_only=True, pk_field="number")
+    room_number = serializers.IntegerField(write_only=True)
+    unit_number = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Application
-        fields = "__all__"
+        fields = ["room_number", "unit_number", "person", "room", "current_address",
+                  "number_of_ppl_to_move_in", "move_in_date", "guarantor_will_pay",
+                  "centerlink_will_pay", "is_employed", "have_sufficient_funds",
+                  "is_local_student", "is_international_student", "is_young_professional",
+                  "referrers", "digital_signature"]
 
     def create(self, validated_data):
         person = Person.objects.create(**validated_data.pop('person'))
@@ -54,11 +59,15 @@ class ApplicationSerializer(serializers.ModelSerializer):
         current_address = Address.objects.create(**validated_data.pop('current_address'))
         referrers_data = validated_data.pop('referrers')
 
-        application = Application.objects.create(person=person, current_address=current_address,
+        room_number = validated_data.pop('room_number')
+        unit_number = validated_data.pop('unit_number')
+        room = Room.objects.get(unit__number=unit_number, number=room_number)
+
+        application = Application.objects.create(person=person, room=room, current_address=current_address,
                                                  **validated_data)
 
         for r in referrers_data:
-            r["applicant"] = person.id
+            r["applicant"] = person.pk
             referrer_serializer = ReferrerSerializer(data=r)
             referrer_serializer.is_valid(raise_exception=True)
             referrer = referrer_serializer.save()

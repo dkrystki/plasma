@@ -1,0 +1,60 @@
+
+- model: housing.Unit
+  pk: 1
+  fields:
+    number: 1
+
+- model: housing.Unit
+  pk: 2
+  fields:
+    number: 2
+
+- model: housing.Unit
+  pk: 3
+  fields:
+    number: 3
+
+- model: housing.Unit
+  pk: 4
+  fields:
+    number: 4
+
+- model: housing.Unit
+  pk: 5
+  fields:
+    number: 5
+
+- model: housing.Unit
+  pk: 6
+  fields:
+    number: 6
+
+- model: housing.Unit
+  pk: 7
+  fields:
+    number: 7
+
+- model: housing.Unit
+  pk: 8
+  fields:
+    number: 8
+
+- model: housing.Unit
+  pk: 9
+  fields:
+    number: 9
+
+- model: housing.Unit
+  pk: 10
+  fields:
+    number: 10
+
+- model: housing.Unit
+  pk: 11
+  fields:
+    number: 11
+
+- model: housing.Unit
+  pk: 12
+  fields:
+    number: 12

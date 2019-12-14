@@ -50,10 +50,8 @@ class Fetcher:
                 "phone": values[2],
                 "dob": datetime.strptime(values[3], "%m/%d/%Y").date()
             },
-            "room": {
-                "unit": values[4],
-                "number": values[5]
-            },
+            "unit": values[4],
+            "room": values[5],
             "current_address": self._build_address(values[6]),
             "number_of_ppl_to_move_in": values[7],
             "move_in_date": datetime.strptime(values[8], "%m/%d/%Y").date(),
