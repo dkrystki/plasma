@@ -128,6 +128,10 @@ class GMAIL:
     CLIENT_SECRET = env.str("GMAIL_CLIENT_SECRET")
     GOOGLE_AUTH_URI = env.str("GOOGLE_AUTH_URI")
     GOOGLE_TOKEN_URI = env.str("GOOGLE_TOKEN_URI")
+    OWNER_EMAIL = env.str("OWNER_EMAIL")
+
+
+FORM_BUILDER_EMAIL = env.str("FORM_BUILDER_EMAIL")
 
     # class SENTRY:
 #     DSN = env.str("SENTRY_DSN")

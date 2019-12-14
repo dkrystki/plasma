@@ -29,5 +29,6 @@ gmail:
   clientSecret: "mZKwHQ5IF_-QJjEb1LLHWIpY"
   googleAuthUri: "https://accounts.google.com/o/oauth2/auth"
   googleTokenUri: "https://oauth2.googleapis.com/token"
+  ownerEmail: "plasmakwazar.test@gmail.com"
 
 formBuilderEmail: "damian.krystkiewicz@gmail.com"

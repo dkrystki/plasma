@@ -4,10 +4,10 @@ import os
 
 from plasma.utils.deploy import Namespace
 
-namespace = Namespace("citygroves")
-
 
 def delete() -> None:
+    namespace = Namespace("citygroves")
+
     namespace.helm("postgresql").delete()
     namespace.helm("redis").delete()
 
@@ -17,6 +17,7 @@ def deploy() -> None:
 
     os.chdir(Path(__file__).absolute().parent)
 
+    namespace = Namespace("citygroves")
     namespace.create()
     namespace.helm("postgresql").install(chart="stable/postgresql", version="6.3.7")
     namespace.helm("redis").install(chart="stable/redis", version="9.2.0")

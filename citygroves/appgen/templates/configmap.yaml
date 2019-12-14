@@ -13,3 +13,7 @@ data:
   GMAIL_CLIENT_SECRET: "{{ .Values.gmail.clientSecret }}"
   GOOGLE_AUTH_URI: "{{ .Values.gmail.googleAuthUri }}"
   GOOGLE_TOKEN_URI: "{{ .Values.gmail.googleTokenUri }}"
+  OWNER_EMAIL: "{{ .Values.gmail.ownerEmail }}"
+
+  FORM_BUILDER_EMAIL: "{{ .Values.formBuilderEmail }}"
+

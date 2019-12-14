@@ -41,11 +41,11 @@ ALLOWED_HOSTS = []
 
 
 class DB:
-    NAME = env.str(var="DB_NAME")
-    USER = env.str(var="DB_USER")
-    PASSWORD = env.str(var="DB_PASSWORD")
-    HOST = env.str(var="DB_HOST")
-    PORT = env.str(var="DB_PORT")
+    NAME = env.str("DB_NAME")
+    USER = env.str("DB_USER")
+    PASSWORD = env.str("DB_PASSWORD")
+    HOST = env.str("DB_HOST")
+    PORT = env.str("DB_PORT")
 
 
 INSTALLED_APPS = [
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "django.contrib.postgres",
+    'rest_framework',
     "tenants",
     "housing"
 ]

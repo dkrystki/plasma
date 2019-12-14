@@ -1,12 +1,10 @@
-from pathlib import Path
-import os
-
-from loguru import logger
-
-from plasma.utils.deploy import kube, Namespace
-
-
 def deploy() -> None:
+    from pathlib import Path
+    import os
+
+    from plasma.utils.deploy import Namespace
+    from loguru import logger
+
     os.chdir(Path(__file__).absolute().parent)
     logger.info("🚀Deploying citygroves.")
 

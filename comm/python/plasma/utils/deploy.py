@@ -2,19 +2,11 @@ import os
 import subprocess
 from typing import List
 
-from kubernetes import client, config
 from loguru import logger
 
 import environ
 
 env = environ.Env()
-
-config.load_kube_config(
-    os.path.join(os.environ["PROJECT_ROOT"], 'envs/local/kubeconfig.yaml'))
-
-kube = client.CoreV1Api()
-
-PLASMA_DEBUG: bool = env.bool("PLASMA_DEBUG")
 
 
 class CommandError(RuntimeError):
@@ -23,7 +15,7 @@ class CommandError(RuntimeError):
 
 def run(command: str, ignore_errors=False) -> str:
     try:
-        if PLASMA_DEBUG:
+        if env.bool("PLASMA_DEBUG"):
             logger.debug(command)
         return subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode("utf-8").strip()
     except subprocess.CalledProcessError as e:
@@ -84,7 +76,13 @@ class Helm:
 
 class Namespace:
     def __init__(self, name: str) -> None:
+        from kubernetes import client, config
+
         self.name: str = name
+        config.load_kube_config(
+            os.path.join(os.environ["PROJECT_ROOT"], 'envs/local/kubeconfig.yaml'))
+
+        self.kube = client.CoreV1Api()
 
     def kubectl(self, command: str) -> str:
         return run(f"kubectl -n {self.name} {command}")
@@ -99,7 +97,7 @@ class Namespace:
         self.kubectl(f"cp {src_path} {dst_path}")
 
     def get_pods(self) -> List[str]:
-        return [p.metadata.name for p in kube.list_namespaced_pod(self.name).items]
+        return [p.metadata.name for p in self.kube.list_namespaced_pod(self.name).items]
 
     def wait_for_pod(self, pod_name: str, timeout: int = 20) -> None:
         """
@@ -111,7 +109,8 @@ class Namespace:
 
     def _add_pullsecret(self) -> None:
         logger.info(f"🚀Adding pull secret to {self.name}")
-        run(f"""kubectl create secret docker-registry pullsecret -n {self.name} --docker-server=shangren.registry.local \
+        run(f"""kubectl create secret docker-registry pullsecret -n \
+                {self.name} --docker-server=shangren.registry.local \
               --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
               --dry-run -o yaml | kubectl apply -f -""")
 
@@ -122,10 +121,12 @@ class Namespace:
         :param add_pull_secret:
         :return:
         """
-        if self.name not in [ns.metadata.name for ns in kube.list_namespace().items]:
+        from kubernetes import client
+
+        if self.name not in [ns.metadata.name for ns in self.kube.list_namespace().items]:
             namespace = client.V1Namespace()
             namespace.metadata = client.V1ObjectMeta(name=self.name)
-            kube.create_namespace(namespace)
+            self.kube.create_namespace(namespace)
 
         if enable_istio:
             run(f"kubectl label namespace {self.name} istio-injection=enabled --overwrite")
