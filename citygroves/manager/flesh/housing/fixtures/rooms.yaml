@@ -1,12 +1,419 @@
-
+# Unit 1
 - model: housing.Room
   pk: 1
   fields:
-    number: 1
     unit: 1
+    number: 1
 
 - model: housing.Room
   pk: 2
   fields:
-    number: 2
     unit: 1
+    number: 2
+
+- model: housing.Room
+  pk: 3
+  fields:
+    unit: 1
+    number: 3
+
+- model: housing.Room
+  pk: 4
+  fields:
+    unit: 1
+    number: 4
+
+- model: housing.Room
+  pk: 5
+  fields:
+    unit: 1
+    number: 5
+
+# Unit 2
+- model: housing.Room
+  pk: 6
+  fields:
+    unit: 2
+    number: 1
+
+- model: housing.Room
+  pk: 7
+  fields:
+    unit: 2
+    number: 2
+
+- model: housing.Room
+  pk: 8
+  fields:
+    unit: 2
+    number: 3
+
+- model: housing.Room
+  pk: 9
+  fields:
+    unit: 2
+    number: 4
+
+- model: housing.Room
+  pk: 10
+  fields:
+    unit: 2
+    number: 5
+
+# Unit 3
+- model: housing.Room
+  pk: 11
+  fields:
+    unit: 3
+    number: 1
+
+- model: housing.Room
+  pk: 12
+  fields:
+    unit: 3
+    number: 2
+
+- model: housing.Room
+  pk: 13
+  fields:
+    unit: 3
+    number: 3
+
+- model: housing.Room
+  pk: 14
+  fields:
+    unit: 3
+    number: 4
+
+# Unit 4
+- model: housing.Room
+  pk: 15
+  fields:
+    unit: 4
+    number: 1
+
+- model: housing.Room
+  pk: 16
+  fields:
+    unit: 4
+    number: 2
+
+- model: housing.Room
+  pk: 17
+  fields:
+    unit: 4
+    number: 3
+
+- model: housing.Room
+  pk: 18
+  fields:
+    unit: 4
+    number: 4
+
+# Unit 5
+- model: housing.Room
+  pk: 19
+  fields:
+    unit: 5
+    number: 1
+
+- model: housing.Room
+  pk: 20
+  fields:
+    unit: 5
+    number: 2
+
+- model: housing.Room
+  pk: 21
+  fields:
+    unit: 5
+    number: 3
+
+- model: housing.Room
+  pk: 22
+  fields:
+    unit: 5
+    number: 4
+
+- model: housing.Room
+  pk: 23
+  fields:
+    unit: 5
+    number: 5
+
+- model: housing.Room
+  pk: 24
+  fields:
+    unit: 5
+    number: 6
+
+# Unit 6
+- model: housing.Room
+  pk: 25
+  fields:
+    unit: 6
+    number: 1
+
+- model: housing.Room
+  pk: 26
+  fields:
+    unit: 6
+    number: 2
+
+- model: housing.Room
+  pk: 27
+  fields:
+    unit: 6
+    number: 3
+
+- model: housing.Room
+  pk: 28
+  fields:
+    unit: 6
+    number: 4
+
+- model: housing.Room
+  pk: 29
+  fields:
+    unit: 6
+    number: 5
+
+- model: housing.Room
+  pk: 30
+  fields:
+    unit: 6
+    number: 6
+
+# Unit 7
+- model: housing.Room
+  pk: 31
+  fields:
+    unit: 7
+    number: 1
+
+- model: housing.Room
+  pk: 32
+  fields:
+    unit: 7
+    number: 2
+
+- model: housing.Room
+  pk: 33
+  fields:
+    unit: 7
+    number: 3
+
+- model: housing.Room
+  pk: 34
+  fields:
+    unit: 7
+    number: 4
+
+- model: housing.Room
+  pk: 35
+  fields:
+    unit: 7
+    number: 5
+
+- model: housing.Room
+  pk: 36
+  fields:
+    unit: 7
+    number: 6
+
+# Unit 8
+- model: housing.Room
+  pk: 37
+  fields:
+    unit: 8
+    number: 1
+
+- model: housing.Room
+  pk: 38
+  fields:
+    unit: 8
+    number: 2
+
+- model: housing.Room
+  pk: 39
+  fields:
+    unit: 8
+    number: 3
+
+- model: housing.Room
+  pk: 40
+  fields:
+    unit: 8
+    number: 4
+
+- model: housing.Room
+  pk: 41
+  fields:
+    unit: 8
+    number: 5
+
+- model: housing.Room
+  pk: 42
+  fields:
+    unit: 8
+    number: 6
+
+# Unit 9
+- model: housing.Room
+  pk: 43
+  fields:
+    unit: 9
+    number: 1
+
+- model: housing.Room
+  pk: 44
+  fields:
+    unit: 9
+    number: 2
+
+- model: housing.Room
+  pk: 45
+  fields:
+    unit: 9
+    number: 3
+
+- model: housing.Room
+  pk: 46
+  fields:
+    unit: 9
+    number: 4
+
+- model: housing.Room
+  pk: 47
+  fields:
+    unit: 9
+    number: 5
+
+- model: housing.Room
+  pk: 48
+  fields:
+    unit: 9
+    number: 6
+
+# Unit 10
+- model: housing.Room
+  pk: 49
+  fields:
+    unit: 10
+    number: 1
+
+- model: housing.Room
+  pk: 50
+  fields:
+    unit: 10
+    number: 2
+
+- model: housing.Room
+  pk: 51
+  fields:
+    unit: 10
+    number: 3
+
+- model: housing.Room
+  pk: 52
+  fields:
+    unit: 10
+    number: 4
+
+- model: housing.Room
+  pk: 53
+  fields:
+    unit: 10
+    number: 5
+
+- model: housing.Room
+  pk: 54
+  fields:
+    unit: 10
+    number: 6
+
+# Unit 11
+- model: housing.Room
+  pk: 55
+  fields:
+    unit: 11
+    number: 1
+
+- model: housing.Room
+  pk: 56
+  fields:
+    unit: 11
+    number: 2
+
+- model: housing.Room
+  pk: 57
+  fields:
+    unit: 11
+    number: 3
+
+- model: housing.Room
+  pk: 58
+  fields:
+    unit: 11
+    number: 4
+
+- model: housing.Room
+  pk: 59
+  fields:
+    unit: 11
+    number: 5
+
+- model: housing.Room
+  pk: 60
+  fields:
+    unit: 11
+    number: 6
+
+# Unit 12
+- model: housing.Room
+  pk: 61
+  fields:
+    unit: 12
+    number: 1
+
+- model: housing.Room
+  pk: 62
+  fields:
+    unit: 12
+    number: 2
+
+- model: housing.Room
+  pk: 63
+  fields:
+    unit: 12
+    number: 3
+
+- model: housing.Room
+  pk: 64
+  fields:
+    unit: 12
+    number: 4
+
+- model: housing.Room
+  pk: 65
+  fields:
+    unit: 12
+    number: 5
+
+- model: housing.Room
+  pk: 66
+  fields:
+    unit: 12
+    number: 6
+
+- model: housing.Room
+  pk: 67
+  fields:
+    unit: 12
+    number: 7
+
+- model: housing.Room
+  pk: 68
+  fields:
+    unit: 12
+    number: 8

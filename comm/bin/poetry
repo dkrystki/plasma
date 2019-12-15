@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+GLOBAL_PYTHON="$HOME/.pyenv/shims"
+
+PATH="$GLOBAL_PYTHON:$PATH"
+"$HOME/.pyenv/shims/poetry" $@

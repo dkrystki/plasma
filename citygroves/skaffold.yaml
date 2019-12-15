@@ -14,7 +14,7 @@ profiles:
         context: ../
         sync:
           infer:
-           - 'manager/flesh/**/*.py'
+           - 'citygroves/manager/flesh/**/*.py'
            - '**/.idea/**'
       - image: shangren.registry.local/citygroves/appgen
         docker:
@@ -22,7 +22,7 @@ profiles:
         context: ../
         sync:
           infer:
-            - 'appgen/flesh/**/*.py'
+            - 'citygroves/appgen/flesh/**/*.py'
             - '**/.idea/**'
       local:
         push: true

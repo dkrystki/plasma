@@ -17,3 +17,4 @@ data:
 
   FORM_BUILDER_EMAIL: "{{ .Values.formBuilderEmail }}"
 
+  MANAGER_API_URL: "{{ .Values.manager.apiUrl }}"

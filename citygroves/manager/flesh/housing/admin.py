@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from housing.models import Unit, Room
+
+admin.site.register(Unit)
+admin.site.register(Room)

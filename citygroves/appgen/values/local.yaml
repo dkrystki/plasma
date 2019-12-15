@@ -32,3 +32,6 @@ gmail:
   ownerEmail: "plasmakwazar.test@gmail.com"
 
 formBuilderEmail: "damian.krystkiewicz@gmail.com"
+
+manager:
+  apiUrl: "http://manager/api"

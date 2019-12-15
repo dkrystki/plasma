@@ -81,7 +81,7 @@ celerybeat-schedule
 .mypy_cache/
 
 # pycharm
-.idea/
+shangren/.idea/
 
 telepresence.env
 
@@ -95,3 +95,5 @@ kubeconfig
 
 envs
 shangren.env
+
+__pycache__

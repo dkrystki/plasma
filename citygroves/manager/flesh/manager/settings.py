@@ -37,7 +37,7 @@ SECRET_KEY = 'm*t!qg*b#o#e)xla3@o*r$ytt@vdy5w=*0$v()y2uswcqtyb9i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 class DB:

@@ -12,7 +12,7 @@ imagePullSecrets:
 
 service:
   type: ClusterIP
-  port: 8000
+  port: 80
 
 nodeSelector: {}
 
@@ -29,3 +29,11 @@ db:
   password: cGFzc3dvcmQ=
   host: postgresql
   port: 5432
+
+ingress:
+  enabled: True
+
+  hosts:
+    - host: shangren.citygroves.local
+      paths:
+        - "/"

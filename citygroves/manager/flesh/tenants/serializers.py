@@ -11,12 +11,6 @@ class PersonSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-# class RoomSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Room
-#         fields = "__all__"
-
-
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address

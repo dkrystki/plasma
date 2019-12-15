@@ -25,6 +25,8 @@ pytest = "^5.3"
 pytest-socket = "^0.3.3"
 pytest-env = "^0.6.2"
 commonregex = "^1.5"
+furl = "^2.1"
+responses = "^0.10.8"
 
 [tool.poetry.dev-dependencies]
 

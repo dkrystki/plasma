@@ -21,3 +21,4 @@ COPY citygroves/manager/flesh/poetry.lock poetry.lock
 RUN poetry install
 COPY citygroves/manager/flesh .
 COPY comm/python/plasma /usr/local/lib/python3.7/plasma
+COPY citygroves/comm/python/citygroves /usr/local/lib/python3.7/citygroves
