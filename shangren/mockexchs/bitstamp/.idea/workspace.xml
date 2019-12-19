@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="83733e63-941b-4795-9b55-be84ab99a9cd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/alerts.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_failures.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_failures.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_field_types.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_field_types.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_ranges.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_ranges.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_sets.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_sets.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_caches.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_caches.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_data_adapters.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_data_adapters.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_tables.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/lib/shang/tests/e2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/lib/shang/tests/e2e.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/lib/shang/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/lib/shang/utils/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/flesh/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/flesh/pyproject.toml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1QwHwmJkMH6uz7FHaxQhbNKkfcx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tests/tester" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/hooks" />
+      <recent name="$PROJECT_DIR$/flesh" />
+      <recent name="$PROJECT_DIR$/flesh/tests" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/flesh/sockets" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/flesh/tests/test_data" />
+      <recent name="$PROJECT_DIR$/bin" />
+      <recent name="$PROJECT_DIR$/flesh/tests/data" />
+      <recent name="$PROJECT_DIR$/templates/hooks" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Django server.mockexchs-bitstamp">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="mockexchs.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.local/share/virtualenvs/flesh-GMOnBlRs/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flesh/manage.py" />
+      <option name="PARAMETERS" value="produce --recording_path=data/recordings/2019-06-23_14:08:43_R5.json" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mockexchs-bitstamp" type="Python.DjangoServer" factoryName="Django server">
+      <module name="mockexchs.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="bitstamp.settings" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/mockexchs.bitstamp-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_commands.test_prod" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="mockexchs.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH="" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_commands.test_prod&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_commands.test_prode" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="mockexchs.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_commands.test_prode&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.mockexchs-bitstamp" />
+      <item itemvalue="Python.manage" />
+      <item itemvalue="Python tests.pytest for test_commands.test_prode" />
+      <item itemvalue="Python tests.pytest for test_commands.test_prod" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for test_commands.test_prod" />
+        <item itemvalue="Python tests.pytest for test_commands.test_prode" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83733e63-941b-4795-9b55-be84ab99a9cd" name="Default Changelist" comment="" />
+      <created>1568674978478</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568674978478</updated>
+      <workItem from="1568674979786" duration="7000" />
+      <workItem from="1568675026474" duration="27850000" />
+      <workItem from="1569026614621" duration="13513000" />
+      <workItem from="1569235473767" duration="27363000" />
+      <workItem from="1569992863446" duration="10598000" />
+      <workItem from="1570758237766" duration="24936000" />
+      <workItem from="1571369308863" duration="8000" />
+      <workItem from="1572094993020" duration="26526000" />
+      <workItem from="1572691438046" duration="13806000" />
+      <workItem from="1572999990275" duration="983000" />
+      <workItem from="1575158619042" duration="33927000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/.local/share/virtualenvs/flesh-GMOnBlRs/lib/python3.7/site-packages/channels/layers.py</url>
+          <line>225</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bitstamp$pytest_for_test_commands_test_prod.coverage" NAME="pytest for test_commands.test_prod Coverage Results" MODIFIED="1572100538157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests" />
+    <SUITE FILE_PATH="coverage/bitstamp$manage.coverage" NAME="manage Coverage Results" MODIFIED="1570892133042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh" />
+    <SUITE FILE_PATH="coverage/bitstamp$pytest_for_test_commands_test_prode.coverage" NAME="pytest for test_commands.test_prode Coverage Results" MODIFIED="1572095273333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh" />
+    <SUITE FILE_PATH="coverage/bitstamp$pytest_tests_test_commands.coverage" NAME="python -m pytest Coverage Results" MODIFIED="1569419067831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh" />
+  </component>
+</project>

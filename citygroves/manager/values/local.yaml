@@ -37,3 +37,6 @@ ingress:
     - host: shangren.citygroves.local
       paths:
         - "/"
+    - host: citygroves.manager.global
+      paths:
+        - "/"

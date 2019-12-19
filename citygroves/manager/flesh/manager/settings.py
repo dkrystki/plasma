@@ -11,13 +11,17 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from pathlib import Path
+
 import environ
 
 # import sentry_sdk
 import plasma.logs
 # from sentry_sdk.integrations.django import DjangoIntegration
 
-from loguru import logger
+import logging
+
+logger = logging.getLogger(__name__)
 
 env = environ.Env()
 
@@ -25,8 +29,7 @@ plasma.logs.setup("citygroves", "manager")
 logger.info("Starting citygroves.manager")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -91,7 +94,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'manager.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -105,7 +107,6 @@ DATABASES = {
         "PORT": DB.PORT,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -125,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -139,7 +139,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -147,6 +146,52 @@ STATIC_URL = '/static/'
 
 STAGE = "local"
 
+
+class Filter2(logging.Filter):
+    def filter(self, record):
+        record.namespace = "citygroves"
+        record.app = "manager"
+        return True
+
+
+LOGGING = {
+    'version': 1,
+    'filters': {
+        'app_filter': {
+            '()': 'manager.settings.Filter2',
+        }
+    },
+    'handlers': {
+        'graypy': {
+            'level': 'INFO',
+            'class': 'graypy.GELFTCPHandler',
+            'host': 'graylog-tcp.graylog',
+            'port': 12201,
+            'filters': ["app_filter"]
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+            'propagate': True,
+
+        },
+        'django.request': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'manager': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
+        'celery': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
+    },
+}
 
 # class SENTRY:
 #     DSN = env.str("SENTRY_DSN")

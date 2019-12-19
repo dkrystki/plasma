@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import logging
 import os
 import environ
 
@@ -17,11 +17,9 @@ import environ
 
 # from sentry_sdk.integrations.django import DjangoIntegration
 
-from loguru import logger
-
 env = environ.Env()
 
-logger.info("Starting citygroves.appgen")
+# logger.info("Starting citygroves.appgen")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -99,6 +97,53 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+class Filter(logging.Filter):
+    def filter(self, record):
+        record.namespace = "citygroves"
+        record.app = "appgen"
+        return True
+
+
+LOGGING = {
+    'version': 1,
+    'filters': {
+        'app_filter': {
+            '()': 'appgen.settings.Filter',
+        }
+    },
+    'handlers': {
+        'graypy': {
+            'level': 'INFO',
+            'class': 'graypy.GELFTCPHandler',
+            'host': 'graylog-tcp.graylog',
+            'port': 12201,
+            'filters': ["app_filter"]
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+            'propagate': True,
+
+        },
+        'django.request': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'appgen': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
+        'celery': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
+    },
+}
 
 
 # Internationalization

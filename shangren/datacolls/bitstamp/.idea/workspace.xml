@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ce755ee6-28e0-4553-a512-5e2793ebd641" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/alerts.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_failures.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_failures.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_field_types.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_field_types.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_ranges.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_ranges.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_sets.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_sets.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_caches.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_caches.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_data_adapters.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_data_adapters.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_tables.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/lib/shang/tests/e2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/lib/shang/tests/e2e.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/lib/shang/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/lib/shang/utils/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/flesh/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tests/tester/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../../tests/tester/flesh/pyproject.toml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1Q968DPBUCyQXaBXAqc4zlm0VGS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../citygroves" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/bin/sentry" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bin" />
+      <recent name="$PROJECT_DIR$/bin/sentry" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="prov" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flesh/prov.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="datacolls.bitstamp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.prov" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce755ee6-28e0-4553-a512-5e2793ebd641" name="Default Changelist" comment="" />
+      <created>1567170302299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567170302299</updated>
+      <workItem from="1567170303426" duration="6843000" />
+      <workItem from="1567218506234" duration="5227000" />
+      <workItem from="1567255829662" duration="1218000" />
+      <workItem from="1567260360836" duration="1231000" />
+      <workItem from="1567263465124" duration="487000" />
+      <workItem from="1567263975456" duration="152000" />
+      <workItem from="1567264402911" duration="21000" />
+      <workItem from="1567264535946" duration="16000" />
+      <workItem from="1567264662098" duration="1051000" />
+      <workItem from="1567298737951" duration="4976000" />
+      <workItem from="1567340828107" duration="5994000" />
+      <workItem from="1567560562146" duration="2739000" />
+      <workItem from="1567595126242" duration="1230000" />
+      <workItem from="1567606637002" duration="14946000" />
+      <workItem from="1567684743889" duration="7772000" />
+      <workItem from="1567828134015" duration="4443000" />
+      <workItem from="1568088142781" duration="1015000" />
+      <workItem from="1568090574240" duration="2769000" />
+      <workItem from="1568121994947" duration="13996000" />
+      <workItem from="1568270416356" duration="653000" />
+      <workItem from="1568278576218" duration="19655000" />
+      <workItem from="1568622836901" duration="30237000" />
+      <workItem from="1569026614482" duration="1797000" />
+      <workItem from="1569239849449" duration="10568000" />
+      <workItem from="1569992863544" duration="6602000" />
+      <workItem from="1570758237952" duration="14441000" />
+      <workItem from="1571369308863" duration="7000" />
+      <workItem from="1571879733628" duration="1375000" />
+      <workItem from="1572092939568" duration="21237000" />
+      <workItem from="1572691438045" duration="16790000" />
+      <workItem from="1574996665748" duration="33330000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../comm/lib/shang/logs.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bitstamp$prov.coverage" NAME="coll Coverage Results" MODIFIED="1572169023627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh" />
+    <SUITE FILE_PATH="coverage/datacolls_bitstamp$coll.coverage" NAME="coll Coverage Results" MODIFIED="1575122222906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh" />
+    <SUITE FILE_PATH="coverage/datacolls_bitstamp$prov.coverage" NAME="prov Coverage Results" MODIFIED="1575158362592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh" />
+  </component>
+</project>

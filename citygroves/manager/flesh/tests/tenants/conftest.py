@@ -1,6 +1,14 @@
+import pytest_factoryboy
 from pytest import fixture
 from django.core.management import call_command
+import tenants.factories
 
+# tenants.factories.register()
+
+pytest_factoryboy.register(tenants.factories.PersonFactory)
+pytest_factoryboy.register(tenants.factories.AddressFactory)
+pytest_factoryboy.register(tenants.factories.ReferrerFactory)
+pytest_factoryboy.register(tenants.factories.ApplicationFactory)
 
 @fixture
 def application_payload():
@@ -77,3 +85,9 @@ def application_payload():
 def create_rooms():
     call_command('loaddata', 'fixtures/units.yaml', verbosity=0)
     call_command('loaddata', 'fixtures/rooms.yaml', verbosity=0)
+
+
+@fixture
+def sample_application(application_factory):
+    application = application_factory()
+    return application

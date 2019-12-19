@@ -1,4 +1,8 @@
+from pathlib import Path
+from typing import BinaryIO, Dict, Any
+
 from django.db import models
+from django.conf import settings
 
 
 class Person(models.Model):
@@ -46,6 +50,28 @@ class Application(models.Model):
     is_young_professional = models.BooleanField()
     referrers = models.ManyToManyField(Referrer)
     digital_signature = models.ImageField(null=True)
+
+    def save_lease_pdf(self, path: Path) -> None:
+        from tenants.tools import LeasePdf
+        pdf = LeasePdf()
+        input_dict: Dict[str, Any] = {
+            "person.full_name": f"{self.person.first_name} {self.person.last_name}",
+            "person.phone": self.person.phone,
+            "person.email": self.person.email,
+            "unit_address": f"Unit {self.room.unit.number}, 27-29 Herston Road, Kelvin Grove",
+            "room.number": self.room.number,
+            "starting_on": self.move_in_date,
+            "ending_on": "",
+            "rent": 150,
+            "payment_reference": str(self.room),
+            "bond_amount": 300
+        }
+
+        pdf.fill(input_dict)
+        pdf.save(path)
+
+    def __str__(self):
+        return f"{self.person.first_name+self.person.last_name}"
 
 
 class Tenant(models.Model):

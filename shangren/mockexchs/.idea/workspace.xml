@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8fd52be4-8bb3-4cbe-a60b-dbda53d328ca" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/logs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/poetry.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bitstamp/sql/init.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../poetry.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.envrc" beforeDir="false" afterPath="$PROJECT_DIR$/../.envrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pipfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pipfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/alarmcallbackconfigurations.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/alarmcallbackconfigurations.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/alarmcallbackhistory.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/alarmcallbackhistory.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/alerts.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/alerts.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/cluster_config.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/cluster_config.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/cluster_config.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/cluster_config.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/cluster_events.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/cluster_events.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/cluster_events.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/cluster_events.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/collectors.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/collectors.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/content_packs.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/content_packs.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/content_packs.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/content_packs.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/content_packs_installations.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/content_packs_installations.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/content_packs_installations.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/content_packs_installations.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/grok_patterns.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/grok_patterns.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/grok_patterns.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/grok_patterns.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_failures.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_failures.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_field_types.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_field_types.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_field_types.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_field_types.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_ranges.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_ranges.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_ranges.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_ranges.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_sets.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_sets.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/index_sets.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/index_sets.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/inputs.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/inputs.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/lut_caches.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/lut_caches.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/lut_data_adapters.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/lut_data_adapters.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/lut_tables.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/lut_tables.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/nodes.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/nodes.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/nodes.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/nodes.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/notifications.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/notifications.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/notifications.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/notifications.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_pipelines.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_pipelines.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_pipelines_streams.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_pipelines_streams.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_rules.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_rules.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_rules.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/pipeline_processor_rules.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/roles.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/roles.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/roles.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/roles.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/sessions.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/sessions.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/sessions.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/sessions.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/sidecar_collectors.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/sidecar_collectors.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/sidecar_collectors.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/sidecar_collectors.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/sidecar_configuration_variables.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/sidecar_configuration_variables.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/sidecars.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/sidecars.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/streamrules.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/streamrules.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/streams.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/streams.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/streams.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/streams.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/system_messages.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/system_messages.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/system_messages.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/system_messages.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/traffic.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/traffic.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/traffic.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/traffic.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/users.bson" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/users.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/dump/users.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/dump/users.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/values/local/elasticsearch.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/values/local/graylog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/values/local/graylog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/values/local/mongodb.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/istio/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/istio/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/istio/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/istio/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/istio/values/local/istio.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/istio/values/local/istio.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/misc/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/misc/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/misc/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/misc/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/sentry/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/sentry/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/values/local/postgresql.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/values/local/redis.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/values/local/sentry.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/sentry/values/local/sentry.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/bash/tele/tele.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/logs/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/logs/logs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/istio/k8s/service-account.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/tests/e2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/tests/e2e.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/utils/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../datacolls/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../datacolls/bitstamp/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/bin/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/bin/tele" beforeDir="false" afterPath="$PROJECT_DIR$/../datacolls/bitstamp/bin/tele" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../datacolls/bitstamp/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/Pipfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/Pipfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/prov.py" beforeDir="false" afterPath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/prov.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../datacolls/bitstamp/flesh/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitstamp/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/bitstamp/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitstamp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/bitstamp/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bitstamp/templates/hooks/db-init.job.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bitstamp/templates/hooks/db-init.job.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tester/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tester/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tester/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tester/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tester/flesh/collecting/test_collecting.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tester/flesh/collecting/test_collecting.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/mockexchs$collectdata.coverage" NAME="collectdata Coverage Results" MODIFIED="1561301244009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bitstamp/flesh" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1QrpNWcPBefdES2DPS543hrAmxa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="editorconfig.notification" value="ambassadors&#10;brand&#10;campaign&#10;ci_trigger&#10;client_auth&#10;devtools&#10;export_db&#10;gateway_api&#10;graph&#10;order&#10;saa&#10;st_auth&#10;tests&#10;bin&#10;*/.virtualenv/*&#10;ambassador_ui&#10;auth_ui&#10;customer_ui&#10;doc&#10;e2e&#10;*/settings.py&#10;*/settings/*.py&#10;*/setup.py&#10;*/venv/*&#10;" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bitstamp/bin" />
+      <recent name="$PROJECT_DIR$/bitstamp" />
+      <recent name="$PROJECT_DIR$/bitstamp/flesh/core/management/commands" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bitstamp/flesh/bitstamp" />
+      <recent name="$PROJECT_DIR$/bitstamp/flesh/core" />
+      <recent name="$PROJECT_DIR$/bitstamp/flesh/bitstamp/management" />
+      <recent name="$PROJECT_DIR$/bitstamp/flesh" />
+      <recent name="$PROJECT_DIR$/bitstamp/flesh/commands" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="mockexchs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="docker://shengren_bitstamp-mock:latest//srv/.venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bitstamp/flesh" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="DockerContainerSettingsRunConfigurationExtension">
+        <option name="envVars">
+          <list />
+        </option>
+        <option name="extraHosts">
+          <list />
+        </option>
+        <option name="links">
+          <list />
+        </option>
+        <option name="networkDisabled" value="false" />
+        <option name="networkMode" value="bridge" />
+        <option name="portBindings">
+          <list />
+        </option>
+        <option name="publishAllPorts" value="false" />
+        <option name="version" value="1" />
+        <option name="volumeBindings">
+          <list>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/opt/project" />
+              <option name="editable" value="true" />
+              <option name="hostPath" value="$PROJECT_DIR$" />
+              <option name="readOnly" value="false" />
+            </DockerVolumeBindingImpl>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/srv/.venv/lib/python3.7/site-packages/shengren" />
+              <option name="editable" value="true" />
+              <option name="hostPath" value="$PROJECT_DIR$/../lib/shengren" />
+              <option name="readOnly" value="false" />
+            </DockerVolumeBindingImpl>
+          </list>
+        </option>
+      </EXTENSION>
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bitstamp/flesh/manage.py" />
+      <option name="PARAMETERS" value="collectdata --time=10" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5072e960" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5072e960" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5117c1b2" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5072e960" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5117c1b2" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@62d002f3" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5072e960" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5117c1b2" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4f07e616" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@5072e960" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@53f0088e" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fd52be4-8bb3-4cbe-a60b-dbda53d328ca" name="Default" comment="" />
+      <created>1561167054080</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1561167054080</updated>
+      <workItem from="1568538530629" duration="9349000" />
+      <workItem from="1568622841981" duration="2531000" />
+      <workItem from="1572089492917" duration="4293000" />
+      <workItem from="1575158488753" duration="146000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>Path(BASE_DIR).parent</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json.loads('[&quot;btc&quot;]')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json.loads('[&quot;test&quot;]')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json.loads('[test,]')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json.loads('[test]')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+</project>

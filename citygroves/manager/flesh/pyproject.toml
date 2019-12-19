@@ -21,6 +21,10 @@ pytest-django = "^3.7"
 pytest-socket = "^0.3.3"
 pytest-env = "^0.6.2"
 pyyaml = "^5.2"
+redis = "^3.3"
+pdfrw = "^0.4.0"
+factory_boy = "^2.12"
+pytest-factoryboy = "^2.0"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c75adaed-10c9-4f99-b5f7-728c388d24e1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/alerts.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_failures.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_failures.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_field_types.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_field_types.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_ranges.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_ranges.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_sets.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/index_sets.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_caches.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_caches.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_data_adapters.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_data_adapters.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aux/graylog/dump/lut_tables.bson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/lib/shang/tests/e2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/lib/shang/tests/e2e.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/lib/shang/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/lib/shang/utils/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/pyproject.toml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1SsrQl3WgbpzCYmRxYdUOnSdp5Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../comm/lib" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="pytest for test_collecting.test_sample_data" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tester" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/tester-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_collecting.test_sample_data&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for test_collecting.test_sample_data" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c75adaed-10c9-4f99-b5f7-728c388d24e1" name="Default Changelist" comment="" />
+      <created>1572363130183</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572363130183</updated>
+      <workItem from="1572363131300" duration="2024000" />
+      <workItem from="1572691438346" duration="19835000" />
+      <workItem from="1575098167854" duration="31667000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/flesh/collecting/test_collecting.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/flesh/collecting/test_collecting.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/tester$pytest_for_test_collecting_test_sample_data.coverage" NAME="pytest for test_collecting.test_sample_data Coverage Results" MODIFIED="1575995622926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

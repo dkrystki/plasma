@@ -1,21 +1,22 @@
 import base64
-from datetime import datetime, date
-from typing import Dict, Any, List
+from datetime import datetime
+from typing import Dict, Any
 import re
 
 import environ
 
-from citygroves.api_clients.manager import Referrer
-
 from appgen.celer import app
-from loguru import logger
 from django.conf import settings
 from googleapiclient.discovery import build, Resource
 from google.oauth2.credentials import Credentials
 
 from citygroves.api_clients import manager
 
+from celery.utils.log import get_task_logger
+
 env = environ.Env()
+
+logger = get_task_logger(__name__)
 
 
 class Fetcher:
@@ -89,7 +90,7 @@ class Fetcher:
 
         service: Resource = build('gmail', 'v1', credentials=self.creds)
         query: str = f"from:{settings.FORM_BUILDER_EMAIL} label:unread"
-        msg_list: List[Dict[str, str]] = service.users().messages().list(
+        msg_list: Dict[str, Any] = service.users().messages().list(
             userId=self.user_id, q=query).execute()
 
         if 'messages' not in msg_list:

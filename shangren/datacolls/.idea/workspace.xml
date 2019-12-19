@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d3cbb72a-7178-48ff-babe-e0dd2783871c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/logs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../comm/lib/shang/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/graylog/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/graylog/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/istio/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/istio/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/istio/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/istio/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/misc/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/misc/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/misc/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/misc/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/sentry/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aux/sentry/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../aux/sentry/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/logs/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/logs/logs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/tests/e2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/tests/e2e.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/lib/shangren/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/lib/shang/utils/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mockexchs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mockexchs/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mockexchs/bitstamp/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../mockexchs/bitstamp/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mockexchs/bitstamp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mockexchs/bitstamp/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tester/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tester/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tester/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tester/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tester/flesh/collecting/test_collecting.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tester/flesh/collecting/test_collecting.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1Q69fgRS2XCRUsnmPBqEGx0TCEy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bitstamp" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.splitter.proportion" value="0.23540856" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/bitstamp" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bitstamp/flesh" />
+      <recent name="$PROJECT_DIR$/bitstamp/chart" />
+      <recent name="$PROJECT_DIR$/bitstamp/bin" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@1abba30c" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@1abba30c" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@7ecd737d" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@1abba30c" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@38822cb5" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d3cbb72a-7178-48ff-babe-e0dd2783871c" name="Default" comment="" />
+      <created>1549627232526</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549627232526</updated>
+      <workItem from="1567080285359" duration="641000" />
+      <workItem from="1567080940854" duration="10622000" />
+      <workItem from="1567131582776" duration="187000" />
+      <workItem from="1567131793334" duration="49000" />
+      <workItem from="1567131857596" duration="323000" />
+      <workItem from="1567132195598" duration="200000" />
+      <workItem from="1567132409836" duration="28000" />
+      <workItem from="1567132452588" duration="6941000" />
+      <workItem from="1567171207514" duration="5942000" />
+      <workItem from="1567218509810" duration="2495000" />
+      <workItem from="1567255829738" duration="919000" />
+      <workItem from="1567260361015" duration="1091000" />
+      <workItem from="1567263440419" duration="456000" />
+      <workItem from="1567263975204" duration="597000" />
+      <workItem from="1567264661794" duration="1049000" />
+      <workItem from="1574993672535" duration="2575000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/bitstamp/flesh/prov.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/dataprovs$prov.coverage" NAME="prov Coverage Results" MODIFIED="1567179120081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bitstamp/flesh" />
+  </component>
+</project>

@@ -2,7 +2,6 @@
 
 import logging
 import graypy
-from loguru import logger
 
 
 class GelfHandler(graypy.GELFTCPHandler):
@@ -29,7 +28,7 @@ class GelfHandler(graypy.GELFTCPHandler):
 
 
 def setup(namespace: str, app: str) -> None:
+    logger = logging.getLogger(__name__)
     graypy_handler = GelfHandler('graylog-tcp.graylog', 12201, app=app, namespace=namespace)
     graypy_handler.setLevel(logging.DEBUG)
-    logger.remove(0)
-    logger.add(graypy_handler, format="{message}", colorize=False)
+    logger.addHandler(graypy_handler)

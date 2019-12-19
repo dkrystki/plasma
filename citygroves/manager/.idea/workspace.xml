@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="57c16f04-bc7e-40e6-bf7f-55507964f5d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flesh/housing/factories.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/manager/celer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/tenants/templates/bond-lodgement-form.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/tenants/templates/lease.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/tenants/tools.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/tests/tenants/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/worker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/docker/motd/.bashrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/flesh/appgen/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/flesh/appgen/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/flesh/appgen/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/flesh/appgen/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/manager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/factories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/fixtures/rooms.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/fixtures/rooms.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/fixtures/units.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/fixtures/units.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/test_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/values/local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/python/plasma/logs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/python/plasma/logs.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1Uy6FTpOCW5rTC2HopxbvUJ5eLI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../verve/root" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flesh/housing" />
+      <recent name="$PROJECT_DIR$/flesh/tenants/tests" />
+      <recent name="$PROJECT_DIR$/flesh/tenants/templates" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/flesh/housing/fixtures" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flesh/tests/tenants" />
+      <recent name="$PROJECT_DIR$/flesh/tenants" />
+      <recent name="$PROJECT_DIR$/flesh" />
+      <recent name="$PROJECT_DIR$/flesh/tenants/tests" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django server.run_server">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run_server" type="Python.DjangoServer" factoryName="Django server">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="manager.settings" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="127.0.0.1" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_models.test_get_lease" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests/tenants" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_models.test_get_lease&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for tests.tenants.test_serializers.test_serializer" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.tenants.test_serializers.test_serializer&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for tests.tenants.test_views.test_create_applicant_view" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.tenants.test_views.test_create_applicant_view&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.run_server" />
+      <item itemvalue="Python tests.pytest for tests.tenants.test_serializers.test_serializer" />
+      <item itemvalue="Python tests.pytest for tests.tenants.test_views.test_create_applicant_view" />
+      <item itemvalue="Python tests.pytest for test_models.test_get_lease" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for test_models.test_get_lease" />
+        <item itemvalue="Python tests.pytest for tests.tenants.test_serializers.test_serializer" />
+        <item itemvalue="Python tests.pytest for tests.tenants.test_views.test_create_applicant_view" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="57c16f04-bc7e-40e6-bf7f-55507964f5d5" name="Default Changelist" comment="" />
+      <created>1576316383204</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576316383204</updated>
+      <workItem from="1576316384359" duration="57994000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="591" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576718640729">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="591" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718640729" />
+    <state x="290" y="573" width="1643" height="589" key="#xdebugger.evaluate" timestamp="1576677987825">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="290" y="573" width="1643" height="589" key="#xdebugger.evaluate/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576677987825" />
+    <state width="2182" height="466" key="DebuggerActiveHint" timestamp="1576677476920">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="2182" height="466" key="DebuggerActiveHint/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576677476920" />
+    <state x="903" y="105" width="428" height="471" key="FileChooserDialogImpl" timestamp="1576584403250">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="903" y="105" width="428" height="471" key="FileChooserDialogImpl/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576584403250" />
+    <state width="1171" height="1009" key="GridCell.Tab.0.bottom" timestamp="1576718750090">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718750090" />
+    <state width="1171" height="1009" key="GridCell.Tab.0.center" timestamp="1576718750090">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718750090" />
+    <state width="1171" height="1009" key="GridCell.Tab.0.left" timestamp="1576718750090">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718750090" />
+    <state width="1171" height="1009" key="GridCell.Tab.0.right" timestamp="1576718750090">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718750090" />
+    <state width="1171" height="1009" key="GridCell.Tab.1.bottom" timestamp="1576718730054">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718730054" />
+    <state width="1171" height="1009" key="GridCell.Tab.1.center" timestamp="1576718730053">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718730053" />
+    <state width="1171" height="1009" key="GridCell.Tab.1.left" timestamp="1576718730053">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718730053" />
+    <state width="1171" height="1009" key="GridCell.Tab.1.right" timestamp="1576718730053">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="1171" height="1009" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718730053" />
+    <state x="636" y="146" key="SettingsEditor" timestamp="1576406775331">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="636" y="146" key="SettingsEditor/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576406775331" />
+    <state width="2335" height="470" key="XDebugger.FullValuePopup" timestamp="1576331924606">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state width="2335" height="470" key="XDebugger.FullValuePopup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576331924606" />
+    <state x="809" y="321" width="686" height="520" key="find.popup" timestamp="1576405467937">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="809" y="321" width="686" height="520" key="find.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576405467937" />
+    <state x="1661" y="839" width="875" height="873" key="recent.locations.popup" timestamp="1576333642931">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="1661" y="839" width="875" height="873" key="recent.locations.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576333642931" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/lib/python3.7/site-packages/rest_framework/mixins.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/manager$pytest_for_test_views_test_create_applicant_view.coverage" NAME="pytest for test_views.test_create_applicant_view Coverage Results" MODIFIED="1576335687859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants/tests" />
+    <SUITE FILE_PATH="coverage/manager$pytest_for_tests_test_serializer.coverage" NAME="pytest for tenants.tests.test_serializers.test_serializer Coverage Results" MODIFIED="1576318631914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants" />
+    <SUITE FILE_PATH="coverage/manager$pytest_for_test_models_test_get_lease.coverage" NAME="pytest for test_models.test_get_lease Coverage Results" MODIFIED="1576678303340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests/tenants" />
+    <SUITE FILE_PATH="coverage/manager$pytest_for_test_serializers_test_serializer.coverage" NAME="pytest for test_serializers.test_serializer Coverage Results" MODIFIED="1576335712480" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants/tests" />
+    <SUITE FILE_PATH="coverage/manager$Nosetests_for_tests_test_serializer.coverage" NAME="Nosetests for tests.test_serializer Coverage Results" MODIFIED="1576317574838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants" />
+  </component>
+</project>
