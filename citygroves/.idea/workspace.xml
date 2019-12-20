@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../comm/python/plasma/logs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/plasma/logs.py" afterDir="false" />
-    </list>
+    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +35,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -49,10 +47,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/flesh" />
+      <recent name="$PROJECT_DIR$/frontend/flesh/build" />
       <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/flesh" />
       <recent name="$PROJECT_DIR$/lib/bash/tele" />
-      <recent name="$PROJECT_DIR$/lib/bash" />
     </key>
   </component>
   <component name="RunManager">
@@ -101,7 +99,9 @@
       <option name="presentableId" value="Default" />
       <updated>1576048784954</updated>
       <workItem from="1576048786048" duration="7320000" />
-      <workItem from="1576398903454" duration="14726000" />
+      <workItem from="1576398903454" duration="19917000" />
+      <workItem from="1576802467778" duration="1183000" />
+      <workItem from="1576819240144" duration="1370000" />
     </task>
     <servers />
   </component>
@@ -122,6 +122,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="551" y="345" width="804" height="664" key="#Plugins" timestamp="1576819662151">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="551" y="345" width="804" height="664" key="#Plugins/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576819662151" />
     <state width="2049" height="466" key="DebuggerActiveHint" timestamp="1576402235935">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
@@ -130,50 +134,50 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="931" y="415" width="428" height="471" key="FileChooserDialogImpl/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576749886900" />
-    <state width="1149" height="1008" key="GridCell.Tab.0.bottom" timestamp="1576409137970">
+    <state width="956" height="1008" key="GridCell.Tab.0.bottom" timestamp="1576802398201">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137970" />
-    <state width="1149" height="1008" key="GridCell.Tab.0.center" timestamp="1576409137970">
+    <state width="956" height="1008" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398201" />
+    <state width="956" height="1008" key="GridCell.Tab.0.center" timestamp="1576802398201">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137970" />
-    <state width="1149" height="1008" key="GridCell.Tab.0.left" timestamp="1576409137970">
+    <state width="956" height="1008" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398201" />
+    <state width="956" height="1008" key="GridCell.Tab.0.left" timestamp="1576802398201">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137970" />
-    <state width="1149" height="1008" key="GridCell.Tab.0.right" timestamp="1576409137970">
+    <state width="956" height="1008" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398201" />
+    <state width="956" height="1008" key="GridCell.Tab.0.right" timestamp="1576802398201">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137970" />
-    <state width="1149" height="1008" key="GridCell.Tab.1.bottom" timestamp="1576409137442">
+    <state width="956" height="1008" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398201" />
+    <state width="956" height="1008" key="GridCell.Tab.1.bottom" timestamp="1576802398202">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137442" />
-    <state width="1149" height="1008" key="GridCell.Tab.1.center" timestamp="1576409137442">
+    <state width="956" height="1008" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398202" />
+    <state width="956" height="1008" key="GridCell.Tab.1.center" timestamp="1576802398202">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137442" />
-    <state width="1149" height="1008" key="GridCell.Tab.1.left" timestamp="1576409137442">
+    <state width="956" height="1008" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398202" />
+    <state width="956" height="1008" key="GridCell.Tab.1.left" timestamp="1576802398201">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137442" />
-    <state width="1149" height="1008" key="GridCell.Tab.1.right" timestamp="1576409137442">
+    <state width="956" height="1008" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398201" />
+    <state width="956" height="1008" key="GridCell.Tab.1.right" timestamp="1576802398202">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1149" height="1008" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576409137442" />
-    <state x="637" y="292" key="SettingsEditor" timestamp="1576401972507">
+    <state width="956" height="1008" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398202" />
+    <state x="629" y="232" key="SettingsEditor" timestamp="1576820097389">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="637" y="292" key="SettingsEditor/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576401972507" />
+    <state x="629" y="232" key="SettingsEditor/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576820097389" />
     <state x="809" y="427" width="686" height="788" key="find.popup" timestamp="1576400351692">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="809" y="427" width="686" height="788" key="find.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576400351692" />
-    <state x="815" y="340" key="search.everywhere.popup" timestamp="1576401348072">
+    <state x="815" y="340" width="672" height="678" key="search.everywhere.popup" timestamp="1576819640166">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="815" y="340" key="search.everywhere.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576401348072" />
+    <state x="815" y="340" width="672" height="678" key="search.everywhere.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576819640166" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/citygroves$pytest_for_test_all_test_manager_api_client.coverage" NAME="pytest for test_all.test_manager_api_client Coverage Results" MODIFIED="1576402225704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/python/citygroves/tests" />

@@ -1,21 +1,21 @@
-isDev = true;
+'use strict';
 
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const helpers = require('./helpers');
 const webpack = require('webpack');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const helpers = require('./helpers');
+
+const {VueLoaderPlugin} = require('vue-loader');
 
 module.exports = {
-    entry: {
-        polyfill: '@babel/polyfill',
-        main: "./src/main.js",
-    },
+    mode: 'development',
+    entry: [
+        './src/main.js'
+    ],
     resolve: {
         extensions: ['.js', '.vue'],
         alias: {
-            'vue$': isDev ? 'vue/dist/vue.runtime.js' : 'vue/dist/vue.runtime.min.js',
+            'vue$': 'vue/dist/vue.runtime.js',
             '@': helpers.root('src')
         }
     },
@@ -29,7 +29,12 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
+                use: 'vue-loader'
+            },
+            // webpack.config.js -> module.rules
+            {
+                test: /\.pug$/,
+                loader: 'pug-plain-loader'
             },
             {
                 test: /\.js$/,
@@ -39,24 +44,23 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
-                    {loader: 'css-loader', options: {sourceMap: isDev}},
-                ]
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
-                    {loader: 'css-loader', options: {sourceMap: isDev}},
-                    {loader: 'sass-loader', options: {sourceMap: isDev}}
+                    'vue-style-loader',
+                    {loader: 'css-loader', options: {sourceMap: true}},
                 ]
             },
             {
                 test: /\.sass$/,
                 use: [
-                    isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
-                    {loader: 'css-loader', options: {sourceMap: isDev}},
-                    {loader: 'sass-loader', options: {sourceMap: isDev}}
+                    'vue-style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                indentedSyntax: true
+                            }
+                        }
+                    }
                 ]
             },
             {
@@ -65,7 +69,15 @@ module.exports = {
                     'babel-loader',
                     'vue-svg-loader',
                 ],
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
+            },
         ]
     },
     devServer: {
@@ -87,13 +99,5 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new FriendlyErrorsPlugin()
-    ],
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
-    mode: 'development',
-    devtool: 'cheap-module-eval-source-map',
+    ]
 };

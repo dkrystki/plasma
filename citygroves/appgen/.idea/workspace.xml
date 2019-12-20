@@ -2,33 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a39fde8b-54d0-4c83-b6d1-4ecd60fd0720" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/housing/factories.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/manager/celer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/tenants/templates/bond-lodgement-form.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/tenants/templates/lease.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/tenants/tools.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/test_models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../manager/templates/worker.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/motd/.bashrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/appgen/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/appgen/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/appgen/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/appgen/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/manager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/factories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/fixtures/rooms.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/fixtures/rooms.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/fixtures/units.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/fixtures/units.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/test_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/test_serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../manager/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/values/local.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../comm/python/plasma/logs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/python/plasma/logs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/helpers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +211,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576221312935</updated>
-      <workItem from="1576221314095" duration="51629000" />
+      <workItem from="1576221314095" duration="52242000" />
+      <workItem from="1576802468251" duration="599000" />
+      <workItem from="1576819239025" duration="1369000" />
     </task>
     <servers />
   </component>
@@ -256,38 +241,38 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="1167" y="533" width="392" height="617" key="FileChooserDialogImpl/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576410822638" />
-    <state width="1119" height="1008" key="GridCell.Tab.0.bottom" timestamp="1576413785076">
+    <state width="2259" height="290" key="GridCell.Tab.0.bottom" timestamp="1576802398154">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413785076" />
-    <state width="1119" height="1008" key="GridCell.Tab.0.center" timestamp="1576413785076">
+    <state width="2259" height="290" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398154" />
+    <state width="2259" height="290" key="GridCell.Tab.0.center" timestamp="1576802398154">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413785076" />
-    <state width="1119" height="1008" key="GridCell.Tab.0.left" timestamp="1576413785076">
+    <state width="2259" height="290" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398154" />
+    <state width="2259" height="290" key="GridCell.Tab.0.left" timestamp="1576802398154">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413785076" />
-    <state width="1119" height="1008" key="GridCell.Tab.0.right" timestamp="1576413785076">
+    <state width="2259" height="290" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398154" />
+    <state width="2259" height="290" key="GridCell.Tab.0.right" timestamp="1576802398154">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413785076" />
-    <state width="1119" height="1008" key="GridCell.Tab.1.bottom" timestamp="1576413790216">
+    <state width="2259" height="290" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398154" />
+    <state width="932" height="1008" key="GridCell.Tab.1.bottom" timestamp="1576802398143">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413790216" />
-    <state width="1119" height="1008" key="GridCell.Tab.1.center" timestamp="1576413790216">
+    <state width="932" height="1008" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398143" />
+    <state width="932" height="1008" key="GridCell.Tab.1.center" timestamp="1576802398143">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413790216" />
-    <state width="1119" height="1008" key="GridCell.Tab.1.left" timestamp="1576413790216">
+    <state width="932" height="1008" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398143" />
+    <state width="932" height="1008" key="GridCell.Tab.1.left" timestamp="1576802398143">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413790216" />
-    <state width="1119" height="1008" key="GridCell.Tab.1.right" timestamp="1576413790216">
+    <state width="932" height="1008" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398143" />
+    <state width="932" height="1008" key="GridCell.Tab.1.right" timestamp="1576802398143">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1119" height="1008" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576413790216" />
+    <state width="932" height="1008" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398143" />
     <state x="826" y="462" width="1043" height="812" key="SettingsEditor" timestamp="1576402467542">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
