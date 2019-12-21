@@ -47,6 +47,26 @@ class ApplicationSerializer(serializers.ModelSerializer):
                   "is_local_student", "is_international_student", "is_young_professional",
                   "referrers", "digital_signature"]
 
+    def update(self, instance: Application, validated_data):
+        unit_number: int = instance.room.unit.number
+        room_number: int = instance.room.number
+
+        if 'room_number' in validated_data:
+            room_number = validated_data.pop('room_number')
+
+        if 'unit_number' in validated_data:
+            unit_number = validated_data.pop('unit_number')
+
+        room = Room.objects.get(unit__number=unit_number, number=room_number)
+        instance.room = room
+
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+
+        instance.save()
+
+        return instance
+
     def create(self, validated_data):
         person = Person.objects.create(**validated_data.pop('person'))
 

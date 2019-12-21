@@ -63,21 +63,26 @@ class Application:
     digital_signature: Optional[str] = None
 
 
-class Tenants:
+class Applications:
+    def __init__(self, manager: 'Manager'):
+        self._manager = manager
+        self._base_url = furl("applications")
 
+    def create(self, application: Application) -> None:
+        payload: Dict[str, Any] = asdict(application)
+        self._manager.post(self._base_url, payload)
+
+
+class Tenants:
     def __init__(self, manager: 'Manager'):
         self._manager = manager
         self._base_url = furl("tenants")
-
-    def create_application(self, application: Application) -> None:
-        payload: Dict[str, Any] = asdict(application)
-        url = furl(self._base_url).add(path="application/create")
-        response: Response = self._manager.post(url, payload)
 
 
 class Manager:
     def __init__(self, api_url: str):
         self.tenants = Tenants(manager=self)
+        self.applications = Applications(manager=self)
 
         self._base_url: furl = furl(api_url)
 

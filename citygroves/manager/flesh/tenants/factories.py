@@ -2,6 +2,7 @@ from datetime import datetime
 
 import factory
 
+from housing.models import Room
 from tenants import models
 
 import housing.factories
@@ -9,9 +10,10 @@ import housing.factories
 import pytest_factoryboy
 
 
-class PersonFactory(factory.Factory):
+class PersonFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Person
+        strategy = factory.CREATE_STRATEGY
 
     first_name = "Josh"
     last_name = "Arystoteles"
@@ -20,9 +22,10 @@ class PersonFactory(factory.Factory):
     phone = "123123123"
 
 
-class AddressFactory(factory.Factory):
+class AddressFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Address
+        strategy = factory.CREATE_STRATEGY
 
     street_line1 = "Australian street line1"
     street_line2 = "Australian street line2"
@@ -34,9 +37,10 @@ class AddressFactory(factory.Factory):
     raw_address = "Australian street line1, Australian street line2, Australian street line3 \n Australia Brisbane QLD"
 
 
-class ReferrerFactory(factory.Factory):
+class ReferrerFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Referrer
+        strategy = factory.CREATE_STRATEGY
 
     first_name = "Josh"
     last_name = "Arystoteles"
@@ -45,12 +49,13 @@ class ReferrerFactory(factory.Factory):
     address = factory.SubFactory(AddressFactory)
 
 
-class ApplicationFactory(factory.Factory):
+class ApplicationFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Application
+        strategy = factory.CREATE_STRATEGY
 
     person = factory.SubFactory(PersonFactory)
-    room = factory.SubFactory(housing.factories.RoomFactory)
+    room = factory.LazyAttribute(lambda o: Room.objects.get(id=1))
     current_address = factory.SubFactory(AddressFactory)
     number_of_ppl_to_move_in = 1
     move_in_date = datetime(2019, 8, 22)
@@ -74,5 +79,3 @@ class ApplicationFactory(factory.Factory):
                 self.referrers.add(referrer)
 
     digital_signature = None
-
-

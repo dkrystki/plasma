@@ -4,7 +4,6 @@
 
 replicaCount: 1
 
-#image: shangren/mockexchs.bitstamp
 pullPolicy: IfNotPresent
 
 imagePullSecrets:
@@ -22,16 +21,6 @@ affinity: {}
 
 sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
-
-
-gmail:
-  clientId: "826855560616-dleh2i9oc62cfd43l0c8rqlaps6vbpbv.apps.googleusercontent.com"
-  clientSecret: "mZKwHQ5IF_-QJjEb1LLHWIpY"
-  googleAuthUri: "https://accounts.google.com/o/oauth2/auth"
-  googleTokenUri: "https://oauth2.googleapis.com/token"
-  ownerEmail: "plasmakwazar.test@gmail.com"
-
-formBuilderEmail: "damian.krystkiewicz@gmail.com"
 
 manager:
   apiUrl: "http://manager/api"

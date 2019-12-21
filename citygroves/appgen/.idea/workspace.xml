@@ -2,16 +2,141 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a39fde8b-54d0-4c83-b6d1-4ecd60fd0720" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/helpers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/vue-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/material-dashboard.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_alerts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_buttons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_cards.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_chartist.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_checkboxes.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_colors.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_dialogs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_dropdown.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_footers.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_forms.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_inputs-size.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_inputs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_layout.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_misc.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_navbars.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_pagination.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_pills.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_popups.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_responsive.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_ripples.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_shadows.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_sidebar-and-main-panel.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_tables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_tabs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_togglebutton.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_typography.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/mixins/_chartist.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/mixins/_transparency.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/mixins/_vendor-prefixes.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/plugins/_perfect-scrollbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Cards/ChartCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Cards/NavTabsCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Cards/StatsCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Dropdown.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/NotificationPlugin/Notification.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/NotificationPlugin/Notifications.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/NotificationPlugin/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SidebarLink.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/NavTabsTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/OrderedTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/SimpleTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/globalComponents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/globalDirectives.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/material-dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Dashboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Icons.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/Content.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/ContentFooter.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/DashboardLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/MobileMenu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/TopNavbar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Maps.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Notifications.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/TableList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Typography.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/UpgradeToPRO.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/UserProfile/EditProfileForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/UserProfile/UserCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/citygroves.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/citygroves.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/appgen/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/appgen/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/python/citygroves/api_clients/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/citygroves/api_clients/manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/python/citygroves/tests/test_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/citygroves/tests/test_all.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/values/local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/.envrc" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/.envrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../manager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/manager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/factories.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/factories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/fixtures/rooms.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/fixtures/units.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tenants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tenants/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tests/tenants/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/flesh/tests/tenants/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../manager/flesh/tests/tenants/test_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/hooks/db-init.job.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/templates/worker.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../manager/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../skaffold.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../skaffold.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +338,8 @@
       <updated>1576221312935</updated>
       <workItem from="1576221314095" duration="52242000" />
       <workItem from="1576802468251" duration="599000" />
-      <workItem from="1576819239025" duration="1369000" />
+      <workItem from="1576819239025" duration="2654000" />
+      <workItem from="1576934239957" duration="648000" />
     </task>
     <servers />
   </component>

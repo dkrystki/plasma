@@ -1,4 +1,4 @@
-FROM python:3.7-slim-stretch
+FROM node:13.5.0-stretch-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
@@ -11,14 +11,9 @@ COPY comm/docker/debug.sh /tmp/debug.sh
 COPY citygroves/appgen/docker /tmp/docker
 RUN bash /tmp/debug.sh
 
-# Install common
-RUN pip3 install poetry
-RUN poetry config virtualenvs.create false
+COPY citygroves/frontend/flesh/package.json package.json
+COPY citygroves/frontend/flesh/yarn.lock yarn.lock
 
-COPY citygroves/appgen/flesh/pyproject.toml pyproject.toml
-COPY citygroves/appgen/flesh/poetry.lock poetry.lock
+RUN yarn install -d
 
-RUN poetry install
-COPY citygroves/appgen/flesh .
-COPY comm/python/plasma /usr/local/lib/python3.7/plasma
-COPY citygroves/comm/python/citygroves /usr/local/lib/python3.7/citygroves
+COPY citygroves/frontend/flesh .

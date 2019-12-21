@@ -24,6 +24,14 @@ profiles:
           infer:
             - 'citygroves/appgen/flesh/**/*.py'
             - '**/.idea/**'
+      - image: shangren.registry.local/citygroves/frontend
+        docker:
+          dockerfile: citygroves/frontend/Dockerfile.local
+        context: ../
+        sync:
+          infer:
+            - 'citygroves/frontend/flesh/**/*.py'
+            - '**/.idea/**'
       local:
         push: true
 
@@ -31,7 +39,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-manager
-            chartPath: manager
+            chartPath: manager/chart
             namespace: citygroves
             valuesFiles:
               - manager/values/local.yaml
@@ -39,9 +47,17 @@ profiles:
               image: shangren.registry.local/citygroves/manager
 
           - name: citygroves-appgen
-            chartPath: appgen
+            chartPath: appgen/chart
             namespace: citygroves
             valuesFiles:
               - appgen/values/local.yaml
             values:
               image: shangren.registry.local/citygroves/appgen
+
+          - name: citygroves-frontend
+            chartPath: frontend/chart
+            namespace: citygroves
+            valuesFiles:
+              - frontend/values/local.yaml
+            values:
+              image: shangren.registry.local/citygroves/frontend

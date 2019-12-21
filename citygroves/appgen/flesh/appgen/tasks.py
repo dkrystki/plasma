@@ -116,7 +116,7 @@ class Fetcher:
             manager_api = manager.Manager(env.str("MANAGER_API_URL"))
 
             logger.info(f"Sending application to manager.")
-            manager_api.tenants.create_application(application)
+            manager_api.applications.create(application)
 
     @staticmethod
     def _build_address(address: str) -> manager.Address:

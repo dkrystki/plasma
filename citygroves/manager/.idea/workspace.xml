@@ -2,16 +2,141 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57c16f04-bc7e-40e6-bf7f-55507964f5d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/helpers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/sidebar-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/img/vue-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/material-dashboard.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_alerts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_buttons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_cards.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_chartist.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_checkboxes.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_colors.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_dialogs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_dropdown.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_footers.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_forms.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_inputs-size.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_inputs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_layout.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_misc.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_navbars.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_pagination.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_pills.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_popups.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_responsive.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_ripples.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_shadows.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_sidebar-and-main-panel.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_tables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_tabs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_togglebutton.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_typography.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/mixins/_chartist.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/mixins/_transparency.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/mixins/_vendor-prefixes.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/plugins/_perfect-scrollbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Cards/ChartCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Cards/NavTabsCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Cards/StatsCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Dropdown.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/NotificationPlugin/Notification.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/NotificationPlugin/Notifications.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/NotificationPlugin/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SidebarLink.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/NavTabsTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/OrderedTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/SimpleTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/globalComponents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/globalDirectives.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/material-dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Dashboard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Icons.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/Content.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/ContentFooter.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/DashboardLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/MobileMenu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/TopNavbar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Maps.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Notifications.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/TableList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Typography.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/UpgradeToPRO.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/UserProfile/EditProfileForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/UserProfile/UserCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/citygroves.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/citygroves.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/flesh/appgen/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/flesh/appgen/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/python/citygroves/api_clients/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/citygroves/api_clients/manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/python/citygroves/tests/test_all.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/citygroves/tests/test_all.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Dockerfile.local" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Dockerfile.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/values/local.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.envrc" beforeDir="false" afterPath="$PROJECT_DIR$/.envrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chart.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/manager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/factories.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/factories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/fixtures/rooms.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/fixtures/units.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/NOTES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_helpers.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/configmap.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/deployment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hooks/db-init.job.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/ingress.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/secret.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/service.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/worker.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/values.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../skaffold.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../skaffold.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +181,7 @@
       <recent name="$PROJECT_DIR$/flesh/tenants/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Django server.run_server">
+  <component name="RunManager" selected="Python tests.pytest in test_views.py">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -179,12 +304,12 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for tests.tenants.test_serializers.test_serializer" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_views.test_create_applicant_view" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests/tenants" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -202,16 +327,16 @@
       </EXTENSION>
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.tenants.test_serializers.test_serializer&quot;" />
+      <option name="_new_target" value="&quot;test_views.test_create_applicant_view&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for tests.tenants.test_views.test_create_applicant_view" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_views.test_list_applicant" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests/tenants" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -229,21 +354,79 @@
       </EXTENSION>
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.tenants.test_views.test_create_applicant_view&quot;" />
+      <option name="_new_target" value="&quot;test_views.test_list_applicant&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_views.test_update_applicant" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests/tenants" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_views.test_update_applicant&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_views.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flesh/tests/tenants" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH=".telepresence.env" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/flesh/tests/tenants/test_views.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Django server.run_server" />
-      <item itemvalue="Python tests.pytest for tests.tenants.test_serializers.test_serializer" />
-      <item itemvalue="Python tests.pytest for tests.tenants.test_views.test_create_applicant_view" />
       <item itemvalue="Python tests.pytest for test_models.test_get_lease" />
+      <item itemvalue="Python tests.pytest for test_views.test_create_applicant_view" />
+      <item itemvalue="Python tests.pytest for test_views.test_update_applicant" />
+      <item itemvalue="Python tests.pytest for test_views.test_list_applicant" />
+      <item itemvalue="Python tests.pytest in test_views.py" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in test_views.py" />
+        <item itemvalue="Python tests.pytest for test_views.test_list_applicant" />
+        <item itemvalue="Python tests.pytest for test_views.test_update_applicant" />
+        <item itemvalue="Python tests.pytest for test_views.test_create_applicant_view" />
         <item itemvalue="Python tests.pytest for test_models.test_get_lease" />
-        <item itemvalue="Python tests.pytest for tests.tenants.test_serializers.test_serializer" />
-        <item itemvalue="Python tests.pytest for tests.tenants.test_views.test_create_applicant_view" />
       </list>
     </recent_temporary>
   </component>
@@ -271,7 +454,8 @@
       <updated>1576316383204</updated>
       <workItem from="1576316384359" duration="57994000" />
       <workItem from="1576802468251" duration="599000" />
-      <workItem from="1576819239561" duration="599000" />
+      <workItem from="1576819239561" duration="9491000" />
+      <workItem from="1576934239939" duration="599000" />
     </task>
     <servers />
   </component>
@@ -279,54 +463,54 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="591" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576718640729">
+    <state x="589" y="49" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576916132926">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="591" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576718640729" />
-    <state x="290" y="573" width="1643" height="589" key="#xdebugger.evaluate" timestamp="1576677987825">
+    <state x="589" y="49" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576916132926" />
+    <state x="851" y="657" width="1643" height="589" key="#xdebugger.evaluate" timestamp="1576921161904">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="290" y="573" width="1643" height="589" key="#xdebugger.evaluate/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576677987825" />
-    <state width="2182" height="466" key="DebuggerActiveHint" timestamp="1576677476920">
+    <state x="851" y="657" width="1643" height="589" key="#xdebugger.evaluate/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921161904" />
+    <state width="2182" height="466" key="DebuggerActiveHint" timestamp="1576919947949">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="2182" height="466" key="DebuggerActiveHint/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576677476920" />
+    <state width="2182" height="466" key="DebuggerActiveHint/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576919947949" />
     <state x="903" y="105" width="428" height="471" key="FileChooserDialogImpl" timestamp="1576584403250">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="903" y="105" width="428" height="471" key="FileChooserDialogImpl/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576584403250" />
-    <state width="2059" height="289" key="GridCell.Tab.0.bottom" timestamp="1576802398194">
+    <state width="1334" height="1008" key="GridCell.Tab.0.bottom" timestamp="1576921188484">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="2059" height="289" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398194" />
-    <state width="2059" height="289" key="GridCell.Tab.0.center" timestamp="1576802398194">
+    <state width="1334" height="1008" key="GridCell.Tab.0.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188484" />
+    <state width="1334" height="1008" key="GridCell.Tab.0.center" timestamp="1576921188484">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="2059" height="289" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398194" />
-    <state width="2059" height="289" key="GridCell.Tab.0.left" timestamp="1576802398194">
+    <state width="1334" height="1008" key="GridCell.Tab.0.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188484" />
+    <state width="1334" height="1008" key="GridCell.Tab.0.left" timestamp="1576921188484">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="2059" height="289" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398194" />
-    <state width="2059" height="289" key="GridCell.Tab.0.right" timestamp="1576802398194">
+    <state width="1334" height="1008" key="GridCell.Tab.0.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188484" />
+    <state width="1334" height="1008" key="GridCell.Tab.0.right" timestamp="1576921188484">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="2059" height="289" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398194" />
-    <state width="1171" height="1009" key="GridCell.Tab.1.bottom" timestamp="1576802398186">
+    <state width="1334" height="1008" key="GridCell.Tab.0.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188484" />
+    <state width="1334" height="1008" key="GridCell.Tab.1.bottom" timestamp="1576921188416">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1171" height="1009" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398186" />
-    <state width="1171" height="1009" key="GridCell.Tab.1.center" timestamp="1576802398186">
+    <state width="1334" height="1008" key="GridCell.Tab.1.bottom/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188416" />
+    <state width="1334" height="1008" key="GridCell.Tab.1.center" timestamp="1576921188416">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1171" height="1009" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398186" />
-    <state width="1171" height="1009" key="GridCell.Tab.1.left" timestamp="1576802398186">
+    <state width="1334" height="1008" key="GridCell.Tab.1.center/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188416" />
+    <state width="1334" height="1008" key="GridCell.Tab.1.left" timestamp="1576921188416">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1171" height="1009" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398186" />
-    <state width="1171" height="1009" key="GridCell.Tab.1.right" timestamp="1576802398186">
+    <state width="1334" height="1008" key="GridCell.Tab.1.left/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188416" />
+    <state width="1334" height="1008" key="GridCell.Tab.1.right" timestamp="1576921188416">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state width="1171" height="1009" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576802398186" />
+    <state width="1334" height="1008" key="GridCell.Tab.1.right/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576921188416" />
     <state x="636" y="146" key="SettingsEditor" timestamp="1576406775331">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
@@ -343,23 +527,19 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="1661" y="839" width="875" height="873" key="recent.locations.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576333642931" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/.cache/pypoetry/virtualenvs/citygroves.manager-py3.7/lib/python3.7/site-packages/rest_framework/mixins.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="476" y="539" key="search.everywhere.popup" timestamp="1576916702161">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="476" y="539" key="search.everywhere.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576916702161" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/manager$pytest_for_test_views_test_create_applicant_view.coverage" NAME="pytest for test_views.test_create_applicant_view Coverage Results" MODIFIED="1576335687859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants/tests" />
+    <SUITE FILE_PATH="coverage/manager$pytest_for_test_views_test_create_applicant_view.coverage" NAME="pytest for test_views.test_create_applicant_view Coverage Results" MODIFIED="1576916720397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests/tenants" />
+    <SUITE FILE_PATH="coverage/manager$pytest_for_test_views_test_update_applicant.coverage" NAME="pytest for test_views.test_update_applicant Coverage Results" MODIFIED="1576918828921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests/tenants" />
     <SUITE FILE_PATH="coverage/manager$pytest_for_tests_test_serializer.coverage" NAME="pytest for tenants.tests.test_serializers.test_serializer Coverage Results" MODIFIED="1576318631914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants" />
     <SUITE FILE_PATH="coverage/manager$pytest_for_test_models_test_get_lease.coverage" NAME="pytest for test_models.test_get_lease Coverage Results" MODIFIED="1576678303340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests/tenants" />
+    <SUITE FILE_PATH="coverage/manager$pytest_in_test_views_py.coverage" NAME="pytest in test_views.py Coverage Results" MODIFIED="1576921188385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests/tenants" />
     <SUITE FILE_PATH="coverage/manager$pytest_for_test_serializers_test_serializer.coverage" NAME="pytest for test_serializers.test_serializer Coverage Results" MODIFIED="1576335712480" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants/tests" />
     <SUITE FILE_PATH="coverage/manager$Nosetests_for_tests_test_serializer.coverage" NAME="Nosetests for tests.test_serializer Coverage Results" MODIFIED="1576317574838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tenants" />
+    <SUITE FILE_PATH="coverage/manager$pytest_for_test_views_test_list_applicant.coverage" NAME="pytest for test_views.test_list_applicant Coverage Results" MODIFIED="1576921172144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flesh/tests/tenants" />
   </component>
 </project>

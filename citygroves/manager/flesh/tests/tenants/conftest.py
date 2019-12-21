@@ -3,12 +3,11 @@ from pytest import fixture
 from django.core.management import call_command
 import tenants.factories
 
-# tenants.factories.register()
-
 pytest_factoryboy.register(tenants.factories.PersonFactory)
 pytest_factoryboy.register(tenants.factories.AddressFactory)
 pytest_factoryboy.register(tenants.factories.ReferrerFactory)
 pytest_factoryboy.register(tenants.factories.ApplicationFactory)
+
 
 @fixture
 def application_payload():
@@ -31,7 +30,8 @@ def application_payload():
             "city": "Brisbane",
             "state": "QLD",
             "post_code": "1231",
-            "country": "Australia"
+            "country": "Australia",
+            "raw_address": "raw_address"
         },
         "number_of_ppl_to_move_in": 1,
         "move_in_date": "2020-11-20",
@@ -58,7 +58,8 @@ def application_payload():
                         "city": "Brisbane",
                         "state": "QLD",
                         "post_code": "1231",
-                        "country": "Australia"
+                        "country": "Australia",
+                        "raw_address": "raw_address"
                     },
                 },
                 {
@@ -73,7 +74,8 @@ def application_payload():
                         "city": "Brisbane",
                         "state": "QLD",
                         "post_code": "1231",
-                        "country": "Australia"
+                        "country": "Australia",
+                        "raw_address": "raw_address"
                     },
                 },
             ]
@@ -83,8 +85,8 @@ def application_payload():
 
 @fixture
 def create_rooms():
-    call_command('loaddata', 'fixtures/units.yaml', verbosity=0)
-    call_command('loaddata', 'fixtures/rooms.yaml', verbosity=0)
+    call_command('loaddata', '../../housing/fixtures/units.yaml', verbosity=0)
+    call_command('loaddata', '../../housing/fixtures/rooms.yaml', verbosity=0)
 
 
 @fixture

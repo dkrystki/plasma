@@ -8,7 +8,7 @@ def test_manager_api_client():
     from citygroves.api_clients.manager import Manager, Application, Person, Address, Referrer
 
     manager = Manager(os.environ["MANAGER_API_URL"])
-    responses.add(responses.POST, f"{os.environ['MANAGER_API_URL']}/application/create", status=201)
+    responses.add(responses.POST, f"{os.environ['MANAGER_API_URL']}/applications", status=201)
 
     application = Application(person=Person(first_name="test_first_name",
                                             last_name="test_last_name",
@@ -40,4 +40,4 @@ def test_manager_api_client():
                                                   dob=date(1990, 8, 18),
                                                   address=Address(raw_address="Australia"))])
 
-    manager.tenants.create_application(application)
+    manager.applications.create(application)

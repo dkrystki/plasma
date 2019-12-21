@@ -31,7 +31,6 @@ module.exports = {
                 test: /\.vue$/,
                 use: 'vue-loader'
             },
-            // webpack.config.js -> module.rules
             {
                 test: /\.pug$/,
                 loader: 'pug-plain-loader'
@@ -46,6 +45,14 @@ module.exports = {
                 use: [
                     'vue-style-loader',
                     {loader: 'css-loader', options: {sourceMap: true}},
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'sass-loader'
                 ]
             },
             {
@@ -86,7 +93,7 @@ module.exports = {
         hot: true,
         open: true,
         overlay: true,
-        port: 8200,
+        port: 8000,
         stats: {
             normal: true
         }
