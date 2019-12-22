@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "chart.name" . }}
 data:
-  SENTRY_DSN: "{{ .Values.sentry.dsn }}"
-  MANAGER_API_URL: "{{ .Values.manager.apiUrl }}"
+  config.ts: |
+    export const Config = {
+      managerApiUrl: "{{ .Values.manager.apiUrl }}",
+    }

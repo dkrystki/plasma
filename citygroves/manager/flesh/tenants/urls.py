@@ -13,3 +13,4 @@ urlpatterns = [
     path('', include(router.urls)),
     path(r'applications/<int:pk>/getlease/', views.GetApplicationLease.as_view(), name="application-getlease"),
 ]
+

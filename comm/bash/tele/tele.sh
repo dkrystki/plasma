@@ -40,7 +40,7 @@ case $1 in
       VIRTUAL_ENV=$(dirname "$(which python)")
 
       source "$APP_ROOT/.telepresence.sh"
-      export CUSTOM_PS1="$STAGE_EMOJI📻($PROJECT_NAME)"
+      export CUSTOM_PS1="$STAGE_EMOJI📻($APP_NAME)"
 
       export PATH="$VIRTUAL_ENV:$PATH"
 

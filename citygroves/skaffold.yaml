@@ -30,7 +30,10 @@ profiles:
         context: ../
         sync:
           infer:
-            - 'citygroves/frontend/flesh/**/*.py'
+            - 'citygroves/frontend/flesh/**/*.ts'
+            - 'citygroves/frontend/flesh/**/*.js'
+            - 'citygroves/frontend/flesh/**/*.json'
+            - 'citygroves/frontend/flesh/**/*.vue'
             - '**/.idea/**'
       local:
         push: true

@@ -1,15 +1,15 @@
 <template>
   <div>
-    <md-table v-model="users" @md-selected="onSelect">
+    <md-table v-model="applications" @md-selected="onSelect">
       <md-table-row
-        slot="md-table-row"
-        slot-scope="{ item }"
-        md-selectable="multiple"
+              slot="md-table-row"
+              slot-scope="{ item }"
+              md-selectable="multiple"
       >
         <md-table-cell>
           <a
-                href="tst"
-                class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                  href="tst"
+                  class="md-list-item-router md-list-item-container md-button-clean dropdown"
           >{{ item.name }}</a>
         </md-table-cell>
         <md-table-cell>
@@ -24,29 +24,18 @@
 </template>
 
 <script>
-export default {
-  name: "nav-tabs-table",
-  data() {
-    return {
-      selected: [],
-      users: [
-        {
-          name: 'Sign contract for "What are conference organizers afraid of?"'
+    export default {
+        name: "nav-tabs-table",
+        props: ["applications"],
+        data() {
+            return {
+                selected: [],
+            };
         },
-        {
-          name: "Lines From Great Russian Literature? Or E-mails From My Boss?"
-        },
-        {
-          name:
-            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit"
+        methods: {
+            onSelect: function (items) {
+                this.selected = items;
+            }
         }
-      ]
     };
-  },
-  methods: {
-    onSelect: function(items) {
-      this.selected = items;
-    }
-  }
-};
 </script>

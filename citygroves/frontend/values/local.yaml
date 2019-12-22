@@ -11,7 +11,7 @@ imagePullSecrets:
 
 service:
   type: ClusterIP
-  port: 8000
+  port: 80
 
 nodeSelector: {}
 
@@ -23,4 +23,16 @@ sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
 
 manager:
-  apiUrl: "http://manager/api"
+  apiUrl: "http://citygroves.backend.local/ap"
+
+
+ingress:
+  enabled: True
+
+  hosts:
+    - host: citygroves.frontend.local
+      paths:
+        - "/"
+    - host: citygroves.frontend.global
+      paths:
+        - "/"

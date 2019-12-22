@@ -24,27 +24,24 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image }}
-
           command: ["/bin/sh", "-c"]
           args: ["yarn dev"]
           imagePullPolicy: {{ .Values.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8000
+              containerPort: 80
               protocol: TCP
-          #          livenessProbe:
-          #            httpGet:
-          #              path: /
-          #              port: http
-          #          readinessProbe:
-          #            httpGet:
-          #              path: /
-          #              port: http
-          envFrom:
-            - configMapRef:
-                name: {{ include "chart.name" . }}
+
+          volumeMounts:
+            - name: config
+              mountPath: /srv/src/config.ts
+              subPath: config.ts
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "chart.name" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

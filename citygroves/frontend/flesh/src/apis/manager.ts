@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Config} from '@/config'
 
 class Address {
     raw_address: String;
@@ -56,17 +57,20 @@ class Applications {
         this.manager = manager;
     }
 
-    // get_all(): Array<Application>{
-    //   axios.get(`${this.manager.api_url}/applications/`)
-    // }
+    getAll(): Array<Application> {
+        return axios.get(`${this.manager.api_url}applications/`).then(req => {
+            return req.data
+        });
+    }
 }
 
 export class Manager {
     api_url: string;
     applications: Applications;
 
-    constructor(api_url: string) {
-        this.api_url = api_url;
+    constructor() {
+        this.api_url = Config.managerApiUrl;
         this.applications = new Applications(this);
     }
 }
+

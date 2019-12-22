@@ -34,9 +34,9 @@ ingress:
   enabled: True
 
   hosts:
-    - host: shangren.citygroves.local
+    - host: citygroves.backend.local
       paths:
         - "/"
-    - host: citygroves.manager.global
+    - host: citygroves.backend.global
       paths:
         - "/"

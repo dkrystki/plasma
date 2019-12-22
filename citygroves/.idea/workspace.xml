@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/bash/header.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/bash/header.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/bash/tele/tele.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,10 +32,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/comm/python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -44,18 +47,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/frontend/flesh/src/apis" />
       <recent name="$PROJECT_DIR$/frontend/flesh/src" />
       <recent name="$PROJECT_DIR$/frontend/flesh/src/assets" />
       <recent name="$PROJECT_DIR$/frontend/flesh/src/components" />
-      <recent name="$PROJECT_DIR$/frontend/flesh" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/manager/chart" />
       <recent name="$PROJECT_DIR$/appgen/chart" />
       <recent name="$PROJECT_DIR$/frontend/chart" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/frontend" />
-      <recent name="$PROJECT_DIR$/frontend/flesh" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.pytest in test_all.py">
@@ -124,7 +127,8 @@
       <workItem from="1576398903454" duration="19917000" />
       <workItem from="1576802467778" duration="1183000" />
       <workItem from="1576819240144" duration="18828000" />
-      <workItem from="1576934239841" duration="3086000" />
+      <workItem from="1576934239841" duration="6830000" />
+      <workItem from="1576980696150" duration="4836000" />
     </task>
     <servers />
   </component>
@@ -145,14 +149,18 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="642" y="249" width="804" height="664" key="#ESLint" timestamp="1576973071198">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="642" y="249" width="804" height="664" key="#ESLint/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576973071198" />
     <state x="551" y="345" width="804" height="664" key="#Plugins" timestamp="1576819662151">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="551" y="345" width="804" height="664" key="#Plugins/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576819662151" />
-    <state x="580" y="802" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576924074255">
+    <state x="578" y="787" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576973393101">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="580" y="802" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576924074255" />
+    <state x="578" y="787" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576973393101" />
     <state x="766" y="479" width="613" height="376" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576931762417">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
@@ -161,10 +169,10 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state width="2049" height="466" key="DebuggerActiveHint/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576402235935" />
-    <state x="929" y="400" width="428" height="471" key="FileChooserDialogImpl" timestamp="1576924135944">
+    <state x="927" y="385" width="428" height="471" key="FileChooserDialogImpl" timestamp="1576979449596">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="929" y="400" width="428" height="471" key="FileChooserDialogImpl/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576924135944" />
+    <state x="927" y="385" width="428" height="471" key="FileChooserDialogImpl/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576979449596" />
     <state width="2155" height="657" key="GridCell.Tab.0.bottom" timestamp="1576924184937">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
@@ -209,6 +217,17 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="815" y="340" width="672" height="678" key="search.everywhere.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576924734690" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/flesh/src/apis/manager.ts</url>
+          <line>60</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/citygroves$pytest_for_test_all_test_manager_api_client.coverage" NAME="pytest for test_all.test_manager_api_client Coverage Results" MODIFIED="1576402225704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/python/citygroves/tests" />

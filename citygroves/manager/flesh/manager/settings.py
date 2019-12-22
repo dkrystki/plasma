@@ -60,12 +60,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.postgres",
     "django_extensions",
+    'corsheaders',
     'rest_framework',
     "tenants",
     "housing"
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,6 +78,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'manager.urls'
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {

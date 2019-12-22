@@ -9,21 +9,23 @@ const {VueLoaderPlugin} = require('vue-loader');
 
 module.exports = {
     mode: 'development',
+    devtool: 'eval-source-map',
     entry: [
+        `webpack-dev-server/client?http://0.0.0.0`,
+        'webpack/hot/only-dev-server',
         './src/main.js'
     ],
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js', '.ts', '.vue'],
         alias: {
             'vue$': 'vue/dist/vue.runtime.js',
-            '@': helpers.root('src')
+            '@': helpers.root('src'),
+            '@components': helpers.root('src/components')
         }
     },
     output: {
         path: helpers.root('dist'),
-        publicPath: '/',
-        filename: 'js/[name].bundle.js',
-        chunkFilename: 'js/[id].chunk.js'
+        filename: 'js.bundle.js',
     },
     module: {
         rules: [
@@ -38,6 +40,18 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true
+                        }
+                    }
+                ],
                 exclude: /node_modules/,
             },
             {
@@ -93,7 +107,9 @@ module.exports = {
         hot: true,
         open: true,
         overlay: true,
-        port: 8000,
+        host: '0.0.0.0',
+        disableHostCheck: true,
+        port: 80,
         stats: {
             normal: true
         }
