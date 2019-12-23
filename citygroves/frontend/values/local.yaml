@@ -23,7 +23,7 @@ sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
 
 manager:
-  apiUrl: "http://citygroves.backend.local/ap"
+  apiUrl: "http://citygroves.backend.local/api/"
 
 
 ingress:

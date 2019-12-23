@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../comm/bash/header.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/bash/header.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/bash/tele/tele.sh" afterDir="false" />
-    </list>
+    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -223,7 +220,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/flesh/src/apis/manager.ts</url>
-          <line>60</line>
+          <line>78</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

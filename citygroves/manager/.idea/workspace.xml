@@ -2,40 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57c16f04-bc7e-40e6-bf7f-55507964f5d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/.envrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/.idea/frontend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/bin/tele" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/bin/terminal" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/.env.development.local" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/.idea/flesh.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Application.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appgen/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/values/local.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/chart/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/chart/templates/configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/chart/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/chart/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/apis/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/.idea/flesh.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/NavTabsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/NavTabsTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/routes/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/values/local.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/manager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/manager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/manager/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/templates/.~lock.lease.pdf#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/values/local.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../skaffold.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../skaffold.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../comm/bash/header.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/header.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/tele/tele.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tenants/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/test_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -355,7 +334,7 @@
       <workItem from="1576802468251" duration="599000" />
       <workItem from="1576819239561" duration="9491000" />
       <workItem from="1576934239939" duration="1198000" />
-      <workItem from="1576980696058" duration="3579000" />
+      <workItem from="1576980696058" duration="5721000" />
     </task>
     <servers />
   </component>

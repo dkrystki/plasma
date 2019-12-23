@@ -49,7 +49,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Vue MD"
+      default: "Citygroves"
     },
     backgroundImage: {
       type: String,

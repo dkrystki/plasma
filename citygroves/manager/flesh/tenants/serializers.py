@@ -17,6 +17,20 @@ class AddressSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class UnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Unit
+        fields = "__all__"
+
+
+class RoomSerializer(serializers.ModelSerializer):
+    unit = UnitSerializer()
+
+    class Meta:
+        model = Room
+        fields = "__all__"
+
+
 class ReferrerSerializer(serializers.ModelSerializer):
     address = AddressSerializer()
     applicant = serializers.PrimaryKeyRelatedField(required=False, queryset=Person.objects.all())
@@ -36,12 +50,13 @@ class ApplicationSerializer(serializers.ModelSerializer):
     person = PersonSerializer()
     current_address = AddressSerializer()
     referrers = ReferrerSerializer(many=True)
+    room = RoomSerializer(read_only=True)
     room_number = serializers.IntegerField(write_only=True)
     unit_number = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Application
-        fields = ["room_number", "unit_number", "person", "room", "current_address",
+        fields = ["id", "room_number", "room", "unit_number", "person", "room", "current_address",
                   "number_of_ppl_to_move_in", "move_in_date", "guarantor_will_pay",
                   "centerlink_will_pay", "is_employed", "have_sufficient_funds",
                   "is_local_student", "is_international_student", "is_young_professional",

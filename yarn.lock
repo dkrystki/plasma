@@ -276,3 +276,8 @@ vue-template-compiler@^2.6.11:
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
+
+vuetify@^2.1.15:
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.1.15.tgz#26386557c63ad700e6e8d8a330f8d2831fbef6ef"
+  integrity sha512-M35NJvlzkbCpFfsK08xraNvCpiNCIbYUXI/hkzjWHQV1MFIZnjrDTVtYoiudCyJ52zlrhWezAr4pzFOCLAr6RA==

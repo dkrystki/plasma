@@ -40,7 +40,7 @@
                 let manager = new Manager();
                 let applications = await manager.applications.getAll();
                 for( let a of applications) {
-                  this.applications.push( {name: `${a.person.first_name} ${a.person.last_name}`})
+                  this.applications.push( {name: `${a.getTitle()}`, id: a.id})
                 }
                 this.loading = false;
             },

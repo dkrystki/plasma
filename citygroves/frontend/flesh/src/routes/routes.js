@@ -2,6 +2,7 @@ import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
 import Applications from "@/pages/Applications.vue";
+import Application from "@/pages/Application.vue";
 import TableList from "@/pages/TableList.vue";
 import Typography from "@/pages/Typography.vue";
 import Icons from "@/pages/Icons.vue";
@@ -24,6 +25,11 @@ const routes = [
         path: "applications",
         name: "Applications",
         component: Applications
+      },
+      {
+        path: "applications/:id",
+        name: "ApplicationsDetails",
+        component: Application
       },
       {
         path: "table",

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {Config} from '@/config'
+import App from "../App.vue";
+
 
 class Address {
     raw_address: String;
@@ -30,11 +32,19 @@ class Referrer {
     dob: Date;
 }
 
+class Unit {
+    number: Number
+}
+
+class Room {
+    number: Number;
+    unit: Unit;
+}
+
 
 class Application {
     person: Person;
-    unit_number: Number;
-    room_number: Number;
+    room: Room;
     current_address: Address;
     number_of_ppl_to_move_in: Number;
     move_in_date: Date;
@@ -47,8 +57,16 @@ class Application {
     is_young_professional: Boolean;
     referrers: Array<Referrer>;
     digital_signature: String;
-}
 
+    getTitle(): String {
+        return `${this.person.first_name} ${this.person.last_name} U${this.room.unit.number}R${this.room.number}`
+    }
+    constructor(payload: Object) {
+        for (const [name, value] of Object.entries(payload)) {
+            this[name] = value;
+        }
+    }
+}
 
 class Applications {
     manager: Manager;
@@ -59,7 +77,17 @@ class Applications {
 
     getAll(): Array<Application> {
         return axios.get(`${this.manager.api_url}applications/`).then(req => {
-            return req.data
+            let applications: Array<Application> = [];
+            for(const a of req.data) {
+                applications.push(new Application(a));
+            }
+            return applications;
+        });
+    }
+
+    get(id: Number): Application {
+        return axios.get(`${this.manager.api_url}applications/${id}/`).then(req => {
+            return new Application(req.data);
         });
     }
 }
@@ -73,4 +101,3 @@ export class Manager {
         this.applications = new Applications(this);
     }
 }
-
