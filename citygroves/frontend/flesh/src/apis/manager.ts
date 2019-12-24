@@ -1,9 +1,22 @@
 import axios from 'axios';
 import {Config} from '@/config'
-import App from "../App.vue";
 
 
-class Address {
+class ApiObject {
+    apiInterface: ApiInterface;
+
+    constructor(apiInterface: ApiInterface, payload: Object) {
+        this.apiInterface = apiInterface;
+        for (const [name, value] of Object.entries(payload)) {
+            this[name] = value;
+        }
+    }
+    save(exclude?: Array<string>) {
+        this.apiInterface.update(this, exclude);
+    }
+}
+
+class Address extends ApiObject {
     raw_address: String;
     street_line1: String;
     street_line2: String;
@@ -14,29 +27,16 @@ class Address {
     country: String;
 }
 
-class Person {
-    apiInterface: ApiInterface;
-
+class Person extends ApiObject {
     first_name: String;
     last_name: String;
     email: String;
     phone: String;
     dob: Date;
-
-    constructor(apiInterface: ApiInterface, payload: Object) {
-        this.apiInterface = apiInterface;
-        for (const [name, value] of Object.entries(payload)) {
-            this[name] = value;
-        }
-    }
-
-    save() {
-        this.apiInterface.update(this);
-    }
 }
 
 
-class Referrer {
+class Referrer extends ApiObject  {
     first_name: String;
     last_name: String;
     email: String;
@@ -45,17 +45,17 @@ class Referrer {
     dob: Date;
 }
 
-class Unit {
+class Unit extends ApiObject  {
     number: Number
 }
 
-class Room {
+class Room extends ApiObject  {
     number: Number;
     unit: Unit;
 }
 
 
-class Application {
+class Application extends ApiObject {
     apiInterface: ApiInterface;
 
     person: Person;
@@ -76,11 +76,8 @@ class Application {
     getTitle(): String {
         return `${this.person.first_name} ${this.person.last_name} U${this.room.unit.number}R${this.room.number}`
     }
-    constructor(apiInterface: ApiInterface, payload: Object) {
-        this.apiInterface = apiInterface;
-        for (const [name, value] of Object.entries(payload)) {
-            this[name] = value;
-        }
+    save() {
+        super.save(["person", "room", "current_address", "referrers"]);
     }
 }
 
@@ -110,11 +107,15 @@ class ApiInterface {
             return new this.ApiObjectType(this, req.data);
         });
     }
-    update(apiObject): Application {
+    update(apiObject, exclude: Array<string>=[]): Application {
         let payload = Object.assign({}, apiObject);
         delete payload.apiInterface;
 
-        return axios.put(`${this.manager.apiUrl}${this.endpoint}${payload.id}/`, payload);
+        for(const excl of exclude) {
+            delete payload[excl];
+        }
+
+        return axios.patch(`${this.manager.apiUrl}${this.endpoint}${payload.id}/`, payload);
     }
 }
 
@@ -122,10 +123,13 @@ export class Manager {
     apiUrl: string;
     applications: ApiInterface;
     people: ApiInterface;
+    addresses: ApiInterface;
 
     constructor() {
         this.apiUrl = Config.managerApiUrl;
         this.applications = new ApiInterface(this, Application, "applications/");
         this.people = new ApiInterface(this, Person, "people/");
+        this.addresses = new ApiInterface(this, Address, "addresses/");
+        this.referrer = new ApiInterface(this, Referrer, "referrers/");
     }
 }

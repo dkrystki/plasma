@@ -5,9 +5,9 @@
 
         <md-card>
           <md-card-header data-background-color="green">
-            <h4 class="title">Personal information</h4>
+            <h4 class="title">Referrer</h4>
           </md-card-header>
-          <md-card-content>
+          <md-card-content v-if="this.referrer !== null">
             <v-form>
                 <v-row>
                   <v-col cols="12" md="6">
@@ -38,13 +38,12 @@
                       <md-input v-model="phone" @change="on_change"/>
                     </md-field>
                   </v-col>
-
-                  <v-col cols="12" md="3">
-                    <md-datepicker v-model="dob">
-                      <label>DOB</label>
-                    </md-datepicker>
-                  </v-col>
                 </v-row>
+              <v-row>
+                <v-col cols="12" md="12">
+                <Address :id="this.referrer.address.id"/>
+                </v-col>
+              </v-row>
             </v-form>
           </md-card-content>
         </md-card>
@@ -54,11 +53,13 @@
 </template>
 <script>
     import {Manager} from "@/apis/manager"
+    import Address from "@components/Address";
 
     let manager = new Manager();
 
     export default {
-        name: "Person",
+        name: "Referrer",
+        components: {Address},
         props: {
             id: Number
         },
@@ -68,36 +69,28 @@
                 last_name: "",
                 email: "",
                 phone: "",
-                dob: "",
+                referrer: null,
             };
         },
         async created() {
             this.refresh();
         },
-        watch: {
-            dob: function (val) {
-                this.person.dob = val;
-                this.person.save();
-            }
-        },
         methods: {
             on_change() {
-                this.person.first_name = this.first_name;
-                this.person.last_name = this.last_name;
-                this.person.email = this.email;
-                this.person.phone = this.phone;
-                this.person.dob = this.dob;
-                this.person.save();
+                this.referrer.first_name = this.first_name;
+                this.referrer.last_name = this.last_name;
+                this.referrer.email = this.email;
+                this.referrer.phone = this.phone;
+                this.referrer.save();
             },
             async refresh() {
                 this.loading = true;
-                this.person = await manager.people.get(Number(this.id));
+                this.referrer = await manager.referrer.get(Number(this.id));
 
-                this.first_name = this.person.first_name;
-                this.last_name = this.person.last_name;
-                this.email = this.person.email;
-                this.phone = this.person.phone;
-                this.dob = this.person.dob;
+                this.first_name = this.referrer.first_name;
+                this.last_name = this.referrer.last_name;
+                this.email = this.referrer.email;
+                this.phone = this.referrer.phone;
             },
         }
     };

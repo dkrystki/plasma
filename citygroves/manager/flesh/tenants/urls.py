@@ -8,6 +8,8 @@ app_name = "tenants"
 router = routers.DefaultRouter()
 router.register(r'applications', views.ApplicationViewSet, basename="application")
 router.register(r'people', views.PeopleViewset, basename="people")
+router.register(r'addresses', views.AddressesViewset, basename="addresses")
+router.register(r'referrers', views.ReferrersViewset, basename="referrers")
 
 
 urlpatterns = [

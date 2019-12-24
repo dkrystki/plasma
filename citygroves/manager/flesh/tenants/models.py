@@ -2,7 +2,6 @@ from pathlib import Path
 from typing import BinaryIO, Dict, Any
 
 from django.db import models
-from django.conf import settings
 
 
 class Person(models.Model):

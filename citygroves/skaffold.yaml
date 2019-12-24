@@ -34,6 +34,7 @@ profiles:
             - 'citygroves/frontend/flesh/**/*.js'
             - 'citygroves/frontend/flesh/**/*.json'
             - 'citygroves/frontend/flesh/**/*.vue'
+            - 'citygroves/frontend/flesh/**/*.scss'
             - '**/.idea/**'
       local:
         push: true

@@ -10,6 +10,7 @@ import SimpleTable from "./Tables/SimpleTable.vue";
 
 import Person from "./Person.vue";
 import Address from "./Address.vue";
+import Referrer from "./Referrer.vue";
 
 export {
     ChartCard,
@@ -20,4 +21,5 @@ export {
     SimpleTable,
     Person,
     Address,
+    Referrer,
 };

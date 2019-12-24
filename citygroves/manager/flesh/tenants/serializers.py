@@ -45,6 +45,18 @@ class ReferrerSerializer(serializers.ModelSerializer):
         referrer = Referrer.objects.create(address=address, applicant=applicant, **validated_data)
         return referrer
 
+    def update(self, instance: Referrer, validated_data):
+        if "address" in validated_data:
+            for field, value in validated_data.pop("address").items():
+                setattr(instance.address, field, value)
+            instance.address.save()
+
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        instance.save()
+
+        return instance
+
 
 class ApplicationSerializer(serializers.ModelSerializer):
     person = PersonSerializer()
@@ -71,6 +83,30 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
         if 'unit_number' in validated_data:
             unit_number = validated_data.pop('unit_number')
+
+        if "person" in validated_data:
+            for field, value in validated_data.pop("person").items():
+                setattr(instance.person, field, value)
+            instance.person.save()
+
+        if "current_address" in validated_data:
+            for field, value in validated_data.pop("current_address").items():
+                setattr(instance.current_address, field, value)
+            instance.current_address.save()
+
+        if "referrers" in validated_data:
+            referrers_data = validated_data.pop('referrers')
+
+            for i, r in enumerate(instance.referrers.all()):
+                r_data = referrers_data[i]
+                if "address" in r_data:
+                    for field, value in r_data.pop("address").items():
+                        setattr(r.address, field, value)
+                    r.address.save()
+
+                for field, value in r_data.items():
+                    setattr(r, field, value)
+                r.save()
 
         room = Room.objects.get(unit__number=unit_number, number=room_number)
         instance.room = room

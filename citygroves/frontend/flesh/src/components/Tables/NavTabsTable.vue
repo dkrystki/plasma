@@ -8,7 +8,7 @@
       >
 
         <md-table-cell>
-          <router-link :to="{ name: 'ApplicationsDetails', params: { id: item.id }}">
+          <router-link :to="{ name: 'Application', params: { id: item.id }}">
           <div
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
           >{{item.name}}</div>

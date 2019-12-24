@@ -69,9 +69,9 @@ class ApplicationFactory(factory.DjangoModelFactory):
 
     @factory.post_generation
     def referrers(self, create, extracted, **kwargs):
-        if not create:
-            self.referrers.add(ReferrerFactory())
-            self.referrers.add(ReferrerFactory())
+        if create:
+            self.referrers.add(ReferrerFactory(applicant=self.person))
+            self.referrers.add(ReferrerFactory(applicant=self.person))
             return
 
         if extracted:

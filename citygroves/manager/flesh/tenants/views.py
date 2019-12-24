@@ -1,9 +1,10 @@
 from pathlib import Path
 
+from django.db.models import Prefetch
 from django.http import HttpResponse
 from rest_framework import generics, mixins, viewsets
 
-from tenants.models import Application, Person
+from tenants import models
 from tenants import serializers
 
 import logging
@@ -16,7 +17,8 @@ class ApplicationViewSet(viewsets.GenericViewSet,
                          mixins.ListModelMixin,
                          mixins.RetrieveModelMixin,
                          mixins.UpdateModelMixin):
-    queryset = Application.objects.all()
+    queryset = models.Application.objects.prefetch_related(Prefetch('referrers',
+                                                                    queryset=models.Referrer.objects.order_by('id')))
     serializer_class = serializers.ApplicationSerializer
 
 
@@ -24,12 +26,28 @@ class PeopleViewset(viewsets.GenericViewSet,
                     mixins.ListModelMixin,
                     mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin):
-    queryset = Person.objects.all()
+    queryset = models.Person.objects.all()
     serializer_class = serializers.PersonSerializer
 
 
+class ReferrersViewset(viewsets.GenericViewSet,
+                       mixins.ListModelMixin,
+                       mixins.RetrieveModelMixin,
+                       mixins.UpdateModelMixin):
+    queryset = models.Referrer.objects.all()
+    serializer_class = serializers.ReferrerSerializer
+
+
+class AddressesViewset(viewsets.GenericViewSet,
+                       mixins.ListModelMixin,
+                       mixins.RetrieveModelMixin,
+                       mixins.UpdateModelMixin):
+    queryset = models.Address.objects.all()
+    serializer_class = serializers.AddressSerializer
+
+
 class GetApplicationLease(generics.RetrieveAPIView):
-    queryset = Application.objects.all()
+    queryset = models.Application.objects.all()
     serializer_class = serializers.ApplicationSerializer
 
     def get(self, request, *args, **kwargs):
