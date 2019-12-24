@@ -3,26 +3,34 @@ from pathlib import Path
 from django.http import HttpResponse
 from rest_framework import generics, mixins, viewsets
 
-from tenants.models import Application
-from tenants.serializers import ApplicationSerializer
+from tenants.models import Application, Person
+from tenants import serializers
 
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-class CrudApplication(viewsets.GenericViewSet,
-                      mixins.CreateModelMixin,
-                      mixins.ListModelMixin,
-                      mixins.RetrieveModelMixin,
-                      mixins.UpdateModelMixin):
+class ApplicationViewSet(viewsets.GenericViewSet,
+                         mixins.CreateModelMixin,
+                         mixins.ListModelMixin,
+                         mixins.RetrieveModelMixin,
+                         mixins.UpdateModelMixin):
     queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
+    serializer_class = serializers.ApplicationSerializer
+
+
+class PeopleViewset(viewsets.GenericViewSet,
+                    mixins.ListModelMixin,
+                    mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin):
+    queryset = Person.objects.all()
+    serializer_class = serializers.PersonSerializer
 
 
 class GetApplicationLease(generics.RetrieveAPIView):
     queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
+    serializer_class = serializers.ApplicationSerializer
 
     def get(self, request, *args, **kwargs):
         application = self.get_object()

@@ -15,11 +15,24 @@ class Address {
 }
 
 class Person {
+    apiInterface: ApiInterface;
+
     first_name: String;
     last_name: String;
     email: String;
     phone: String;
     dob: Date;
+
+    constructor(apiInterface: ApiInterface, payload: Object) {
+        this.apiInterface = apiInterface;
+        for (const [name, value] of Object.entries(payload)) {
+            this[name] = value;
+        }
+    }
+
+    save() {
+        this.apiInterface.update(this);
+    }
 }
 
 
@@ -43,6 +56,8 @@ class Room {
 
 
 class Application {
+    apiInterface: ApiInterface;
+
     person: Person;
     room: Room;
     current_address: Address;
@@ -61,43 +76,56 @@ class Application {
     getTitle(): String {
         return `${this.person.first_name} ${this.person.last_name} U${this.room.unit.number}R${this.room.number}`
     }
-    constructor(payload: Object) {
+    constructor(apiInterface: ApiInterface, payload: Object) {
+        this.apiInterface = apiInterface;
         for (const [name, value] of Object.entries(payload)) {
             this[name] = value;
         }
     }
 }
 
-class Applications {
+class ApiInterface {
     manager: Manager;
+    ApiObjectType;
+    endpoint: String;
 
-    constructor(manager: Manager) {
+    constructor(manager: Manager, ApiObjectType, endpoint: String) {
         this.manager = manager;
+        this.endpoint = endpoint;
+        this.ApiObjectType = ApiObjectType;
     }
 
     getAll(): Array<Application> {
-        return axios.get(`${this.manager.api_url}applications/`).then(req => {
+        return axios.get(`${this.manager.apiUrl}${this.endpoint}`).then(req => {
             let applications: Array<Application> = [];
             for(const a of req.data) {
-                applications.push(new Application(a));
+                applications.push(new this.ApiObjectType(this, a));
             }
             return applications;
         });
     }
 
     get(id: Number): Application {
-        return axios.get(`${this.manager.api_url}applications/${id}/`).then(req => {
-            return new Application(req.data);
+        return axios.get(`${this.manager.apiUrl}${this.endpoint}${id}/`).then(req => {
+            return new this.ApiObjectType(this, req.data);
         });
+    }
+    update(apiObject): Application {
+        let payload = Object.assign({}, apiObject);
+        delete payload.apiInterface;
+
+        return axios.put(`${this.manager.apiUrl}${this.endpoint}${payload.id}/`, payload);
     }
 }
 
 export class Manager {
-    api_url: string;
-    applications: Applications;
+    apiUrl: string;
+    applications: ApiInterface;
+    people: ApiInterface;
 
     constructor() {
-        this.api_url = Config.managerApiUrl;
-        this.applications = new Applications(this);
+        this.apiUrl = Config.managerApiUrl;
+        this.applications = new ApiInterface(this, Application, "applications/");
+        this.people = new ApiInterface(this, Person, "people/");
     }
 }

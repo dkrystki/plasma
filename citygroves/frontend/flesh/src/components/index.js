@@ -8,11 +8,16 @@ import NavTabsTable from "./Tables/NavTabsTable.vue";
 import OrderedTable from "./Tables/OrderedTable.vue";
 import SimpleTable from "./Tables/SimpleTable.vue";
 
+import Person from "./Person.vue";
+import Address from "./Address.vue";
+
 export {
-  ChartCard,
-  NavTabsCard,
-  StatsCard,
-  NavTabsTable,
-  OrderedTable,
-  SimpleTable
+    ChartCard,
+    NavTabsCard,
+    StatsCard,
+    NavTabsTable,
+    OrderedTable,
+    SimpleTable,
+    Person,
+    Address,
 };

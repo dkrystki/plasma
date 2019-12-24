@@ -39,3 +39,20 @@ def test_list_applicant(create_rooms, client, application_factory):
     assert response.status_code == 200
     assert len(response.data.serializer.instance) == 2
 
+
+@pytest.mark.django_db
+def test_update_get_person(create_rooms, client, sample_application):
+    response = client.get(reverse("tenants:people-detail", kwargs={"pk": sample_application.person.pk}),
+                          content_type='application/json')
+    assert response.status_code == 200
+    assert response.data.serializer.instance.first_name == "Josh"
+
+
+@pytest.mark.django_db
+def test_list_people(create_rooms, client, application_factory):
+    app1 = application_factory()
+    app2 = application_factory()
+
+    response = client.get(reverse("tenants:people-list"), content_type='application/json')
+    assert response.status_code == 200
+    assert len(response.data.serializer.instance) == 2
