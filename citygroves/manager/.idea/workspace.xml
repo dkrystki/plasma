@@ -2,41 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57c16f04-bc7e-40e6-bf7f-55507964f5d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Referrer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bin/stage" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../comm/bash/stage.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/material-dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/material-dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_layout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_sidebar-and-main-panel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_sidebar-and-main-panel.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_tables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_tables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/Address.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Address.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/Person.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Person.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/NavTabsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/Tables/NavTabsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Application.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Application.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Icons.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/DashboardLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/DashboardLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Maps.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/TableList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Typography.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/UpgradeToPRO.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/ContentFooter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/ContentFooter.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/factories.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/factories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tenants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tenants/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/test_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flesh/tests/tenants/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/flesh/tests/tenants/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../skaffold.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../skaffold.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/python/plasma/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/python/plasma/utils/deploy.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,7 +344,7 @@
       <workItem from="1576802468251" duration="599000" />
       <workItem from="1576819239561" duration="9491000" />
       <workItem from="1576934239939" duration="1198000" />
-      <workItem from="1576980696058" duration="21503000" />
+      <workItem from="1576980696058" duration="22110000" />
     </task>
     <servers />
   </component>

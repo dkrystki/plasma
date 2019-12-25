@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="" />
+    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../comm/bash/stage.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/python/plasma/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/plasma/utils/deploy.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +32,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/envs/stage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -43,19 +46,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/flesh/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend" />
-      <recent name="$PROJECT_DIR$/frontend/flesh/src/apis" />
-      <recent name="$PROJECT_DIR$/frontend/flesh/src" />
-      <recent name="$PROJECT_DIR$/frontend/flesh/src/assets" />
-      <recent name="$PROJECT_DIR$/frontend/flesh/src/components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/manager/chart" />
       <recent name="$PROJECT_DIR$/appgen/chart" />
       <recent name="$PROJECT_DIR$/frontend/chart" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/frontend" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/envs/stage" />
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$/frontend/flesh/src/apis" />
+      <recent name="$PROJECT_DIR$/frontend/flesh/src" />
+      <recent name="$PROJECT_DIR$/frontend/flesh/src/assets" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.pytest in test_all.py">
@@ -125,7 +128,7 @@
       <workItem from="1576802467778" duration="1183000" />
       <workItem from="1576819240144" duration="18828000" />
       <workItem from="1576934239841" duration="6830000" />
-      <workItem from="1576980696150" duration="5492000" />
+      <workItem from="1576980696150" duration="6726000" />
     </task>
     <servers />
   </component>
@@ -220,7 +223,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/flesh/src/apis/manager.ts</url>
-          <line>95</line>
+          <line>114</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -48,7 +48,7 @@ class Helm:
                 pass
 
         if values_path == "Default":
-            values_path = f"values/local/{self.release_name}.yaml"
+            values_path = f"values/{env.str('stage')}/{self.release_name}.yaml"
 
         run(f"""helm {"upgrade --install" if upgrade else "install"} \
                 {"" if upgrade else "--name"} {self.namespaced_name} \
@@ -80,7 +80,7 @@ class Namespace:
 
         self.name: str = name
         config.load_kube_config(
-            os.path.join(os.environ["PROJECT_ROOT"], 'envs/local/kubeconfig.yaml'))
+            os.path.join(os.environ["PROJECT_ROOT"], f'envs/{env.str("stage")}/kubeconfig.yaml'))
 
         self.kube = client.CoreV1Api()
 
@@ -132,11 +132,7 @@ class Namespace:
             run(f"kubectl label namespace {self.name} istio-injection=enabled --overwrite")
 
         if add_pull_secret:
-            logger.info(f"🚀Adding pull secret to {self.name}")
-            run(f"""kubectl create secret docker-registry pullsecret -n {self.name} \
-            --docker-server=shangren.registry.local \
-            --docker-username=user --docker-password=password --docker-email=kwazar90@gmail.com \
-                          --dry-run -o yaml | kubectl apply -f -""")
+            self._add_pullsecret()
 
     def helm(self, release_name: str) -> Helm:
         """

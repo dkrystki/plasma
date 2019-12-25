@@ -3,11 +3,8 @@
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
         <md-button class="md-primary" @click="goBack">Back</md-button>
-        <md-card v-if="this.application !== null">
-          <md-card-header data-background-color="green">
-            <h4 class="title">{{this.application.getTitle()}}</h4>
-          </md-card-header>
-          <md-card-content>
+        <md-card >
+          <md-card-content v-if="this.application !== null">
             <v-row>
               <v-col cols="12" md="6">
                 <Person :id="this.application.person.id"/>
@@ -16,9 +13,9 @@
                 <Address :id="this.application.current_address.id"/>
               </v-col>
             </v-row>
-            <v-row >
+            <v-row>
               <v-col v-for="r of this.application.referrers" v-bind:key="r.id" cols="12" md="6">
-              <Referrer :id="r.id"/>
+                <Referrer :id="r.id"/>
               </v-col>
             </v-row>
             <v-row>
@@ -71,6 +68,13 @@
               </v-col>
             </v-row>
           </md-card-content>
+          <md-card-actions>
+            <v-spacer/>
+              <md-button class="md-primary" @click="downloadLease">Download lease</md-button>
+            <v-spacer/>
+              <md-button class="md-primary" @click="goBack">Finalise</md-button>
+            <v-spacer/>
+          </md-card-actions>
         </md-card>
       </div>
     </div>
@@ -119,7 +123,10 @@
         },
         methods: {
             goBack() {
-
+                this.$router.go(-1);
+            },
+            downloadLease() {
+                this.application.getLease();
             },
             onChange() {
                 this.application.unit_number = this.unit_number;
