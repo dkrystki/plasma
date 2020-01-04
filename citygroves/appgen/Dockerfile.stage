@@ -7,15 +7,14 @@ ENV SHELL /bin/bash
 ENV STAGE local
 
 WORKDIR /srv
-COPY docker_comm docker_comm
-COPY mockexchs/bitstamp/docker docker
-RUN bash docker_comm/debug/setup.sh
 
-COPY mockexchs/bitstamp/flesh/Pipfile Pipfile
-COPY mockexchs/bitstamp/flesh/Pipfile.lock Pipfile.lock
+RUN pip3 install poetry
+RUN poetry config virtualenvs.create false
 
-# Install common
-RUN pip3 install pipenv
+COPY citygroves/appgen/flesh/pyproject.toml pyproject.toml
+COPY citygroves/appgen/flesh/poetry.lock poetry.lock
 
-RUN pipenv install --system
-COPY mockexchs/bitstamp/flesh .
+RUN poetry install
+COPY citygroves/appgen/flesh .
+COPY comm/python/plasma /usr/local/lib/python3.7/plasma
+COPY citygroves/comm/python/citygroves /usr/local/lib/python3.7/citygroves

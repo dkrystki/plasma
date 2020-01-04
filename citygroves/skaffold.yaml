@@ -8,7 +8,7 @@ profiles:
       tagPolicy:
         sha256: {}
       artifacts:
-      - image: shangren.registry.local/citygroves/manager
+      - image: shangren.registry.local/citygroves-local/manager
         docker:
           dockerfile: citygroves/manager/Dockerfile.local
         context: ../
@@ -16,7 +16,7 @@ profiles:
           infer:
            - 'citygroves/manager/flesh/**/*.py'
            - '**/.idea/**'
-      - image: shangren.registry.local/citygroves/appgen
+      - image: shangren.registry.local/citygroves-local/appgen
         docker:
           dockerfile: citygroves/appgen/Dockerfile.local
         context: ../
@@ -24,7 +24,7 @@ profiles:
           infer:
             - 'citygroves/appgen/flesh/**/*.py'
             - '**/.idea/**'
-      - image: shangren.registry.local/citygroves/frontend
+      - image: shangren.registry.local/citygroves-local/frontend
         docker:
           dockerfile: citygroves/frontend/Dockerfile.local
         context: ../
@@ -42,26 +42,74 @@ profiles:
     deploy:
       helm:
         releases:
-          - name: citygroves-manager
+          - name: citygroves-local-manager
             chartPath: manager/chart
-            namespace: citygroves
+            namespace: citygroves-local
             valuesFiles:
-              - manager/values/local.yaml
+              - manager/values/local/manager.yaml
             values:
-              image: shangren.registry.local/citygroves/manager
+              image: shangren.registry.local/citygroves-local/manager
 
-          - name: citygroves-appgen
+          - name: citygroves-local-appgen
             chartPath: appgen/chart
-            namespace: citygroves
+            namespace: citygroves-local
             valuesFiles:
-              - appgen/values/local.yaml
+              - appgen/values/local/appgen.yaml
             values:
-              image: shangren.registry.local/citygroves/appgen
+              image: shangren.registry.local/citygroves-local/appgen
 
-          - name: citygroves-frontend
+          - name: citygroves-local-frontend
             chartPath: frontend/chart
-            namespace: citygroves
+            namespace: citygroves-local
             valuesFiles:
-              - frontend/values/local.yaml
+              - frontend/values/local/frontend.yaml
             values:
-              image: shangren.registry.local/citygroves/frontend
+              image: shangren.registry.local/citygroves-local/frontend
+
+
+  - name: stage
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-stage/manager
+        docker:
+          dockerfile: citygroves/manager/Dockerfile.stage
+        context: ../
+      - image: shangren.registry.local/citygroves-stage/appgen
+        docker:
+          dockerfile: citygroves/appgen/Dockerfile.stage
+        context: ../
+      - image: shangren.registry.local/citygroves-stage/frontend
+        docker:
+          dockerfile: citygroves/frontend/Dockerfile.stage
+        context: ../
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-stage-manager
+            chartPath: manager/chart
+            namespace: citygroves-stage
+            valuesFiles:
+              - manager/values/stage/manager.yaml
+            values:
+              image: shangren.registry.local/citygroves-stage/manager
+
+          - name: citygroves-stage-appgen
+            chartPath: appgen/chart
+            namespace: citygroves-stage
+            valuesFiles:
+              - appgen/values/stage/appgen.yaml
+            values:
+              image: shangren.registry.local/citygroves-stage/appgen
+
+          - name: citygroves-stage-frontend
+            chartPath: frontend/chart
+            namespace: citygroves-stage
+            valuesFiles:
+              - frontend/values/stage/frontend.yaml
+            values:
+              image: shangren.registry.local/citygroves-stage/frontend

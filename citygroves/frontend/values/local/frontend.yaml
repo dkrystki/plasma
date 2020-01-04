@@ -1,0 +1,35 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: pullsecret
+
+service:
+  type: ClusterIP
+  port: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+sentry:
+  dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
+
+manager:
+  apiUrl: "http://citygroves.backend.local/api/"
+
+
+ingress:
+  enabled: True
+
+  hosts:
+    - host: citygroves.frontend.local
+      paths:
+        - "/"

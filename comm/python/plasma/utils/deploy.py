@@ -48,7 +48,7 @@ class Helm:
                 pass
 
         if values_path == "Default":
-            values_path = f"values/{env.str('stage')}/{self.release_name}.yaml"
+            values_path = f"values/{env.str('STAGE')}/{self.release_name}.yaml"
 
         run(f"""helm {"upgrade --install" if upgrade else "install"} \
                 {"" if upgrade else "--name"} {self.namespaced_name} \
@@ -80,7 +80,7 @@ class Namespace:
 
         self.name: str = name
         config.load_kube_config(
-            os.path.join(os.environ["PROJECT_ROOT"], f'envs/{env.str("stage")}/kubeconfig.yaml'))
+            os.path.join(os.environ["PROJECT_ROOT"], f'envs/{env.str("STAGE")}/kubeconfig.yaml'))
 
         self.kube = client.CoreV1Api()
 

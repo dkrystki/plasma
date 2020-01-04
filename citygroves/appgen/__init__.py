@@ -3,13 +3,10 @@ import os
 
 from loguru import logger
 
-from citygroves.core import namespace, stage
+import core
 
 
 def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
     logger.info("Deploying appgen.")
-
-    if stage == "stage":
-        namespace.helm("manager").install("./chart")

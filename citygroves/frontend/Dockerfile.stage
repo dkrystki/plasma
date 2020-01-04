@@ -1,4 +1,4 @@
-FROM python:3.7-slim-stretch
+FROM node:13.5.0-stretch-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
@@ -7,15 +7,10 @@ ENV SHELL /bin/bash
 ENV STAGE local
 
 WORKDIR /srv
-COPY docker_comm docker_comm
-COPY mockexchs/bitstamp/docker docker
-RUN bash docker_comm/debug/setup.sh
 
-COPY mockexchs/bitstamp/flesh/Pipfile Pipfile
-COPY mockexchs/bitstamp/flesh/Pipfile.lock Pipfile.lock
+COPY citygroves/frontend/flesh/package.json package.json
+COPY citygroves/frontend/flesh/yarn.lock yarn.lock
 
-# Install common
-RUN pip3 install pipenv
+RUN yarn install -d
 
-RUN pipenv install --system
-COPY mockexchs/bitstamp/flesh .
+COPY citygroves/frontend/flesh .

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-skaffold dev -p local
+skaffold dev -p $STAGE

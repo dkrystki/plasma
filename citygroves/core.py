@@ -1,6 +1,6 @@
 import environ
 
-from comm.python.plasma.utils.deploy import Namespace
+from plasma.utils.deploy import Namespace
 
 env = environ.Env()
 

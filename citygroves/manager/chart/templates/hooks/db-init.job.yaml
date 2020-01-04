@@ -19,7 +19,7 @@ spec:
       name: "{{ .Release.Name }}-db-init"
       labels:
         app: {{ include "chart.name" . }}
-        release: "{{ .Release.Name }}"
+        release: "{{ .Release.fullName }}"
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
@@ -37,7 +37,10 @@ spec:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image }}
           command: ["/bin/sh", "-c"]
-          args: ["python manage.py migrate"]
+          args:
+            - python manage.py migrate;
+              python manage.py loaddata housing/fixtures/units.yaml;
+              python manage.py loaddata housing/fixtures/rooms.yaml;
           imagePullPolicy: {{ .Values.pullPolicy }}
           ports:
             - name: http
@@ -62,3 +65,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+
+

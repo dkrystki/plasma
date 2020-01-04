@@ -2,24 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57c16f04-bc7e-40e6-bf7f-55507964f5d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../bin/stage" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../core.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../comm/bash/stage.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../appgen/values/stage/appgen.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/values/stage/frontend.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/values/stage/manager.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../values/stage/postgresql.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../values/stage/redis.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/Dockerfile.stage" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/Dockerfile.stage" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../appgen/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../appgen/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../appgen/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../appgen/values/local/appgen.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../comm/python/citygroves/api_clients/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/citygroves/api_clients/manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../core.py" beforeDir="false" afterPath="$PROJECT_DIR$/../core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Dockerfile.stage" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Dockerfile.stage" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/apis/manager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/assets/scss/md/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/components/SidebarPlugin/SideBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Application.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Application.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Applications.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/ContentFooter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flesh/src/pages/Layout/ContentFooter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/chart/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/chart/templates/service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/values/local/frontend.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.stage" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.stage" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/terminal" beforeDir="false" afterPath="$PROJECT_DIR$/bin/terminal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/templates/hooks/db-init.job.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/chart/templates/hooks/db-init.job.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chart/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/chart/templates/service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/values/local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/values/local/manager.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../skaffold.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../skaffold.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../comm/bash/run-skaffold.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/bash/run-skaffold.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../comm/python/plasma/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../comm/python/plasma/utils/deploy.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -344,7 +354,7 @@
       <workItem from="1576802468251" duration="599000" />
       <workItem from="1576819239561" duration="9491000" />
       <workItem from="1576934239939" duration="1198000" />
-      <workItem from="1576980696058" duration="22110000" />
+      <workItem from="1576980696058" duration="23086000" />
     </task>
     <servers />
   </component>
@@ -412,6 +422,10 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="634" y="131" key="SettingsEditor/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1577150041078" />
+    <state x="906" y="294" width="344" height="574" key="VCS.ChangeListViewerDialog" timestamp="1577262142778">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="906" y="294" width="344" height="574" key="VCS.ChangeListViewerDialog/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1577262142778" />
     <state width="2335" height="470" key="XDebugger.FullValuePopup" timestamp="1576331924606">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>

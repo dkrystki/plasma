@@ -1,0 +1,32 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: pullsecret
+
+service:
+  type: NodePort
+  ports:
+    - name: http
+      nodePort: 31890
+      targetPort: 80
+      port: 80
+      protocol: TCP
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+sentry:
+  dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
+
+manager:
+  apiUrl: "http://60.242.11.2:8223/api/"
+

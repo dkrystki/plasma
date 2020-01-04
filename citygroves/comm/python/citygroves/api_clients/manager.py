@@ -66,7 +66,7 @@ class Application:
 class Applications:
     def __init__(self, manager: 'Manager'):
         self._manager = manager
-        self._base_url = furl("applications")
+        self._base_url = furl("applications/")
 
     def create(self, application: Application) -> None:
         payload: Dict[str, Any] = asdict(application)

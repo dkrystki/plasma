@@ -4,14 +4,26 @@
 
 replicaCount: 1
 
+image: shangren.registry.local/citygroves/manager:latest
 pullPolicy: IfNotPresent
 
 imagePullSecrets:
   - name: pullsecret
 
+servicePublic:
+  type: NodePort
+  ports:
+    - name: http
+      nodePort: 31891
+      targetPort: 8000
+      port: 8000
+      protocol: TCP
+
+
 service:
   type: ClusterIP
   port: 80
+
 
 nodeSelector: {}
 
@@ -22,17 +34,9 @@ affinity: {}
 sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
 
-manager:
-  apiUrl: "http://citygroves.backend.local/api/"
-
-
-ingress:
-  enabled: True
-
-  hosts:
-    - host: citygroves.frontend.local
-      paths:
-        - "/"
-    - host: citygroves.frontend.global
-      paths:
-        - "/"
+db:
+  name: manager
+  user: postgres
+  password: cGFzc3dvcmQ=
+  host: postgresql
+  port: 5432
