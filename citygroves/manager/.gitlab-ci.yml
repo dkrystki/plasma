@@ -1,0 +1,11 @@
+---
+
+test:
+  image: "python:3.7.4"
+  stage: lint-and-test
+  only:
+    changes:
+      - "**/*.py"
+  script:
+    - echo "testing"
+    - sleep 20

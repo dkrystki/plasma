@@ -1,0 +1,3 @@
+---
+include:
+  - '/citygroves/manager/.gitlab-ci.yml'

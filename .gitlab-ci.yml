@@ -1,0 +1,6 @@
+---
+stages:
+  - lint-and-test
+
+include:
+  - '/citygroves/.gitlab-ci.yml'
