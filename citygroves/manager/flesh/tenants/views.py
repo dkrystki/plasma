@@ -30,6 +30,14 @@ class PeopleViewset(viewsets.GenericViewSet,
     serializer_class = serializers.PersonSerializer
 
 
+class TenantsViewset(viewsets.GenericViewSet,
+                     mixins.ListModelMixin,
+                     mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin):
+    queryset = models.Tenant.objects.all()
+    serializer_class = serializers.TenantSerializer
+
+
 class ReferrersViewset(viewsets.GenericViewSet,
                        mixins.ListModelMixin,
                        mixins.RetrieveModelMixin,

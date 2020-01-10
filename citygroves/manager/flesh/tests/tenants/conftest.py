@@ -7,6 +7,7 @@ from django.core.management import call_command
 import tenants.factories
 
 pytest_factoryboy.register(tenants.factories.PersonFactory)
+pytest_factoryboy.register(tenants.factories.TenantFactory)
 pytest_factoryboy.register(tenants.factories.AddressFactory)
 pytest_factoryboy.register(tenants.factories.ReferrerFactory)
 pytest_factoryboy.register(tenants.factories.ApplicationFactory)
@@ -19,7 +20,18 @@ def sample_person_payload():
         "last_name": "Krystkiewicz",
         "email": "testdf@gmail.au",
         "phone": "112341342",
-        "dob": "2020-11-20"
+        "dob": "1990-11-20"
+    }
+
+
+@fixture
+def sample_tenant_payload(sample_person_payload):
+    return {
+        "person": sample_person_payload,
+        "room_number": 6,
+        "unit_number": 5,
+        "lease_start": "2020-11-20",
+        "lease_end": "2021-11-20",
     }
 
 
@@ -91,6 +103,12 @@ def sample_application(create_rooms, application_factory):
 def sample_person(person_factory):
     person = person_factory()
     return person
+
+
+@fixture
+def sample_tenant(create_rooms, tenant_factory):
+    tenant = tenant_factory()
+    return tenant
 
 
 @fixture

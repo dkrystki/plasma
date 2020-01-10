@@ -71,7 +71,7 @@ class TestPerson:
                                    content_type='application/json')
         assert response.status_code == 200
         sample_person.refresh_from_db()
-        assert sample_person.first_name == "Josh"
+        assert sample_person.first_name == response.data["first_name"]
 
     def test_patch(self, sample_person):
         response = self.client.patch(reverse("tenants:people-detail", kwargs={"pk": sample_person.pk}),
@@ -100,6 +100,53 @@ class TestPerson:
 
 
 @pytest.mark.usefixtures("db")
+class TestTenant:
+    @pytest.fixture(autouse=True)
+    def setup(self, client):
+        self.client = client
+
+    def test_get(self, sample_tenant):
+        response = self.client.get(reverse("tenants:tenants-detail", kwargs={"pk": sample_tenant.pk}),
+                                   content_type='application/json')
+        assert response.status_code == 200
+        sample_tenant.refresh_from_db()
+        assert sample_tenant.person.first_name == response.data["person"]["first_name"]
+
+    def test_patch(self, sample_tenant):
+        response = self.client.patch(reverse("tenants:tenants-detail", kwargs={"pk": sample_tenant.pk}),
+                                     {"person": {"first_name": "NewName"},
+                                      "room_number": 2,
+                                      "unit_number": 5},
+                                     content_type='application/json')
+        assert response.status_code == 200
+        sample_tenant.refresh_from_db()
+        assert sample_tenant.person.first_name == "NewName"
+        assert sample_tenant.room.number == 2
+        assert sample_tenant.room.unit.number == 5
+
+    def test_put(self, sample_tenant, sample_tenant_payload):
+        sample_tenant_payload["person"]["first_name"] = "NewName"
+        sample_tenant_payload["room_number"] = 4
+        sample_tenant_payload["unit_number"] = 8
+        response = self.client.put(reverse("tenants:tenants-detail", kwargs={"pk": sample_tenant.pk}),
+                                   sample_tenant_payload,
+                                   content_type='application/json')
+        assert response.status_code == 200
+        sample_tenant.refresh_from_db()
+        assert sample_tenant.person.first_name == "NewName"
+        assert sample_tenant.room.number == 4
+        assert sample_tenant.room.unit.number == 8
+
+    def test_list(self, create_rooms, tenant_factory):
+        person1 = tenant_factory()
+        person2 = tenant_factory()
+
+        response = self.client.get(reverse("tenants:tenants-list"), content_type='application/json')
+        assert response.status_code == 200
+        assert len(response.data) == 2
+
+
+@pytest.mark.usefixtures("db")
 class TestAddress:
 
     @pytest.fixture(autouse=True)
@@ -111,7 +158,7 @@ class TestAddress:
                                    content_type='application/json')
         assert response.status_code == 200
         sample_address.refresh_from_db()
-        assert sample_address.street_line1 == "Australian street line1"
+        assert sample_address.street_line1 == response.data["street_line1"]
 
     def test_patch(self, sample_address):
         response = self.client.patch(reverse("tenants:addresses-detail", kwargs={"pk": sample_address.pk}),
@@ -151,7 +198,7 @@ class TestReferrers:
                                    content_type='application/json')
         assert response.status_code == 200
         sample_referrer.refresh_from_db()
-        assert sample_referrer.first_name == "Josh"
+        assert sample_referrer.first_name == response.data["first_name"]
 
     def test_patch(self, sample_referrer):
         response = self.client.patch(reverse("tenants:referrers-detail", kwargs={"pk": sample_referrer.pk}),

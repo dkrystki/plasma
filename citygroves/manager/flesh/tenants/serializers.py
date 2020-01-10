@@ -1,7 +1,7 @@
 from typing import Dict, Any
 
 from housing.models import Room, Unit
-from tenants.models import Application, Person, Address, Referrer
+from tenants.models import Application, Person, Address, Referrer, Tenant
 from rest_framework import serializers
 
 
@@ -29,6 +29,54 @@ class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = "__all__"
+
+
+class TenantSerializer(serializers.ModelSerializer):
+    person = PersonSerializer()
+    room = RoomSerializer(read_only=True)
+    room_number = serializers.IntegerField(write_only=True)
+    unit_number = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = Tenant
+        fields = "__all__"
+
+    def create(self, validated_data) -> Referrer:
+        person = Person.objects.create(**validated_data.pop('person'))
+        room_number = validated_data.pop('room_number')
+        unit_number = validated_data.pop('unit_number')
+        room = Room.objects.get(unit__number=unit_number, number=room_number)
+
+        referrer = Tenant.objects.create(person=person, applicant=room, **validated_data)
+        return referrer
+
+    def update(self, instance: Referrer, validated_data):
+        unit_number: int = instance.room.unit.number
+        room_number: int = instance.room.number
+
+        if 'room_number' in validated_data:
+            room_number = validated_data.pop('room_number')
+
+        if 'unit_number' in validated_data:
+            unit_number = validated_data.pop('unit_number')
+
+        if "person" in validated_data:
+            serializer = PersonSerializer(data=validated_data.pop("person"), partial=True)
+            serializer.is_valid(raise_exception=True)
+
+            for field, value in serializer.validated_data.items():
+                setattr(instance.person, field, value)
+
+            instance.person.save()
+
+        room = Room.objects.get(unit__number=unit_number, number=room_number)
+        instance.room = room
+
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        instance.save()
+
+        return instance
 
 
 class ReferrerSerializer(serializers.ModelSerializer):

@@ -22,6 +22,15 @@ class PersonFactory(factory.DjangoModelFactory):
     phone = "123123123"
 
 
+class TenantFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = models.Tenant
+        strategy = factory.CREATE_STRATEGY
+
+    person = factory.SubFactory(PersonFactory)
+    room = factory.LazyAttribute(lambda o: Room.objects.get(id=1))
+
+
 class AddressFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Address

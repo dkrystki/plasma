@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../comm/python/plasma/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/plasma/utils/deploy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shangren/aux/gitlab/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shangren/aux/gitlab/delete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shangren/aux/gitlab/values/local/runner.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../shangren/aux/gitlab/values/local/runner.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shangren/aux/misc/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shangren/aux/misc/__init__.py" afterDir="false" />
-    </list>
+    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
