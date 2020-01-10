@@ -4,7 +4,6 @@
 
 replicaCount: 1
 
-#image: shangren/mockexchs.bitstamp
 pullPolicy: IfNotPresent
 
 imagePullSecrets:
@@ -13,6 +12,15 @@ imagePullSecrets:
 service:
   type: ClusterIP
   port: 80
+
+servicePublic:
+  type: NodePort
+  ports:
+    - name: http
+      nodePort: 31892
+      targetPort: 8000
+      port: 8000
+      protocol: TCP
 
 nodeSelector: {}
 
@@ -29,6 +37,9 @@ db:
   password: cGFzc3dvcmQ=
   host: postgresql
   port: 5432
+
+initCmds:
+  python manage.py loaddata tenants/fixtures/applications.yaml;
 
 ingress:
   enabled: True

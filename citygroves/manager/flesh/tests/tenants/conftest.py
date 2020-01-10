@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 import pytest_factoryboy
 from pytest import fixture
 from django.core.management import call_command
@@ -100,3 +103,8 @@ def sample_address(address_factory):
 def sample_referrer(sample_application):
     referrer = sample_application.referrers.all()[0]
     return referrer
+
+
+@fixture
+def data_dir():
+    return Path(os.path.dirname(os.path.realpath(__file__))) / "data"

@@ -1,0 +1,78 @@
+- model: tenants.person
+  pk: 1
+  fields:
+    first_name: Keisuke
+    last_name: Kinjo
+    email: kagawa26c_ronaldo7iniesta8@outlook.com
+    dob: 1994-07-20
+    phone: 014-376-0533
+- model: tenants.address
+  pk: 1
+  fields:
+    street_line1: 80 Granville Street West End
+    street_line2: ''
+    street_line3: ''
+    city: brisbane
+    state: Queensland
+    country: Australia
+    post_code: '4101'
+    raw_address: "80 Granville Street West End\r\nbrisbane Queensland 4101\r\nAustralia"
+- model: tenants.address
+  pk: 2
+  fields:
+    street_line1: null
+    street_line2: null
+    street_line3: null
+    city: null
+    state: null
+    country: null
+    post_code: null
+    raw_address: Australia
+- model: tenants.address
+  pk: 3
+  fields:
+    street_line1: null
+    street_line2: null
+    street_line3: null
+    city: null
+    state: null
+    country: null
+    post_code: null
+    raw_address: Australia
+- model: tenants.referrer
+  pk: 1
+  fields:
+    first_name: null
+    last_name: null
+    email: null
+    phone: null
+    applicant: 1
+    address: 2
+- model: tenants.referrer
+  pk: 2
+  fields:
+    first_name: null
+    last_name: null
+    email: null
+    phone: null
+    applicant: 1
+    address: 3
+- model: tenants.application
+  pk: 1
+  fields:
+    person: 1
+    room: 61
+    current_address: 1
+    number_of_ppl_to_move_in: 1
+    move_in_date: 2019-12-14
+    guarantor_will_pay: true
+    centerlink_will_pay: false
+    is_employed: false
+    have_sufficient_funds: false
+    is_local_student: false
+    is_international_student: true
+    is_young_professional: false
+    digital_signature: ''
+    referrers:
+    - 1
+    - 2

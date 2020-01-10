@@ -33,7 +33,7 @@ class Helm:
         self.release_name = release_name
         self.namespaced_name = f"""{self.namespace.name + "-" if self.namespace.name else ""}{release_name}"""
 
-    def install(self, chart: str, values_path: str = "Default", version: str = None, upgrade=True) -> None:
+    def install(self, chart: str, version: str = None, upgrade=True, values_path: str = "Default") -> None:
         """
         :param values_path:
         :param chart: chart repository name

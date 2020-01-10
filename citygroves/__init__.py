@@ -11,6 +11,8 @@ def delete() -> None:
 def deploy() -> None:
     import core
     import manager
+    import frontend
+    import appgen
 
     os.chdir(Path(__file__).absolute().parent)
 
@@ -19,6 +21,8 @@ def deploy() -> None:
     core.namespace.helm("redis").install(chart="stable/redis", version="9.2.0")
 
     manager.deploy()
+    frontend.deploy()
+    appgen.deploy()
 
 
 if __name__ == "__main__":

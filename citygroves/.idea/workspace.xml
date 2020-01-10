@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="" />
+    <list default="true" id="37540182-73ff-4240-af9e-6fd671cc48ca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../comm/python/plasma/utils/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../comm/python/plasma/utils/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shangren/aux/gitlab/delete.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shangren/aux/gitlab/delete.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shangren/aux/gitlab/values/local/runner.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../shangren/aux/gitlab/values/local/runner.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../shangren/aux/misc/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shangren/aux/misc/__init__.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +34,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/envs/stage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/manager/flesh/tenants/fixtures" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -51,11 +56,11 @@
       <recent name="$PROJECT_DIR$/frontend" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/manager/flesh/tenants/fixtures" />
       <recent name="$PROJECT_DIR$/envs/stage" />
       <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/frontend/flesh/src/apis" />
       <recent name="$PROJECT_DIR$/frontend/flesh/src" />
-      <recent name="$PROJECT_DIR$/frontend/flesh/src/assets" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.pytest in test_all.py">
@@ -125,7 +130,7 @@
       <workItem from="1576802467778" duration="1183000" />
       <workItem from="1576819240144" duration="18828000" />
       <workItem from="1576934239841" duration="6830000" />
-      <workItem from="1576980696150" duration="11536000" />
+      <workItem from="1576980696150" duration="15447000" />
     </task>
     <servers />
   </component>
@@ -206,10 +211,10 @@
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
     <state x="2355" y="800" key="SettingsEditor/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576924139585" />
-    <state x="809" y="427" width="688" height="788" key="find.popup" timestamp="1576845507307">
+    <state x="809" y="427" width="692" height="788" key="find.popup" timestamp="1578573850207">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="809" y="427" width="688" height="788" key="find.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1576845507307" />
+    <state x="809" y="427" width="692" height="788" key="find.popup/0.0.3840.2160/3840.1080.1920.1080@0.0.3840.2160" timestamp="1578573850207" />
     <state x="815" y="340" width="672" height="678" key="search.everywhere.popup" timestamp="1576924734690">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>

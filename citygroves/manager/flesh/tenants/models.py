@@ -1,11 +1,12 @@
 from pathlib import Path
-from typing import BinaryIO, Dict, Any
+from typing import Dict, Any
 
 from django.db import models
 
 
 class Person(models.Model):
     first_name = models.CharField(max_length=127)
+    middle_names = models.CharField(max_length=127, null=True)
     last_name = models.CharField(max_length=127)
     email = models.EmailField(max_length=127, null=True, blank=True)
     dob = models.DateField(max_length=127, null=True)
@@ -77,3 +78,5 @@ class Tenant(models.Model):
     from housing.models import Room
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True)
+    lease_start = models.DateField(null=True)
+    lease_end = models.DateField(null=True)
