@@ -28,7 +28,7 @@
 
 <script>
     export default {
-        name: "nav-tabs-table",
+        name: "app-table",
         props: ["applications"],
         data() {
             return {
@@ -42,3 +42,4 @@
         }
     };
 </script>
+

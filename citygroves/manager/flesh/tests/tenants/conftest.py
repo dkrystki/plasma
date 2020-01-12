@@ -27,7 +27,10 @@ def sample_person_payload():
 @fixture
 def sample_tenant_payload(sample_person_payload):
     return {
-        "person": sample_person_payload,
+        "people": [
+            dict(sample_person_payload),
+            dict(sample_person_payload),
+        ],
         "room_number": 6,
         "unit_number": 5,
         "lease_start": "2020-11-20",
@@ -81,7 +84,7 @@ def sample_application_payload(sample_person_payload, sample_address_payload, sa
 
         "referrers":
             [
-                sample_referrer_payload, sample_referrer_payload
+                dict(sample_referrer_payload), dict(sample_referrer_payload)
             ]
     }
     return payload

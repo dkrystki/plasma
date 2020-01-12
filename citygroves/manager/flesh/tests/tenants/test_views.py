@@ -110,22 +110,25 @@ class TestTenant:
                                    content_type='application/json')
         assert response.status_code == 200
         sample_tenant.refresh_from_db()
-        assert sample_tenant.person.first_name == response.data["person"]["first_name"]
+        assert sample_tenant.people.all()[0].first_name == response.data["people"][0]["first_name"]
 
     def test_patch(self, sample_tenant):
         response = self.client.patch(reverse("tenants:tenants-detail", kwargs={"pk": sample_tenant.pk}),
-                                     {"person": {"first_name": "NewName"},
+                                     {"people": [{"first_name": "NewName1"},
+                                                 {"first_name": "NewName2"}],
                                       "room_number": 2,
                                       "unit_number": 5},
                                      content_type='application/json')
         assert response.status_code == 200
         sample_tenant.refresh_from_db()
-        assert sample_tenant.person.first_name == "NewName"
+        assert sample_tenant.people.all()[0].first_name == "NewName1"
+        assert sample_tenant.people.all()[1].first_name == "NewName2"
         assert sample_tenant.room.number == 2
         assert sample_tenant.room.unit.number == 5
 
     def test_put(self, sample_tenant, sample_tenant_payload):
-        sample_tenant_payload["person"]["first_name"] = "NewName"
+        sample_tenant_payload["people"][0]["first_name"] = "NewName1"
+        sample_tenant_payload["people"][1]["first_name"] = "NewName2"
         sample_tenant_payload["room_number"] = 4
         sample_tenant_payload["unit_number"] = 8
         response = self.client.put(reverse("tenants:tenants-detail", kwargs={"pk": sample_tenant.pk}),
@@ -133,7 +136,8 @@ class TestTenant:
                                    content_type='application/json')
         assert response.status_code == 200
         sample_tenant.refresh_from_db()
-        assert sample_tenant.person.first_name == "NewName"
+        assert sample_tenant.people.all()[0].first_name == "NewName1"
+        assert sample_tenant.people.all()[1].first_name == "NewName2"
         assert sample_tenant.room.number == 4
         assert sample_tenant.room.unit.number == 8
 

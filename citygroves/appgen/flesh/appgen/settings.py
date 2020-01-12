@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tasks'
 ]
 
 MIDDLEWARE = [
@@ -191,3 +192,4 @@ FORM_BUILDER_EMAIL = env.str("FORM_BUILDER_EMAIL")
 #             DjangoIntegration(),
 #         ],
 #     )
+

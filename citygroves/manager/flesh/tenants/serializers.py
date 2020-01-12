@@ -32,7 +32,7 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 class TenantSerializer(serializers.ModelSerializer):
-    person = PersonSerializer()
+    people = PersonSerializer(many=True)
     room = RoomSerializer(read_only=True)
     room_number = serializers.IntegerField(write_only=True)
     unit_number = serializers.IntegerField(write_only=True)
@@ -60,14 +60,15 @@ class TenantSerializer(serializers.ModelSerializer):
         if 'unit_number' in validated_data:
             unit_number = validated_data.pop('unit_number')
 
-        if "person" in validated_data:
-            serializer = PersonSerializer(data=validated_data.pop("person"), partial=True)
+        if "people" in validated_data:
+            serializer = PersonSerializer(data=validated_data.pop("people"), partial=True, many=True)
             serializer.is_valid(raise_exception=True)
 
-            for field, value in serializer.validated_data.items():
-                setattr(instance.person, field, value)
-
-            instance.person.save()
+            pd: Dict[str, Any]
+            for pd, p in zip(serializer.validated_data, instance.people.all()):
+                for field, value in pd.items():
+                    setattr(p, field, value)
+                p.save()
 
         room = Room.objects.get(unit__number=unit_number, number=room_number)
         instance.room = room

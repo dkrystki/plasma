@@ -31,10 +31,22 @@ class Address extends ApiObject {
 
 class Person extends ApiObject {
     first_name: String;
+    middle_names: String;
     last_name: String;
     email: String;
     phone: String;
     dob: Date;
+}
+
+class Tenant extends ApiObject {
+    person: Person;
+    room: Room;
+    lease_start: Date;
+    lease_end: Date;
+
+    getTitle(): String {
+        return `${this.person.first_name} ${this.person.last_name} U${this.room.unit.number}R${this.room.number}`
+    }
 }
 
 
@@ -143,6 +155,7 @@ export class Manager {
     apiUrl: string;
     applications: ApiInterface;
     people: ApiInterface;
+    tenants: ApiInterface;
     addresses: ApiInterface;
     referrer: ApiInterface;
 
@@ -150,6 +163,7 @@ export class Manager {
         this.apiUrl = Config.managerApiUrl;
         this.applications = new ApiInterface(this, Application, "applications/");
         this.people = new ApiInterface(this, Person, "people/");
+        this.tenants = new ApiInterface(this, Tenant, "tenants/");
         this.addresses = new ApiInterface(this, Address, "addresses/");
         this.referrer = new ApiInterface(this, Referrer, "referrers/");
     }

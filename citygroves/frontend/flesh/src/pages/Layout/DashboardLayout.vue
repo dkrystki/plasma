@@ -12,7 +12,7 @@
         <md-icon>person</md-icon>
         <p>Applications</p>
       </sidebar-link>
-      <sidebar-link to="/notifications">
+      <sidebar-link to="/tenants">
         <md-icon>person</md-icon>
         <p>Tenants</p>
       </sidebar-link>

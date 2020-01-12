@@ -10,6 +10,7 @@ import csv
 import django
 from datetime import date
 import dateutil.parser
+from tqdm import tqdm
 
 from django.conf import settings
 
@@ -41,7 +42,7 @@ class Importer:
     def start(self):
         with open(str(self.input_path), newline='') as csvfile:
             reader = csv.DictReader(csvfile)
-            for row in reader:
+            for row in tqdm(reader):
                 people: List[Person] = []
 
                 # Handle multiple tenants in one room
@@ -59,9 +60,10 @@ class Importer:
                 lease_start: date = dateutil.parser.parse(row["Lease Start"])
                 lease_end: date = dateutil.parser.parse(row["Lease End"])
 
-                for p in people:
-                    tenant = Tenant(person=p, room=room, lease_start=lease_start, lease_end=lease_end)
-                    tenant.save()
+                tenant = Tenant(room=room, lease_start=lease_start, lease_end=lease_end)
+                tenant.save()
+                tenant.people.set(people)
+                tenant.save()
 
 
 @click.command()

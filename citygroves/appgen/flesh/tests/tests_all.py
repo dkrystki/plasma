@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, Any, List
 from unittest.mock import MagicMock
 
-from appgen.tasks import Fetcher
+from tasks.tasks import Fetcher
 
 
 @responses.activate

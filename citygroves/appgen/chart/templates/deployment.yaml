@@ -26,7 +26,8 @@ spec:
           image: {{ .Values.image }}
 
           command: ["/bin/sh", "-c"]
-          args: ["celery worker -B --app=appgen.celer -l info"]
+          args: ["watchmedo auto-restart --directory=./ --pattern=*.py --recursive --
+                  celery worker -B --app=appgen.celer --without-gossip -l info"]
           imagePullPolicy: {{ .Values.pullPolicy }}
           ports:
             - name: http

@@ -27,7 +27,17 @@ class TenantFactory(factory.DjangoModelFactory):
         model = models.Tenant
         strategy = factory.CREATE_STRATEGY
 
-    person = factory.SubFactory(PersonFactory)
+    @factory.post_generation
+    def people(self, create, extracted, **kwargs):
+        if create:
+            self.people.add(PersonFactory())
+            self.people.add(PersonFactory())
+            return
+
+        if extracted:
+            for people in extracted:
+                self.people.add(people)
+
     room = factory.LazyAttribute(lambda o: Room.objects.get(id=1))
 
 

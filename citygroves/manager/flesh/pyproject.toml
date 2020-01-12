@@ -28,6 +28,8 @@ pytest-factoryboy = "^2.0"
 django-extensions = "^2.2"
 rhei = "^0.5.2"
 django-cors-headers = "^3.2"
+tqdm = "^4.41"
+watchdog = "^0.9.0"
 
 [tool.poetry.dev-dependencies]
 

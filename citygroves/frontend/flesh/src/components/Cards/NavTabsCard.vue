@@ -11,3 +11,4 @@ export default {
   name: "nav-tabs-card"
 };
 </script>
+

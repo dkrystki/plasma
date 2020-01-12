@@ -6,13 +6,13 @@
           <span class="md-nav-tabs-title">Filter:</span>
           <md-tabs class="md-success" md-alignment="left">
             <md-tab id="pending" md-label="Pending" md-icon="timer">
-              <nav-tabs-table :applications="this.pending"/>
+              <app-table :applications="this.pending"/>
             </md-tab>
             <md-tab id="finalised" md-label="Finalised" md-icon="done">
-              <nav-tabs-table :applications="this.finalised"/>
+              <app-table :applications="this.finalised"/>
             </md-tab>
             <md-tab id="removed" md-label="Removed" md-icon="delete">
-              <nav-tabs-table :applications="this.finalised"/>
+              <app-table :applications="this.finalised"/>
             </md-tab>
           </md-tabs>
         </template>
@@ -22,8 +22,9 @@
 </template>
 
 <script lang="ts">
-    import {NavTabsTable, NavTabsCard} from "@components";
-    import {Manager} from "@/apis/manager"
+    import NavTabsCard from "@components/Cards/NavTabsCard";
+    import AppTable from "./AppTable";
+    import {Manager} from "@/apis/manager";
 
     export default {
         data(): Object {
@@ -34,7 +35,7 @@
             }
         },
         components: {
-            NavTabsTable,
+            AppTable,
             NavTabsCard
         },
         async created () {

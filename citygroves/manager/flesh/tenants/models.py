@@ -76,7 +76,14 @@ class Application(models.Model):
 
 class Tenant(models.Model):
     from housing.models import Room
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    people = models.ManyToManyField(Person)
     room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True)
     lease_start = models.DateField(null=True)
     lease_end = models.DateField(null=True)
+
+    def __str__(self):
+        ret = []
+        for p in self.people.all():
+            ret.append(f"{p.first_name} {p.middle_names} {p.last_name}")
+
+        return " & ".join(ret)

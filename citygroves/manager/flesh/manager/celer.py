@@ -9,7 +9,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'manager.settings')
 app = Celery('manager')
 
 app.conf.update({
-    'broker_url': "redis://:password@redis-master:6379",
+    'broker_url': "redis://:password@redis-master:6379/1",
     'worker_hijack_root_logger': False
 })
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
