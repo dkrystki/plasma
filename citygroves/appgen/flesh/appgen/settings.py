@@ -19,8 +19,6 @@ import environ
 
 env = environ.Env()
 
-# logger.info("Starting citygroves.appgen")
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -139,6 +137,10 @@ LOGGING = {
             'handlers': ['graypy'],
             'level': 'INFO',
         },
+        'tasks': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
         'celery': {
             'handlers': ['graypy'],
             'level': 'INFO',
@@ -192,4 +194,3 @@ FORM_BUILDER_EMAIL = env.str("FORM_BUILDER_EMAIL")
 #             DjangoIntegration(),
 #         ],
 #     )
-

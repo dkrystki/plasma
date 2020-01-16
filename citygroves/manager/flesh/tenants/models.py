@@ -84,6 +84,7 @@ class Tenant(models.Model):
     def __str__(self):
         ret = []
         for p in self.people.all():
-            ret.append(f"{p.first_name} {p.middle_names} {p.last_name}")
+            ret.append(f"{p.first_name} {p.middle_names if p.middle_names else ''} {p.last_name}")
 
         return " & ".join(ret)
+

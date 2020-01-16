@@ -43,9 +43,10 @@ class Tenant extends ApiObject {
     room: Room;
     lease_start: Date;
     lease_end: Date;
+    str_repr: String;
 
     getTitle(): String {
-        return `${this.person.first_name} ${this.person.last_name} U${this.room.unit.number}R${this.room.number}`
+        return `${this.str_repr} U${this.room.unit.number}R${this.room.number}`
     }
 }
 

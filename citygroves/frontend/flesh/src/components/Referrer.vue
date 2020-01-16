@@ -1,59 +1,40 @@
 <template>
-  <div class="content">
-    <div class="md-layout">
-      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+  <v-card v-if="this.referrer !== null">
+    <v-card-title>
+      <h4 class="title">Referrer</h4>
+    </v-card-title>
+    <v-card-text>
+      <v-form>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field v-model="first_name" label="First name" @change="onChange"/>
+          </v-col>
 
-        <md-card>
-          <md-card-header data-background-color="green">
-            <h4 class="title">Referrer</h4>
-          </md-card-header>
-          <md-card-content v-if="this.referrer !== null">
-            <v-form>
-                <v-row>
-                  <v-col cols="12" md="6">
-                    <md-field>
-                      <label>First name</label>
-                      <md-input v-model="first_name" @change="on_change"/>
-                    </md-field>
-                  </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field v-model="last_name" label="Last name" @change="onChange"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field v-model="email" label="E-mail" @change="onChange"/>
+          </v-col>
 
-                  <v-col cols="12" md="6">
-                    <md-field>
-                      <label>Last name</label>
-                      <md-input v-model="last_name" @change="on_change"/>
-                    </md-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="12" md="6">
-                    <md-field>
-                      <label>E-mail</label>
-                      <md-input v-model="email" @change="on_change"/>
-                    </md-field>
-                  </v-col>
-
-                  <v-col cols="12" md="3">
-                    <md-field>
-                      <label>Phone</label>
-                      <md-input v-model="phone" @change="on_change"/>
-                    </md-field>
-                  </v-col>
-                </v-row>
-              <v-row>
-                <v-col cols="12" md="12">
-                <Address :id="this.referrer.address.id"/>
-                </v-col>
-              </v-row>
-            </v-form>
-          </md-card-content>
-        </md-card>
-      </div>
-    </div>
-  </div>
+          <v-col cols="12" md="3">
+            <v-text-field v-model="phone" label="Phone" @change="onChange"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
+            <Address :id="this.referrer.address.id"/>
+          </v-col>
+        </v-row>
+      </v-form>
+    </v-card-text>
+  </v-card>
 </template>
 <script>
-    import {Manager} from "@/apis/manager"
-    import Address from "@components/Address";
+    import {Manager} from "../../src/apis/manager"
+    import Address from "./Address";
 
     let manager = new Manager();
 
@@ -73,10 +54,10 @@
             };
         },
         async created() {
-            this.refresh();
+            await this.refresh();
         },
         methods: {
-            on_change() {
+            onChange() {
                 this.referrer.first_name = this.first_name;
                 this.referrer.last_name = this.last_name;
                 this.referrer.email = this.email;

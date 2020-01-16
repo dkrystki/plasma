@@ -34,6 +34,7 @@ class RoomSerializer(serializers.ModelSerializer):
 class TenantSerializer(serializers.ModelSerializer):
     people = PersonSerializer(many=True)
     room = RoomSerializer(read_only=True)
+    str_repr = serializers.ReadOnlyField(source='__str__')
     room_number = serializers.IntegerField(write_only=True)
     unit_number = serializers.IntegerField(write_only=True)
 

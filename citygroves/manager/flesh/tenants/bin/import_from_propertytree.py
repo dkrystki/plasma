@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 from django.conf import settings
 
-sys.path.append("../../")
+sys.path.append(os.environ["APP_SRC"])
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'manager.settings')
 
 django.setup()

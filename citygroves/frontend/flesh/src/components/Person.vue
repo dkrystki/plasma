@@ -1,59 +1,57 @@
 <template>
-  <div class="content">
-    <div class="md-layout">
-      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+  <v-card v-if="person !== null">
+    <v-card-title>
+      <h4 class="title">Personal information</h4>
+    </v-card-title>
+    <v-card-text>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-text-field v-model="first_name" label="First name" @change="onChange"/>
+        </v-col>
 
-        <md-card>
-          <md-card-header data-background-color="green">
-            <h4 class="title">Personal information</h4>
-          </md-card-header>
-          <md-card-content>
-            <v-form>
-                <v-row>
-                  <v-col cols="12" md="6">
-                    <md-field>
-                      <label>First name</label>
-                      <md-input v-model="first_name" @change="on_change"/>
-                    </md-field>
-                  </v-col>
+        <v-col cols="12" md="6">
+          <v-text-field v-model="last_name" label="Last Name" @change="onChange"/>
+        </v-col>
+      </v-row>
+      <v-row>
 
-                  <v-col cols="12" md="6">
-                    <md-field>
-                      <label>Last name</label>
-                      <md-input v-model="last_name" @change="on_change"/>
-                    </md-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="12" md="6">
-                    <md-field>
-                      <label>E-mail</label>
-                      <md-input v-model="email" @change="on_change"/>
-                    </md-field>
-                  </v-col>
+        <v-col cols="12" md="6">
+          <v-text-field v-model="email" label="E-mail" @change="onChange"/>
+        </v-col>
 
-                  <v-col cols="12" md="3">
-                    <md-field>
-                      <label>Phone</label>
-                      <md-input v-model="phone" @change="on_change"/>
-                    </md-field>
-                  </v-col>
+        <v-col cols="12" md="3">
+          <v-text-field v-model="phone" label="Phone" @change="onChange"/>
+        </v-col>
 
-                  <v-col cols="12" md="3">
-                    <md-datepicker v-model="dob">
-                      <label>DOB</label>
-                    </md-datepicker>
-                  </v-col>
-                </v-row>
-            </v-form>
-          </md-card-content>
-        </md-card>
-      </div>
-    </div>
-  </div>
+        <v-col cols="12" md="3">
+          <v-menu
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  lazy
+                  transition="scale-transition"
+                  offset-y
+                  full-width
+                  min-width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                      v-model="dob"
+                      label="Picker without buttons"
+                      prepend-icon="event"
+                      readonly
+                      v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker v-model="dob" @input="menu2 = false"></v-date-picker>
+          </v-menu>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 <script>
-    import {Manager} from "@/apis/manager"
+    import {Manager} from "../../src/apis/manager"
 
     let manager = new Manager();
 
@@ -69,6 +67,8 @@
                 email: "",
                 phone: "",
                 dob: "",
+                menu2: false,
+                person: null
             };
         },
         async created() {
@@ -81,7 +81,7 @@
             }
         },
         methods: {
-            on_change() {
+            onChange() {
                 this.person.first_name = this.first_name;
                 this.person.last_name = this.last_name;
                 this.person.email = this.email;

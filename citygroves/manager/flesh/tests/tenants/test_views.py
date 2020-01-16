@@ -110,6 +110,7 @@ class TestTenant:
                                    content_type='application/json')
         assert response.status_code == 200
         sample_tenant.refresh_from_db()
+        assert response.data["str_repr"] == str(sample_tenant)
         assert sample_tenant.people.all()[0].first_name == response.data["people"][0]["first_name"]
 
     def test_patch(self, sample_tenant):

@@ -34,10 +34,6 @@ module.exports = {
                 use: 'vue-loader'
             },
             {
-                test: /\.pug$/,
-                loader: 'pug-plain-loader'
-            },
-            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
@@ -78,7 +74,7 @@ module.exports = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                indentedSyntax: true
+                                indentedSyntax: false
                             }
                         }
                     }
@@ -87,12 +83,11 @@ module.exports = {
             {
                 test: /\.svg$/,
                 use: [
-                    'babel-loader',
                     'vue-svg-loader',
                 ],
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|eot|woff2?|ttf)$/i,
                 use: [
                     {
                         loader: 'file-loader',
@@ -108,6 +103,7 @@ module.exports = {
         open: true,
         overlay: true,
         host: '0.0.0.0',
+        // host: '127.0.0.1',
         disableHostCheck: true,
         port: 80,
         stats: {
