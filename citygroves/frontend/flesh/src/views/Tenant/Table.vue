@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-text-field
+            v-if="searchable"
             v-model="search"
             label="Search"
-            item-key="name"
             single-line
             hide-details
             prepend-icon="search"
@@ -14,45 +14,34 @@
             :items="tenants"
             :search="search"
             :custom-filter="this.filter"
-            show-select
+            item-key="str_repr"
+            :show-select="selectable"
     >
       <template #item.name="{ item }">
-        <router-link :to="{ name: 'Tenant', params: { id: item.id }}">
-          {{item.str_repr}}
+          <router-link :to="{ name: 'Tenant', params: { id: item.id }}">
+          {{ item.str_repr }}
         </router-link>
-      </template>
-
-      <template #item.room="{ item }">
-        {{item.room.number}}
-      </template>
-
-      <template #item.unit="{ item }">
-        {{item.room.unit.number}}
-      </template>
-
-      <template #item.leaseStart="{ item }">
-        {{item.lease_start}}
-      </template>
-
-      <template #item.leaseEnd="{ item }">
-        {{item.lease_end}}
       </template>
     </v-data-table>
   </div>
 </template>
 
-<script>
+<script lang="ts">
     export default {
         name: "Table",
-        props: ["tenants"],
+        props: {
+            tenants: Array,
+            selectable: {type: Boolean, default: true},
+            searchable: {type: Boolean, default: true}
+        },
         data() {
             return {
                 headers: [
-                    {text: 'Tenant', value: 'name', sortable: true, filterable: true},
-                    {text: 'Room', value: 'room', sortable: true},
-                    {text: 'Unit', value: 'unit', sortable: true},
-                    {text: 'Lease start', value: 'leaseStart', sortable: true},
-                    {text: 'Lease end', value: 'leaseEnd', sortable: true},
+                    {text: 'Tenant', value: 'name', filterable: true, width: 300},
+                    {text: 'Room', value: 'room.number', width: 100},
+                    {text: 'Unit', value: 'room.unit.number', width: 100},
+                    {text: 'Lease start', value: 'lease_start', width: 200},
+                    {text: 'Lease end', value: 'lease_end', width: 200},
                 ],
                 selected: [],
                 search: '',
@@ -65,10 +54,3 @@
         }
     };
 </script>
-
-<style>
-  .md-table {
-    height: 680px;
-  }
-
-</style>

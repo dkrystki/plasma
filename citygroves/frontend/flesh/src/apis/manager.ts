@@ -18,7 +18,7 @@ class ApiObject {
     }
 }
 
-class Address extends ApiObject {
+export class Address extends ApiObject {
     raw_address: String;
     street_line1: String;
     street_line2: String;
@@ -29,7 +29,7 @@ class Address extends ApiObject {
     country: String;
 }
 
-class Person extends ApiObject {
+export class Person extends ApiObject {
     first_name: String;
     middle_names: String;
     last_name: String;
@@ -38,7 +38,7 @@ class Person extends ApiObject {
     dob: Date;
 }
 
-class Tenant extends ApiObject {
+export class Tenant extends ApiObject {
     person: Person;
     room: Room;
     lease_start: Date;
@@ -51,7 +51,7 @@ class Tenant extends ApiObject {
 }
 
 
-class Referrer extends ApiObject {
+export class Referrer extends ApiObject {
     first_name: String;
     last_name: String;
     email: String;
@@ -60,17 +60,17 @@ class Referrer extends ApiObject {
     dob: Date;
 }
 
-class Unit extends ApiObject {
+export class Unit extends ApiObject {
     number: Number
 }
 
-class Room extends ApiObject {
+export class Room extends ApiObject {
     number: Number;
     unit: Unit;
 }
 
 
-class Application extends ApiObject {
+export class Application extends ApiObject {
     apiInterface: ApiInterface;
 
     id: Number;

@@ -29,13 +29,11 @@ import App from './App'
 import router from '@/router'
 import store from '@/store'
 import vuetify from './plugins/vuetify'
-import DatetimePicker from 'vuetify-datetime-picker'
-import VuetifyDate from "vuetify-date";
 
 // Sync store with router
-sync(store, router)
+sync(store, router);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -43,7 +41,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
-
-Vue.use(DatetimePicker);
-Vue.use(VuetifyDate);
+}).$mount('#app');

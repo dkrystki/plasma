@@ -7,6 +7,7 @@ import Applications from "@/views/Application/Applications";
 import Application from "@/views/Application/Application";
 import Tenant from "@/views/Tenant/Tenant";
 import Tenants from "@/views/Tenant/Tenants";
+import EntryNotice from "@/views/Tenant/EntryNotice";
 
 export default [
 
@@ -24,24 +25,20 @@ export default [
         name: "Application",
         component: Application
     },
-    {
-        path: "/applications",
-        name: "Applications",
-        component: Applications
-    },
-    {
-        path: "/applications/:id",
-        name: "Application",
-        component: Application
-    },
+
     {
         path: "/tenants",
         name: "Tenants",
-        component: Tenants
+        component: Tenants,
     },
     {
-        path: "/tenant/id",
+        path: "/tenants/:id",
         name: "Tenant",
         component: Tenant
+    },
+    {
+        path: "/entry-notice",
+        name: "EntryNotice",
+        component: EntryNotice
     },
 ]

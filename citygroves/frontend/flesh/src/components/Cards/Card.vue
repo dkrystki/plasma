@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-btn color="success" @click="goBack">Back</v-btn>
     <v-card>
       <v-toolbar color="green" dark>
         <v-card-title>
@@ -9,11 +8,12 @@
       </v-toolbar>
 
       <v-card-text>
-        <slot></slot>
+        <slot/>
       </v-card-text>
 
       <v-card-actions>
-        <slot name="actions"></slot>
+        <v-btn color="success" @click="goBack">Back</v-btn>
+        <slot name="actions"/>
       </v-card-actions>
     </v-card>
   </div>

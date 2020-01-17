@@ -62,7 +62,8 @@
             },
             handleEntryNotice() {
               let selected = this.$refs.currentTenantsTable.selected;
-              let a = 1;
+              this.$store.commit('tenants/setSelectedTenants', selected);
+              this.$router.push({name: "EntryNotice"});
             },
             handleNoticeToLeave() {
 

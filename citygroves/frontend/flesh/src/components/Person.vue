@@ -24,27 +24,7 @@
         </v-col>
 
         <v-col cols="12" md="3">
-          <v-menu
-                  v-model="menu2"
-                  :close-on-content-click="false"
-                  :nudge-right="40"
-                  lazy
-                  transition="scale-transition"
-                  offset-y
-                  full-width
-                  min-width="290px"
-          >
-            <template v-slot:activator="{ on }">
-              <v-text-field
-                      v-model="dob"
-                      label="Picker without buttons"
-                      prepend-icon="event"
-                      readonly
-                      v-on="on"
-              ></v-text-field>
-            </template>
-            <v-date-picker v-model="dob" @input="menu2 = false"></v-date-picker>
-          </v-menu>
+          <DatePicker v-model="dob" label="DOB"/>
         </v-col>
       </v-row>
     </v-card-text>
@@ -52,6 +32,7 @@
 </template>
 <script>
     import {Manager} from "../../src/apis/manager"
+    import DatePicker from "@components/DatePicker";
 
     let manager = new Manager();
 
@@ -60,6 +41,9 @@
         props: {
             id: Number
         },
+        components: {
+          DatePicker
+        },
         data() {
             return {
                 first_name: "",
@@ -67,7 +51,6 @@
                 email: "",
                 phone: "",
                 dob: "",
-                menu2: false,
                 person: null
             };
         },

@@ -1,75 +1,150 @@
 <template>
-  <Card title="Tenants">
-    <v-tabs>
-      <v-tab href="#current">
-        Current
-      </v-tab>
+  <Card title="Entry Notice">
 
-      <v-tab href="#past">
-        Past
-        <v-icon>mdi-phone</v-icon>
-      </v-tab>
+    <v-data-table
+            :headers="headers"
+            :items="table_data"
+    >
+      <template #header.planned_on="{ header }">
+        {{ header.text }}
+        <DatePicker v-model="planned_on_header"/>
+      </template>
+      <template #item.planned_on="{ item }">
+        <DatePicker v-model="item.planned_on"/>
+      </template>
 
-      <v-tab-item value="current">
-        <Table ref="currentTenantsTable" :tenants="current"/>
-      </v-tab-item>
+      <template #header.is_inspection="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_inspection_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_inspection="{ item }">
+        <v-checkbox v-model="item.is_inspection"/>
+      </template>
 
-      <v-tab-item value="past">
-        <v-card flat>
-          <v-card-text>
-            Test3
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
+      <template #header.is_cleaning="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_cleaning_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_cleaning="{ item }">
+        <v-checkbox v-model="item.is_cleaning"/>
+      </template>
 
-    </v-tabs>
+      <template #header.is_repairs_or_maintenance="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_repairs_or_maintenance_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_repairs_or_maintenance="{ item }">
+        <v-checkbox v-model="item.is_repairs_or_maintenance"/>
+      </template>
 
+      <template #header.is_pest_control="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_pest_control_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_pest_control="{ item }">
+        <v-checkbox v-model="item.is_pest_control"/>
+      </template>
+
+      <template #header.is_showing_to_buyer="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_showing_to_buyer_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_showing_to_buyer="{ item }">
+        <v-checkbox v-model="item.is_showing_to_buyer"/>
+      </template>
+
+      <template #header.is_valutation="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_valuation_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_valutation="{ item }">
+        <v-checkbox v-model="item.is_valutation"/>
+      </template>
+
+      <template #header.is_fire_and_rescue="{ header }">
+        {{ header.text }}
+        <v-checkbox v-model="is_fire_and_rescue_header" @change="onCheckboxChanged($event, header.value)"/>
+      </template>
+      <template #item.is_fire_and_rescue="{ item }">
+        <v-checkbox v-model="item.is_fire_and_rescue"/>
+      </template>
+    </v-data-table>
     <template #actions>
-      <v-btn color="success" @click="handleEntryNotice">Entry notice</v-btn>
-      <v-btn color="success" @click="handleNoticeToLeave">Notice to leave</v-btn>
-      <v-btn color="success" @click="handleConditionreport">Condition report</v-btn>
+      <v-btn color="success">Send</v-btn>
+      <v-btn color="success">Download</v-btn>
     </template>
   </Card>
 </template>
 
 <script lang="ts">
     import {Manager} from "@/apis/manager"
-    import Table from "./Table.vue";
     import Card from "@/components/Cards/Card.vue"
+    import DatePicker from "@components/DatePicker";
 
     export default {
+        name: "EntryNotice",
         data(): Object {
             return {
+                headers: [
+                    {text: 'Tenant', value: 'name', width: 200},
+                    {text: 'Room', value: 'room_number', sortable: false, width: 50},
+                    {text: 'Unit', value: 'unit_number', sortable: false, width: 50},
+                    {text: 'Planned on', value: 'planned_on', sortable: false, width: 90},
+                    {text: 'Inspection', value: 'is_inspection', sortable: false, width: 90},
+                    {text: 'Cleaning', value: 'is_cleaning', sortable: false, width: 90},
+                    {text: 'Repairs', value: 'is_repairs_or_maintenance', sortable: false, width: 90},
+                    {text: 'Pest', value: 'is_pest_control', sortable: false, width: 90},
+                    {text: 'Showing', value: 'is_showing_to_buyer', sortable: false, width: 90},
+                    {text: 'Valutation', value: 'is_valutation', sortable: false, width: 90},
+                    {text: 'Rescue', value: 'is_fire_and_rescue', sortable: false, width: 90},
+                ],
                 loading: false,
-                current: [],
-                finalised: [],
+                planned_on_time_span: null,
+                planned_on_header: "2019-12-12",
+                is_inspection_header: true,
+                is_cleaning_header: false,
+                is_repairs_or_maintenance_header: false,
+                is_pest_control_header: false,
+                is_showing_to_buyer_header: false,
+                is_valuation_header: false,
+                is_fire_and_rescue_header: false,
+                tenants: [],
+                table_data: [],
             }
         },
         components: {
-            Table,
-            Card
+            Card,
+            DatePicker
         },
-        async created() {
-            await this.refresh();
+        created() {
+            this.table_data = [];
+            this.tenants = this.$store.state.tenants.selectedTenants;
+
+            for (const t of this.tenants) {
+                this.table_data.push(
+                    {
+                        id: t.id,
+                        name: t.str_repr,
+                        room_number: t.room.number,
+                        unit_number: t.room.unit.number,
+                        planned_on: "2019-12-12",
+                        is_inspection: this.is_inspection_header,
+                        is_cleaning: false,
+                        is_repairs_or_maintenance: false,
+                        is_pest_control: false,
+                        is_showing_to_buyer: false,
+                        is_valutation: false,
+                        is_fire_and_rescue: false,
+                    }
+                )
+            }
         },
         methods: {
-            async refresh() {
-                this.loading = true;
-                let manager = new Manager();
-                let tenants = await manager.tenants.getAll();
-                this.current = tenants;
-                this.loading = false;
+            onCheckboxChanged(event, name) {
+              for( const row of this.table_data) {
+                  row[name] = event;
+              }
             },
-            handleEntryNotice() {
-              let selected = this.$refs.currentTenantsTable.selected;
-              let a = 1;
-            },
-            handleNoticeToLeave() {
-
-            },
-            handleConditionreport() {
-
-            }
         }
     };
 </script>

@@ -1,7 +1,6 @@
 <template>
   <v-navigation-drawer
           id="app-drawer"
-          v-model="inputValue"
           app
           dark
           floating
@@ -29,7 +28,6 @@
                   v-for="(link, i) in links"
                   :key="i"
                   :to="link.to"
-                  :active-class="color"
                   avatar
                   class="v-list-item"
           >
@@ -47,21 +45,10 @@
 </template>
 
 <script>
-    // Utilities
-    import {
-        mapMutations,
-        mapState
-    } from 'vuex'
-
     export default {
-        props: {
-            opened: {
-                type: Boolean,
-                default: false
-            }
-        },
         data: () => ({
             logo: 'favicon.ico',
+            image: "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg",
             links: [
                 {
                     to: '/',
@@ -80,24 +67,6 @@
                 },
             ]
         }),
-        computed: {
-            ...mapState('app', ['image', 'color']),
-            inputValue: {
-                get() {
-                    return this.$store.state.app.drawer
-                },
-                set(val) {
-                    this.setDrawer(val)
-                }
-            },
-            items() {
-                return this.$t('Layout.View.items')
-            }
-        },
-
-        methods: {
-            ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
-        }
     }
 </script>
 
