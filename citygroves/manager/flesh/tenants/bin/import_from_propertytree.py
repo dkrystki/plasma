@@ -29,7 +29,7 @@ class Importer:
         self.input_path = input_path
 
     def _create_person_from_tenancy(self, tenancy: str):
-        middle_names = None
+        middle_names = ""
         if len(tenancy.split()) > 2:
             middle_names = " ".join(tenancy.split()[1:-1])
 

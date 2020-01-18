@@ -1,7 +1,9 @@
+from datetime import date, datetime
 from pathlib import Path
 from typing import Dict, Any, List
 import pdfrw
 from django.conf import settings
+from pdfrw import PdfName, PdfString
 
 
 class PdfFile:
@@ -21,9 +23,14 @@ class PdfFile:
                     key = annotation["/T"][1:-1]
                     if key in self.mapping[page_n].keys():
                         mapped = self.mapping[page_n][key]
-                        value = str(input_dict[mapped])
-                        # annotation['/V'] = value
-                        annotation.update(pdfrw.PdfDict(V=value))
+                        input_value: Any = input_dict[mapped]
+                        if type(input_value) in (str, int, float, date, datetime):
+                            value = str(input_value)
+                            annotation.update(pdfrw.PdfDict(AS=PdfName(value), V=PdfName(value)))
+                        elif type(input_value) == bool:
+                            value = "1" if input_value else "Off"
+                            annotation.update(pdfrw.PdfDict(AS=PdfName(value), V=PdfName(value)))
+
                         self.template_pdf.Root.AcroForm.update(pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
 
     def save(self, path: Path):
@@ -31,6 +38,8 @@ class PdfFile:
 
 
 class LeasePdf(PdfFile):
+    # Input dictionary to pdf fields mapping
+    # Each of list elements is responsible for mapping elements on the corresponding pdf page
     mapping: List[Dict[str, Any]] = [
         {
             "TextField[5]": "person.full_name",
@@ -51,3 +60,32 @@ class LeasePdf(PdfFile):
 
     def __init__(self) -> None:
         super(LeasePdf, self).__init__(settings.BASE_DIR / "tenants/templates/lease.pdf")
+
+
+class EntryNoticePdf(PdfFile):
+    mapping: List[Dict[str, Any]] = [
+        {
+            "TextField[0]": "room_number",
+            "TextField[1]": "unit_number",
+            "TextField[6]": "person1.full_name",
+            "TextField[7]": "person2.full_name",
+            "TextField[8]": "manager.name",
+            "TextField[10]": "issued_on_day_name",
+            "TextField[11]": "method_of_issue",
+            "Date[0]": "issued_on",
+            "TextField[12]": "planned_on_day_name",
+            "Date[1]": "planned_on",
+            "TextField[13]": "planned_time",
+            "Date[2]": "issued_on",
+            "CheckBox[2]": "is_inspection",
+            "CheckBox[3]": "is_cleaning",
+            "CheckBox[4]": "is_repairs_or_maintenance",
+            "CheckBox[5]": "is_pest_control",
+            "CheckBox[6]": "is_showing_to_buyer",
+            "CheckBox[7]": "is_valutation",
+            "CheckBox[8]": "is_fire_and_rescue",
+        },
+    ]
+
+    def __init__(self) -> None:
+        super(EntryNoticePdf, self).__init__(settings.BASE_DIR / "tenants/templates/entry-notice-form.pdf")

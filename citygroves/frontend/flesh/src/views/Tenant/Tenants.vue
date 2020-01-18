@@ -2,12 +2,14 @@
   <Card title="Tenants">
     <v-tabs>
       <v-tab href="#current">
+        <v-icon>done_outline</v-icon>
+
         Current
       </v-tab>
 
       <v-tab href="#past">
+        <v-icon>history</v-icon>
         Past
-        <v-icon>mdi-phone</v-icon>
       </v-tab>
 
       <v-tab-item value="current">
@@ -61,9 +63,9 @@
                 this.loading = false;
             },
             handleEntryNotice() {
-              let selected = this.$refs.currentTenantsTable.selected;
-              this.$store.commit('tenants/setSelectedTenants', selected);
-              this.$router.push({name: "EntryNotice"});
+                let selected = this.$refs.currentTenantsTable.selected;
+                this.$store.commit('tenants/setSelectedTenants', selected);
+                this.$router.push({name: "EntryNotice"});
             },
             handleNoticeToLeave() {
 

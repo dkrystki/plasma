@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "django_extensions",
     'corsheaders',
     'rest_framework',
+    'django_filters',
     "tenants",
     "housing"
 ]
@@ -195,6 +196,10 @@ LOGGING = {
             'level': 'INFO',
         },
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 # class SENTRY:

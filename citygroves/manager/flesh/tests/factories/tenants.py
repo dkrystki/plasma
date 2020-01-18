@@ -1,19 +1,14 @@
-from datetime import datetime
+from datetime import datetime, date
 
 import factory
 
 from housing.models import Room
 from tenants import models
 
-import housing.factories
-
-import pytest_factoryboy
-
 
 class PersonFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Person
-        strategy = factory.CREATE_STRATEGY
 
     first_name = "Josh"
     last_name = "Arystoteles"
@@ -25,7 +20,6 @@ class PersonFactory(factory.DjangoModelFactory):
 class TenantFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Tenant
-        strategy = factory.CREATE_STRATEGY
 
     @factory.post_generation
     def people(self, create, extracted, **kwargs):
@@ -41,10 +35,25 @@ class TenantFactory(factory.DjangoModelFactory):
     room = factory.LazyAttribute(lambda o: Room.objects.get(id=1))
 
 
+class EntryNoticeFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = models.EntryNotice
+
+    tenant = factory.SubFactory(TenantFactory)
+    planned_on = date(2020, 2, 14)
+    planned_time = "10am - 2pm"
+    is_inspection = True
+    is_cleaning = False
+    is_repairs_or_maintenance = False
+    is_pest_control = False
+    is_showing_to_buyer = False
+    is_valutation = False
+    is_fire_and_rescue = False
+
+
 class AddressFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Address
-        strategy = factory.CREATE_STRATEGY
 
     street_line1 = "Australian street line1"
     street_line2 = "Australian street line2"
@@ -59,7 +68,6 @@ class AddressFactory(factory.DjangoModelFactory):
 class ReferrerFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Referrer
-        strategy = factory.CREATE_STRATEGY
 
     first_name = "Josh"
     last_name = "Arystoteles"
@@ -71,7 +79,6 @@ class ReferrerFactory(factory.DjangoModelFactory):
 class ApplicationFactory(factory.DjangoModelFactory):
     class Meta:
         model = models.Application
-        strategy = factory.CREATE_STRATEGY
 
     person = factory.SubFactory(PersonFactory)
     room = factory.LazyAttribute(lambda o: Room.objects.get(id=1))

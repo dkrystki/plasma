@@ -7,10 +7,18 @@
     >
       <template #header.planned_on="{ header }">
         {{ header.text }}
-        <DatePicker v-model="planned_on_header"/>
+        <DatePicker v-model="planned_on_header" @change="onPlannedOnChanged"/>
       </template>
       <template #item.planned_on="{ item }">
         <DatePicker v-model="item.planned_on"/>
+      </template>
+
+      <template #header.planned_time="{ header }">
+        {{ header.text }}
+        <v-text-field v-model="planned_time_header" @change="onPlannedTimeOnChanged"/>
+      </template>
+      <template #item.planned_time="{ item }">
+        <v-text-field v-model="item.planned_time"/>
       </template>
 
       <template #header.is_inspection="{ header }">
@@ -90,6 +98,7 @@
                     {text: 'Room', value: 'room_number', sortable: false, width: 50},
                     {text: 'Unit', value: 'unit_number', sortable: false, width: 50},
                     {text: 'Planned on', value: 'planned_on', sortable: false, width: 90},
+                    {text: 'Planned time', value: 'planned_time', sortable: false, width: 90},
                     {text: 'Inspection', value: 'is_inspection', sortable: false, width: 90},
                     {text: 'Cleaning', value: 'is_cleaning', sortable: false, width: 90},
                     {text: 'Repairs', value: 'is_repairs_or_maintenance', sortable: false, width: 90},
@@ -99,8 +108,8 @@
                     {text: 'Rescue', value: 'is_fire_and_rescue', sortable: false, width: 90},
                 ],
                 loading: false,
-                planned_on_time_span: null,
                 planned_on_header: "2019-12-12",
+                planned_time_header: "10am - 2pm",
                 is_inspection_header: true,
                 is_cleaning_header: false,
                 is_repairs_or_maintenance_header: false,
@@ -128,6 +137,7 @@
                         room_number: t.room.number,
                         unit_number: t.room.unit.number,
                         planned_on: "2019-12-12",
+                        planned_time: "10am - 2pm",
                         is_inspection: this.is_inspection_header,
                         is_cleaning: false,
                         is_repairs_or_maintenance: false,
@@ -141,10 +151,20 @@
         },
         methods: {
             onCheckboxChanged(event, name) {
-              for( const row of this.table_data) {
-                  row[name] = event;
-              }
+                for (const row of this.table_data) {
+                    row[name] = event;
+                }
             },
-        }
+            onPlannedOnChanged(value) {
+                for(let [index, item] of this.table_data.entries()) {
+                    this.table_data[index]["planned_on"] = value;
+                }
+            },
+            onPlannedTimeOnChanged(value) {
+                for(let [index, item] of this.table_data.entries()) {
+                    this.table_data[index]["planned_time"] = value;
+                }
+            }
+        },
     };
 </script>

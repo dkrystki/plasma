@@ -8,7 +8,7 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field
-              v-model="date"
+              v-model="value"
               :label="label"
               prepend-icon="event"
               @input="updateValue"
@@ -16,7 +16,8 @@
       >
       ></v-text-field>
     </template>
-    <v-date-picker v-model="date" @input="updateValue"/>
+    <v-date-picker v-model="value"
+                   @input="updateValue"/>
   </v-menu>
 </template>
 <script>
@@ -28,17 +29,14 @@
         },
         data() {
             return {
-                date: String,
-                menu: false
+                menu: false,
             }
-        },
-        created() {
-          this.date = this.value;
         },
         methods: {
             updateValue: function () {
                 this.menu = false;
-                this.$emit('input', this.date);
+                this.$emit('input', this.value);
+                this.$emit('change', this.value);
             }
         }
     };

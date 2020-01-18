@@ -1,7 +1,8 @@
 import pytest
+from django.http import QueryDict
 from django.urls import reverse
 
-from tenants.models import Application
+from tenants.models import Application, EntryNotice
 
 
 @pytest.mark.usefixtures("db", "create_rooms")
@@ -11,7 +12,7 @@ class TestApplicant:
         self.client = client
 
     def test_create(self, sample_application_payload):
-        response = self.client.post(reverse("tenants:application-list"), sample_application_payload,
+        response = self.client.post(reverse("tenants:applications-list"), sample_application_payload,
                                     content_type='application/json')
         assert response.status_code == 201
         assert Application.objects.all().count() == 1
@@ -21,7 +22,7 @@ class TestApplicant:
         sample_application_payload["current_address"]["city"] = "NewCity"
         sample_application_payload["is_employed"] = True
         sample_application_payload["referrers"][1]["first_name"] = "NewName"
-        response = self.client.put(reverse("tenants:application-detail", kwargs={"pk": sample_application.pk}),
+        response = self.client.put(reverse("tenants:applications-detail", kwargs={"pk": sample_application.pk}),
                                    data=sample_application_payload,
                                    content_type='application/json')
         assert response.status_code == 200
@@ -42,7 +43,7 @@ class TestApplicant:
             "is_employed": True
         }
 
-        response = self.client.patch(reverse("tenants:application-detail", kwargs={"pk": sample_application.pk}),
+        response = self.client.patch(reverse("tenants:applications-detail", kwargs={"pk": sample_application.pk}),
                                      data=payload,
                                      content_type='application/json')
         assert response.status_code == 200
@@ -55,9 +56,14 @@ class TestApplicant:
         app1 = application_factory()
         app2 = application_factory()
 
-        response = self.client.get(reverse("tenants:application-list"), content_type='application/json')
+        response = self.client.get(reverse("tenants:applications-list"), content_type='application/json')
         assert response.status_code == 200
         assert len(response.data.serializer.instance) == 2
+
+    def test_getlease(self, sample_application):
+        response = self.client.get(reverse("tenants:application-getlease", kwargs={"pk": sample_application.pk}),
+                                   content_type='application/json')
+        assert response.status_code == 200
 
 
 @pytest.mark.usefixtures("db")
@@ -189,6 +195,45 @@ class TestAddress:
         response = self.client.get(reverse("tenants:addresses-list"), content_type='application/json')
         assert response.status_code == 200
         assert len(response.data.serializer.instance) == 2
+
+
+@pytest.mark.usefixtures("db")
+class TestEntryNotice:
+
+    @pytest.fixture(autouse=True)
+    def setup(self, client):
+        self.client = client
+
+    def test_get(self, sample_entry_notice):
+        response = self.client.get(reverse("tenants:entry-notices-detail", kwargs={"pk": sample_entry_notice.pk}),
+                                   content_type='application/json')
+        assert response.status_code == 200
+        sample_entry_notice.refresh_from_db()
+        assert str(sample_entry_notice.planned_on) == response.data["planned_on"]
+
+    def test_post(self, sample_tenant, sample_entry_notice_payload):
+        sample_entry_notice_payload["tenant"] = sample_tenant.id
+        response = self.client.post(reverse("tenants:entry-notices-list"), sample_entry_notice_payload,
+                                    content_type='application/json')
+        assert response.status_code == 201
+        assert EntryNotice.objects.all().count() == 1
+
+    def test_list(self, create_rooms, entry_notice_factory):
+        entry_notice1 = entry_notice_factory()
+        entry_notice2 = entry_notice_factory()
+
+        response = self.client.get(reverse("tenants:entry-notices-list"), content_type='application/json')
+        assert response.status_code == 200
+        assert len(response.data.serializer.instance) == 2
+
+    def test_retrieve_pdf(self, create_rooms, entry_notice_factory):
+        entry_notice1 = entry_notice_factory()
+        entry_notice2 = entry_notice_factory()
+        entry_notice3 = entry_notice_factory()
+
+        url = f"{reverse('tenants:entry-notices-list')}?id=1,2&pdf"
+        response = self.client.get(url, content_type='application/json')
+        assert response.status_code == 200
 
 
 @pytest.mark.usefixtures("db")

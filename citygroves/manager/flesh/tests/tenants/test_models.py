@@ -1,17 +1,19 @@
-import pytest
+from datetime import date
+from pathlib import Path
 
-from tenants.models import Person
+import pytest
 
 
 @pytest.mark.usefixtures("db")
 class TestApplication:
     def test_get_lease(self, sample_application):
-        sample_application.save_lease_pdf("/tmp/lease.pdf")
+        sample_application.save_lease_pdf(Path("/tmp/lease.pdf"))
 
 
 @pytest.mark.usefixtures("db")
 class TestTenant:
     def test_str_representation(self, sample_tenant):
+        from tenants.models import Person
         person1: Person = sample_tenant.people.all()[0]
         person2: Person = sample_tenant.people.all()[1]
 
@@ -25,4 +27,10 @@ class TestTenant:
         person2.last_name = "LastName2"
         person2.save()
 
-        assert str(sample_tenant) == "FirstName1 MidName11 MidName12 LastName1 & FirstName2 MidName12 MidName12 LastName2"
+        assert str(sample_tenant) == "FirstName1 MidName11 MidName12 LastName1 and FirstName2 MidName12 MidName12 LastName2"
+
+
+@pytest.mark.usefixtures("db")
+class TestEntryNotice:
+    def test_create_entry_notice(self, sample_entry_notice):
+        sample_entry_notice.create_pdf(path=Path("/tmp/entry-notice.pdf"))

@@ -2,15 +2,17 @@
   <Card title="Applications">
     <v-tabs>
       <v-tab href="#tab-1">
+        <v-icon>hourglass_empty</v-icon>
         Pending
       </v-tab>
 
       <v-tab href="#tab-2">
+        <v-icon>history</v-icon>
         Past
-        <v-icon>mdi-phone</v-icon>
       </v-tab>
 
       <v-tab href="#tab-3">
+        <v-icon>delete</v-icon>
         Deleted
       </v-tab>
 

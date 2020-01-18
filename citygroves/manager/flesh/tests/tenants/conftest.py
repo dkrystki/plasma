@@ -4,13 +4,14 @@ from pathlib import Path
 import pytest_factoryboy
 from pytest import fixture
 from django.core.management import call_command
-import tenants.factories
+import tests.factories.tenants
 
-pytest_factoryboy.register(tenants.factories.PersonFactory)
-pytest_factoryboy.register(tenants.factories.TenantFactory)
-pytest_factoryboy.register(tenants.factories.AddressFactory)
-pytest_factoryboy.register(tenants.factories.ReferrerFactory)
-pytest_factoryboy.register(tenants.factories.ApplicationFactory)
+pytest_factoryboy.register(tests.factories.tenants.PersonFactory)
+pytest_factoryboy.register(tests.factories.tenants.TenantFactory)
+pytest_factoryboy.register(tests.factories.tenants.AddressFactory)
+pytest_factoryboy.register(tests.factories.tenants.ReferrerFactory)
+pytest_factoryboy.register(tests.factories.tenants.ApplicationFactory)
+pytest_factoryboy.register(tests.factories.tenants.EntryNoticeFactory)
 
 
 @fixture
@@ -35,6 +36,22 @@ def sample_tenant_payload(sample_person_payload):
         "unit_number": 5,
         "lease_start": "2020-11-20",
         "lease_end": "2021-11-20",
+    }
+
+
+@fixture
+def sample_entry_notice_payload():
+    return {
+        "tenant": 1,
+        "planned_on": "2020-11-20",
+        "planned_time": "10am - 2pm",
+        "is_inspection": True,
+        "is_cleaning": False,
+        "is_repairs_or_maintenance": False,
+        "is_pest_control": False,
+        "is_showing_to_buyer": False,
+        "is_valutation": False,
+        "is_fire_and_rescue": False,
     }
 
 
@@ -112,6 +129,12 @@ def sample_person(person_factory):
 def sample_tenant(create_rooms, tenant_factory):
     tenant = tenant_factory()
     return tenant
+
+
+@fixture
+def sample_entry_notice(create_rooms, entry_notice_factory):
+    entry_notice = entry_notice_factory()
+    return entry_notice
 
 
 @fixture

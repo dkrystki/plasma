@@ -1,7 +1,8 @@
 from typing import Dict, Any
 
-from housing.models import Room, Unit
-from tenants.models import Application, Person, Address, Referrer, Tenant
+from housing.models import Room
+from housing.serializer import RoomSerializer
+from tenants.models import Application, Person, Address, Referrer, Tenant, EntryNotice
 from rest_framework import serializers
 
 
@@ -17,17 +18,11 @@ class AddressSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class UnitSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Unit
-        fields = "__all__"
-
-
-class RoomSerializer(serializers.ModelSerializer):
-    unit = UnitSerializer()
+class EntryNoticeSerializer(serializers.ModelSerializer):
+    tenant = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Tenant.objects.all())
 
     class Meta:
-        model = Room
+        model = EntryNotice
         fields = "__all__"
 
 
