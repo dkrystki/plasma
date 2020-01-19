@@ -76,16 +76,22 @@
       <template #item.is_fire_and_rescue="{ item }">
         <v-checkbox v-model="item.is_fire_and_rescue"/>
       </template>
+
+      <template #item.actions="{ item }">
+        <v-icon @click="downloadOne(item)">
+          cloud_download
+        </v-icon>
+      </template>
     </v-data-table>
     <template #actions>
-      <v-btn color="success">Send</v-btn>
-      <v-btn color="success">Download</v-btn>
+      <v-btn color="success" @click="onSendClick">Send All</v-btn>
+      <v-btn color="success" @click="onDownloadAllClick">Download All</v-btn>
     </template>
   </Card>
 </template>
 
 <script lang="ts">
-    import {Manager} from "@/apis/manager"
+    import {api, EntryNotice} from "@/apis/backend"
     import Card from "@/components/Cards/Card.vue"
     import DatePicker from "@components/DatePicker";
 
@@ -95,9 +101,9 @@
             return {
                 headers: [
                     {text: 'Tenant', value: 'name', width: 200},
-                    {text: 'Room', value: 'room_number', sortable: false, width: 50},
-                    {text: 'Unit', value: 'unit_number', sortable: false, width: 50},
-                    {text: 'Planned on', value: 'planned_on', sortable: false, width: 90},
+                    {text: 'R', value: 'room_number', sortable: false, width: 40},
+                    {text: 'U', value: 'unit_number', sortable: false, width: 40},
+                    {text: 'Planned on', value: 'planned_on', sortable: false, width: 120},
                     {text: 'Planned time', value: 'planned_time', sortable: false, width: 90},
                     {text: 'Inspection', value: 'is_inspection', sortable: false, width: 90},
                     {text: 'Cleaning', value: 'is_cleaning', sortable: false, width: 90},
@@ -106,6 +112,7 @@
                     {text: 'Showing', value: 'is_showing_to_buyer', sortable: false, width: 90},
                     {text: 'Valutation', value: 'is_valutation', sortable: false, width: 90},
                     {text: 'Rescue', value: 'is_fire_and_rescue', sortable: false, width: 90},
+                    {text: '', value: 'actions', sortable: false, width: 90},
                 ],
                 loading: false,
                 planned_on_header: "2019-12-12",
@@ -132,7 +139,7 @@
             for (const t of this.tenants) {
                 this.table_data.push(
                     {
-                        id: t.id,
+                        tenant_id: t.id,
                         name: t.str_repr,
                         room_number: t.room.number,
                         unit_number: t.room.unit.number,
@@ -156,14 +163,38 @@
                 }
             },
             onPlannedOnChanged(value) {
-                for(let [index, item] of this.table_data.entries()) {
+                for (let [index, item] of this.table_data.entries()) {
                     this.table_data[index]["planned_on"] = value;
                 }
             },
             onPlannedTimeOnChanged(value) {
-                for(let [index, item] of this.table_data.entries()) {
+                for (let [index, item] of this.table_data.entries()) {
                     this.table_data[index]["planned_time"] = value;
                 }
+            },
+            onSendClick() {
+
+            },
+            onDownloadAllClick() {
+                for (const te of this.table_data) {
+                  this.downloadOne(te);
+                }
+            },
+            async downloadOne(item) {
+                let entry_notice = new EntryNotice();
+                entry_notice.tenant = item.tenant_id;
+                entry_notice.planned_on = item.planned_on;
+                entry_notice.planned_time = item.planned_time;
+                entry_notice.is_inspection = item.is_inspection;
+                entry_notice.is_cleaning = item.is_cleaning;
+                entry_notice.is_repairs_or_maintenance = item.is_repairs_or_maintenance;
+                entry_notice.is_pest_control = item.is_pest_control;
+                entry_notice.is_showing_to_buyer = item.is_showing_to_buyer;
+                entry_notice.is_valutation = item.is_valutation;
+                entry_notice.is_fire_and_rescue = item.is_fire_and_rescue;
+
+                await api.entry_notices.create(entry_notice);
+                entry_notice.getPdf();
             }
         },
     };

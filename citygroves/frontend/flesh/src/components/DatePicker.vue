@@ -30,7 +30,7 @@
         data() {
             return {
                 menu: false,
-            }
+            };
         },
         methods: {
             updateValue: function () {

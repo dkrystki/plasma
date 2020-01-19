@@ -35,9 +35,7 @@
   </v-card>
 </template>
 <script>
-    import {Manager} from "../../src/apis/manager"
-
-    let manager = new Manager();
+    import {api} from "@/apis/backend"
 
     export default {
         name: "Address",
@@ -72,7 +70,7 @@
             async refresh() {
                 this.loading = true;
 
-                this.address = await manager.addresses.get(Number(this.id));
+                this.address = await api.addresses.get(Number(this.id));
 
                 this.street_line1 = this.address.street_line1;
                 this.street_line2 = this.address.street_line2;

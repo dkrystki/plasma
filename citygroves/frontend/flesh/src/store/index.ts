@@ -11,7 +11,7 @@ import * as Vue from 'vue'
 import Vuex from 'vuex'
 
 // Store functionality
-import {Tenant} from "../apis/manager";
+import {Tenant} from "../apis/backend";
 
 Vue.use(Vuex);
 

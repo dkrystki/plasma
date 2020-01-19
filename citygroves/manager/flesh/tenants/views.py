@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import List
+from zipfile import ZipFile
 
 from django.db.models import Prefetch
 from django.http import HttpResponse
@@ -66,28 +67,22 @@ class EntryNoticeViewset(viewsets.GenericViewSet,
     queryset = models.EntryNotice.objects.all()
     serializer_class = serializers.EntryNoticeSerializer
 
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id']
-
-    def get_queryset(self):
-        if "id" in self.request.query_params:
-            return self.queryset.filter(pk__in=self.get_ids())
-        else:
-            return self.queryset
-
-    def get_ids(self) -> List[int]:
-        return self.request.query_params.get('id').split(",")
-
-    def list(self, request, *args, **kwargs):
-        if "pdf" in self.request.query_params:
+    def retrieve(self, request, *args, **kwargs):
+        if [param for param in self.request.query_params if "pdf" in param]:
+            obj: models.EntryNotice = self.get_object()
+            logger.info(f"Preparing entry notice pdfdocuments for ({str(obj)})")
             files: List[Path] = []
-            for en in self.get_queryset():
-                path = Path(f"/tmp/{str(en)}.pdf")
-                files.append(path)
-                en.create_pdf(path)
-            logger.info(f"Preparing entry notice documents for {str(self.get_ids())}")
+            path = Path(f"/tmp/{str(obj)}.pdf")
+            obj.create_pdf(path)
+
+            response = HttpResponse(open(str(path), "rb") , content_type='application/pdf')
+
+            response['Content-Disposition'] = f'attachment; filename={path.stem}'
+
+            logger.info(f"Sending the pdf file ({path.stem}) back to the client agent.")
+            return response
         else:
-            return super().list(self)
+            return super().retrieve(self)
 
 
 class ReferrersViewset(viewsets.GenericViewSet,

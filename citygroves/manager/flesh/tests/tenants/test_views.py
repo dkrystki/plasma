@@ -1,5 +1,4 @@
 import pytest
-from django.http import QueryDict
 from django.urls import reverse
 
 from tenants.models import Application, EntryNotice
@@ -159,7 +158,6 @@ class TestTenant:
 
 @pytest.mark.usefixtures("db")
 class TestAddress:
-
     @pytest.fixture(autouse=True)
     def setup(self, client):
         self.client = client
@@ -199,7 +197,6 @@ class TestAddress:
 
 @pytest.mark.usefixtures("db")
 class TestEntryNotice:
-
     @pytest.fixture(autouse=True)
     def setup(self, client):
         self.client = client
@@ -226,19 +223,14 @@ class TestEntryNotice:
         assert response.status_code == 200
         assert len(response.data.serializer.instance) == 2
 
-    def test_retrieve_pdf(self, create_rooms, entry_notice_factory):
-        entry_notice1 = entry_notice_factory()
-        entry_notice2 = entry_notice_factory()
-        entry_notice3 = entry_notice_factory()
-
-        url = f"{reverse('tenants:entry-notices-list')}?id=1,2&pdf"
+    def test_retrieve_pdf(self, sample_entry_notice):
+        url = reverse("tenants:entry-notices-detail", kwargs={"pk": sample_entry_notice.pk}) + "?pdf/"
         response = self.client.get(url, content_type='application/json')
         assert response.status_code == 200
 
 
 @pytest.mark.usefixtures("db")
 class TestReferrers:
-
     @pytest.fixture(autouse=True)
     def setup(self, client):
         self.client = client

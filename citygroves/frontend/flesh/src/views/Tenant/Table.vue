@@ -16,6 +16,7 @@
             :custom-filter="this.filter"
             item-key="str_repr"
             :show-select="selectable"
+            @input="onItemSelected"
     >
       <template #item.name="{ item }">
           <router-link :to="{ name: 'Tenant', params: { id: item.id }}">
@@ -51,6 +52,9 @@
             filter(value, search, item) {
                 return item.getTitle().toLowerCase().includes(search.toLowerCase());
             },
+            onItemSelected() {
+                this.$emit("selection-changed", this.selected)
+            }
         }
     };
 </script>

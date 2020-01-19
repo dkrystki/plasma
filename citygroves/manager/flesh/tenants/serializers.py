@@ -20,6 +20,7 @@ class AddressSerializer(serializers.ModelSerializer):
 
 class EntryNoticeSerializer(serializers.ModelSerializer):
     tenant = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Tenant.objects.all())
+    str_repr = serializers.ReadOnlyField(source='__str__')
 
     class Meta:
         model = EntryNotice

@@ -31,10 +31,8 @@
   </v-card>
 </template>
 <script>
-    import {Manager} from "../../src/apis/manager"
+    import {api} from "@/apis/backend"
     import DatePicker from "@components/DatePicker";
-
-    let manager = new Manager();
 
     export default {
         name: "Person",
@@ -74,7 +72,7 @@
             },
             async refresh() {
                 this.loading = true;
-                this.person = await manager.people.get(Number(this.id));
+                this.person = await api.people.get(Number(this.id));
 
                 this.first_name = this.person.first_name;
                 this.last_name = this.person.last_name;

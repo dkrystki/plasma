@@ -33,10 +33,8 @@
   </v-card>
 </template>
 <script>
-    import {Manager} from "../../src/apis/manager"
+    import {api} from "@/apis/backend"
     import Address from "./Address";
-
-    let manager = new Manager();
 
     export default {
         name: "Referrer",
@@ -66,7 +64,7 @@
             },
             async refresh() {
                 this.loading = true;
-                this.referrer = await manager.referrer.get(Number(this.id));
+                this.referrer = await api.referrer.get(Number(this.id));
 
                 this.first_name = this.referrer.first_name;
                 this.last_name = this.referrer.last_name;

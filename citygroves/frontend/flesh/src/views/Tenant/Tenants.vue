@@ -13,7 +13,7 @@
       </v-tab>
 
       <v-tab-item value="current">
-        <Table ref="currentTenantsTable" :tenants="current"/>
+        <Table ref="currentTenantsTable" @selection-changed="onSelectionChanged" :tenants="current"/>
       </v-tab-item>
 
       <v-tab-item value="past">
@@ -27,15 +27,15 @@
     </v-tabs>
 
     <template #actions>
-      <v-btn color="success" @click="handleEntryNotice">Entry notice</v-btn>
-      <v-btn color="success" @click="handleNoticeToLeave">Notice to leave</v-btn>
-      <v-btn color="success" @click="handleConditionreport">Condition report</v-btn>
+      <v-btn ref="entry_notice_btn" color="success" disabled @click="handleEntryNotice">Entry notice</v-btn>
+      <v-btn ref="notice_to_leave" color="success" disabled @click="handleNoticeToLeave">Notice to leave</v-btn>
+      <v-btn ref="condition_report" color="success" disabled @click="handleConditionreport">Condition report</v-btn>
     </template>
   </Card>
 </template>
 
 <script lang="ts">
-    import {Manager} from "@/apis/manager"
+    import {api, Tenant} from "@/apis/backend";
     import Table from "./Table.vue";
     import Card from "@/components/Cards/Card.vue"
 
@@ -57,10 +57,15 @@
         methods: {
             async refresh() {
                 this.loading = true;
-                let manager = new Manager();
-                let tenants = await manager.tenants.getAll();
+                let tenants = await api.tenants.getAll();
                 this.current = tenants;
                 this.loading = false;
+            },
+            onSelectionChanged(items: Array<Tenant>) {
+
+                this.$refs["entry_notice_btn"].disabled = !(items.length);
+                this.$refs["notice_to_leave"].disabled = !(items.length);
+                this.$refs["condition_report"].disabled = !(items.length);
             },
             handleEntryNotice() {
                 let selected = this.$refs.currentTenantsTable.selected;

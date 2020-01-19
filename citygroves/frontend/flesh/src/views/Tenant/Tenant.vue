@@ -82,12 +82,11 @@
 </template>
 
 <script lang="ts">
-    import {Manager} from "@/apis/manager"
+    import {api} from "@/apis/backend"
     import Person from "@/components/Person.vue"
     import Address from "@/components/Address.vue"
     import Referrer from "@/components/Referrer.vue"
 
-    let manager = new Manager();
     export default {
         data(): Object {
             return {
@@ -145,7 +144,7 @@
             },
             async refresh() {
                 this.loading = true;
-                this.application = await manager.applications.get(Number(this.$route.params.id));
+                this.application = await api.applications.get(Number(this.$route.params.id));
 
                 this.unit_number = this.application.room.unit.number;
                 this.room_number = this.application.room.number;

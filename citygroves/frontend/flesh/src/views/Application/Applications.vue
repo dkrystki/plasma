@@ -43,7 +43,7 @@
 
 <script lang="ts">
     import Table from "./Table.vue";
-    import {Manager} from "@/apis/manager";
+    import {api} from "@/apis/backend";
     import Card from "@/components/Cards/Card.vue"
 
     export default {
@@ -64,8 +64,7 @@
         methods: {
             async refresh() {
                 this.loading = true;
-                let manager = new Manager();
-                let applications = await manager.applications.getAll();
+                let applications = await api.applications.getAll();
                 for (let a of applications) {
                     this.pending.push({name: `${a.getTitle()}`, id: a.id})
                 }

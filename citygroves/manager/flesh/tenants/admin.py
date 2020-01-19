@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from tenants.models import Person, Address, Referrer, Application, Tenant
+from tenants import models
 
-admin.site.register(Person)
-admin.site.register(Address)
-admin.site.register(Referrer)
-admin.site.register(Application)
-admin.site.register(Tenant)
+admin.site.register(models.Person)
+admin.site.register(models.Address)
+admin.site.register(models.Referrer)
+admin.site.register(models.Application)
+admin.site.register(models.Tenant)
+admin.site.register(models.EntryNotice)
