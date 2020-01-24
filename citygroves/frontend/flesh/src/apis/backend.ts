@@ -78,7 +78,7 @@ export class EntryNotice extends ApiObject {
 
     getPdf() {
         this._getFile(url.resolve(this.api_interface.url, String(`${this.id}/?pdf/`)),
-            `${this.str_repr}-EntryNotice.pdf`);
+            `${this.str_repr}.pdf`);
     }
 }
 
@@ -204,7 +204,7 @@ class Api {
     entry_notices: ApiInterface;
 
     constructor() {
-        this.apiUrl = Config.managerApiUrl;
+        this.apiUrl = Config.backendApiUrl;
         this.applications = new ApiInterface(this, Application, "applications/");
         this.people = new ApiInterface(this, Person, "people/");
         this.tenants = new ApiInterface(this, Tenant, "tenants/");

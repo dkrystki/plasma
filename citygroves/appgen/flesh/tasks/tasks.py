@@ -10,7 +10,7 @@ from django.conf import settings
 from googleapiclient.discovery import build, Resource
 from google.oauth2.credentials import Credentials
 
-from citygroves.api_clients import manager
+from citygroves.api_clients import backend
 
 from celery.utils.log import get_task_logger
 
@@ -44,12 +44,12 @@ class Fetcher:
         )
         self.user_id: str = settings.GMAIL.OWNER_EMAIL
 
-    def _build_application(self, mail_body: str) -> manager.Application:
+    def _build_application(self, mail_body: str) -> backend.Application:
         values = [s.strip() for s in re.split(r"\*.*?\*", mail_body, flags=re.DOTALL) if s]
 
         def yes_no_to_bool(x: str) -> bool: return {"yes": True, "no": False}[x]
 
-        application = manager.Application(person=manager.Person(first_name=values[0].split()[0],
+        application = backend.Application(person=backend.Person(first_name=values[0].split()[0],
                                                                 last_name=values[0].split()[1],
                                                                 email=values[1],
                                                                 phone=values[2],
@@ -67,14 +67,14 @@ class Fetcher:
                                           is_international_student=yes_no_to_bool(values[19]),
                                           is_young_professional=yes_no_to_bool(values[20]),
                                           referrers=[
-                                              manager.Referrer(first_name=values[23].split()[0] if len(
+                                              backend.Referrer(first_name=values[23].split()[0] if len(
                                                   values[23].split()) > 1 else None,
                                                                last_name=values[23].split()[1] if len(
                                                                    values[23].split()) > 2 else None,
                                                                email=values[25] if values[25] else None,
                                                                phone=values[26] if values[25] else None,
                                                                address=self._build_address(values[27])),
-                                              manager.Referrer(first_name=values[29].split()[0] if len(
+                                              backend.Referrer(first_name=values[29].split()[0] if len(
                                                   values[29].split()) > 1 else None,
                                                                last_name=values[29].split()[1] if len(
                                                                    values[29].split()) > 2 else None,
@@ -112,20 +112,20 @@ class Fetcher:
             mail_body: str = base64.urlsafe_b64decode(
                 mail['payload']['parts'][0]['parts'][0]['parts'][0]['body']['data']).decode("ascii")
 
-            application: manager.Application = self._build_application(mail_body)
-            manager_api = manager.Manager(env.str("MANAGER_API_URL"))
+            application: backend.Application = self._build_application(mail_body)
+            backend_api = backend.Backend(env.str("BACKEND_API_URL"))
 
-            logger.info(f"Sending application to manager.")
-            manager_api.applications.create(application)
+            logger.info(f"Sending application to backend.")
+            backend_api.applications.create(application)
 
     @staticmethod
-    def _build_address(address: str) -> manager.Address:
+    def _build_address(address: str) -> backend.Address:
         try:
             address_comp = address.split("\r\n")
             street_lines = address_comp[0].split(",")
             city_comp = address_comp[1].split(" ")
 
-            ret = manager.Address(street_line1=street_lines[0],
+            ret = backend.Address(street_line1=street_lines[0],
                                   street_line2=street_lines[1] if len(street_lines) > 2 else "",
                                   street_line3=street_lines[2] if len(street_lines) > 3 else "",
                                   city=city_comp[0],
@@ -135,7 +135,7 @@ class Fetcher:
                                   raw_address=address)
         except Exception as e:
             logger.error(f"Cannot parse address ({address}) ({str(e)}). Falling back to raw_address.")
-            ret = manager.Address(raw_address=address)
+            ret = backend.Address(raw_address=address)
 
         return ret
 

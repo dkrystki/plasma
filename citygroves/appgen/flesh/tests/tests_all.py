@@ -10,7 +10,7 @@ from tasks.tasks import Fetcher
 
 @responses.activate
 def test_fetching(mocker):
-    responses.add(responses.POST, f"{os.environ['MANAGER_API_URL']}/application/create", status=201)
+    responses.add(responses.POST, f"{os.environ['BACKEND_API_URL']}/application/create", status=201)
 
     msg_list: List[Dict[str, str]] = json.loads(Path("data/msg-list.json").read_text())
     msg: Dict[str, Any] = json.loads(Path("data/msg.json").read_text())

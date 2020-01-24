@@ -14,4 +14,8 @@ source "$PLASMA_COMM_ROOT/bash/setup_stage.sh"
 
 PATH=$PATH:"$PROJECT_ROOT"/bin
 
+export MONOREPO_ROOT=$(dirname "$PROJECT_ROOT")
+
+export PYTHONPATH="$MONOREPO_ROOT$PYTHONPATH"
+
 eval $SETUP_PS1

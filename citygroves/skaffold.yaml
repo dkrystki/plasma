@@ -8,9 +8,9 @@ profiles:
       tagPolicy:
         sha256: {}
       artifacts:
-      - image: shangren.registry.local/citygroves-local/manager
+      - image: shangren.registry.local/citygroves-local/backend
         docker:
-          dockerfile: citygroves/manager/Dockerfile.local
+          dockerfile: citygroves/backend/Dockerfile.local
         context: ../
         sync:
           infer:
@@ -42,13 +42,13 @@ profiles:
     deploy:
       helm:
         releases:
-          - name: citygroves-local-manager
-            chartPath: manager/chart
+          - name: citygroves-local-backend
+            chartPath: backend/chart
             namespace: citygroves-local
             valuesFiles:
-              - manager/values/local/manager.yaml
+              - backend/values/local/backend.yaml
             values:
-              image: shangren.registry.local/citygroves-local/manager
+              image: shangren.registry.local/citygroves-local/backend
 
           - name: citygroves-local-appgen
             chartPath: appgen/chart
@@ -72,9 +72,9 @@ profiles:
       tagPolicy:
         sha256: {}
       artifacts:
-      - image: shangren.registry.local/citygroves-stage/manager
+      - image: shangren.registry.local/citygroves-stage/backend
         docker:
-          dockerfile: citygroves/manager/Dockerfile.stage
+          dockerfile: citygroves/backend/Dockerfile.stage
         context: ../
       - image: shangren.registry.local/citygroves-stage/appgen
         docker:
@@ -90,13 +90,13 @@ profiles:
     deploy:
       helm:
         releases:
-          - name: citygroves-stage-manager
-            chartPath: manager/chart
+          - name: citygroves-stage-backend
+            chartPath: backend/chart
             namespace: citygroves-stage
             valuesFiles:
-              - manager/values/stage/manager.yaml
+              - backend/values/stage/backend.yaml
             values:
-              image: shangren.registry.local/citygroves-stage/manager
+              image: shangren.registry.local/citygroves-stage/backend
 
           - name: citygroves-stage-appgen
             chartPath: appgen/chart

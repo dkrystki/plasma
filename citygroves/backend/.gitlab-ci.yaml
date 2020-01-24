@@ -1,0 +1,65 @@
+---
+
+variables:
+  PROJECT_DIR: "$CI_PROJECT_DIR/citygroves"
+  APP_DIR: "$CI_PROJECT_DIR/citygroves/backend"
+
+default:
+  image: python:3.7.4
+
+prepare-ci:
+  stage: .pre
+  cache:
+    paths:
+      - $APP_DIR/flesh/.venv/
+  artifacts:
+    paths:
+      - $APP_DIR/flesh/.venv/
+  before_script:
+    - cd $PROJECT_DIR
+    - touch .current_stage && echo "export STAGE=local" >> .current_stage
+
+    - cd $APP_DIR
+    - source .envrc
+
+    - cd $APP_DIR/flesh
+    - python3 -m venv .venv
+    - source .venv/bin/activate
+    - pip install poetry==0.12.17
+  script:
+    # install poetry to separate venv so we can use it as cache for other jobs
+    - poetry config settings.virtualenvs.in-project true
+    - poetry install
+
+flake8:
+  stage: test
+  before_script:
+    - cd $PROJECT_DIR
+    - touch .current_stage && echo "export STAGE=local" >> .current_stage
+
+    - cd $APP_DIR
+    - source .envrc
+
+    - cd $APP_DIR/flesh
+    - source .venv/bin/activate
+  script:
+    - poetry run flake8
+
+mypy:
+  stage: test
+  before_script:
+    - cd $CI_DIR
+    - touch .current_stage && echo "local" >> .current_stage
+    - source .envrc
+  script:
+    - source .venv/bin/activate
+    - poetry run mypy .
+
+test:
+  stage: test
+  before_script:
+    - cd $CI_DIR
+    - source .envrc
+  script:
+    - source .venv/bin/activate
+    - poetry run pytest

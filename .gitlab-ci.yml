@@ -1,6 +1,7 @@
 ---
 stages:
-  - lint-and-test
+  - .pre
+  - test
 
 include:
-  - '/citygroves/.gitlab-ci.yml'
+  - '/citygroves/.gitlab-ci.yaml'

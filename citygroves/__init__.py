@@ -4,13 +4,14 @@ import os
 
 
 def delete() -> None:
-    namespace.helm("postgresql").delete()
-    namespace.helm("redis").delete()
+    import core
+    core.namespace.helm("postgresql").delete()
+    core.namespace.helm("redis").delete()
 
 
 def deploy() -> None:
     import core
-    import manager
+    import backend
     import frontend
     import appgen
 
@@ -20,7 +21,7 @@ def deploy() -> None:
     core.namespace.helm("postgresql").install(chart="stable/postgresql", version="6.3.7")
     core.namespace.helm("redis").install(chart="stable/redis", version="9.2.0")
 
-    manager.deploy()
+    backend.deploy()
     frontend.deploy()
     appgen.deploy()
 

@@ -94,6 +94,7 @@
     import {api, EntryNotice} from "@/apis/backend"
     import Card from "@/components/Cards/Card.vue"
     import DatePicker from "@components/DatePicker";
+    import moment = require("moment");
 
     export default {
         name: "EntryNotice",
@@ -115,7 +116,7 @@
                     {text: '', value: 'actions', sortable: false, width: 90},
                 ],
                 loading: false,
-                planned_on_header: "2019-12-12",
+                planned_on_header: moment().format("YYYY-MM-DD"),
                 planned_time_header: "10am - 2pm",
                 is_inspection_header: true,
                 is_cleaning_header: false,
@@ -143,7 +144,7 @@
                         name: t.str_repr,
                         room_number: t.room.number,
                         unit_number: t.room.unit.number,
-                        planned_on: "2019-12-12",
+                        planned_on: this.planned_on_header,
                         planned_time: "10am - 2pm",
                         is_inspection: this.is_inspection_header,
                         is_cleaning: false,

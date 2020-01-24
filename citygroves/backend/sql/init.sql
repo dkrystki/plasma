@@ -1,0 +1,4 @@
+CREATE USER backend WITH PASSWORD 'password';
+CREATE DATABASE backend;
+GRANT ALL PRIVILEGES ON DATABASE backend TO backend;
+ALTER DATABASE backend OWNER TO backend;

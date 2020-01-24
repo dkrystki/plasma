@@ -4,11 +4,11 @@ from datetime import date
 
 
 @responses.activate
-def test_manager_api_client():
-    from citygroves.api_clients.manager import Manager, Application, Person, Address, Referrer
+def test_backend_api_client():
+    from citygroves.api_clients.backend import Backend, Application, Person, Address, Referrer
 
-    manager = Manager(os.environ["MANAGER_API_URL"])
-    responses.add(responses.POST, f"{os.environ['MANAGER_API_URL']}/applications", status=201)
+    backend = Backend(os.environ["BACKEND_API_URL"])
+    responses.add(responses.POST, f"{os.environ['BACKEND_API_URL']}/applications", status=201)
 
     application = Application(person=Person(first_name="test_first_name",
                                             last_name="test_last_name",
@@ -40,4 +40,4 @@ def test_manager_api_client():
                                                   dob=date(1990, 8, 18),
                                                   address=Address(raw_address="Australia"))])
 
-    manager.applications.create(application)
+    backend.applications.create(application)

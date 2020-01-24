@@ -33,5 +33,5 @@ gmail:
 
 formBuilderEmail: "damian.krystkiewicz@gmail.com"
 
-manager:
-  apiUrl: "http://manager/api"
+backend:
+  apiUrl: "http://backend/api"

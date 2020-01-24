@@ -9,19 +9,27 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-import logging
+
 import os
+from pathlib import Path
+
 import environ
 
 # import sentry_sdk
-
+import plasma.logs
 # from sentry_sdk.integrations.django import DjangoIntegration
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 env = environ.Env()
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+plasma.logs.setup("citygroves", "backend")
+logger.info("Starting citygroves.backend")
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -32,7 +40,16 @@ SECRET_KEY = 'm*t!qg*b#o#e)xla3@o*r$ytt@vdy5w=*0$v()y2uswcqtyb9i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+
+class DB:
+    NAME = env.str("DB_NAME")
+    USER = env.str("DB_USER")
+    PASSWORD = env.str("DB_PASSWORD")
+    HOST = env.str("DB_HOST")
+    PORT = env.str("DB_PORT")
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,10 +58,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tasks'
+    "django.contrib.postgres",
+    "django_extensions",
+    'corsheaders',
+    'rest_framework',
+    'django_filters',
+    "tenants",
+    "housing"
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +78,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'appgen.urls'
+ROOT_URLCONF = 'backend.urls'
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
@@ -72,12 +97,21 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'appgen.wsgi.application'
-
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": DB.NAME,
+        "USER": DB.USER,
+        "PASSWORD": DB.PASSWORD,
+        "HOST": DB.HOST,
+        "PORT": DB.PORT,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -97,11 +131,31 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Internationalization
+# https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-class Filter(logging.Filter):
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_URL = '/static/'
+
+STAGE = "local"
+
+
+class Filter2(logging.Filter):
     def filter(self, record):
         record.namespace = "citygroves"
-        record.app = "appgen"
+        record.app = "backend"
         return True
 
 
@@ -109,7 +163,7 @@ LOGGING = {
     'version': 1,
     'filters': {
         'app_filter': {
-            '()': 'appgen.settings.Filter',
+            '()': 'backend.settings.Filter2',
         }
     },
     'handlers': {
@@ -133,11 +187,7 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        'appgen': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-        },
-        'tasks': {
+        'backend': {
             'handlers': ['graypy'],
             'level': 'INFO',
         },
@@ -148,40 +198,11 @@ LOGGING = {
     },
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STAGE = "local"
-
-
-class GMAIL:
-    CLIENT_ID = env.str("GMAIL_CLIENT_ID")
-    CLIENT_SECRET = env.str("GMAIL_CLIENT_SECRET")
-    GOOGLE_AUTH_URI = env.str("GOOGLE_AUTH_URI")
-    GOOGLE_TOKEN_URI = env.str("GOOGLE_TOKEN_URI")
-    OWNER_EMAIL = env.str("OWNER_EMAIL")
-
-
-FORM_BUILDER_EMAIL = env.str("FORM_BUILDER_EMAIL")
-
-    # class SENTRY:
+# class SENTRY:
 #     DSN = env.str("SENTRY_DSN")
 
 

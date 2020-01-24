@@ -5,5 +5,5 @@ metadata:
 data:
   config.ts: |
     export const Config = {
-      managerApiUrl: "{{ .Values.manager.apiUrl }}",
+      backendApiUrl: "{{ .Values.backend.apiUrl }}",
     }
