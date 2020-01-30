@@ -43,7 +43,7 @@ flake8:
     - cd $APP_DIR/flesh
     - source .venv/bin/activate
   script:
-    - poetry run flake8
+    - local.flake8
 
 mypy:
   stage: test
