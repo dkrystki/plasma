@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+cd $APP_ROOT
+
+./bin/local.isort
+./bin/local.black

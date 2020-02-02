@@ -1,9 +1,10 @@
 from pathlib import Path
-from typing import Dict, Any, List
-from PyPDF2 import PdfFileReader, PdfFileWriter
-from PyPDF2.generic import NameObject, TextStringObject, NumberObject, BooleanObject, IndirectObject
-from PyPDF2.pdf import PageObject
+from typing import Any, Dict, List
+
 from django.conf import settings
+from PyPDF2 import PdfFileReader, PdfFileWriter
+from PyPDF2.generic import BooleanObject, IndirectObject, NameObject, NumberObject, TextStringObject
+from PyPDF2.pdf import PageObject
 
 
 class PdfFile:
@@ -11,16 +12,13 @@ class PdfFile:
 
     def _set_appearances_to_reader(self, reader: PdfFileReader) -> None:
         if "/AcroForm" in reader.trailer["/Root"]:
-            reader.trailer["/Root"]["/AcroForm"].update(
-                {NameObject("/NeedAppearances"): BooleanObject(True)}
-            )
+            reader.trailer["/Root"]["/AcroForm"].update({NameObject("/NeedAppearances"): BooleanObject(True)})
 
     def _set_appearances_to_writer(self, writer: PdfFileWriter) -> None:
         catalog = writer._root_object
         # get the AcroForm tree
         if "/AcroForm" not in catalog:
-            writer._root_object.update({
-                NameObject("/AcroForm"): IndirectObject(len(writer._objects), 0, writer)})
+            writer._root_object.update({NameObject("/AcroForm"): IndirectObject(len(writer._objects), 0, writer)})
 
         need_appearances = NameObject("/NeedAppearances")
         writer._root_object["/AcroForm"][need_appearances] = BooleanObject(True)
@@ -42,39 +40,33 @@ class PdfFile:
             if "/Annots" not in p:
                 self.pdf.addPage(p)
                 continue
-            for j in range(0, len(p['/Annots'])):
-                writer_annot = p['/Annots'][j].getObject()
-                writer_annot.update({
-                    NameObject("/Ff"): NumberObject(1)  # make ReadOnly
-                })
+            for j in range(0, len(p["/Annots"])):
+                writer_annot = p["/Annots"][j].getObject()
+                writer_annot.update({NameObject("/Ff"): NumberObject(1)})  # make ReadOnly
 
-                for mk, mv, in m.items():
-                    if writer_annot.get('/T') == mk:
+                for mk, mv in m.items():
+                    if writer_annot.get("/T") == mk:
                         input_value: Any = input_dict[mv]
                         value: str
                         if type(input_value) == bool:
                             if input_value:
-                                writer_annot.update({
-                                    NameObject("/V"): NameObject("/1"),
-                                    NameObject("/AS"): NameObject("/1"),
-                                })
+                                writer_annot.update(
+                                    {NameObject("/V"): NameObject("/1"), NameObject("/AS"): NameObject("/1")}
+                                )
                             else:
-                                if '/V' in writer_annot:
-                                    del writer_annot['/V']
-                                writer_annot.update({
-                                    NameObject("/AS"): NameObject("/Off"),
-                                })
+                                if "/V" in writer_annot:
+                                    del writer_annot["/V"]
+                                writer_annot.update({NameObject("/AS"): NameObject("/Off")})
                         else:
                             value = str(input_value)
-                            writer_annot.update({
-                                NameObject("/V"): TextStringObject(value),
-                                NameObject("/AP"): TextStringObject(value),
-                            })
+                            writer_annot.update(
+                                {NameObject("/V"): TextStringObject(value), NameObject("/AP"): TextStringObject(value)}
+                            )
 
             self.pdf.addPage(p)
 
     def save(self, path: Path):
-        with open(str(path), 'wb') as f:
+        with open(str(path), "wb") as f:
             self.pdf.write(f)
 
         self._add_signature(path)
@@ -91,12 +83,12 @@ class PdfFile:
 
         for i in range(template.getNumPages()):
             page = template.getPage(i)
-            watermark = signature .getPage(i)
+            watermark = signature.getPage(i)
 
             page.mergePage(watermark)
             output.addPage(page)
 
-        with open(str(path), 'wb') as f:
+        with open(str(path), "wb") as f:
             output.write(f)
 
 
@@ -118,12 +110,18 @@ class LeasePdf(PdfFile):
             "TextField[5]": "payment_reference",
             "TextField[17]": "bond_amount",
         },
-        {}, {}, {}, {}, {}
+        {},
+        {},
+        {},
+        {},
+        {},
     ]
 
     def __init__(self) -> None:
-        super(LeasePdf, self).__init__(template_path=settings.BASE_DIR / "tenants/templates/lease.pdf",
-                                       signature_path=settings.BASE_DIR / "tenants/templates/lease-signature.pdf")
+        super(LeasePdf, self).__init__(
+            template_path=settings.BASE_DIR / "tenants/templates/lease.pdf",
+            signature_path=settings.BASE_DIR / "tenants/templates/lease-signature.pdf",
+        )
 
 
 class EntryNoticePdf(PdfFile):
@@ -150,10 +148,11 @@ class EntryNoticePdf(PdfFile):
             "CheckBox[7]": "is_valutation",
             "CheckBox[8]": "is_fire_and_rescue",
         },
-        {}
+        {},
     ]
 
     def __init__(self) -> None:
         super(EntryNoticePdf, self).__init__(
             template_path=settings.BASE_DIR / "tenants/templates/entry-notice-form.pdf",
-            signature_path=settings.BASE_DIR / "tenants/templates/entry-notice-form-signature.pdf")
+            signature_path=settings.BASE_DIR / "tenants/templates/entry-notice-form-signature.pdf",
+        )

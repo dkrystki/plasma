@@ -2,8 +2,9 @@ import os
 from pathlib import Path
 
 import pytest_factoryboy
-from pytest import fixture
 from django.core.management import call_command
+from pytest import fixture
+
 import tests.factories.tenants
 
 pytest_factoryboy.register(tests.factories.tenants.PersonFactory)
@@ -21,17 +22,14 @@ def sample_person_payload():
         "last_name": "Krystkiewicz",
         "email": "testdf@gmail.au",
         "phone": "112341342",
-        "dob": "1990-11-20"
+        "dob": "1990-11-20",
     }
 
 
 @fixture
 def sample_tenant_payload(sample_person_payload):
     return {
-        "people": [
-            dict(sample_person_payload),
-            dict(sample_person_payload),
-        ],
+        "people": [dict(sample_person_payload), dict(sample_person_payload)],
         "room_number": 6,
         "unit_number": 5,
         "lease_start": "2020-11-20",
@@ -66,7 +64,7 @@ def sample_address_payload():
         "post_code": "1234",
         "country": "Australia",
         "raw_address": "Australian street line1, Australian street line2, "
-                       "Australian street line3 \n Australia Brisbane QLD"
+        "Australian street line3 \n Australia Brisbane QLD",
     }
 
 
@@ -77,7 +75,7 @@ def sample_referrer_payload(sample_address_payload):
         "last_name": "Surname",
         "email": "referee@gmail.com",
         "phone": "13223132",
-        "address": sample_address_payload
+        "address": sample_address_payload,
     }
 
 
@@ -98,19 +96,15 @@ def sample_application_payload(sample_person_payload, sample_address_payload, sa
         "is_international_student": True,
         "is_young_professional": False,
         "digital_signature": None,
-
-        "referrers":
-            [
-                dict(sample_referrer_payload), dict(sample_referrer_payload)
-            ]
+        "referrers": [dict(sample_referrer_payload), dict(sample_referrer_payload)],
     }
     return payload
 
 
 @fixture
 def create_rooms():
-    call_command('loaddata', '../../housing/fixtures/units.yaml', verbosity=0)
-    call_command('loaddata', '../../housing/fixtures/rooms.yaml', verbosity=0)
+    call_command("loaddata", "../../housing/fixtures/units.yaml", verbosity=0)
+    call_command("loaddata", "../../housing/fixtures/rooms.yaml", verbosity=0)
 
 
 @fixture

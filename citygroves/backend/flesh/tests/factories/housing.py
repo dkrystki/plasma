@@ -1,10 +1,7 @@
-from datetime import datetime
-
 import factory
+import pytest_factoryboy
 
 from housing import models
-
-import pytest_factoryboy
 
 
 class UnitFactory(factory.Factory):

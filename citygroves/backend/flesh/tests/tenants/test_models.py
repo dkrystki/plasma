@@ -1,4 +1,3 @@
-from datetime import date
 from pathlib import Path
 
 import pytest
@@ -14,6 +13,7 @@ class TestApplication:
 class TestTenant:
     def test_str_representation(self, sample_tenant):
         from tenants.models import Person
+
         person1: Person = sample_tenant.people.all()[0]
         person2: Person = sample_tenant.people.all()[1]
 
@@ -27,7 +27,8 @@ class TestTenant:
         person2.last_name = "LastName2"
         person2.save()
 
-        assert str(sample_tenant) == "FirstName1 MidName11 MidName12 LastName1 and FirstName2 MidName12 MidName12 LastName2"
+        str_repr = "FirstName1 MidName11 MidName12 LastName1 and FirstName2 MidName12 MidName12 LastName2"
+        assert str(sample_tenant) == str_repr
 
 
 @pytest.mark.usefixtures("db")

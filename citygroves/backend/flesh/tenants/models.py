@@ -1,17 +1,12 @@
-import base64
-from dataclasses import dataclass
 from datetime import date
 from email import encoders
-from pathlib import Path
-from typing import Dict, Any, Optional
-
-from django.conf import settings
-from django.db import models
-
+from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
+from pathlib import Path
+from typing import Any, Dict
 
+from django.db import models
 from django.template.loader import render_to_string
 
 from backend import gmail
@@ -68,6 +63,7 @@ class Application(models.Model):
 
     def save_lease_pdf(self, path: Path) -> None:
         from tenants.tools import LeasePdf
+
         pdf = LeasePdf()
         input_dict: Dict[str, Any] = {
             "person.full_name": f"{self.person.first_name} {self.person.middle_names} {self.person.last_name}",
@@ -79,7 +75,7 @@ class Application(models.Model):
             "ending_on": "",
             "rent": 150,
             "payment_reference": str(self.room),
-            "bond_amount": 300
+            "bond_amount": 300,
         }
 
         pdf.fill(input_dict)
@@ -91,6 +87,7 @@ class Application(models.Model):
 
 class Tenant(models.Model):
     from housing.models import Room
+
     people = models.ManyToManyField(Person)
     room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True)
     lease_start = models.DateField(null=True)
@@ -145,7 +142,7 @@ class EntryNotice(models.Model):
             "is_pest_control": self.is_pest_control,
             "is_showing_to_buyer": self.is_showing_to_buyer,
             "is_valutation": self.is_valutation,
-            "is_fire_and_rescue": self.is_fire_and_rescue
+            "is_fire_and_rescue": self.is_fire_and_rescue,
         }
 
         if self.tenant.people.all().count() == 2:
@@ -159,22 +156,18 @@ class EntryNotice(models.Model):
         person1: Person = self.tenant.people.all()[0]
 
         message = MIMEMultipart()
-        message['to'] = person1.email
-        message['from'] = "plasmakwazar.test@gmail.com"
+        message["to"] = person1.email
+        message["from"] = "plasmakwazar.test@gmail.com"
         title = f"Entry notice {'(' + self.details + ')' if self.details else ''}"
-        message['subject'] = title
-        context = {
-            "tenant_name": str(self.tenant),
-            "entry_notice": self,
-            "title": title,
-        }
-        message.attach(MIMEText(render_to_string('entry-notice-email.html', context), "html"))
+        message["subject"] = title
+        context = {"tenant_name": str(self.tenant), "entry_notice": self, "title": title}
+        message.attach(MIMEText(render_to_string("entry-notice-email.html", context), "html"))
 
         pdf_path = Path("/tmp/entry-notice.pdf")
         self.create_pdf(pdf_path)
-        pdf = MIMEBase('application/pdf', 'octet-stream')
+        pdf = MIMEBase("application/pdf", "octet-stream")
         pdf.set_payload(pdf_path.read_bytes())
-        pdf.add_header('Content-Disposition', 'attachment', filename=pdf_path.name)
+        pdf.add_header("Content-Disposition", "attachment", filename=pdf_path.name)
         encoders.encode_base64(pdf)
         message.attach(pdf)
 

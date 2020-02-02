@@ -1,27 +1,25 @@
 #!/usr/bin/env python
+import csv
+import os
 import re
 import sys
-import os
+from datetime import date
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import List
 
 import click
-import csv
-import django
-from datetime import date
 import dateutil.parser
+import django
+from django.db import transaction
 from tqdm import tqdm
 
-from django.conf import settings
+from housing.models import Room
+from tenants.models import Person, Tenant
 
 sys.path.append(os.environ["APP_SRC"])
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 
 django.setup()
-
-from django.db import transaction
-from tenants.models import Person, Tenant
-from housing.models import Room
 
 
 class Importer:
@@ -33,14 +31,12 @@ class Importer:
         if len(tenancy.split()) > 2:
             middle_names = " ".join(tenancy.split()[1:-1])
 
-        person = Person(first_name=tenancy.split()[0],
-                        middle_names=middle_names,
-                        last_name=tenancy.split()[-1])
+        person = Person(first_name=tenancy.split()[0], middle_names=middle_names, last_name=tenancy.split()[-1])
         person.save()
         return person
 
     def start(self):
-        with open(str(self.input_path), newline='') as csvfile:
+        with open(str(self.input_path), newline="") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in tqdm(reader):
                 people: List[Person] = []
@@ -67,12 +63,12 @@ class Importer:
 
 
 @click.command()
-@click.argument('input_path', type=str)
+@click.argument("input_path", type=str)
 @transaction.atomic
 def import_from_propertytree(input_path: str):
     importer = Importer(Path(input_path))
     importer.start()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import_from_propertytree()

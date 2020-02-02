@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import logging
 import os
 from pathlib import Path
 
@@ -17,9 +18,9 @@ import environ
 
 # import sentry_sdk
 import plasma.logs
+
 # from sentry_sdk.integrations.django import DjangoIntegration
 
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +36,7 @@ BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm*t!qg*b#o#e)xla3@o*r$ytt@vdy5w=*0$v()y2uswcqtyb9i'
+SECRET_KEY = "m*t!qg*b#o#e)xla3@o*r$ytt@vdy5w=*0$v()y2uswcqtyb9i"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,52 +53,52 @@ class DB:
 
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django_extensions",
-    'corsheaders',
-    'rest_framework',
-    'django_filters',
+    "corsheaders",
+    "rest_framework",
+    "django_filters",
     "tenants",
-    "housing"
+    "housing",
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = "backend.urls"
 CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
         },
-    },
+    }
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION = "backend.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -117,26 +118,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -147,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 
 STAGE = "local"
@@ -161,55 +154,28 @@ class Filter2(logging.Filter):
 
 
 LOGGING = {
-    'version': 1,
-    'filters': {
-        'app_filter': {
-            '()': 'backend.settings.Filter2',
+    "version": 1,
+    "filters": {"app_filter": {"()": "backend.settings.Filter2"}},
+    "handlers": {
+        "graypy": {
+            "level": "INFO",
+            "class": "graypy.GELFTCPHandler",
+            "host": "graylog-tcp.graylog",
+            "port": 12201,
+            "filters": ["app_filter"],
         }
     },
-    'handlers': {
-        'graypy': {
-            'level': 'INFO',
-            'class': 'graypy.GELFTCPHandler',
-            'host': 'graylog-tcp.graylog',
-            'port': 12201,
-            'filters': ["app_filter"]
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-            'propagate': True,
-
-        },
-        'django.request': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'backend': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-        },
-        'tenants': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-        },
-        'housing': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-        },
-        'celery': {
-            'handlers': ['graypy'],
-            'level': 'INFO',
-        },
+    "loggers": {
+        "django": {"handlers": ["graypy"], "level": "INFO", "propagate": True},
+        "django.request": {"handlers": ["graypy"], "level": "INFO", "propagate": True},
+        "backend": {"handlers": ["graypy"], "level": "INFO"},
+        "tenants": {"handlers": ["graypy"], "level": "INFO"},
+        "housing": {"handlers": ["graypy"], "level": "INFO"},
+        "celery": {"handlers": ["graypy"], "level": "INFO"},
     },
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-}
+REST_FRAMEWORK = {"DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]}
 
 # class SENTRY:
 #     DSN = env.str("SENTRY_DSN")
