@@ -75,10 +75,15 @@ export class EntryNotice extends ApiObject {
     is_showing_to_buyer: Boolean;
     is_valutation: Boolean;
     is_fire_and_rescue: Boolean;
+    details: string;
 
     getPdf() {
         this._getFile(url.resolve(this.api_interface.url, String(`${this.id}/?pdf/`)),
             `${this.str_repr}.pdf`);
+    }
+
+    send() {
+        axios.post(url.resolve(this.api_interface.url, String(`${this.id}/send/`)));
     }
 }
 

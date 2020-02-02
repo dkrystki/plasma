@@ -84,7 +84,7 @@
       </template>
     </v-data-table>
     <template #actions>
-      <v-btn color="success" @click="onSendClick">Send All</v-btn>
+      <v-btn color="success" @click="onSendAllClick">Send All</v-btn>
       <v-btn color="success" @click="onDownloadAllClick">Download All</v-btn>
     </template>
   </Card>
@@ -173,15 +173,19 @@
                     this.table_data[index]["planned_time"] = value;
                 }
             },
-            onSendClick() {
-
-            },
-            onDownloadAllClick() {
+            async onSendAllClick() {
                 for (const te of this.table_data) {
-                  this.downloadOne(te);
+                    let entry_notice = await this.createOne(te);
+                    entry_notice.send();
                 }
             },
-            async downloadOne(item) {
+            async onDownloadAllClick() {
+                for (const te of this.table_data) {
+                    let entry_notice = await this.createOne(te);
+                    entry_notice.getPdf();
+                }
+            },
+            async createOne(item) {
                 let entry_notice = new EntryNotice();
                 entry_notice.tenant = item.tenant_id;
                 entry_notice.planned_on = item.planned_on;
@@ -193,10 +197,11 @@
                 entry_notice.is_showing_to_buyer = item.is_showing_to_buyer;
                 entry_notice.is_valutation = item.is_valutation;
                 entry_notice.is_fire_and_rescue = item.is_fire_and_rescue;
-
+                entry_notice.details = "Air conditional maintenance";
                 await api.entry_notices.create(entry_notice);
-                entry_notice.getPdf();
-            }
+
+                return entry_notice;
+            },
         },
     };
 </script>

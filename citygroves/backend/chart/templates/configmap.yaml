@@ -9,3 +9,9 @@ data:
   DB_HOST: "{{ .Values.db.host }}"
   DB_PORT: "{{ .Values.db.port }}"
 
+  GMAIL_CLIENT_ID: "{{ .Values.gmail.clientId }}"
+  GMAIL_CLIENT_SECRET: "{{ .Values.gmail.clientSecret }}"
+  GOOGLE_AUTH_URI: "{{ .Values.gmail.googleAuthUri }}"
+  GOOGLE_TOKEN_URI: "{{ .Values.gmail.googleTokenUri }}"
+  REFRESH_TOKEN: "{{ .Values.gmail.refreshToken }}"
+  OWNER_EMAIL: "{{ .Values.gmail.ownerEmail }}"

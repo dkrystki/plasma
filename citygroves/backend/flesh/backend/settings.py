@@ -148,6 +148,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "static"
 
 STAGE = "local"
 
@@ -191,6 +192,14 @@ LOGGING = {
             'handlers': ['graypy'],
             'level': 'INFO',
         },
+        'tenants': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
+        'housing': {
+            'handlers': ['graypy'],
+            'level': 'INFO',
+        },
         'celery': {
             'handlers': ['graypy'],
             'level': 'INFO',
@@ -215,3 +224,12 @@ REST_FRAMEWORK = {
 #             DjangoIntegration(),
 #         ],
 #     )
+
+
+class GMAIL:
+    CLIENT_ID = env.str("GMAIL_CLIENT_ID")
+    CLIENT_SECRET = env.str("GMAIL_CLIENT_SECRET")
+    GOOGLE_AUTH_URI = env.str("GOOGLE_AUTH_URI")
+    GOOGLE_TOKEN_URI = env.str("GOOGLE_TOKEN_URI")
+    OWNER_EMAIL = env.str("OWNER_EMAIL")
+    REFRESH_TOKEN = env.str("REFRESH_TOKEN")

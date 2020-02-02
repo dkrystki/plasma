@@ -1,69 +1,74 @@
-from datetime import date, datetime
 from pathlib import Path
 from typing import Dict, Any, List
-import pdfrw
 from PyPDF2 import PdfFileReader, PdfFileWriter
-from PyPDF2.generic import NameObject, BooleanObject, IndirectObject, TextStringObject, NumberObject
+from PyPDF2.generic import NameObject, TextStringObject, NumberObject, BooleanObject, IndirectObject
 from PyPDF2.pdf import PageObject
 from django.conf import settings
-from pdfrw import PdfName, PdfString
 
 
 class PdfFile:
     mapping: List[Dict[str, Any]]
 
-    def __init__(self, path: Path) -> None:
-        self.path = path
-        self.pages: List[PageObject] = []
-
-        self.input_pdf = PdfFileReader(str(self.path), strict=False)
-
-        if "/AcroForm" in self.input_pdf.trailer["/Root"]:
-            self.input_pdf.trailer["/Root"]["/AcroForm"].update(
+    def _set_appearances_to_reader(self, reader: PdfFileReader) -> None:
+        if "/AcroForm" in reader.trailer["/Root"]:
+            reader.trailer["/Root"]["/AcroForm"].update(
                 {NameObject("/NeedAppearances"): BooleanObject(True)}
             )
 
-        self.pdf = PdfFileWriter()
-        catalog = self.pdf._root_object
+    def _set_appearances_to_writer(self, writer: PdfFileWriter) -> None:
+        catalog = writer._root_object
         # get the AcroForm tree
         if "/AcroForm" not in catalog:
-            self.pdf._root_object.update({
-                NameObject("/AcroForm"): IndirectObject(len(self.pdf._objects), 0, self.pdf)})
+            writer._root_object.update({
+                NameObject("/AcroForm"): IndirectObject(len(writer._objects), 0, writer)})
 
         need_appearances = NameObject("/NeedAppearances")
-        self.pdf._root_object["/AcroForm"][need_appearances] = BooleanObject(True)
+        writer._root_object["/AcroForm"][need_appearances] = BooleanObject(True)
+
+    def __init__(self, template_path: Path, signature_path: Path) -> None:
+        self.template_path = template_path
+        self.signature_path = signature_path
+        self.pages: List[PageObject] = []
+
+        self.input_pdf = PdfFileReader(str(self.template_path), strict=False)
+
+        self._set_appearances_to_reader(self.input_pdf)
+
+        self.pdf = PdfFileWriter()
+        self._set_appearances_to_writer(self.pdf)
 
     def fill(self, input_dict: Dict[str, Any]) -> None:
         for p, m in zip(self.input_pdf.pages, self.mapping):
             if "/Annots" not in p:
+                self.pdf.addPage(p)
                 continue
             for j in range(0, len(p['/Annots'])):
                 writer_annot = p['/Annots'][j].getObject()
-                a = 1
-                #                 writer_annot.update({
-                #                     NameObject("/Ff"): NumberObject(1)  # make ReadOnly
-                #                 })
+                writer_annot.update({
+                    NameObject("/Ff"): NumberObject(1)  # make ReadOnly
+                })
 
                 for mk, mv, in m.items():
                     if writer_annot.get('/T') == mk:
-                        # if mv != "signature":
-                        #     writer_annot.update({
-                        #         NameObject("/Ff"): NumberObject(1)  # make ReadOnly
-                        #     })
                         input_value: Any = input_dict[mv]
                         value: str
                         if type(input_value) == bool:
-                            value = "/1" if input_value else "Off"
-                            # writer_annot.update({
-                            #     NameObject("/V"): NameObject(value),
-                            #     NameObject("/AS"): NameObject(value)
-                            # })
+                            if input_value:
+                                writer_annot.update({
+                                    NameObject("/V"): NameObject("/1"),
+                                    NameObject("/AS"): NameObject("/1"),
+                                })
+                            else:
+                                if '/V' in writer_annot:
+                                    del writer_annot['/V']
+                                writer_annot.update({
+                                    NameObject("/AS"): NameObject("/Off"),
+                                })
                         else:
                             value = str(input_value)
                             writer_annot.update({
                                 NameObject("/V"): TextStringObject(value),
                                 NameObject("/AP"): TextStringObject(value),
-                                # NameObject("/DA"): TextStringObject("/ArialMT 11 Tf 0 g"),
                             })
 
             self.pdf.addPage(p)
@@ -71,6 +76,28 @@ class PdfFile:
     def save(self, path: Path):
         with open(str(path), 'wb') as f:
             self.pdf.write(f)
+
+        self._add_signature(path)
+
+    def _add_signature(self, path: Path):
+        template = PdfFileReader(str(path), strict=False)
+        self._set_appearances_to_reader(template)
+
+        signature = PdfFileReader(str(self.signature_path), strict=False)
+        self._set_appearances_to_reader(signature)
+
+        output = PdfFileWriter()
+        self._set_appearances_to_writer(output)
+
+        for i in range(template.getNumPages()):
+            page = template.getPage(i)
+            watermark = signature .getPage(i)
+
+            page.mergePage(watermark)
+            output.addPage(page)
+
+        with open(str(path), 'wb') as f:
+            output.write(f)
 
 
 class LeasePdf(PdfFile):
@@ -95,7 +122,8 @@ class LeasePdf(PdfFile):
     ]
 
     def __init__(self) -> None:
-        super(LeasePdf, self).__init__(settings.BASE_DIR / "tenants/templates/lease.pdf")
+        super(LeasePdf, self).__init__(template_path=settings.BASE_DIR / "tenants/templates/lease.pdf",
+                                       signature_path=settings.BASE_DIR / "tenants/templates/lease-signature.pdf")
 
 
 class EntryNoticePdf(PdfFile):
@@ -121,9 +149,11 @@ class EntryNoticePdf(PdfFile):
             "CheckBox[6]": "is_showing_to_buyer",
             "CheckBox[7]": "is_valutation",
             "CheckBox[8]": "is_fire_and_rescue",
-            "TextField[14]": "signature",
         },
+        {}
     ]
 
     def __init__(self) -> None:
-        super(EntryNoticePdf, self).__init__(settings.BASE_DIR / "tenants/templates/entry-notice-form.pdf")
+        super(EntryNoticePdf, self).__init__(
+            template_path=settings.BASE_DIR / "tenants/templates/entry-notice-form.pdf",
+            signature_path=settings.BASE_DIR / "tenants/templates/entry-notice-form-signature.pdf")

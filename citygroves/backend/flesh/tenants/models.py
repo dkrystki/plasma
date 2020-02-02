@@ -1,9 +1,20 @@
+import base64
 from dataclasses import dataclass
 from datetime import date
+from email import encoders
 from pathlib import Path
 from typing import Dict, Any, Optional
 
+from django.conf import settings
 from django.db import models
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+
+from django.template.loader import render_to_string
+
+from backend import gmail
 
 
 class Person(models.Model):
@@ -75,7 +86,7 @@ class Application(models.Model):
         pdf.save(path)
 
     def __str__(self):
-        return f"{self.person.first_name+self.person.last_name}"
+        return f"{self.person.first_name + self.person.last_name}"
 
 
 class Tenant(models.Model):
@@ -98,6 +109,7 @@ class EntryNotice(models.Model):
     planned_on = models.DateField(null=False)
     # Time range, "10am - 2pm"
     planned_time = models.CharField(max_length=63, null=False)
+    details = models.CharField(max_length=255, null=True)
     is_inspection = models.BooleanField(null=False, default=True)
     is_cleaning = models.BooleanField(null=False, default=False)
     is_repairs_or_maintenance = models.BooleanField(null=False, default=False)
@@ -126,15 +138,14 @@ class EntryNotice(models.Model):
             "issued_on_day_name": date.today().strftime("%A"),
             "method_of_issue": "email",
             "manager.name": "Shoma Madhoji",
-            "details": "",
+            "details": self.details,
             "is_inspection": self.is_inspection,
             "is_cleaning": self.is_cleaning,
             "is_repairs_or_maintenance": self.is_repairs_or_maintenance,
             "is_pest_control": self.is_pest_control,
             "is_showing_to_buyer": self.is_showing_to_buyer,
             "is_valutation": self.is_valutation,
-            "is_fire_and_rescue": self.is_fire_and_rescue,
-            "signature": None
+            "is_fire_and_rescue": self.is_fire_and_rescue
         }
 
         if self.tenant.people.all().count() == 2:
@@ -143,3 +154,30 @@ class EntryNotice(models.Model):
 
         pdf.fill(input_dict)
         pdf.save(path)
+
+    def send(self):
+        person1: Person = self.tenant.people.all()[0]
+
+        message = MIMEMultipart()
+        message['to'] = person1.email
+        message['from'] = "plasmakwazar.test@gmail.com"
+        title = f"Entry notice {'(' + self.details + ')' if self.details else ''}"
+        message['subject'] = title
+        context = {
+            "tenant_name": str(self.tenant),
+            "entry_notice": self,
+            "title": title,
+        }
+        message.attach(MIMEText(render_to_string('entry-notice-email.html', context), "html"))
+
+        pdf_path = Path("/tmp/entry-notice.pdf")
+        self.create_pdf(pdf_path)
+        pdf = MIMEBase('application/pdf', 'octet-stream')
+        pdf.set_payload(pdf_path.read_bytes())
+        pdf.add_header('Content-Disposition', 'attachment', filename=pdf_path.name)
+        encoders.encode_base64(pdf)
+        message.attach(pdf)
+
+        gmail.send_message(message)
+
+        pdf_path.unlink()

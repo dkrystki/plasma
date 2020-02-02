@@ -1,3 +1,5 @@
+from unittest.mock import MagicMock
+
 import pytest
 from django.urls import reverse
 
@@ -226,6 +228,14 @@ class TestEntryNotice:
     def test_retrieve_pdf(self, sample_entry_notice):
         url = reverse("tenants:entry-notices-detail", kwargs={"pk": sample_entry_notice.pk}) + "?pdf/"
         response = self.client.get(url, content_type='application/json')
+        assert response.status_code == 200
+
+    def test_send_email(self, mocker, sample_entry_notice):
+        mail_service = MagicMock()
+        mocker.patch("backend.tools.build").return_value = mail_service
+        response = self.client.post(reverse("tenants:entry-notices-send", kwargs={"pk": sample_entry_notice.pk}),
+                                    content_type='application/json')
+        mail_service.users.assert_called()
         assert response.status_code == 200
 
 

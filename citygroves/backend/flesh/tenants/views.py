@@ -85,6 +85,17 @@ class EntryNoticeViewset(viewsets.GenericViewSet,
             return super().retrieve(self)
 
 
+class EntryNoticeSend(generics.GenericAPIView):
+    queryset = models.EntryNotice.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        obj: models.EntryNotice = self.get_object()
+        logger.info(f"Sending entry notice to users email ({str(obj)})")
+        obj.send()
+
+        return HttpResponse(200)
+
+
 class ReferrersViewset(viewsets.GenericViewSet,
                        mixins.ListModelMixin,
                        mixins.RetrieveModelMixin,
