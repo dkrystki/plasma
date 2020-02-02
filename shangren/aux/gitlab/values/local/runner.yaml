@@ -45,6 +45,14 @@ runners:
   ##
   image: ubuntu:18.04
 
+  cache:
+    s3CacheInsecure: true
+
+  imagePullSecrets:
+    - pullsecret
+
+  imagePullPolicy: "if-not-present"
+
   ## Run all containers with the privileged flag enabled
   ## This will allow the docker:stable-dind image to run if you need to run Docker
   ## commands. Please read the docs before turning this on:
@@ -79,3 +87,11 @@ runners:
     # memoryLimit: 256Mi
     cpuRequests: 100m
     memoryRequests: 128Mi
+
+
+
+## list of hosts and IPs that will be injected into the pod's hosts file
+hostAliases:
+ - ip: "192.168.0.5"
+   hostnames:
+   - "shangren.registry.local"

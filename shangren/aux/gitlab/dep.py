@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
 if __name__ == "__main__":
-    from aux.gitlab import deploy
+    from shangren.aux.gitlab import deploy
 
     deploy()

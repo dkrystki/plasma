@@ -21,7 +21,7 @@ def deploy() -> None:
     os.chdir(Path(__file__).absolute().parent)
 
     logger.info("🚀Deploying gitlab-runner")
-    namespace.create(enable_istio=False, add_pull_secret=False)
+    namespace.create(enable_istio=False, add_pull_secret=True)
 
     run("helm repo add gitlab https://charts.gitlab.io")
 
