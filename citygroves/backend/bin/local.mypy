@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+cd $APP_ROOT/flesh
+
+poetry run mypy .

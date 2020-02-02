@@ -7,6 +7,19 @@ variables:
 default:
   image: python:3.7.4
 
+.base: &base
+  before_script:
+    - cd $PROJECT_DIR
+    - source stage test
+    - mkdir -p envs/test
+    - echo "$KUBECONFIG" > envs/test/kubeconfig.yaml
+
+    - cd $APP_DIR
+    - source .envrc
+
+    - cd $APP_DIR/flesh
+    - source .venv/bin/activate
+
 prepare-ci:
   stage: .pre
   cache:
@@ -30,36 +43,23 @@ prepare-ci:
     # install poetry to separate venv so we can use it as cache for other jobs
     - poetry config settings.virtualenvs.in-project true
     - poetry install
+    - cd $APP_DIR
+    - deploy
 
 flake8:
   stage: test
-  before_script:
-    - cd $PROJECT_DIR
-    - touch .current_stage && echo "export STAGE=local" >> .current_stage
-
-    - cd $APP_DIR
-    - source .envrc
-
-    - cd $APP_DIR/flesh
-    - source .venv/bin/activate
+  <<: *base
   script:
     - local.flake8
 
 mypy:
   stage: test
-  before_script:
-    - cd $CI_DIR
-    - touch .current_stage && echo "local" >> .current_stage
-    - source .envrc
+  <<: *base
   script:
-    - source .venv/bin/activate
-    - poetry run mypy .
+    - local.mypy
 
 test:
   stage: test
-  before_script:
-    - cd $CI_DIR
-    - source .envrc
+  <<: *base
   script:
-    - source .venv/bin/activate
     - poetry run pytest

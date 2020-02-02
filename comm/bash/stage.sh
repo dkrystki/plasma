@@ -4,9 +4,9 @@ if [ "$0" = "$BASH_SOURCE" ]; then
 fi
 
 case $1 in
-    local|stage|prod) ;;
-    *) printf "Must be \"stage\" \"local\" or \"prod\"\n"
-      exit 1 ;;
+    test|local|stage|prod) ;;
+    *) printf "Must be  \"test\" \"local\" \"stage\" or \"prod\"\n"
+      return
 esac
 
 echo "export STAGE="$1"" > "$PROJECT_ROOT"/.current_stage

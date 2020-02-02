@@ -1,6 +1,8 @@
 source "$PROJECT_ROOT"/.current_stage
 
 case "$STAGE" in
+  test)
+    export STAGE_EMOJI=🛠️. ;;
   local)
     export STAGE_EMOJI=🐣 ;;
   stage)

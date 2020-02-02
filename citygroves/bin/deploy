@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+skaffold build -p $STAGE
+skaffold deploy -p $STAGE --images
