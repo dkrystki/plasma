@@ -1,10 +1,13 @@
 import base64
+import logging
 from email.mime.multipart import MIMEMultipart
 from typing import Optional
 
 from google.oauth2.credentials import Credentials
 from googleapiclient import _auth
 from googleapiclient.discovery import Resource, build
+
+logger = logging.getLogger(__name__)
 
 
 class Gmail:
@@ -27,4 +30,5 @@ class Gmail:
         raw = raw.decode()
         body = {"raw": raw}
 
+        logger.info(f"Sending email to {message['to']}")
         self.service.users().messages().send(userId=self.user_id, body=body).execute(http=self.http)

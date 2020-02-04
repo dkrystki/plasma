@@ -2,14 +2,14 @@
 
 CURRENT_DIR=$(pwd)
 
-source "$PROJECT_ROOT"/comm/bash/utils.sh
+source "$CG_PROJECT_ROOT"/comm/bash/utils.sh
 
 export PROMPT_COMMAND_BEFORE
 
 case $1 in
   start)
     if ! test -f "$PROJECT_DIR/.telepresence.sh"; then
-      "$PROJECT_ROOT"/comm/bash/tele/start.sh "$NAMESPACE" "$PROJECT_NAME" "$PROJECT_DIR"
+      "$CG_PROJECT_ROOT"/comm/bash/tele/start.sh "$NAMESPACE" "$PROJECT_NAME" "$PROJECT_DIR"
     else
       printf "Already started\n"
       exit 1

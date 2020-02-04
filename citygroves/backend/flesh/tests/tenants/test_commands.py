@@ -11,5 +11,8 @@ def test_import_from_propertytree(create_rooms, data_dir):
 
     assert Person.objects.get(first_name="Dang").middle_names == "Vu Anh"
 
+    assert Person.objects.get(first_name="Hui").email == "leehuijing25@yahoo.com"
+    assert Person.objects.get(first_name="Tze").email == "ctxin96@gmail.com"
+
     assert Person.objects.all().count() == 70
     assert Tenant.objects.all().count() == 65

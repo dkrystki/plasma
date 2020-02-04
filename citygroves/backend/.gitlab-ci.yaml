@@ -1,54 +1,77 @@
 ---
 
-variables:
-  PROJECT_DIR: "$CI_PROJECT_DIR/citygroves"
-  APP_DIR: "$CI_PROJECT_DIR/citygroves/backend"
-
-default:
-  image: shangren.registry.local/python3.7.4-ci
-
 .base: &base
-  before_script:
-    - cd $PROJECT_DIR
-    - source stage test
-    - mkdir -p envs/test
-    - echo "$KUBECONFIG" > envs/test/kubeconfig.yaml
-
-    - cd $APP_DIR
-    - source .envrc
-
-prepare-ci:
-  <<: *base
-  stage: .pre
   cache:
+    key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - $APP_DIR/flesh/.venv/
-  artifacts:
-    paths:
-      - $APP_DIR/flesh/.venv/
+      - .venv
+      - .cache/
+  image: shangren.registry.local/python-ci:latest
   before_script:
-    - cd $APP_DIR/flesh
-  script:
-    # install poetry to separate venv so we can use it as cache for other jobs
-    - poetry config settings.virtualenvs.in-project true
-    - poetry install
+    - mkdir -p $HOME/.cache
+    - "[[ -d .cache/pypoetry ]] && cp -r .cache/pypoetry $HOME/.cache/"
+    - "[[ -d .cache/usr_local ]] && cp -r .cache/usr_local/* /usr/local/"
+    - ./bootstrap
     - cd $APP_DIR
-    - deploy
+    - eval "$(./shell.py test --dry-run)"
+    - backend.bootstrap
+
+  after_script:
+    # since caching doesn't work outside of build directory we have to move it to .cache dir
+    - cd $CI_PROJECT_DIR
+    - rm -rf .cache
+    - mkdir .cache
+    - mkdir .cache/usr_local
+    - cp -r /usr/local/* .cache/usr_local
+    - "[[ -d $HOME/.cache/pypoetry ]] && cp -r $HOME/.cache/pypoetry .cache/"
 
 flake8:
   <<: *base
   stage: test
   script:
-    - local.flake8
+    - backend.flake8
+
+test-envs:
+  <<: *base
+  stage: test
+  script:
+    - ./shell.py stage --dry-run
+    - ./shell.py local --dry-run
+    - ./shell.py test --dry-run
 
 mypy:
   <<: *base
   stage: test
   script:
-    - local.mypy
+    - backend.mypy
 
 test:
   <<: *base
   stage: test
   script:
-    - poetry run pytest
+    - backend.test
+
+
+deploy-to-test:
+  <<: *base
+  image: shangren.registry.local/kube-ci:latest
+  stage: deploy
+  services:
+    - name: docker:18.09.9-dind
+      command: ['--insecure-registry=shangren.registry.local']
+
+  variables:
+    DOCKER_TLS_CERTDIR: ''
+    DOCKER_HOST: "tcp://127.0.0.1:2375"
+
+  script:
+    - echo "$CG_CLUSTER_ADDRESS $CG_REGISTRY_ADDRESS" >> /etc/hosts
+    - cd $PROJECT_DIR
+    - mkdir -p envs/test
+    - cp "$TEST_KUBECONFIG" envs/test/kubeconfig.yaml
+    - cd $APP_DIR
+    - eval "$(./shell.py test --dry-run)"
+    - helm init --client-only
+    - helm repo update
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CG_REGISTRY_ADDRESS
+    - backend.deploy

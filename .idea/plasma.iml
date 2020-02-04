@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/citygroves/appgen/flesh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/citygroves/backend/flesh" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (citygroves.backend-py3.7)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (plasma)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

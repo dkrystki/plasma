@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+bash "$PL_COMM_ROOT"/bash/terminal.sh "$CG_APP_NAMESPACE" frontend

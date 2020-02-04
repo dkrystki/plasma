@@ -1,0 +1,25 @@
+ARG PYTHON_VER_MAJOR
+ARG PYTHON_VER_MINOR
+ARG PYTHON_VER_PATCH
+ARG DEBIAN_VER
+FROM python:$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR-slim-$DEBIAN_VER
+
+ARG PYTHON_VER_MAJOR
+ARG PYTHON_VER_MINOR
+ARG PYTHON_VER_PATCH
+
+RUN pip install poetry==1.0.3
+WORKDIR /srv
+
+COPY comm/docker/debug.sh /tmp/debug.sh
+COPY citygroves/backend/docker /tmp/docker
+RUN bash /tmp/debug.sh
+
+COPY citygroves/backend/flesh/pyproject.toml pyproject.toml
+COPY citygroves/backend/flesh/poetry.lock poetry.lock
+
+RUN poetry config virtualenvs.create false
+RUN poetry config virtualenvs.in-project false
+RUN poetry install
+
+RUN rm * -rf

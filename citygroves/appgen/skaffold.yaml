@@ -1,0 +1,92 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: citygroves
+profiles:
+  - name: test
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-test/appgen
+        docker:
+          dockerfile: citygroves/appgen/Dockerfile.local
+          buildArgs:
+            PYTHON_VER_MAJOR: '{{.CG_PYTHON_VER_MAJOR}}'
+            PYTHON_VER_MINOR: '{{.CG_PYTHON_VER_MINOR}}'
+            PYTHON_VER_PATCH: '{{.CG_PYTHON_VER_PATCH}}'
+            DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
+        context: ../../
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-test-appgen
+            chartPath: appgen/chart
+            namespace: citygroves-test
+            valuesFiles:
+              - values/test/appgen.yaml
+            values:
+              image: shangren.registry.local/citygroves-test/appgen
+
+  - name: local
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-local/appgen
+        docker:
+          dockerfile: citygroves/appgen/Dockerfile.local
+          buildArgs:
+            PYTHON_VER_MAJOR: '{{.CG_PYTHON_VER_MAJOR}}'
+            PYTHON_VER_MINOR: '{{.CG_PYTHON_VER_MINOR}}'
+            PYTHON_VER_PATCH: '{{.CG_PYTHON_VER_PATCH}}'
+            DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
+        context: ../../
+        sync:
+          infer:
+            - 'citygroves/appgen/flesh/**/*.py'
+            - '**/.idea/**'
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-local-appgen
+            chartPath: appgen/chart
+            namespace: citygroves-local
+            valuesFiles:
+              - values/local/appgen.yaml
+            values:
+              image: shangren.registry.local/citygroves-local/appgen
+
+  - name: stage
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-stage/appgen
+        docker:
+          dockerfile: citygroves/appgen/Dockerfile.stage
+          buildArgs:
+            PYTHON_VER_MAJOR: '{{.CG_PYTHON_VER_MAJOR}}'
+            PYTHON_VER_MINOR: '{{.CG_PYTHON_VER_MINOR}}'
+            PYTHON_VER_PATCH: '{{.CG_PYTHON_VER_PATCH}}'
+            DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
+        context: ../../
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-stage-appgen
+            chartPath: appgen/chart
+            namespace: citygroves-stage
+            valuesFiles:
+              - values/stage/appgen.yaml
+            values:
+              image: shangren.registry.local/citygroves-stage/appgen

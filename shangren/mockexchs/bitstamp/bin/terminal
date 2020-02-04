@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-. "$PROJECT_ROOT"/header.sh
+. "$CG_PROJECT_ROOT"/header.sh
 
-bash "$PROJECT_ROOT"/comm/bash/terminal.sh mockexchs bitstamp
+bash "$CG_PROJECT_ROOT"/comm/bash/terminal.sh mockexchs bitstamp

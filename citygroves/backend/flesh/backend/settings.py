@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import logging
 import os
+import sys
 from pathlib import Path
 
 import environ
@@ -42,14 +43,6 @@ SECRET_KEY = "m*t!qg*b#o#e)xla3@o*r$ytt@vdy5w=*0$v()y2uswcqtyb9i"
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
-
-class DB:
-    NAME = env.str("DB_NAME")
-    USER = env.str("DB_USER")
-    PASSWORD = env.str("DB_PASSWORD")
-    HOST = env.str("DB_HOST")
-    PORT = env.str("DB_PORT")
 
 
 INSTALLED_APPS = [
@@ -103,16 +96,19 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": DB.NAME,
-        "USER": DB.USER,
-        "PASSWORD": DB.PASSWORD,
-        "HOST": DB.HOST,
-        "PORT": DB.PORT,
+if "test" in sys.argv[0] or "test_coverage" in sys.argv[0]:  # Covers regular testing and django-coverage
+    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env.str("DB_NAME"),
+            "USER": env.str("DB_USER"),
+            "PASSWORD": env.str("DB_PASSWORD"),
+            "HOST": env.str("DB_HOST"),
+            "PORT": env.str("DB_PORT"),
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

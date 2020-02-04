@@ -11,16 +11,10 @@ imagePullSecrets:
 
 service:
   type: ClusterIP
-  port: 80
-
-servicePublic:
-  type: NodePort
   ports:
     - name: http
-      nodePort: 31892
+      port: 80
       targetPort: 8000
-      port: 8000
-      protocol: TCP
 
 nodeSelector: {}
 
@@ -35,13 +29,11 @@ ingress:
     - host: citygroves.backend.local
       paths:
         - "/"
-    - host: citygroves.backend.global
-      paths:
-        - "/"
 
 
 initCmds:
   python manage.py loaddata tenants/fixtures/applications.yaml;
+  python manage.py loaddata tenants/fixtures/tenants.yaml;
 
 sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"

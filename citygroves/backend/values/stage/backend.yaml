@@ -4,13 +4,12 @@
 
 replicaCount: 1
 
-image: shangren.registry.local/citygroves/backend:latest
-pullPolicy: IfNotPresent
+pullPolicy: Always
 
 imagePullSecrets:
   - name: pullsecret
 
-servicePublic:
+service:
   type: NodePort
   ports:
     - name: http
@@ -19,17 +18,23 @@ servicePublic:
       port: 8000
       protocol: TCP
 
-
-service:
-  type: ClusterIP
-  port: 80
-
-
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+ingress:
+  enabled: True
+
+  hosts:
+    - host: citygroves.backend.global
+      paths:
+        - "/"
+
+
+initCmds:
+  python manage.py loaddata tenants/fixtures/applications.yaml;
 
 sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
@@ -40,3 +45,11 @@ db:
   password: cGFzc3dvcmQ=
   host: postgresql
   port: 5432
+
+gmail:
+  clientId: "826855560616-dleh2i9oc62cfd43l0c8rqlaps6vbpbv.apps.googleusercontent.com"
+  clientSecret: "mZKwHQ5IF_-QJjEb1LLHWIpY"
+  googleAuthUri: "https://accounts.google.com/o/oauth2/auth"
+  googleTokenUri: "https://oauth2.googleapis.com/token"
+  ownerEmail: "plasmakwazar.test@gmail.com"
+  refreshToken: '1//0g_HVOsbpO8C8CgYIARAAGBASNwF-L9Ir2eMZbyB9gZBQFcJIwgUQ6JxqCoAiSUQqf-4sHFg2xnTN7-p0rXDQ_-o8QC_IVZ02gqA'

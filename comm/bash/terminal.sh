@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-. "$PROJECT_ROOT"/header.sh
-
 if [[ -v TELE_ON ]]
 then
   printf "Can't use this command while telepresence is on"

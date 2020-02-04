@@ -7,7 +7,7 @@ replicaCount: 1
 imagePullSecrets:
   - name: pullsecret
 
-#image: shangren.registry.local/:latest
+image: shangren.registry.local/citygroves-test/backend:latest
 pullPolicy: IfNotPresent
 
 service:

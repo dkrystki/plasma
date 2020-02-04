@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-pullPolicy: IfNotPresent
+pullPolicy: Always
 
 imagePullSecrets:
   - name: pullsecret
@@ -28,5 +28,5 @@ sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
 
 backend:
-  apiUrl: "http://14.200.168.19:8223/api/"
+  apiUrl: "http://193.116.75.250:31891/api/"
 

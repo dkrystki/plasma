@@ -37,12 +37,8 @@ case $1 in
     }
     if test -f "$APP_ROOT/.telepresence.sh"; then
       export APP_VIRTUAL_ENV
-      APP_VIRTUAL_ENV=$(dirname "$(which python)")
-
       source "$APP_ROOT/.telepresence.sh"
       export CUSTOM_PS1="$STAGE_EMOJI📻($APP_NAME)"
-
-      export PATH="$APP_VIRTUAL_ENV:$PATH"
 
       if [[ $PROMPT_COMMAND != *"check_tele"* ]]; then
         export PROMPT_COMMAND_BEFORE=$PROMPT_COMMAND

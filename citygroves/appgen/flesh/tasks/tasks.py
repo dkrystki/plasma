@@ -10,7 +10,7 @@ from django.conf import settings
 from googleapiclient.discovery import build, Resource
 from google.oauth2.credentials import Credentials
 
-from citygroves.api_clients import backend
+from citygroves_comm.api_clients import backend
 
 from celery.utils.log import get_task_logger
 

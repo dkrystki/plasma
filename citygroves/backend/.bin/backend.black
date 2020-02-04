@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+cd $CG_APP_ROOT/flesh
+
+poetry run black .

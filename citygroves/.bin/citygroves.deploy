@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+if __name__ == "__main__":
+    from citygroves import get_current_cluster
+
+    get_current_cluster().deploy()

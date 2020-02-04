@@ -1,0 +1,54 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+pullPolicy: Always
+
+imagePullSecrets:
+  - name: pullsecret
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+ingress:
+  enabled: True
+
+  hosts:
+    - host: citygroves.backend.test
+      paths:
+        - "/"
+
+
+initCmds:
+  python manage.py loaddata tenants/fixtures/applications.yaml;
+  python manage.py loaddata tenants/fixtures/tenants.yaml;
+
+sentry:
+  dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
+
+db:
+  name: backend
+  user: postgres
+  password: cGFzc3dvcmQ=
+  host: postgresql
+  port: 5432
+
+gmail:
+  clientId: "826855560616-dleh2i9oc62cfd43l0c8rqlaps6vbpbv.apps.googleusercontent.com"
+  clientSecret: "mZKwHQ5IF_-QJjEb1LLHWIpY"
+  googleAuthUri: "https://accounts.google.com/o/oauth2/auth"
+  googleTokenUri: "https://oauth2.googleapis.com/token"
+  ownerEmail: "plasmakwazar.test@gmail.com"
+  refreshToken: '1//0g_HVOsbpO8C8CgYIARAAGBASNwF-L9Ir2eMZbyB9gZBQFcJIwgUQ6JxqCoAiSUQqf-4sHFg2xnTN7-p0rXDQ_-o8QC_IVZ02gqA'

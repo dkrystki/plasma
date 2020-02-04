@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 from email import encoders
 from email.mime.base import MIMEBase
@@ -11,32 +12,34 @@ from django.template.loader import render_to_string
 
 from backend import gmail
 
+logger = logging.getLogger(__name__)
+
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=127)
-    middle_names = models.CharField(max_length=127, null=False, blank=True)
-    last_name = models.CharField(max_length=127)
-    email = models.EmailField(max_length=127, null=True, blank=True)
-    dob = models.DateField(max_length=127, null=True)
-    phone = models.CharField(max_length=127, null=True, blank=True)
+    first_name = models.CharField(max_length=63)
+    middle_names = models.CharField(max_length=63, null=False, blank=True)
+    last_name = models.CharField(max_length=63)
+    email = models.EmailField(max_length=63, null=True, blank=True, default=None)
+    dob = models.DateField(null=True)
+    phone = models.CharField(max_length=31, null=True, blank=True)
 
 
 class Address(models.Model):
-    street_line1 = models.CharField(max_length=127, null=True, blank=True)
-    street_line2 = models.CharField(max_length=127, null=True, blank=True)
-    street_line3 = models.CharField(max_length=127, null=True, blank=True)
-    city = models.CharField(max_length=127, null=True, blank=True)
-    state = models.CharField(max_length=127, null=True, blank=True)
-    country = models.CharField(max_length=127, null=True, blank=True)
-    post_code = models.CharField(max_length=127, null=True, blank=True)
+    street_line1 = models.CharField(max_length=63, null=True, blank=True)
+    street_line2 = models.CharField(max_length=63, null=True, blank=True)
+    street_line3 = models.CharField(max_length=63, null=True, blank=True)
+    city = models.CharField(max_length=63, null=True, blank=True)
+    state = models.CharField(max_length=31, null=True, blank=True)
+    country = models.CharField(max_length=63, null=True, blank=True)
+    post_code = models.CharField(max_length=31, null=True, blank=True)
     raw_address = models.CharField(max_length=512)
 
 
 class Referrer(models.Model):
-    first_name = models.CharField(max_length=127, null=True, blank=True)
-    last_name = models.CharField(max_length=127, null=True, blank=True)
-    email = models.EmailField(max_length=127, null=True, blank=True)
-    phone = models.CharField(max_length=127, null=True, blank=True)
+    first_name = models.CharField(max_length=63, null=True, blank=True)
+    last_name = models.CharField(max_length=63, null=True, blank=True)
+    email = models.EmailField(max_length=63, null=True, blank=True, default=None)
+    phone = models.CharField(max_length=63, null=True, blank=True)
     applicant = models.ForeignKey(Person, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
 
@@ -64,7 +67,6 @@ class Application(models.Model):
     def save_lease_pdf(self, path: Path) -> None:
         from tenants.tools import LeasePdf
 
-        pdf = LeasePdf()
         input_dict: Dict[str, Any] = {
             "person.full_name": f"{self.person.first_name} {self.person.middle_names} {self.person.last_name}",
             "person.phone": self.person.phone,
@@ -78,8 +80,9 @@ class Application(models.Model):
             "bond_amount": 300,
         }
 
-        pdf.fill(input_dict)
-        pdf.save(path)
+        with LeasePdf(output_path=path) as pdf:
+            pdf.fill(input_dict)
+            pdf.save()
 
     def __str__(self):
         return f"{self.person.first_name + self.person.last_name}"
@@ -122,7 +125,6 @@ class EntryNotice(models.Model):
         from tenants.tools import EntryNoticePdf
 
         person1: Person = self.tenant.people.all()[0]
-        pdf = EntryNoticePdf()
         input_dict: Dict[str, Any] = {
             "person1.full_name": f"{person1.first_name} {person1.middle_names + ' '}{person1.last_name}",
             "person2.full_name": "",
@@ -149,8 +151,9 @@ class EntryNotice(models.Model):
             person2: Person = self.tenant.people.all()[1]
             input_dict["person1.full_name"]: f"{person2.first_name} {person2.middle_names + ' '}{person2.last_name}"
 
-        pdf.fill(input_dict)
-        pdf.save(path)
+        with EntryNoticePdf(output_path=path) as pdf:
+            pdf.fill(input_dict)
+            pdf.save()
 
     def send(self):
         person1: Person = self.tenant.people.all()[0]
@@ -163,7 +166,7 @@ class EntryNotice(models.Model):
         context = {"tenant_name": str(self.tenant), "entry_notice": self, "title": title}
         message.attach(MIMEText(render_to_string("entry-notice-email.html", context), "html"))
 
-        pdf_path = Path("/tmp/entry-notice.pdf")
+        pdf_path = Path(f"/tmp/{str(self)}.pdf".replace(" ", ""))
         self.create_pdf(pdf_path)
         pdf = MIMEBase("application/pdf", "octet-stream")
         pdf.set_payload(pdf_path.read_bytes())

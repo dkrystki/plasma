@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -eoxu pipefail
-
-docker build -f "$PLASMA_COMM_ROOT/docker/Dockerfile.python3.7.4-ci" -t python3.7.4-ci "$PLASMA_ROOT"
-docker tag python3.7.4-ci shangren.registry.local/python3.7.4-ci
-docker login shangren.registry.local
-docker push shangren.registry.local/python3.7.4-ci

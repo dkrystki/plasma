@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+printf "\nRunning flake8...\n"
+
+cd $CG_APP_ROOT
+
+cd flesh
+poetry run flake8

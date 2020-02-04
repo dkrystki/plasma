@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-. "$PROJECT_ROOT"/header.sh
-
-ssh shangren-local@shangren.local

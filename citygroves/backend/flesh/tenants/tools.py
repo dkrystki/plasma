@@ -1,10 +1,13 @@
 from pathlib import Path
-from typing import Any, Dict, List
+from threading import Lock
+from typing import Any, Dict, List, Optional
 
 from django.conf import settings
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.generic import BooleanObject, IndirectObject, NameObject, NumberObject, TextStringObject
 from PyPDF2.pdf import PageObject
+
+lock = Lock()
 
 
 class PdfFile:
@@ -23,17 +26,31 @@ class PdfFile:
         need_appearances = NameObject("/NeedAppearances")
         writer._root_object["/AcroForm"][need_appearances] = BooleanObject(True)
 
-    def __init__(self, template_path: Path, signature_path: Path) -> None:
-        self.template_path = template_path
-        self.signature_path = signature_path
+    def __init__(self, template_path: Path, output_path: Path, signature_path: Optional[Path]) -> None:
+        self.template_path: Optional[Path] = template_path
+        self.signature_path: Path = signature_path
+        self.output_path: Path = output_path
         self.pages: List[PageObject] = []
 
-        self.input_pdf = PdfFileReader(str(self.template_path), strict=False)
+        self.input_pdf = None
+        self.input_pdf_file = None
+        self.pdf = None
+
+    def __enter__(self):
+        lock.acquire()
+        self.input_pdf_file = open(str(self.template_path), "rb")
+        self.input_pdf = PdfFileReader(self.input_pdf_file, strict=False)
 
         self._set_appearances_to_reader(self.input_pdf)
 
         self.pdf = PdfFileWriter()
         self._set_appearances_to_writer(self.pdf)
+
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.input_pdf_file.close()
+        lock.release()
 
     def fill(self, input_dict: Dict[str, Any]) -> None:
         for p, m in zip(self.input_pdf.pages, self.mapping):
@@ -65,14 +82,15 @@ class PdfFile:
 
             self.pdf.addPage(p)
 
-    def save(self, path: Path):
-        with open(str(path), "wb") as f:
+    def save(self):
+        with open(str(self.output_path), "wb") as f:
             self.pdf.write(f)
 
-        self._add_signature(path)
+        if self.signature_path:
+            self._add_signature()
 
-    def _add_signature(self, path: Path):
-        template = PdfFileReader(str(path), strict=False)
+    def _add_signature(self):
+        template = PdfFileReader(str(self.output_path), strict=False)
         self._set_appearances_to_reader(template)
 
         signature = PdfFileReader(str(self.signature_path), strict=False)
@@ -88,7 +106,7 @@ class PdfFile:
             page.mergePage(watermark)
             output.addPage(page)
 
-        with open(str(path), "wb") as f:
+        with open(str(self.output_path), "wb") as f:
             output.write(f)
 
 
@@ -117,10 +135,11 @@ class LeasePdf(PdfFile):
         {},
     ]
 
-    def __init__(self) -> None:
+    def __init__(self, output_path: Path) -> None:
         super(LeasePdf, self).__init__(
             template_path=settings.BASE_DIR / "tenants/templates/lease.pdf",
-            signature_path=settings.BASE_DIR / "tenants/templates/lease-signature.pdf",
+            signature_path=None,
+            output_path=output_path,
         )
 
 
@@ -151,8 +170,9 @@ class EntryNoticePdf(PdfFile):
         {},
     ]
 
-    def __init__(self) -> None:
+    def __init__(self, output_path: Path) -> None:
         super(EntryNoticePdf, self).__init__(
             template_path=settings.BASE_DIR / "tenants/templates/entry-notice-form.pdf",
             signature_path=settings.BASE_DIR / "tenants/templates/entry-notice-form-signature.pdf",
+            output_path=output_path,
         )

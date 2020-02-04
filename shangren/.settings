@@ -1,3 +1,4 @@
+export PL_CODE=SG
 export ISTIO_BIN=~/istio/bin
 export VENVS_DIR=~/.shangren/venvs
 export KUBERNETES_VERSION=v1.15.0

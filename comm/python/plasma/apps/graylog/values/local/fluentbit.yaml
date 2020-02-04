@@ -1,0 +1,12 @@
+---
+on_minikube: true
+existingConfigMap: "fluentbit-config"
+
+parsers:
+  enabled: true
+
+image:
+  fluent_bit:
+    repository: fluent/fluent-bit
+    tag: 1.3.3-debug
+  pullPolicy: Always

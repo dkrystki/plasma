@@ -1,0 +1,92 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: citygroves
+profiles:
+  - name: test
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-test/backend
+        docker:
+          dockerfile: citygroves/backend/Dockerfile.local
+          buildArgs:
+            PYTHON_VER_MAJOR: '{{.CG_PYTHON_VER_MAJOR}}'
+            PYTHON_VER_MINOR: '{{.CG_PYTHON_VER_MINOR}}'
+            PYTHON_VER_PATCH: '{{.CG_PYTHON_VER_PATCH}}'
+            DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
+        context: ../../
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-test-backend
+            chartPath: chart
+            namespace: citygroves-test
+            valuesFiles:
+              - values/test/backend.yaml
+            values:
+              image: shangren.registry.local/citygroves-test/backend
+
+  - name: local
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-local/backend
+        docker:
+          dockerfile: citygroves/backend/Dockerfile.local
+          buildArgs:
+            PYTHON_VER_MAJOR: '{{.CG_PYTHON_VER_MAJOR}}'
+            PYTHON_VER_MINOR: '{{.CG_PYTHON_VER_MINOR}}'
+            PYTHON_VER_PATCH: '{{.CG_PYTHON_VER_PATCH}}'
+            DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
+        context: ../../
+        sync:
+          infer:
+           - 'backend/flesh/**/*.py'
+           - '**/.idea/**'
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-local-backend
+            chartPath: chart
+            namespace: citygroves-local
+            valuesFiles:
+              - values/local/backend.yaml
+            values:
+              image: shangren.registry.local/citygroves-local/backend
+
+  - name: stage
+    build:
+      tagPolicy:
+        sha256: {}
+      artifacts:
+      - image: shangren.registry.local/citygroves-stage/backend
+        docker:
+          dockerfile: citygroves/backend/Dockerfile.stage
+          buildArgs:
+            PYTHON_VER_MAJOR: '{{.CG_PYTHON_VER_MAJOR}}'
+            PYTHON_VER_MINOR: '{{.CG_PYTHON_VER_MINOR}}'
+            PYTHON_VER_PATCH: '{{.CG_PYTHON_VER_PATCH}}'
+            DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
+        context: ../../
+      local:
+        push: true
+
+    deploy:
+      helm:
+        releases:
+          - name: citygroves-stage-backend
+            chartPath: chart
+            namespace: citygroves-stage
+            valuesFiles:
+              - values/stage/backend.yaml
+            values:
+              image: shangren.registry.local/citygroves-stage/backend

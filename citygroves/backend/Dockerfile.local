@@ -1,4 +1,8 @@
-FROM python:3.7-slim-stretch
+FROM shangren.registry.local/backend-prebuild:latest
+
+ARG PYTHON_VER_MAJOR
+ARG PYTHON_VER_MINOR
+ARG PYTHON_VER_PATCH
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
@@ -8,18 +12,19 @@ ENV STAGE local
 ENV APP_SRC /srv
 
 WORKDIR /srv
-COPY comm/docker/debug.sh /tmp/debug.sh
-COPY citygroves/backend/docker /tmp/docker
-RUN bash /tmp/debug.sh
 
 # Install common
 RUN pip3 install poetry
-RUN poetry config virtualenvs.create false
 
 COPY citygroves/backend/flesh/pyproject.toml pyproject.toml
 COPY citygroves/backend/flesh/poetry.lock poetry.lock
 
+RUN poetry config virtualenvs.create false
+RUN poetry config virtualenvs.in-project false
 RUN poetry install
+
 COPY citygroves/backend/flesh .
-COPY comm/python/plasma /usr/local/lib/python3.7/plasma
-COPY citygroves/comm/python/citygroves /usr/local/lib/python3.7/citygroves
+
+COPY comm/python/plasma /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/plasma
+COPY citygroves/comm/python/citygroves_comm /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/citygroves_comm
+

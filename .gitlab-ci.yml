@@ -1,7 +1,7 @@
 ---
 stages:
-  - .pre
   - test
+  - deploy
 
 include:
   - '/citygroves/.gitlab-ci.yaml'

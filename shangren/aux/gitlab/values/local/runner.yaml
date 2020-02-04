@@ -19,7 +19,7 @@ runnerRegistrationToken: "xYrB_ZexEssb8ZjTG5Pd"
 ## Configure the maximum number of concurrent jobs
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
 ##
-concurrent: 10
+concurrent: 4
 
 ## Defines in seconds how often to check GitLab for a new builds
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
@@ -46,19 +46,27 @@ runners:
   image: ubuntu:18.04
 
   cache:
+    cacheType: s3
+    cacheShared: true
+
     s3CacheInsecure: true
+    s3ServerAddress: minio
+    s3BucketName: gitlab-cache
+#    s3BucketLocation:
+    secretName: minio
+
 
   imagePullSecrets:
     - pullsecret
 
-  imagePullPolicy: "if-not-present"
+  imagePullPolicy: "always"
 
   ## Run all containers with the privileged flag enabled
   ## This will allow the docker:stable-dind image to run if you need to run Docker
   ## commands. Please read the docs before turning this on:
   ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#using-docker-dind
   ##
-  privileged: false
+  privileged: true
 
   ## Namespace to run Kubernetes jobs in (defaults to 'default')
   ##
@@ -69,24 +77,24 @@ runners:
   builds:
     # cpuLimit: 200m
     # memoryLimit: 256Mi
-    cpuRequests: 100m
-    memoryRequests: 128Mi
+    cpuRequests: 500m
+    memoryRequests: 1024Mi
 
   ## Service Container specific configuration
   ##
   services:
     # cpuLimit: 200m
     # memoryLimit: 256Mi
-    cpuRequests: 100m
-    memoryRequests: 128Mi
+    cpuRequests: 500m
+    memoryRequests: 1024Mi
 
   ## Helper Container specific configuration
   ##
   helpers:
     # cpuLimit: 200m
     # memoryLimit: 256Mi
-    cpuRequests: 100m
-    memoryRequests: 128Mi
+    cpuRequests: 500m
+    memoryRequests: 1024Mi
 
 
 
@@ -95,3 +103,4 @@ hostAliases:
  - ip: "192.168.0.5"
    hostnames:
    - "shangren.registry.local"
+

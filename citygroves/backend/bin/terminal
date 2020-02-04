@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-bash "$PLASMA_COMM_ROOT"/bash/terminal.sh "citygroves-$STAGE" backend

@@ -1,5 +1,6 @@
 from django.conf import settings
 
+import backend.celer  # noqa: ignore=F401
 from backend.tools import Gmail
 
 gmail = Gmail(

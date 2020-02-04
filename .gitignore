@@ -99,3 +99,5 @@ shangren.env
 __pycache__
 
 node_modules/
+
+env_prod.py
