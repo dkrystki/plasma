@@ -52,7 +52,6 @@ runners:
     s3CacheInsecure: true
     s3ServerAddress: minio
     s3BucketName: gitlab-cache
-#    s3BucketLocation:
     secretName: minio
 
 
@@ -77,24 +76,24 @@ runners:
   builds:
     # cpuLimit: 200m
     # memoryLimit: 256Mi
-    cpuRequests: 500m
-    memoryRequests: 1024Mi
+    cpuRequests: 200m
+    memoryRequests: 256Mi
 
   ## Service Container specific configuration
   ##
   services:
     # cpuLimit: 200m
     # memoryLimit: 256Mi
-    cpuRequests: 500m
-    memoryRequests: 1024Mi
+    cpuRequests: 200m
+    memoryRequests: 256Mi
 
   ## Helper Container specific configuration
   ##
   helpers:
     # cpuLimit: 200m
     # memoryLimit: 256Mi
-    cpuRequests: 500m
-    memoryRequests: 1024Mi
+    cpuRequests: 200m
+    memoryRequests: 256Mi
 
 
 

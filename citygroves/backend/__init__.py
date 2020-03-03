@@ -32,11 +32,11 @@ class Backend(plasma.devops.App):
         logger.info("👌Created sql database.")
 
         logger.info("Build image using skaffold.")
-        run(f"skaffold build -p {stage}")
+        run(f"skaffold build -p {stage}", print_output=True)
 
         logger.info("Deploy using skaffold.")
         run(f"skaffold deploy -p {stage}"
-            f" --images shangren.registry.local/citygroves-{stage}/backend:latest")
+            f" --images shangren.registry.local/citygroves-{stage}/backend:latest", print_output=True)
 
     def delete(self) -> None:
         super().delete()

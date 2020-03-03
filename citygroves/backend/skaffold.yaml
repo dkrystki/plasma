@@ -1,7 +1,7 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: citygroves
+  name: backend
 profiles:
   - name: test
     build:

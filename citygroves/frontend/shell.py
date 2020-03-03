@@ -1,26 +1,26 @@
-#!../.venv/bin/python
+#!../../.venv/bin/python
 from typing import Dict
 
 import click
 
-from citygroves.env_comm import Env
+from citygroves.frontend.env_comm import Env
 
 envs: Dict[str, Env] = {}
 
 try:
-    from citygroves.backend.env_test import Test
+    from citygroves.frontend.env_test import Test
     envs["test"] = Test()
 except ImportError:
     pass
 
 try:
-    from citygroves.backend.env_local import Local
+    from citygroves.frontend.env_local import Local
     envs["local"] = Local()
 except ImportError:
     pass
 
 try:
-    from citygroves.backend.env_stage import Stage
+    from citygroves.frontend.env_stage import Stage
     envs["stage"] = Stage()
 except ImportError:
     pass

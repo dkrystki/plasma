@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 
 import plasma.devops
+from loguru import logger
+from plasma.devops import run
 
 
 class Frontend(plasma.devops.App):
@@ -19,11 +21,14 @@ class Frontend(plasma.devops.App):
         stage = self.li.cluster.env.stage
 
         logger.info("Build image using skaffold.")
-        run(f"skaffold build -p {stage}")
+        run(f"skaffold build -p {stage}", print_output=True)
 
         logger.info("Deploy using skaffold.")
         run(f"skaffold deploy -p {stage}"
-            f" --images shangren.registry.local/citygroves-{stage}/backend:latest")
+            f" --images shangren.registry.local/citygroves-{stage}/frontend:latest", print_output=True)
 
     def delete(self) -> None:
         super().delete()
+
+    def skaffold(self) -> None:
+        run(f"skaffold dev -p {self.li.cluster.env.stage}", print_output=True)

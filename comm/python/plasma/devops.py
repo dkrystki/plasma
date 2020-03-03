@@ -2,7 +2,7 @@ import os
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Any, Optional
 
 import plasma.shell
 from loguru import logger
@@ -16,14 +16,24 @@ class CommandError(RuntimeError):
     pass
 
 
-def run(command: str, ignore_errors=False) -> str:
+def run(command: str, ignore_errors: bool = False, print_output: bool = False) -> Optional[str]:
+    if environ.bool("PLASMA_DEBUG"):
+        logger.debug(command)
     try:
-        if environ.bool("PLASMA_DEBUG"):
-            logger.debug(command)
-        return subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT).decode("utf-8").strip()
+        kwargs: Dict[str, Any] = {}
+
+        if not print_output:
+            kwargs["stdout"] = subprocess.PIPE
+
+        p = subprocess.run(command, shell=True, check=True, stderr=subprocess.PIPE, **kwargs)
+        if not print_output:
+            out = p.stdout.decode('utf-8').strip()
+            return out
+        else:
+            return None
     except subprocess.CalledProcessError as e:
         if not ignore_errors:
-            output: str = e.stdout.decode('utf-8').strip()
+            output: str = e.stderr.decode('utf-8').strip()
             error_msg: str = f"Command \"{e.cmd}\" produced error ({output})"
             raise CommandError(error_msg)
 

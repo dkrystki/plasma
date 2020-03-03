@@ -1,7 +1,7 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: frontend
+  name: citygroves
 profiles:
   - name: test
     build:
@@ -19,7 +19,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-test-frontend
-            chartPath: chart
+            chartPath: frontend/chart
             namespace: citygroves-test
             valuesFiles:
               - values/test/frontend.yaml
@@ -50,7 +50,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-local-frontend
-            chartPath: chart
+            chartPath: frontend/chart
             namespace: citygroves-local
             valuesFiles:
               - values/local/frontend.yaml
@@ -73,7 +73,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-stage-frontend
-            chartPath: chart
+            chartPath: frontend/chart
             namespace: citygroves-stage
             valuesFiles:
               - values/stage/frontend.yaml
