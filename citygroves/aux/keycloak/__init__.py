@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-import plasma.apps.keycloak
+import pl.apps.keycloak
 
 
-class Keycloak(plasma.apps.keycloak.Keycloak):
-    class Links(plasma.apps.keycloak.Keycloak.Links):
+class Keycloak(pl.apps.keycloak.Keycloak):
+    class Links(pl.apps.keycloak.Keycloak.Links):
         pass
 
     def __init__(self, li: Links):

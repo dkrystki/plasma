@@ -3,7 +3,7 @@ from pathlib import Path
 
 from plasma.env import Env
 
-from plasma.devops import run
+from plasma.comm.python.pl.devops import run
 
 
 def test_run():

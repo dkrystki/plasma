@@ -1,10 +1,10 @@
 #!../.venv/bin/python
 from pathlib import Path
 import os
-import plasma.env
+import pl.env
 
 
-class Env(plasma.env.Env):
+class Env(pl.env.Env):
     project_code: str = "SG"
     emoji: str
     stage: str

@@ -1,10 +1,9 @@
-#!../.venv/bin/python
 from pathlib import Path
 import os
-import plasma.env
+import pl.env
 
 
-class Env(plasma.env.Env):
+class Env(pl.env.Env):
     def __init__(self) -> None:
         self.app_root: Path = Path(os.path.realpath(__file__)).parent
         self.app_src: Path = self.app_root / "flesh"

@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-import plasma.devops
+import pl.devops
 
 
-class Minio(plasma.devops.App):
-    class Links(plasma.devops.App.Links):
+class Minio(pl.devops.App):
+    class Links(pl.devops.App.Links):
         pass
 
     def __init__(self, li: Links):

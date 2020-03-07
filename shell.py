@@ -1,8 +1,11 @@
-#!.venv/bin/python
+#!/usr/bin/env python
+import sys
+sys.path.append("../")
+
 import argparse
 import sys
 
-from plasma.env import Env
+from plasma.comm.python.pl.env import Env
 
 
 parser = argparse.ArgumentParser()

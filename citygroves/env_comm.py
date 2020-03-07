@@ -1,4 +1,3 @@
-#!../.venv/bin/python
 from pathlib import Path
 import os
 import plasma.env
@@ -26,7 +25,6 @@ class Env(plasma.env.Env):
 
         self.project_root = Path(os.path.realpath(__file__)).parent
         self.name: str = "citygroves"
-        self.stage: str = self.__class__.__name__.lower()
         self.namespace_name: str = f"citygroves-{self.stage}"
 
     def activate(self) -> None:

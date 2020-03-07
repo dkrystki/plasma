@@ -1,13 +1,13 @@
 from pathlib import Path
 import os
 
-import plasma.devops
+import pl.devops
 from loguru import logger
-from plasma.devops import run
+from pl.devops import run
 
 
-class Frontend(plasma.devops.App):
-    class Links(plasma.devops.App.Links):
+class Frontend(pl.devops.App):
+    class Links(pl.devops.App.Links):
         pass
 
     def __init__(self, li: Links):

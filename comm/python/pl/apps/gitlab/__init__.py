@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 
-from plasma.devops import App, run
+from pl.devops import App, run
 
 
 class Gitlab(App):

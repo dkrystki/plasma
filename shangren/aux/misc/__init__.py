@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from loguru import logger
 
-from plasma.utils.deploy import run, Namespace
+from pl.utils.deploy import run, Namespace
 
 
 def delete() -> None:

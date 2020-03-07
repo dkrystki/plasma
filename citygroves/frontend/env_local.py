@@ -1,4 +1,3 @@
-#!../.venv/bin/python
 import citygroves.frontend.env_comm
 import citygroves.env_local
 

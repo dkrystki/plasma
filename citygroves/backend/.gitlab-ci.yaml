@@ -10,12 +10,13 @@ variables:
       - .cache/
   image: shangren.registry.local/python-ci:latest
   before_script:
-    - eval "$(./shell.py test --dry-run)"
+    - eval "$(./shell.py --dry-run)"
     - mkdir -p $HOME/.cache
     - "[[ -d .cache/pypoetry ]] && cp -r .cache/pypoetry $HOME/.cache/"
     - "[[ -d .cache/usr_local ]] && cp -r .cache/usr_local/* /usr/local/"
-    - ./bootstrap
-    - cd $APP_DIR
+    - plasma.bootstrap
+    - cd $BACKEND_DIR
+    - eval "$(./shell.py test --dry-run)"
     - backend.bootstrap
 
   after_script:
@@ -29,20 +30,20 @@ variables:
 
 citygroves.backend.flake8:
   <<: *base
-  only:
-    changes:
-      - citygroves/backend/**/*.py
-      - citygroves/backend/.bin/backend.flake8
+#  only:
+#    changes:
+#      - citygroves/backend/**/*.py
+#      - citygroves/backend/.bin/backend.flake8
   stage: test
   script:
     - backend.flake8
 
 citygroves.backend.test-envs:
   <<: *base
-  only:
-    changes:
-      - citygroves/backend/env_*.py
-      - citygroves/backend/shell.py
+#  only:
+#    changes:
+#      - citygroves/backend/env_*.py
+#      - citygroves/backend/shell.py
   stage: test
   script:
     - ./shell.py stage --dry-run
@@ -51,19 +52,19 @@ citygroves.backend.test-envs:
 
 citygroves.backend.mypy:
   <<: *base
-  only:
-    changes:
-      - citygroves/backend/**/*.py
-      - citygroves/backend/.bin/backend.mypy
+#  only:
+#    changes:
+#      - citygroves/backend/**/*.py
+#      - citygroves/backend/.bin/backend.mypy
   stage: test
   script:
     - backend.mypy
 
 citygroves.backend.test:
   <<: *base
-  only:
-    changes:
-      - citygroves/backend/**/*.py
+#  only:
+#    changes:
+#      - citygroves/backend/**/*.py
   stage: test
   script:
     - backend.test
@@ -71,9 +72,10 @@ citygroves.backend.test:
 
 citygroves.backend.deploy-to-test:
   <<: *base
-  only:
-    changes:
-      - citygroves/backend/**/*
+#  only:
+#    changes:
+#      - citygroves/backend/**/*
+
   image: shangren.registry.local/kube-ci:latest
   stage: deploy
   services:
@@ -89,7 +91,7 @@ citygroves.backend.deploy-to-test:
     - cd $PROJECT_DIR
     - mkdir -p envs/test
     - cp "$TEST_KUBECONFIG" envs/test/kubeconfig.yaml
-    - cd $APP_DIR
+    - cd $BACKEND_DIR
     - eval "$(./shell.py test --dry-run)"
     - helm init --client-only
     - helm repo update

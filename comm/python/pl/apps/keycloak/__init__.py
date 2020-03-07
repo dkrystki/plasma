@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-import plasma.devops
+import pl.devops
 
 
-class Keycloak(plasma.devops.App):
-    class Links(plasma.devops.App.Links):
+class Keycloak(pl.devops.App):
+    class Links(pl.devops.App.Links):
         pass
 
     def __init__(self, li: Links):
@@ -15,7 +15,7 @@ class Keycloak(plasma.devops.App):
     def deploy(self) -> None:
         super().deploy()
 
-        plasma.devops.run("helm repo add codecentric https://codecentric.github.io/helm-charts")
+        pl.devops.run("helm repo add codecentric https://codecentric.github.io/helm-charts")
         self.li.namespace.helm("keycloak").install("codecentric/keycloak", "7.2.0")
 
     def delete(self) -> None:

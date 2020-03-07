@@ -1,19 +1,18 @@
-#!../.venv/bin/python
-import argparse
+#!/usr/bin/env python
 import sys
+sys.path.append("../../")
+
 from importlib import import_module
+from plasma.shell import parser
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('stage', type=str, default="local",
-                        help='Stage to activate.', nargs="?")
-    parser.add_argument('--dry-run', default=False, action="store_true")
-    parser.add_argument('--save', default=False, action="store_true")
-
     args = parser.parse_args(sys.argv[1:])
 
     env = import_module(f"env_{args.stage}").Env()
+
+    if args.save:
+        env.dump_dot_env()
 
     if args.dry_run:
         env.print_envs()
