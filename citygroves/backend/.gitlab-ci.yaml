@@ -1,4 +1,6 @@
 ---
+variables:
+  BACKEND_DIR: "$CI_PROJECT_DIR/citygroves/backend"
 
 .base: &base
   cache:
@@ -8,12 +10,12 @@
       - .cache/
   image: shangren.registry.local/python-ci:latest
   before_script:
+    - eval "$(./shell.py test --dry-run)"
     - mkdir -p $HOME/.cache
     - "[[ -d .cache/pypoetry ]] && cp -r .cache/pypoetry $HOME/.cache/"
     - "[[ -d .cache/usr_local ]] && cp -r .cache/usr_local/* /usr/local/"
     - ./bootstrap
     - cd $APP_DIR
-    - eval "$(./shell.py test --dry-run)"
     - backend.bootstrap
 
   after_script:
@@ -25,35 +27,53 @@
     - cp -r /usr/local/* .cache/usr_local
     - "[[ -d $HOME/.cache/pypoetry ]] && cp -r $HOME/.cache/pypoetry .cache/"
 
-flake8:
+citygroves.backend.flake8:
   <<: *base
+  only:
+    changes:
+      - citygroves/backend/**/*.py
+      - citygroves/backend/.bin/backend.flake8
   stage: test
   script:
     - backend.flake8
 
-test-envs:
+citygroves.backend.test-envs:
   <<: *base
+  only:
+    changes:
+      - citygroves/backend/env_*.py
+      - citygroves/backend/shell.py
   stage: test
   script:
     - ./shell.py stage --dry-run
     - ./shell.py local --dry-run
     - ./shell.py test --dry-run
 
-mypy:
+citygroves.backend.mypy:
   <<: *base
+  only:
+    changes:
+      - citygroves/backend/**/*.py
+      - citygroves/backend/.bin/backend.mypy
   stage: test
   script:
     - backend.mypy
 
-test:
+citygroves.backend.test:
   <<: *base
+  only:
+    changes:
+      - citygroves/backend/**/*.py
   stage: test
   script:
     - backend.test
 
 
-deploy-to-test:
+citygroves.backend.deploy-to-test:
   <<: *base
+  only:
+    changes:
+      - citygroves/backend/**/*
   image: shangren.registry.local/kube-ci:latest
   stage: deploy
   services:

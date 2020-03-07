@@ -1,42 +1,21 @@
 #!../.venv/bin/python
-from typing import Dict
-
-import click
-
-from citygroves.env_comm import Env
-
-envs: Dict[str, Env] = {}
-
-try:
-    from citygroves.env_test import Test
-    envs["test"] = Test()
-except ImportError:
-    pass
-
-try:
-    from citygroves.env_local import Local
-    envs["local"] = Local()
-except ImportError:
-    pass
-
-try:
-    from citygroves.env_stage import Stage
-    envs["stage"] = Stage()
-except ImportError:
-    pass
-
-
-@click.command()
-@click.argument("stage_name", default="local")
-@click.option('--dry-run/--normal-run', default=False)
-def command(stage_name: str, dry_run):
-    stage = envs[stage_name]
-
-    if dry_run:
-        stage.print_envs()
-    else:
-        stage.shell()
+import argparse
+import sys
+from importlib import import_module
 
 
 if __name__ == "__main__":
-    command()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('stage', type=str, default="local",
+                        help='Stage to activate.', nargs="?")
+    parser.add_argument('--dry-run', default=False, action="store_true")
+    parser.add_argument('--save', default=False, action="store_true")
+
+    args = parser.parse_args(sys.argv[1:])
+
+    env = import_module(f"env_{args.stage}").Env()
+
+    if args.dry_run:
+        env.print_envs()
+    else:
+        env.shell()

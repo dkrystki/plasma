@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
-import plasma.shell
+import plasma.env
 from loguru import logger
 
 import environ
@@ -39,12 +39,12 @@ def run(command: str, ignore_errors: bool = False, print_output: bool = False) -
 
 
 class Cluster:
-    def __init__(self, env: plasma.shell.Env) -> None:
+    def __init__(self, env: plasma.env.Env) -> None:
         from kubernetes import client, config
 
         config.load_kube_config(environ.str("KUBECONFIG"))
 
-        self.env: plasma.shell.Env = env
+        self.env: plasma.env.Env = env
         self.namespaces: Dict[str, "Namespace"] = {}
         self.apps: List[App] = []
         self.kube: client.CoreV1Api = client.CoreV1Api()
@@ -53,6 +53,7 @@ class Cluster:
         self.namespaces[namespace.name] = namespace
 
     def deploy(self):
+        os.chdir(str(self.env.project_root))
         for a in self.apps:
             a.deploy()
 

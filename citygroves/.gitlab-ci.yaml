@@ -2,7 +2,6 @@
 
 variables:
   PROJECT_DIR: "$CI_PROJECT_DIR/citygroves"
-  APP_DIR: "$CI_PROJECT_DIR/citygroves/backend"
 
 include:
   - '/citygroves/backend/.gitlab-ci.yaml'

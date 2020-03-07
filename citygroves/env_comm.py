@@ -1,10 +1,10 @@
 #!../.venv/bin/python
 from pathlib import Path
 import os
-import plasma.shell
+import plasma.env
 
 
-class Env(plasma.shell.Env):
+class Env(plasma.env.Env):
     project_code: str = "CG"
     emoji: str
     stage: str
@@ -24,15 +24,13 @@ class Env(plasma.shell.Env):
     def __init__(self) -> None:
         super().__init__()
 
-        self.project_root = Path()
+        self.project_root = Path(os.path.realpath(__file__)).parent
         self.name: str = "citygroves"
         self.stage: str = self.__class__.__name__.lower()
         self.namespace_name: str = f"citygroves-{self.stage}"
 
     def activate(self) -> None:
         super().activate()
-
-        self.project_root = Path(os.path.realpath(__file__)).parent
 
         os.environ["PATH"] = f"{str(self.project_root)}/.bin:{os.environ['PATH']}"
         os.environ["CG_PROJECT_ROOT"] = str(self.project_root)

@@ -19,7 +19,7 @@ runnerRegistrationToken: "xYrB_ZexEssb8ZjTG5Pd"
 ## Configure the maximum number of concurrent jobs
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
 ##
-concurrent: 4
+concurrent: 5
 
 ## Defines in seconds how often to check GitLab for a new builds
 ## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section

@@ -31,12 +31,12 @@ except ImportError:
 @click.argument("stage_name", default="local")
 @click.option('--dry-run/--normal-run', default=False)
 def command(stage_name: str, dry_run):
-    stage = envs[stage_name]
+    env = envs[stage_name]
 
     if dry_run:
-        stage.print_envs()
+        env.print_envs()
     else:
-        stage.shell()
+        env.shell()
 
 
 if __name__ == "__main__":

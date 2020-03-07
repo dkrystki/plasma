@@ -15,7 +15,8 @@ class Keycloak(plasma.devops.App):
     def deploy(self) -> None:
         super().deploy()
 
-        self.li.namespace.helm("keycloak").install("stable/fluent-bit", "2.8.2")
+        plasma.devops.run("helm repo add codecentric https://codecentric.github.io/helm-charts")
+        self.li.namespace.helm("keycloak").install("codecentric/keycloak", "7.2.0")
 
     def delete(self) -> None:
         super().delete()

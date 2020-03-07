@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -eou pipefail
 
-pip install poetry==1.0.3
-pip install Click==7.0
+pip install poetry==$PL_POETRY_VER
 
 poetry config virtualenvs.in-project true
 poetry config virtualenvs.create true

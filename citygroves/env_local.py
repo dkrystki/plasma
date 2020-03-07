@@ -1,8 +1,8 @@
 #!../.venv/bin/python
-from citygroves.env_comm import Env
+import citygroves.env_comm
 
 
-class Local(Env):
+class Env(citygroves.env_comm.Env):
     emoji: str = "🐣"
 
     def __init__(self) -> None:

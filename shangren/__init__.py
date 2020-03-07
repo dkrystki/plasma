@@ -2,7 +2,7 @@ import os
 from typing import List
 
 from plasma.devops import Namespace, App
-import plasma.shell
+import plasma.env
 import environ
 import shangren.shell
 from shangren.aux.gitlab import Gitlab
