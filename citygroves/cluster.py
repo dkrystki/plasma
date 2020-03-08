@@ -56,14 +56,13 @@ class Cluster(pl.devops.Cluster):
         ]
 
     def deploy(self):
-        os.chdir(str(self.env.project_root))
+        super().deploy()
 
         logger.info(f"🚀Deploying postgresql.")
         self.namespace.helm("postgresql").install(chart="stable/postgresql", version="6.3.7")
 
         logger.info(f"🚀Deploying redis.")
         self.namespace.helm("redis").install(chart="stable/redis", version="9.2.0")
-        super().deploy()
 
 
 def get_current_cluster() -> Cluster:

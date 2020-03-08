@@ -77,7 +77,7 @@ citygroves.backend.deploy-to-test:
 #      - citygroves/backend/**/*
 
   image: shangren.registry.local/kube-ci:latest
-  stage: deploy
+  stage: deploy2
   services:
     - name: docker:18.09.9-dind
       command: ['--insecure-registry=shangren.registry.local']

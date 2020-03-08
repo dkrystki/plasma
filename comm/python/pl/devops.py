@@ -54,12 +54,9 @@ class Cluster:
 
     def deploy(self):
         os.chdir(str(self.env.project_root))
-        for a in self.apps:
-            a.deploy()
 
     def delete(self):
-        for a in self.apps:
-            a.delete()
+        pass
 
 
 class Helm:
