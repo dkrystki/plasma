@@ -283,7 +283,7 @@ keycloak:
     # If set, specifies the Name of an existing Secret to read db credentials from.
     existingSecret: postgresql
     existingSecretPasswordKey: postgresql-password  # read keycloak db password from existingSecret under this Key
-    existingSecretUsernameKey: postgresql-username  # read keycloak db user from existingSecret under this Key
+#    existingSecretUsernameKey: ""  # read keycloak db user from existingSecret under this Key
 
     ## Provision new Secret
     # Only used if existingSecret is not specified. In this case a new secret is created

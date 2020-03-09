@@ -47,6 +47,7 @@ class Cluster:
         self.env: pl.env.Env = env
         self.namespaces: Dict[str, "Namespace"] = {}
         self.apps: List[App] = []
+        self.aux: List[App] = []
         self.kube: client.CoreV1Api = client.CoreV1Api()
 
     def add_namespace(self, namespace: 'Namespace') -> None:
@@ -54,6 +55,21 @@ class Cluster:
 
     def deploy(self):
         os.chdir(str(self.env.project_root))
+
+    def deploy_apps(self):
+        os.chdir(str(self.env.project_root))
+        for a in self.apps:
+            a.deploy()
+
+    def deploy_aux(self):
+        os.chdir(str(self.env.project_root))
+        for a in self.aux:
+            a.deploy()
+
+    def deploy_all(self):
+        self.deploy()
+        self.deploy_aux()
+        self.deploy_apps()
 
     def delete(self):
         pass

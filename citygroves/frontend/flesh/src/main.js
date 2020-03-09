@@ -22,23 +22,40 @@ import './components'
 
 // Plugins
 import './plugins'
-import { sync } from 'vuex-router-sync'
+import {sync} from 'vuex-router-sync'
 
 // Application imports
 import App from './App'
 import router from '@/router'
 import store from '@/store'
 import vuetify from './plugins/vuetify'
+import VueKeyCloak from '@dsb-norge/vue-keycloak-js'
 
 // Sync store with router
 sync(store, router);
 
 Vue.config.productionTip = false;
 
-/* eslint-disable no-new */
-new Vue({
-  vuetify,
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app');
+
+Vue.use(VueKeyCloak, {
+    init: {
+        // Use 'login-required' to always require authentication
+        // If using 'login-required', there is no need for the router guards in router.js
+        onLoad: 'login-required'
+    },
+    config: {
+        realm: 'Citygroves',
+        url: 'http://citygroves.keycloak.local/auth',
+        clientId: 'citygroves-frontend'
+    },
+    onReady: (keycloak) => {
+        /* eslint-disable no-new */
+        new Vue({
+            vuetify,
+            router,
+            store,
+            keycloak,
+            render: h => h(App)
+        }).$mount('#app');
+    }
+});

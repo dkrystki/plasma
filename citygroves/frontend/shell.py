@@ -1,42 +1,20 @@
-#!../../.venv/bin/python
-from typing import Dict
+#!/usr/bin/env python
+import sys
+sys.path.append("../../../")
 
-import click
-
-from citygroves.frontend.env_comm import Env
-
-envs: Dict[str, Env] = {}
-
-try:
-    from citygroves.frontend.env_test import Test
-    envs["test"] = Test()
-except ImportError:
-    pass
-
-try:
-    from citygroves.frontend.env_local import Local
-    envs["local"] = Local()
-except ImportError:
-    pass
-
-try:
-    from citygroves.frontend.env_stage import Stage
-    envs["stage"] = Stage()
-except ImportError:
-    pass
-
-
-@click.command()
-@click.argument("stage_name", default="local")
-@click.option('--dry-run/--normal-run', default=False)
-def command(stage_name: str, dry_run):
-    stage = envs[stage_name]
-
-    if dry_run:
-        stage.print_envs()
-    else:
-        stage.shell()
+from importlib import import_module
+from plasma.shell import parser
 
 
 if __name__ == "__main__":
-    command()
+    args = parser.parse_args(sys.argv[1:])
+
+    env = import_module(f"env_{args.stage}").Env()
+
+    if args.save:
+        env.dump_dot_env()
+
+    if args.dry_run:
+        env.print_envs()
+    else:
+        env.shell()

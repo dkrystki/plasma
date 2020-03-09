@@ -1,0 +1,9 @@
+---
+image:
+  registry: docker.io
+  repository: bitnami/postgresql
+  tag: 11.5.0-debian-9-r34
+  pullPolicy: IfNotPresent
+
+postgresqlPassword: password
+postgresqlUsername: postgres

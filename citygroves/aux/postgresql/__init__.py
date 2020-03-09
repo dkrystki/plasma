@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-import pl.apps.keycloak
+import pl.apps.postgres
 
 
-class Keycloak(pl.apps.keycloak.Keycloak):
-    class Links(pl.apps.keycloak.Keycloak.Links):
+class Postgres(pl.apps.postgres.Postgres):
+    class Links(pl.apps.postgres.Postgres.Links):
         pass
 
     def __init__(self, li: Links):
