@@ -19,6 +19,8 @@ class Env(plasma.env.Env):
     docker_ver: str = "18.09.9"
     cluster_address: str = "192.168.0.5"
     registry_address: str = "shangren.registry.local"
+    bin_path: Path = Path(".bin")
+    ngrok_authtoken: str = ""
 
     def __init__(self) -> None:
         super().__init__()
@@ -30,7 +32,8 @@ class Env(plasma.env.Env):
     def activate(self) -> None:
         super().activate()
 
-        os.environ["PATH"] = f"{str(self.project_root)}/.bin:{os.environ['PATH']}"
+        os.environ["CG_BIN_PATH"] = str(self.project_root/self.bin_path)
+        os.environ["PATH"] = f"{os.environ['CG_BIN_PATH']}:{os.environ['PATH']}"
         os.environ["CG_PROJECT_ROOT"] = str(self.project_root)
         os.environ["CG_PROJECT_CODE"] = self.project_code
         os.environ["CG_STAGE"] = self.stage
@@ -50,3 +53,4 @@ class Env(plasma.env.Env):
         os.environ["CG_REGISTRY_ADDRESS"] = self.registry_address
         os.environ["CG_APP_NAMESPACE"] = self.namespace_name
         os.environ["PLASMA_DEBUG"] = "False"
+        os.environ["CG_NGROK_AUTH_TOKEN"] = self.ngrok_authtoken

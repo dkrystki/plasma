@@ -28,5 +28,8 @@ sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"
 
 backend:
-  apiUrl: "http://193.116.75.250:31891/api/"
+  apiUrl: "http://citygroves.backend.stage.ngrok.io/api/"
+
+keycloak:
+  url: "http://citygroves.keycloak.stage.ngrok.io/auth/"
 

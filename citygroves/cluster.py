@@ -30,7 +30,6 @@ class Cluster(pl.devops.Cluster):
         self.add_namespace(self.namespace)
 
         self.keycloak = Keycloak(li=Keycloak.Links(cluster=self, namespace=self.namespace))
-        self.minio = minio.Minio(li=Keycloak.Links(cluster=self, namespace=self.namespace))
         self.postgres = Postgres(li=Postgres.Links(cluster=self, namespace=self.namespace))
 
         self.backend = Backend(li=Backend.Links(cluster=self, namespace=self.namespace))
@@ -46,7 +45,6 @@ class Cluster(pl.devops.Cluster):
         self.aux: List[App] = [
             self.postgres,
             self.keycloak,
-            self.minio,
         ]
 
     def deploy(self):

@@ -1,0 +1,13 @@
+tunnels:
+  frontend:
+    proto: http
+    addr: 192.168.0.5:31890
+    subdomain: citygroves.frontend.stage
+  backend:
+    proto: http
+    addr: 192.168.0.5:31891
+    subdomain: citygroves.backend.stage
+  keycloak:
+    proto: http
+    addr: 192.168.0.5:31892
+    subdomain: citygroves.keycloak.stage

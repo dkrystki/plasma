@@ -15,7 +15,9 @@ variables:
     - "[[ -d .cache/pypoetry ]] && cp -r .cache/pypoetry $HOME/.cache/"
     - "[[ -d .cache/usr_local ]] && cp -r .cache/usr_local/* /usr/local/"
     - plasma.bootstrap
-    - cd $BACKEND_DIR
+    - cd citygroves
+    - cp "$CITYGROVES_LOCAL_ENV" env_local.py
+    - cd backend
     - eval "$(./shell.py test --dry-run)"
     - backend.bootstrap
 

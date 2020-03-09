@@ -30,6 +30,7 @@ import router from '@/router'
 import store from '@/store'
 import vuetify from './plugins/vuetify'
 import VueKeyCloak from '@dsb-norge/vue-keycloak-js'
+import {Config} from '@/config'
 
 // Sync store with router
 sync(store, router);
@@ -45,7 +46,7 @@ Vue.use(VueKeyCloak, {
     },
     config: {
         realm: 'Citygroves',
-        url: 'http://citygroves.keycloak.local/auth',
+        url: Config.keycloak.url,
         clientId: 'citygroves-frontend'
     },
     onReady: (keycloak) => {

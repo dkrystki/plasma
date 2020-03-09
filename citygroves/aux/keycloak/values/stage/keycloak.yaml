@@ -24,7 +24,7 @@ keycloak:
 
   image:
     repository: jboss/keycloak
-    tag: 8.0.1
+    tag: 9.0.0
     pullPolicy: IfNotPresent
 
     ## Optionally specify an array of imagePullSecrets.
@@ -202,13 +202,13 @@ keycloak:
 
     ## ServiceType
     ## ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
-    type: ClusterIP
+    type: NodePort
 
     ## Optional static port assignment for service type NodePort.
     # nodePort: 30000
 
     httpPort: 80
-    httpNodePort: ""
+    httpNodePort: 31892
 
     httpsPort: 8443
     httpsNodePort: ""
@@ -283,7 +283,7 @@ keycloak:
     # If set, specifies the Name of an existing Secret to read db credentials from.
     existingSecret: postgresql
     existingSecretPasswordKey: postgresql-password  # read keycloak db password from existingSecret under this Key
-#    existingSecretUsernameKey: ""  # read keycloak db user from existingSecret under this Key
+    existingSecretUsernameKey: postgresql-username  # read keycloak db user from existingSecret under this Key
 
     ## Provision new Secret
     # Only used if existingSecret is not specified. In this case a new secret is created

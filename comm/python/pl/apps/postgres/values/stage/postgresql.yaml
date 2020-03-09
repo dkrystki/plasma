@@ -5,5 +5,7 @@ image:
   tag: 11.5.0-debian-9-r34
   pullPolicy: IfNotPresent
 
-postgresqlPassword: password
 postgresqlUsername: postgres
+
+existingSecret: postgresql
+initdbScriptsConfigMap: postgres-init

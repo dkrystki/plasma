@@ -4,6 +4,12 @@ metadata:
   name: {{ include "chart.name" . }}
 data:
   config.ts: |
-    export const Config = {
-      backendApiUrl: "{{ .Values.backend.apiUrl }}",
-    }
+    export const Config =
+    {
+      backend: {
+        apiUrl: "{{ .Values.backend.apiUrl }}",
+      },
+      keycloak: {
+        url: "{{ .Values.keycloak.url }}"
+      }
+    };
