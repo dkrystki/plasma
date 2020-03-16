@@ -60,3 +60,5 @@ Vue.use(VueKeyCloak, {
         }).$mount('#app');
     }
 });
+
+let a=1;

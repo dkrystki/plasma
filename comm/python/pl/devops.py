@@ -1,6 +1,7 @@
 import os
 import subprocess
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
@@ -222,3 +223,34 @@ class App:
     def delete(self) -> None:
         logger.info(f"Delete {self.name}.")
         os.chdir(str(self.app_root))
+
+
+class SkaffoldApp(App):
+    class Links(App.Links):
+        pass
+
+    def __init__(self, name: str, li: Links) -> None:
+        super().__init__(name, li)
+
+    def deploy(self) -> None:
+        super().deploy()
+
+        namespace = self.li.namespace
+        stage = self.li.cluster.env.stage
+        image_name: str = f"shangren.registry.local/{namespace.name}/{self.name}"
+        tag: str = datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
+        os.environ["CG_IMAGE_NAME"] = image_name
+        os.environ["CG_IMAGE_TAG"] = tag
+
+        image: str = f"{image_name}:{tag}"
+
+        logger.info("Build image using skaffold.")
+        run(f"skaffold build -p {stage}", print_output=True)
+
+        logger.info("Deploy using skaffold.")
+        run(f"skaffold deploy -p {stage} "
+            f"--images {image} "
+            "--force=true", print_output=True)
+
+    def skaffold(self) -> None:
+        run(f"skaffold dev -p {self.li.cluster.env.stage}", print_output=True)

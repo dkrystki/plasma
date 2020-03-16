@@ -16,7 +16,6 @@ variables:
     - "[[ -d .cache/usr_local ]] && cp -r .cache/usr_local/* /usr/local/"
     - plasma.bootstrap
     - cd citygroves
-    - cp "$CITYGROVES_LOCAL_ENV" env_local.py
     - cd backend
     - eval "$(./shell.py test --dry-run)"
     - backend.bootstrap
@@ -49,6 +48,8 @@ citygroves.backend.test-envs:
   stage: test
   script:
     - ./shell.py stage --dry-run
+
+    - cp "$CITYGROVES_LOCAL_ENV" env_local.py
     - ./shell.py local --dry-run
     - ./shell.py test --dry-run
 

@@ -2,6 +2,6 @@
 from pl.devops import run
 
 if __name__ == "__main__":
-    from citygroves import get_current_cluster
+    from citygroves.cluster import get_current_cluster
 
     get_current_cluster().frontend.deploy()
