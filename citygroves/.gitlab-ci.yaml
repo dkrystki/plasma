@@ -24,6 +24,6 @@ include:
 
 citygroves.deploy:
   <<: *base
-  stage: deploy1
+  stage: deploy-cluster
   script:
     - citygroves.deploy

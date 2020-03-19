@@ -1,8 +1,8 @@
 ---
 stages:
   - test
-  - deploy1
-  - deploy2
+  - deploy-cluster
+  - deploy-apps
 
 include:
   - '/citygroves/.gitlab-ci.yaml'
