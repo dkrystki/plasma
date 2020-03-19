@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name='plasma',
+    name='pl',
     version="0.1",
-    packages=['plasma'],
+    packages=['pl'],
     description='Library for functionality shared between Shangren microservices',
     install_requires=[],
 )

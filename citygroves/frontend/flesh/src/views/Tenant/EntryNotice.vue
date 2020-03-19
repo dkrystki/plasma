@@ -197,7 +197,7 @@
                 entry_notice.is_showing_to_buyer = item.is_showing_to_buyer;
                 entry_notice.is_valutation = item.is_valutation;
                 entry_notice.is_fire_and_rescue = item.is_fire_and_rescue;
-                entry_notice.details = "Air conditional maintenance";
+                entry_notice.details = "Changing the bulb";
                 await api.entry_notices.create(entry_notice);
 
                 return entry_notice;

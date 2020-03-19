@@ -20,7 +20,7 @@
               />
             </v-list-item-avatar>
             <v-list-item-title class="title">
-              City Groves
+              Manager
             </v-list-item-title>
           </v-list-item>
           <v-divider/>

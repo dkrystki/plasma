@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+data:
+  setup1.sql: |
+    CREATE USER keycloak WITH PASSWORD 'password';
+    CREATE DATABASE keycloak WITH OWNER keycloak;

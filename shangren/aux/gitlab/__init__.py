@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-import plasma.apps.gitlab
+import pl.apps.gitlab
 
 
-class Gitlab(plasma.apps.gitlab.Gitlab):
-    class Links(plasma.apps.gitlab.Gitlab.Links):
+class Gitlab(pl.apps.gitlab.Gitlab):
+    class Links(pl.apps.gitlab.Gitlab.Links):
         pass
 
     def __init__(self, li: Links):

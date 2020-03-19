@@ -1,10 +1,10 @@
 - model: tenants.person
   pk: 1
   fields:
-    first_name: Sarah
-    middle_names: ''
-    last_name: Cipriano
-    email: kwazar90@gmail.com
+    first_name: Anuki
+    middle_names: Chamathka
+    last_name: Karunanayake
+    email: anukikarunanayake@gmail.com
     dob: null
     phone: null
 - model: tenants.person
@@ -19,8 +19,8 @@
 - model: tenants.person
   pk: 3
   fields:
-    first_name: Mindy
-    middle_names: Hinh Mieu
+    first_name: Patience
+    middle_names: Patience
     last_name: Vuong
     email: kwazar90@gmail.com
     dob: null
@@ -37,9 +37,9 @@
 - model: tenants.person
   pk: 5
   fields:
-    first_name: Damian
+    first_name: Scott
     middle_names: ''
-    last_name: Krystkiewicz
+    last_name: Fleming
     email: kwazar90@gmail.com
     dob: null
     phone: null
@@ -154,9 +154,9 @@
 - model: tenants.person
   pk: 18
   fields:
-    first_name: Patrycja
+    first_name: Landon
     middle_names: ''
-    last_name: Sudzinska
+    last_name: Melendez
     email: kwazar90@gmail.com
     dob: null
     phone: null
@@ -635,7 +635,6 @@
     lease_start: 2019-02-03
     lease_end: 2020-01-15
     people:
-    - 1
     - 2
 - model: tenants.tenant
   pk: 2
@@ -660,7 +659,7 @@
     lease_start: 2019-01-18
     lease_end: 2020-01-17
     people:
-    - 5
+    - 1
 - model: tenants.tenant
   pk: 5
   fields:

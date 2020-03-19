@@ -2,7 +2,28 @@
 
 variables:
   PROJECT_DIR: "$CI_PROJECT_DIR/citygroves"
-  APP_DIR: "$CI_PROJECT_DIR/citygroves/backend"
 
 include:
   - '/citygroves/backend/.gitlab-ci.yaml'
+
+.base: &base
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .venv
+  image: shangren.registry.local/kube-ci:latest
+  before_script:
+    - eval "$(./shell.py --dry-run)"
+    - plasma.bootstrap
+    - cd citygroves
+    - mkdir -p envs/test
+    - cp "$TEST_KUBECONFIG" envs/test/kubeconfig.yaml
+    - eval "$(./shell.py test --dry-run)"
+    - helm init --client-only
+    - helm repo update
+
+citygroves.deploy:
+  <<: *base
+  stage: deploy1
+  script:
+    - citygroves.deploy

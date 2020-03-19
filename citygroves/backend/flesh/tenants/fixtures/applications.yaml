@@ -1,22 +1,22 @@
 - model: tenants.person
   pk: 1
   fields:
-    first_name: Keisuke
-    last_name: Kinjo
+    first_name: Adam
+    last_name: Tenant
     email: kagawa26c_ronaldo7iniesta8@outlook.com
     dob: 1994-07-20
     phone: 014-376-0533
 - model: tenants.address
   pk: 1
   fields:
-    street_line1: 80 Granville Street West End
+    street_line1: 80 Granville Test Stret
     street_line2: ''
     street_line3: ''
     city: brisbane
     state: Queensland
     country: Australia
     post_code: '4101'
-    raw_address: "80 Granville Street West End\r\nbrisbane Queensland 4101\r\nAustralia"
+    raw_address: "80 Granville Test Stret West End\r\nbrisbane Queensland 4101\r\nAustralia"
 - model: tenants.address
   pk: 2
   fields:

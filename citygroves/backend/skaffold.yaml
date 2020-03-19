@@ -1,12 +1,13 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: citygroves
+  name: backend
 profiles:
   - name: test
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-test/backend
         docker:
@@ -34,7 +35,8 @@ profiles:
   - name: local
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-local/backend
         docker:
@@ -66,7 +68,8 @@ profiles:
   - name: stage
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-stage/backend
         docker:

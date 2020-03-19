@@ -25,6 +25,6 @@ RUN poetry install
 
 COPY citygroves/backend/flesh .
 
-COPY comm/python/plasma /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/plasma
+COPY comm/python/pl /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/pl
 COPY citygroves/comm/python/citygroves_comm /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/citygroves_comm
 

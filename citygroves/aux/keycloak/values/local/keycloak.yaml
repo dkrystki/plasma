@@ -24,7 +24,7 @@ keycloak:
 
   image:
     repository: jboss/keycloak
-    tag: 8.0.1
+    tag: 9.0.0
     pullPolicy: IfNotPresent
 
     ## Optionally specify an array of imagePullSecrets.
@@ -75,11 +75,11 @@ keycloak:
   extraArgs: ""
 
   ## Username for the initial Keycloak admin user
-  username: keycloak
+  username: admin
 
   ## Password for the initial Keycloak admin user. Applicable only if existingSecret is not set.
   ## If not set, a random 10 characters password will be used
-  password: ""
+  password: password
 
   # Specifies an existing secret to be used for the admin password
   existingSecret: ""
@@ -219,7 +219,7 @@ keycloak:
   ## Ingress configuration.
   ## ref: https://kubernetes.io/docs/user-guide/ingress/
   ingress:
-    enabled: false
+    enabled: true
     path: /
 
     annotations: {}
@@ -232,7 +232,7 @@ keycloak:
 
     ## List of hosts for the ingress
     hosts:
-      - keycloak.example.com
+      - citygroves.keycloak.local
 
     ## TLS configuration
     tls: []
@@ -269,11 +269,11 @@ keycloak:
     deployPostgres: false
 
     # The database vendor. Can be either "postgres", "mysql", "mariadb", or "h2"
-    dbVendor: h2
+    dbVendor: postgres
 
     ## The following values only apply if "deployPostgres" is set to "false"
     dbName: keycloak
-    dbHost: mykeycloak
+    dbHost: postgresql
     dbPort: 5432
 
     ## Database Credentials are loaded from a Secret residing in the same Namespace as keycloak.
@@ -281,9 +281,9 @@ keycloak:
 
     ## Specify existing Secret
     # If set, specifies the Name of an existing Secret to read db credentials from.
-    existingSecret: ""
-    existingSecretPasswordKey: ""  # read keycloak db password from existingSecret under this Key
-    existingSecretUsernameKey: ""  # read keycloak db user from existingSecret under this Key
+    existingSecret: postgresql
+    existingSecretPasswordKey: postgresql-password  # read keycloak db password from existingSecret under this Key
+    existingSecretUsernameKey: postgresql-username  # read keycloak db user from existingSecret under this Key
 
     ## Provision new Secret
     # Only used if existingSecret is not specified. In this case a new secret is created
@@ -299,7 +299,7 @@ postgresql:
   ## PostgreSQL Password for the new user.
   ## If not set, a random 10 characters password will be used.
   ##
-  postgresqlPassword: ""
+  postgresqlPassword: password
 
   ## PostgreSQL Database to create.
   ##

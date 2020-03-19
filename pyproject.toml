@@ -21,7 +21,7 @@ loguru = "^0.4.0"
 kubernetes = "^10.0"
 click = "^7.0"
 citygroves-comm = { path = "./citygroves/comm/python" }
-plasma = { path = "./comm/python" }
+pl = { path = "./comm/python" }
 django-environ = "^0.4.5"
 ipython = "^7.13.0"
 

@@ -1,7 +1,27 @@
 ---
 stages:
   - test
-  - deploy
+  - deploy1
+  - deploy2
 
 include:
   - '/citygroves/.gitlab-ci.yaml'
+
+plasma.test:
+#  only:
+#    changes:
+#      - comm
+#      - .bin
+#      - ./*.py
+  image: shangren.registry.local/python-ci:latest
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .venv
+  before_script:
+    - eval $(./shell.py --dry-run)
+    - plasma.bootstrap
+
+  stage: test
+  script:
+    - plasma.test
