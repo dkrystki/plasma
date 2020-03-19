@@ -1,8 +1,8 @@
 import os
 from typing import List
 
-from plasma.devops import Namespace, App
-import plasma.shell
+from pl.devops import Namespace, App
+import pl.env
 import environ
 import shangren.shell
 from shangren.aux.gitlab import Gitlab
@@ -12,7 +12,7 @@ from shangren.aux.minio import Minio
 environ = environ.Env()
 
 
-class Cluster(plasma.devops.Cluster):
+class Cluster(pl.devops.Cluster):
     def __init__(self, env: shangren.shell.Env):
         super().__init__(env)
         self.env: shangren.shell.Env = env

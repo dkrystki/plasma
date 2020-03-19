@@ -18,7 +18,7 @@ from pathlib import Path
 import environ
 
 # import sentry_sdk
-import plasma.logs
+import pl.logs
 
 # from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 env = environ.Env()
 
-plasma.logs.setup("citygroves", "backend")
+pl.logs.setup("citygroves", "backend")
 logger.info("Starting citygroves.backend")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

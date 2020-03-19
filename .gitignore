@@ -101,3 +101,4 @@ __pycache__
 node_modules/
 
 env_prod.py
+env_local.py

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+ eksctl create cluster --name prod --region ap-southeast-1 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 1 --ssh-access --ssh-public-key ~/.ssh/id_rsa.pub --managed

@@ -209,7 +209,7 @@ class Api {
     entry_notices: ApiInterface;
 
     constructor() {
-        this.apiUrl = Config.backendApiUrl;
+        this.apiUrl = Config.backend.apiUrl;
         this.applications = new ApiInterface(this, Application, "applications/");
         this.people = new ApiInterface(this, Person, "people/");
         this.tenants = new ApiInterface(this, Tenant, "tenants/");

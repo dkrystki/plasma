@@ -160,6 +160,7 @@ class EntryNotice(models.Model):
 
         message = MIMEMultipart()
         message["to"] = person1.email
+        message["cc"] = "enquiries.citygroves@gmail.com"
         message["from"] = "plasmakwazar.test@gmail.com"
         title = f"Entry notice {'(' + self.details + ')' if self.details else ''}"
         message["subject"] = title

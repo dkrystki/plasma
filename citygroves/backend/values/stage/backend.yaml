@@ -15,9 +15,8 @@ service:
     - name: http
       nodePort: 31891
       targetPort: 8000
-      port: 8000
+      port: 80
       protocol: TCP
-
 nodeSelector: {}
 
 tolerations: []
@@ -35,6 +34,7 @@ ingress:
 
 initCmds:
   python manage.py loaddata tenants/fixtures/applications.yaml;
+  python manage.py loaddata tenants/fixtures/tenants.yaml;
 
 sentry:
   dsn: "http://12dbd60d73814a7f9dfc2cf9f1b101b7@sentry.sentry/3"

@@ -1,9 +1,9 @@
-#!../.venv/bin/python
-from citygroves.env_comm import Env
+import plasma.citygroves.env_comm
 
 
-class Test(Env):
+class Env(plasma.citygroves.env_comm.Env):
     emoji: str = "🛠️"
+    stage: str = "test"
 
     def __init__(self) -> None:
         super().__init__()

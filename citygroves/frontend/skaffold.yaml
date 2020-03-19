@@ -1,12 +1,13 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: citygroves
+  name: frontend
 profiles:
   - name: test
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-test/frontend
         docker:
@@ -19,7 +20,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-test-frontend
-            chartPath: frontend/chart
+            chartPath: chart
             namespace: citygroves-test
             valuesFiles:
               - values/test/frontend.yaml
@@ -29,7 +30,8 @@ profiles:
   - name: local
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-local/frontend
         docker:
@@ -50,7 +52,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-local-frontend
-            chartPath: frontend/chart
+            chartPath: chart
             namespace: citygroves-local
             valuesFiles:
               - values/local/frontend.yaml
@@ -60,7 +62,8 @@ profiles:
   - name: stage
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-stage/frontend
         docker:
@@ -73,7 +76,7 @@ profiles:
       helm:
         releases:
           - name: citygroves-stage-frontend
-            chartPath: frontend/chart
+            chartPath: chart
             namespace: citygroves-stage
             valuesFiles:
               - values/stage/frontend.yaml

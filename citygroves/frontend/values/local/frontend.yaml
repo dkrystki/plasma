@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-pullPolicy: IfNotPresent
+pullPolicy: Always
 
 imagePullSecrets:
   - name: pullsecret
@@ -26,6 +26,10 @@ sentry:
 
 backend:
   apiUrl: "http://citygroves.backend.local/api/"
+
+keycloak:
+  url: "http://citygroves.keycloak.local/auth/"
+
 
 ingress:
   enabled: True

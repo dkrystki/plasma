@@ -1,11 +1,11 @@
 from pathlib import Path
 import os
 
-import plasma.apps.kaniko
+import pl.apps.kaniko
 
 
-class Kaniko(plasma.apps.kaniko.Kaniko):
-    class Links(plasma.apps.kaniko.Kaniko.Links):
+class Kaniko(pl.apps.kaniko.Kaniko):
+    class Links(pl.apps.kaniko.Kaniko.Links):
         pass
 
     def __init__(self, li: Links):

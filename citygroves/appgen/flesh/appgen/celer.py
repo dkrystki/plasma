@@ -3,8 +3,8 @@ from django.conf import settings
 from celery import Celery
 from celery import signals
 
-import plasma.logs
-plasma.logs.setup("citygroves", "appgen")
+import pl.logs
+pl.logs.setup("citygroves", "appgen")
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'appgen.settings')
