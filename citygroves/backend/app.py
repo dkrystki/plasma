@@ -5,7 +5,7 @@ import pl.devops
 from pl.devops import Cluster, Namespace, run
 
 
-class Backend(pl.devops.App):
+class Backend(pl.devops.SkaffoldApp):
     class Links(pl.devops.App.Links):
         cluster: Cluster
         namespace: Namespace

@@ -62,7 +62,8 @@ profiles:
   - name: stage
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
       - image: shangren.registry.local/citygroves-stage/frontend
         docker:
