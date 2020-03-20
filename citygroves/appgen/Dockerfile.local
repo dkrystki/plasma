@@ -15,18 +15,18 @@ ENV SHELL /bin/bash
 ENV STAGE local
 
 WORKDIR /srv
-COPY comm/docker/debug.sh /tmp/debug.sh
-COPY citygroves/appgen/docker /tmp/docker
-RUN bash /tmp/debug.sh
 
-# Install common
 RUN pip3 install poetry
-RUN poetry config virtualenvs.create false
 
 COPY citygroves/appgen/flesh/pyproject.toml pyproject.toml
 COPY citygroves/appgen/flesh/poetry.lock poetry.lock
 
+RUN poetry config virtualenvs.create false
+RUN poetry config virtualenvs.in-project false
 RUN poetry install
+
 COPY citygroves/appgen/flesh .
-COPY comm/python/plasma /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/plasma
+
+COPY comm/python/pl /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/pl
 COPY citygroves/comm/python/citygroves_comm /usr/local/lib/python$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR/citygroves_comm
+

@@ -1,56 +1,52 @@
 import os
-from pathlib import Path
+import pl.devops
+
 from loguru import logger
 
-from shang.utils.deploy import run, Namespace
 
-namespace = Namespace("graylog")
+class Graylog(pl.devops.App):
+    class Sets(pl.devops.App.Sets):
+        pass
 
+    class Links(pl.devops.App.Links):
+        pass
 
-def delete() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+    def __init__(self, se: Sets, li: Links):
+        super().__init__(se, li)
 
-    logger.info("Deleting graylog")
-    run("helm delete --purge graylog-graylog")
-    run("helm delete --purge graylog-fluentbit")
+    def seed(self) -> None:
+        os.chdir(str(self.se.app_root))
 
-    logger.info("Deleting graylog done")
+        logger.info("🌱Seeding graylog")
 
+        mongo_pod: str = self.li.namespace.kubectl('get pods -l app=mongodb-replicaset '
+                                           '-o name | grep -m 1 -o "graylog-graylog-mongodb.*$"')
+        self.li.namespace.kubectl(f'exec {mongo_pod} -- bash -c "mkdir -p /home/restore"')
+        self.li.namespace.kubectl(f'cp dump {mongo_pod}:home/restore/graylog')
+        self.li.namespace.kubectl(f'exec {mongo_pod} -- bash -c "mongorestore --quiet /home/restore"')
 
-def seed() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+        logger.info("👌Seeding graylog done")
 
-    logger.info("🌱Seeding graylog")
+    def dump_data(self) -> None:
+        os.chdir(str(self.se.app_root))
 
-    mongo_pod: str = namespace.kubectl('get pods -l app=mongodb-replicaset '
-                                       '-o name | grep -m 1 -o "graylog-graylog-mongodb.*$"')
-    namespace.kubectl(f'exec {mongo_pod} -- bash -c "mkdir -p /home/restore"')
-    namespace.kubectl(f'cp dump {mongo_pod}:home/restore/graylog')
-    namespace.kubectl(f'exec {mongo_pod} -- bash -c "mongorestore --quiet /home/restore"')
+        logger.info("♻️Dumping graylog♻")
 
-    logger.info("👌Seeding graylog done")
+        mongo_pod: str = self.li.namespace.kubectl('get pods -l app=mongodb-replicaset '
+                                           '-o name | grep -m 1 -o "graylog-graylog-mongodb.*$"')
+        self.li.namespace.kubectl(f'exec {mongo_pod} -- bash -c "mongodump --quiet -d graylog -o /home/dumps"')
+        self.li.namespace.kubectl(f'cp {mongo_pod}:home/dumps/graylog dump')
+        logger.info("♻️Dumping graylog done\n")
 
+    def deploy(self) -> None:
+        super().deploy()
 
-def dump_data() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+        self.li.namespace.helm("graylog").install("stable/graylog", "1.3.9")
+        self.li.namespace.kubectl("apply -f k8s/fluentbit-configmap.yaml")
+        self.li.namespace.helm("fluentbit").install("stable/fluent-bit", "2.8.2")
+        self.seed()
 
-    logger.info("♻️Dumping graylog♻")
+    def delete(self) -> None:
+        super().delete()
 
-    mongo_pod: str = namespace.kubectl('get pods -l app=mongodb-replicaset '
-                                       '-o name | grep -m 1 -o "graylog-graylog-mongodb.*$"')
-    namespace.kubectl(f'exec {mongo_pod} -- bash -c "mongodump --quiet -d graylog -o /home/dumps"')
-    namespace.kubectl(f'cp {mongo_pod}:home/dumps/graylog dump')
-    logger.info("♻️Dumping graylog done\n")
-
-
-def deploy() -> None:
-    os.chdir(Path(__file__).absolute().parent)
-
-    logger.info("🚀Deploying graylog")
-    namespace.create(enable_istio=False, add_pull_secret=False)
-
-    namespace.helm_install("graylog", "stable/graylog", "1.3.9")
-    namespace.kubectl("apply -f k8s/fluentbit-configmap.yaml")
-    namespace.helm_install("fluentbit", "stable/fluent-bit", "2.8.2")
-    seed()
-    logger.info("👌Deployed graylog\n")
+        self.li.namespace.helm("graylog").delete()

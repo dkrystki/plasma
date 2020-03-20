@@ -1,4 +1,9 @@
 **/node_modules/
-.venv/
+**/.venv/
 *.egg-info/
 **/Dockerfile.*
+**/hostess
+**/helm
+**/kubectl
+**/kind
+**/skaffold

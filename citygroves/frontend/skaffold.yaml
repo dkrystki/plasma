@@ -9,23 +9,23 @@ profiles:
         envTemplate:
           template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
-      - image: shangren.registry.local/citygroves-test/frontend
+      - image: citygroves.registry.test/flesh/frontend
         docker:
           dockerfile: citygroves/frontend/Dockerfile.local
         context: ../../
       local:
-        push: true
+        push: false
 
     deploy:
       helm:
         releases:
-          - name: citygroves-test-frontend
+          - name: citygroves-frontend
             chartPath: chart
-            namespace: citygroves-test
+            namespace: flesh
             valuesFiles:
               - values/test/frontend.yaml
             values:
-              image: shangren.registry.local/citygroves-test/frontend
+              image: citygroves.registry.test/flesh/frontend
 
   - name: local
     build:
@@ -33,7 +33,7 @@ profiles:
         envTemplate:
           template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
-      - image: shangren.registry.local/citygroves-local/frontend
+      - image: citygroves.registry.local/flesh/frontend
         docker:
           dockerfile: citygroves/frontend/Dockerfile.local
         context: ../../
@@ -46,18 +46,18 @@ profiles:
             - 'citygroves/frontend/flesh/**/*.scss'
             - '**/.idea/**'
       local:
-        push: true
+        push: false
 
     deploy:
       helm:
         releases:
-          - name: citygroves-local-frontend
+          - name: citygroves-frontend
             chartPath: chart
-            namespace: citygroves-local
+            namespace: flesh
             valuesFiles:
               - values/local/frontend.yaml
             values:
-              image: shangren.registry.local/citygroves-local/frontend
+              image: citygroves.registry.local/flesh/frontend
 
   - name: stage
     build:
@@ -65,20 +65,20 @@ profiles:
         envTemplate:
           template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
-      - image: shangren.registry.local/citygroves-stage/frontend
+      - image: citygroves.registry.local/flesh/frontend
         docker:
           dockerfile: citygroves/frontend/Dockerfile.stage
         context: ../../
       local:
-        push: true
+        push: false
 
     deploy:
       helm:
         releases:
-          - name: citygroves-stage-frontend
+          - name: citygroves-frontend
             chartPath: chart
-            namespace: citygroves-stage
+            namespace: flesh
             valuesFiles:
               - values/stage/frontend.yaml
             values:
-              image: shangren.registry.local/citygroves-stage/frontend
+              image: citygroves.registry.local/citygroves-stage/frontend

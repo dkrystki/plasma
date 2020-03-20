@@ -6,9 +6,10 @@ profiles:
   - name: test
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
-      - image: shangren.registry.local/citygroves-test/appgen
+      - image: citygroves.registry.test/flesh/appgen
         docker:
           dockerfile: citygroves/appgen/Dockerfile.local
           buildArgs:
@@ -18,25 +19,26 @@ profiles:
             DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
         context: ../../
       local:
-        push: true
+        push: false
 
     deploy:
       helm:
         releases:
-          - name: citygroves-test-appgen
-            chartPath: appgen/chart
-            namespace: citygroves-test
+          - name: citygroves-appgen
+            chartPath: chart
+            namespace: flesh
             valuesFiles:
               - values/test/appgen.yaml
             values:
-              image: shangren.registry.local/citygroves-test/appgen
+              image: citygroves.registry.test/flesh/appgen
 
   - name: local
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
-      - image: shangren.registry.local/citygroves-local/appgen
+      - image: citygroves.registry.local/flesh/appgen
         docker:
           dockerfile: citygroves/appgen/Dockerfile.local
           buildArgs:
@@ -50,25 +52,26 @@ profiles:
             - 'citygroves/appgen/flesh/**/*.py'
             - '**/.idea/**'
       local:
-        push: true
+        push: false
 
     deploy:
       helm:
         releases:
-          - name: citygroves-local-appgen
-            chartPath: appgen/chart
-            namespace: citygroves-local
+          - name: citygroves-appgen
+            chartPath: chart
+            namespace: flesh
             valuesFiles:
               - values/local/appgen.yaml
             values:
-              image: shangren.registry.local/citygroves-local/appgen
+              image: citygroves.registry.local/flesh/appgen
 
   - name: stage
     build:
       tagPolicy:
-        sha256: {}
+        envTemplate:
+          template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
       artifacts:
-      - image: shangren.registry.local/citygroves-stage/appgen
+      - image: citygroves.registry.stage/flesh/appgen
         docker:
           dockerfile: citygroves/appgen/Dockerfile.stage
           buildArgs:
@@ -78,15 +81,15 @@ profiles:
             DEBIAN_VER: '{{.CG_DEBIAN_VER}}'
         context: ../../
       local:
-        push: true
+        push: false
 
     deploy:
       helm:
         releases:
           - name: citygroves-stage-appgen
-            chartPath: appgen/chart
-            namespace: citygroves-stage
+            chartPath: chart
+            namespace: flesh
             valuesFiles:
               - values/stage/appgen.yaml
             values:
-              image: shangren.registry.local/citygroves-stage/appgen
+              image: citygroves.registry.stage/flesh/appgen

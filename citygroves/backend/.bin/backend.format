@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-cd $CG_APP_ROOT
-
-backend.isort
-backend.black

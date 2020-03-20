@@ -1,24 +1,21 @@
-import os
-from pathlib import Path
-from loguru import logger
-
-from pl.utils.deploy import run, Namespace
+import pl.devops
 
 
-def delete() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+class Registry(pl.devops.App):
+    class Sets(pl.devops.App.Sets):
+        pass
 
-    Namespace("default").helm("registry").delete()
+    class Links(pl.devops.App.Links):
+        pass
 
+    def __init__(self, se: Sets, li: Links):
+        super().__init__(se, li)
 
-def deploy() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+    def deploy(self) -> None:
+        super().deploy()
+        # self.li.namespace.apply_yaml("k8s/tls-secret.yaml")
+        self.li.namespace.helm(self.se.name).install("stable/docker-registry", "1.9.2")
 
-    logger.info("🚀Deploying misc apps")
-
-    default = Namespace("default")
-    default.create()
-    default.helm("registry").install("stable/docker-registry", "1.8.3")
-
-    logger.info("👌Deployed misc apps\n")
-
+    def delete(self) -> None:
+        super().delete()
+        self.li.namespace.helm(self.se.name).delete()

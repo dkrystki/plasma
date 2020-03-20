@@ -1,4 +1,4 @@
-FROM shangren.registry.local/python-ci:latest
+FROM aux.registry.local/python-cg-ci:latest
 
 ARG DEBIAN_VER
 ARG SKAFFOLD_VER
@@ -17,18 +17,18 @@ RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debia
 RUN apt update
 RUN apt install docker-ce-cli=5:$DOCKER_VER~3-0~debian-$DEBIAN_VER -y
 
+WORKDIR /srv
 
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v$KUBECTL_VER/bin/linux/amd64/kubectl
-RUN chmod +x ./kubectl
-RUN mv ./kubectl /usr/local/bin/kubectl
+COPY . plasma
 
-RUN curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v$SKAFFOLD_VER/skaffold-linux-amd64
-RUN chmod +x skaffold
-RUN mv skaffold /usr/local/bin
+# Just to trick scripts that this is CI scenario
+ENV CI_JOB_ID 1
 
-ENV HELM_NAME="helm-v$HELM_VER-linux-386"
-RUN wget "https://get.helm.sh/$HELM_NAME.tar.gz"
-RUN tar -zxvf "$HELM_NAME.tar.gz"
-RUN mv linux-386/helm /usr/local/bin/helm
-RUN rm "$HELM_NAME.tar.gz"
-RUN rm -r linux-386
+WORKDIR /srv/plasma
+RUN eval "$(./shell.py --dry-run)" && pl.bootstrap
+
+WORKDIR /srv/plasma/citygroves
+RUN eval "$(./shell.py test --dry-run)" && cg.install-deps /usr/local/bin
+
+WORKDIR /srv
+RUN rm -r *

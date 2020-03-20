@@ -8,4 +8,4 @@ image:
 postgresqlUsername: postgres
 
 existingSecret: postgresql
-initdbScriptsConfigMap: postgres-init
+initdbScriptsConfigMap: postgresql-init

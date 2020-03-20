@@ -1,16 +1,13 @@
-import os
 from importlib import import_module
-from typing import List
 
-from loguru import logger
-from pl.devops import Namespace, App
-from citygroves.backend.app import Backend
-from citygroves.frontend.app import Frontend
-from citygroves import appgen
+from pl.apps.ingress import Ingress
+from pl.apps.keycloak import Keycloak
+from pl.apps.postgres import Postgres
+from pl.apps.redis import Redis
+from pl.apps.registry import Registry
+from pl.devops import Namespace, SkaffoldApp
+
 import citygroves.shell
-from citygroves.aux.keycloak import Keycloak
-from citygroves.aux.postgresql import Postgres
-from shangren.aux import minio
 import citygroves.env_comm
 import pl.devops
 import environ
@@ -20,38 +17,24 @@ environ = environ.Env()
 
 class Cluster(pl.devops.Cluster):
     def __init__(self, env: citygroves.env_comm.Env):
+
         super().__init__(env)
         self.env: citygroves.env_comm.Env = env
 
-        self.namespace = Namespace(
-            li=Namespace.Links(cluster=self),
-            name=f"citygroves-{env.stage}")
+        self.system = self.create_namespace("system")
+        self.aux = self.create_namespace("aux")
+        self.flesh = self.create_namespace("flesh")
 
-        self.add_namespace(self.namespace)
+        self.system.create_app("ingress", Ingress)
+        self.system.create_app("registry", Registry)
 
-        self.keycloak = Keycloak(li=Keycloak.Links(cluster=self, namespace=self.namespace))
-        self.postgres = Postgres(li=Postgres.Links(cluster=self, namespace=self.namespace))
+        self.aux.create_app("postgresql", Postgres)
+        self.aux.create_app("keycloak", Keycloak)
+        self.aux.create_app("redis", Redis)
 
-        self.backend = Backend(li=Backend.Links(cluster=self, namespace=self.namespace))
-        self.frontend = Frontend(li=Frontend.Links(cluster=self, namespace=self.namespace))
-        self.appgen = appgen.AppGen(li=Frontend.Links(cluster=self, namespace=self.namespace))
-
-        self.apps: List[App] = [
-            self.backend,
-            self.frontend,
-            self.appgen,
-        ]
-
-        self.aux: List[App] = [
-            self.postgres,
-            self.keycloak,
-        ]
-
-    def deploy(self):
-        super().deploy()
-
-        logger.info(f"🚀Deploying redis.")
-        self.namespace.helm("redis").install(chart="stable/redis", version="9.2.0")
+        self.backend = self.flesh.create_app("backend", SkaffoldApp)
+        self.appgen = self.flesh.create_app("appgen", SkaffoldApp)
+        self.frontend = self.flesh.create_app("frontend", SkaffoldApp)
 
 
 def get_current_cluster() -> Cluster:

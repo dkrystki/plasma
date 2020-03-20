@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+if [[ -n "$CI_JOB_ID" ]]
+then
+  apt update
+  apt install sudo -y
+fi
+
+sudo apt install gettext-base -y
+
+pip install poetry==$PL_POETRY_VER
+
+poetry config virtualenvs.in-project true
+poetry config virtualenvs.create true
+poetry install

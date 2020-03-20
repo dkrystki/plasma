@@ -7,9 +7,11 @@ FROM python:$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR-slim-$DEBIAN_VER
 ARG PYTHON_VER_MAJOR
 ARG PYTHON_VER_MINOR
 ARG PYTHON_VER_PATCH
+ARG POETRY_VER
 
-RUN pip install poetry==1.0.3
 WORKDIR /srv
+
+RUN pip install poetry==$POETRY_VER
 
 COPY comm/docker/debug.sh /tmp/debug.sh
 COPY citygroves/backend/docker /tmp/docker

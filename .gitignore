@@ -93,7 +93,7 @@ kubeconfig
 .telepresence.sh
 .telepresence.env
 
-envs
+kubeconfig.yaml
 shangren.env
 
 __pycache__
@@ -102,3 +102,10 @@ node_modules/
 
 env_prod.py
 env_local.py
+
+# bin files that are downloaded on bootstrap
+kind
+skaffold
+kubectl
+helm
+hostess

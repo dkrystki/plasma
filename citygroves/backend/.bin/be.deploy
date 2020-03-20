@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+cg.cluster flesh deploy_app backend

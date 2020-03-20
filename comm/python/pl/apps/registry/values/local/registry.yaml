@@ -10,6 +10,12 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
 
+service:
+  type: ClusterIP
+    port: 5000
+    protocol: TCP
+    targetPort: 80
+
 persistence:
   enabled: true
   size: 50Gi

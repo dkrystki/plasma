@@ -2,10 +2,6 @@ import plasma.citygroves.backend.env_comm
 import plasma.citygroves.env_stage
 
 
-class Env(plasma.citygroves.backend.env_comm.Env):
+class Env(plasma.citygroves.backend.env_comm.Env, plasma.citygroves.env_stage.Env):
     def __init__(self) -> None:
         super().__init__()
-        self.parent = plasma.citygroves.env_stage.Env()
-
-        self.emoji = self.parent.emoji
-        self.stage = self.parent.stage

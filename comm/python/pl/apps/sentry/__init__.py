@@ -1,59 +1,52 @@
 import os
-from pathlib import Path
+import pl.devops
+
 from loguru import logger
 
-from shang.utils.deploy import Namespace
 
+class Sentry(pl.devops.App):
+    class Sets(pl.devops.App.Sets):
+        pass
 
-def dump_data() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+    class Links(pl.devops.App.Links):
+        pass
 
-    logger.info("♻️Dumping sentry")
+    def __init__(self, se: Sets, li: Links):
+        super().__init__(se, li)
 
-    sentry = Namespace("sentry")
+    def dump_data(self) -> None:
+        os.chdir(str(self.se.app_root))
 
-    sentry_pod: str = sentry.kubectl('get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$"')
+        logger.info("♻️Dumping sentry")
 
-    sentry.kubectl(f'exec {sentry_pod} -- bash -c "sentry export --silent --indent=2 '
-                   f'--exclude migrationhistory,permission,savedsearch,contenttype > /home/sentry/dump.json"')
-    sentry.kubectl(f'cp {sentry_pod}:home/sentry/dump.json dump.json')
-    logger.info("♻️Dumping sentry done\n")
+        namespace = self.li.namespace
+        sentry_pod: str = namespace.kubectl('get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$"')
+        namespace.kubectl(f'exec {sentry_pod} -- bash -c "sentry export --silent --indent=2 '
+                       f'--exclude migrationhistory,permission,savedsearch,contenttype > /home/sentry/dump.json"')
+        namespace.kubectl(f'cp {sentry_pod}:home/sentry/dump.json dump.json')
+        logger.info("♻️Dumping sentry done\n")
 
+    def seed(self) -> None:
+        os.chdir(str(self.se.app_root))
 
-def seed() -> None:
-    os.chdir(Path(__file__).absolute().parent)
+        logger.info("🌱Seeding sentry")
 
-    logger.info("🌱Seeding sentry")
+        namespace = self.li.namespace
+        sentry_pod: str = namespace.kubectl('get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$"')
+        namespace.kubectl(f'cp dump.json {sentry_pod}:home/sentry/dump.json')
+        namespace.kubectl(f'exec {sentry_pod} -- bash -c "sentry django loaddata /home/sentry/dump.json"')
 
-    sentry = Namespace("sentry")
+        logger.info("👌Seeding sentry done")
 
-    sentry_pod: str = sentry.kubectl('get pods -l role=web -o name | grep -m 1 -o "sentry-web.*$"')
+    def deploy(self) -> None:
+        super().deploy()
 
-    sentry.kubectl(f'cp dump.json {sentry_pod}:home/sentry/dump.json')
-    sentry.kubectl(f'exec {sentry_pod} -- bash -c "sentry django loaddata /home/sentry/dump.json"')
+        logger.info("🚀Deploying sentry")
+        self.li.namespace.helm("sentry").install("stable/sentry", "3.1.5")
+        self.seed()
+        logger.info("👌Deployed sentry\n")
 
-    logger.info("👌Seeding sentry done")
+    def delete(self) -> None:
+        super().delete()
 
-
-def deploy() -> None:
-    os.chdir(Path(__file__).absolute().parent)
-
-    logger.info("🚀Deploying sentry")
-    sentry = Namespace("sentry")
-    sentry.create(enable_istio=False)
-
-    sentry.helm_install("sentry", "stable/sentry", "3.1.5")
-    seed()
-    logger.info("👌Deployed sentry\n")
-
-
-def delete() -> None:
-    os.chdir(Path(__file__).absolute().parent)
-
-    sentry = Namespace("sentry")
-
-    sentry.helm_delete("sentry")
-
-
-if __name__ == "__main__":
-    deploy()
+        self.li.namespace.helm("sentry").delete()

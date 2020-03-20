@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+echo "Adding hosts to /etc/hosts file"
+sudo hostess add "aux.registry.$AU_STAGE" "$AU_CLUSTER_ADDRESS"
+sudo hostess add "aux.graylog.$AU_STAGE" "$AU_CLUSTER_ADDRESS"
+sudo hostess add "aux.sentry.$AU_STAGE" "$AU_CLUSTER_ADDRESS"

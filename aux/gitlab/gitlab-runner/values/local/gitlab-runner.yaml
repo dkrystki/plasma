@@ -1,0 +1,112 @@
+## The GitLab Server URL (with protocol) that want to register the runner against
+## ref: https://docs.gitlab.com/runner/commands/README.html#gitlab-runner-register
+##
+gitlabUrl: https://gitlab.com/
+
+## The registration token for adding new Runners to the GitLab server. This must
+## be retrieved from your GitLab instance.
+## ref: https://docs.gitlab.com/ee/ci/runners/
+##
+runnerRegistrationToken: "xYrB_ZexEssb8ZjTG5Pd"
+
+## Set the certsSecretName in order to pass custom certificates for GitLab Runner to use
+## Provide resource name for a Kubernetes Secret Object in the same namespace,
+## this is used to populate the /etc/gitlab-runner/certs directory
+## ref: https://docs.gitlab.com/runner/configuration/tls-self-signed.html#supported-options-for-self-signed-certificates
+##
+#certsSecretName:
+
+## Configure the maximum number of concurrent jobs
+## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
+##
+concurrent: 5
+
+## Defines in seconds how often to check GitLab for a new builds
+## ref: https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section
+##
+checkInterval: 30
+
+## For RBAC support:
+rbac:
+  create: true
+
+  ## Run the gitlab-bastion container with the ability to deploy/manage containers of jobs
+  ## cluster-wide or only within namespace
+  clusterWideAccess: true
+
+  ## If RBAC is disabled in this Helm chart, use the following Kubernetes Service Account name.
+  ##
+  # serviceAccountName: default
+
+## Configuration for the Pods that the runner launches for each new job
+##
+runners:
+  ## Default container image to use for builds when none is specified
+  ##
+  image: ubuntu:18.04
+
+  cache:
+    cacheType: s3
+    cacheShared: true
+
+    s3CacheInsecure: true
+    s3ServerAddress: minio
+    s3BucketName: gitlab-cache
+    secretName: minio
+
+
+  imagePullSecrets:
+    - pullsecret
+
+  imagePullPolicy: "always"
+
+  ## Run all containers with the privileged flag enabled
+  ## This will allow the docker:stable-dind image to run if you need to run Docker
+  ## commands. Please read the docs before turning this on:
+  ## ref: https://docs.gitlab.com/runner/executors/kubernetes.html#using-docker-dind
+  ##
+  privileged: true
+
+
+  ## Namespace to run Kubernetes jobs in (defaults to 'default')
+  ##
+  # namespace:
+
+  ## Build Container specific configuration
+  ##
+  builds:
+    cpuLimit: 1.5
+    memoryLimit: 1Gi
+    cpuRequests: 1
+    memoryRequests: 700Mi
+
+  ## Service Container specific configuration
+  ##
+  services:
+    cpuLimit: 1
+    memoryLimit: 700Mi
+    cpuRequests: 800m
+    memoryRequests: 500Mi
+
+  ## Helper Container specific configuration
+  ##
+  helpers:
+    cpuLimit: 700m
+    # memoryLimit: 256Mi
+    cpuRequests: 500m
+    memoryRequests: 256Mi
+
+
+## list of hosts and IPs that will be injected into the pod's hosts file
+hostAliases:
+ - ip: "192.168.0.101"
+   hostnames:
+   - "aux.registry.local"
+
+#resources:
+#   limits:
+#     memory: 6Gi
+#     cpu: 5
+#   requests:
+#     memory: 5Gi
+#     cpu: 4

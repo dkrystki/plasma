@@ -42,7 +42,7 @@ db:
   name: backend
   user: postgres
   password: cGFzc3dvcmQ=
-  host: postgresql
+  host: postgresql.aux
   port: 5432
 
 gmail:

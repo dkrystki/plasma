@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+cd $CG_APP_ROOT
+
+be.flake8
+be.mypy
+be.test

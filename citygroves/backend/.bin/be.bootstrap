@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+echo "Bootstraping backend"
+
+cd $CG_APP_SRC
+
+poetry config virtualenvs.in-project false
+poetry config virtualenvs.create true
+poetry install

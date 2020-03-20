@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+# $1 = version
+# $2 = destination folder
+
+echo "Installing helm"
+cd /tmp
+HELM_NAME="helm-v$1-linux-386"
+curl -Lso helm.tar.gz "https://get.helm.sh/$HELM_NAME.tar.gz"
+tar -zxf helm.tar.gz
+mv linux-386/helm "$2/helm"
