@@ -100,8 +100,12 @@ __pycache__
 
 node_modules/
 
-env_prod.py
-env_local.py
+env_*.py
+!env_comm.py
+!env_test.py
+!env_local.py
+
+!**/tests/**/env_*
 
 # bin files that are downloaded on bootstrap
 kind

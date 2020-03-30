@@ -1,0 +1,25 @@
+---
+.python-base:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .venv
+      - .cache/
+  image: aux.registry.local/python-cg-ci:latest
+  before_script:
+    - eval "$(./shell.py --dry-run)"
+    - mkdir -p $HOME/.cache
+    - "[[ -d .cache/pypoetry ]] && cp -r .cache/pypoetry $HOME/.cache/"
+    - "[[ -d .cache/usr_local ]] && cp -r .cache/usr_local/* /usr/local/"
+    - pl.bootstrap
+    - cd citygroves
+    - eval "$(./shell.py --dry-run)"
+
+  after_script:
+    # since caching doesn't work outside of build directory we have to move it to .cache dir
+    - cd $CI_PROJECT_DIR
+    - rm -rf .cache
+    - mkdir .cache
+    - mkdir .cache/usr_local
+    - cp -r /usr/local/* .cache/usr_local
+    - "[[ -d $HOME/.cache/pypoetry ]] && cp -r $HOME/.cache/pypoetry .cache/"

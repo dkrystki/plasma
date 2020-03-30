@@ -4,18 +4,18 @@ import subprocess
 
 
 class Env(plasma.citygroves.env_comm.Env):
-    emoji: str = "🛠️"
-    stage: str = "test"
+    emoji: str = "🐣"
+    stage: str = "local"
 
-    class Registry:
-        ip = "192.168.0.101"
-        address = "aux.registry.local"
+    class Registry(plasma.citygroves.env_comm.Env.Registry):
+        ip = "127.0.0.1"
+        address = "citygroves.registry.local"
         username = "user"
         password = "password"
 
     class Cluster(plasma.citygroves.env_comm.Env.Cluster):
-        address: str = "192.168.0.101"
-        name: str = "citygroves-test"
+        address: str = ""
+        name: str = "citygroves-local"
 
     def __init__(self) -> None:
         super().__init__()
@@ -30,5 +30,3 @@ class Env(plasma.citygroves.env_comm.Env):
             self.cluster.address = self.cluster.address.strip()
         except subprocess.CalledProcessError:
             pass
-
-        os.environ["CG_CLUSTER_ADDRESS"] = self.cluster.address

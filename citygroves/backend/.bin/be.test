@@ -3,7 +3,7 @@ set -euo pipefail
 
 printf "\nRunning tests...\n"
 
-cd $CG_APP_ROOT
+cd "$CG_APP_ROOT"
 
 cd flesh
 

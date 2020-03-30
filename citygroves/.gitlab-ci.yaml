@@ -1,7 +1,14 @@
 ---
-
 variables:
   PROJECT_DIR: "$CI_PROJECT_DIR/citygroves"
 
 include:
+  - '/citygroves/.gitlab-ci-comm.yaml'
   - '/citygroves/backend/.gitlab-ci.yaml'
+
+citygroves.test-devops:
+  extends:
+    - .python-base
+  stage: test
+  script:
+    - cg.test-devops
