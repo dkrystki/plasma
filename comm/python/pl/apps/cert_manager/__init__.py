@@ -1,11 +1,16 @@
-import pl.devops
+from dataclasses import dataclass
+
+from pl.apps import App
+from pl.devops import run
 
 
-class CertManager(pl.devops.App):
-    class Sets(pl.devops.App.Sets):
+class CertManager(App):
+    @dataclass
+    class Sets(App.Sets):
         pass
 
-    class Links(pl.devops.App.Links):
+    @dataclass
+    class Links(App.Links):
         pass
 
     def __init__(self, se: Sets, li: Links):
@@ -13,8 +18,8 @@ class CertManager(pl.devops.App):
 
     def deploy(self) -> None:
         super().deploy()
-        # pl.devops.run("kubectl apply --validate=false -f k8s/crds.yaml")
-        pl.devops.run("kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.0/cert-manager.crds.yaml")
+        # run("kubectl apply --validate=false -f k8s/crds.yaml")
+        run("kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.0/cert-manager.crds.yaml")
 
         # kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin
 

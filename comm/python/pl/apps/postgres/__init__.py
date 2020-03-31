@@ -1,24 +1,35 @@
-import pl.devops
+from dataclasses import dataclass
+
+from pl.apps import App
+
+from pl.kube import Pod
 
 
-class Postgres(pl.devops.App):
-    class Sets(pl.devops.App.Sets):
+class Postgres(App):
+    @dataclass
+    class Sets(App.Sets):
         pass
 
-    class Links(pl.devops.App.Links):
+    @dataclass
+    class Links(App.Links):
         pass
 
     def __init__(self, se: Sets, li: Links):
         super().__init__(se, li)
+        self.release = self.li.namespace.helm(self.se.name)
+
+        self.master = Pod(
+            se=Pod.Sets(name=self.se.name + "-0"),
+            li=Pod.Links(self)
+        )
 
     def deploy(self) -> None:
         super().deploy()
         self.li.namespace.apply_yaml("k8s/secret.yaml")
         self.li.namespace.apply_yaml("k8s/configmap.yaml")
-        self.li.namespace.helm(self.se.name).install(chart="stable/postgresql", version="6.3.7")
+        self.release.install(chart="stable/postgresql", version="6.3.7")
 
     def delete(self) -> None:
         super().delete()
 
-        self.li.namespace.helm(self.se.name).delete()
-
+        self.release.delete()

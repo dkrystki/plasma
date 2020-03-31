@@ -1,11 +1,15 @@
-import pl.devops
+from dataclasses import dataclass
+
+from pl.apps import App
 
 
-class Kaniko(pl.devops.App):
-    class Sets(pl.devops.App.Sets):
+class Kaniko(App):
+    @dataclass
+    class Sets(App.Sets):
         pass
 
-    class Links(pl.devops.App.Links):
+    @dataclass
+    class Links(App.Links):
         pass
 
     def __init__(self, se: Sets, li: Links):

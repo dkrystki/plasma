@@ -1,12 +1,17 @@
-from pathlib import Path
+from importlib import import_module
+from plasma.env import Path
 import os
-import plasma.env
+import plasma.aux.env_comm
 
 
 class Env(plasma.env.Env):
+    name: str = "cg"
     project_code: str = "CG"
     project_name: str = "citygroves"
+    app_name = "citygroves"
+    app_root: Path
     project_root: Path
+    project_comm: Path
     emoji: str
     stage: str
     kubeconfig: str
@@ -23,8 +28,10 @@ class Env(plasma.env.Env):
     bin_path: Path = Path(".bin")
     ngrok_authtoken: str = ""
 
+    aux: plasma.aux.env_comm.Env
+
     class Cluster:
-        address: str = ""
+        ip: str = ""
         name: str = ""
         kubernetes_ver: str = "1.15.7"
 
@@ -33,14 +40,36 @@ class Env(plasma.env.Env):
         username: str
         password: str
 
-    class AuxCluster:
-        address: str = "192.168.0.101"
+    class Keycloak:
+        address: str
+
+    class Backend:
+        address: str
+
+    class Appgen:
+        address: str
+
+    class Frontend:
+        address: str
 
     def __init__(self) -> None:
         super().__init__()
 
         self.project_root = Path(os.path.realpath(__file__)).parent
-        self.name: str = "citygroves"
+        self.app_root = self.project_root
+
+        self.deps_path = self.project_root / Path(".deps")
+
+        self.project_comm = self.project_root / "comm"
+
+        if self.stage in ["local", "test"]:
+            self.aux = import_module(f"plasma.aux.env_local").Env()
+
+        self.registry = self.__class__.Registry()
+        self.keycloak = self.__class__.Keycloak()
+        self.backend = self.__class__.Backend()
+        self.appgen = self.__class__.Appgen()
+        self.frontend = self.__class__.Frontend()
 
     def activate(self) -> None:
         super().activate()

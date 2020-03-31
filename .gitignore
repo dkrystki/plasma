@@ -104,12 +104,14 @@ env_*.py
 !env_comm.py
 !env_test.py
 !env_local.py
+.env*
 
 !**/tests/**/env_*
 
 # bin files that are downloaded on bootstrap
-kind
-skaffold
-kubectl
-helm
-hostess
+.deps
+
+.pyenv
+
+**/Dockerfile.*
+**/skaffold.*.yaml

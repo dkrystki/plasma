@@ -1,18 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 sys.path.append("../")
 
-import argparse
 import sys
 
 from plasma.comm.python.pl.env import Env
-
-
-parser = argparse.ArgumentParser()
-parser.add_argument('stage', type=str, default="local",
-                    help='Stage to activate.', nargs="?")
-parser.add_argument('--dry-run', default=False, action="store_true")
-parser.add_argument('--save', default=False, action="store_true")
+from plasma.comm.python.pl.shell import parser
 
 
 if __name__ == "__main__":

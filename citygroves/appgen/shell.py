@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 sys.path.append("../../../")
 
 from importlib import import_module
-from plasma.shell import parser
+from plasma.comm.python.pl.shell import parser
 
 
 if __name__ == "__main__":

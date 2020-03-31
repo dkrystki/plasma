@@ -3,64 +3,65 @@
 .bootstrap-backend: &bootstrap-backend |
   cd backend
   eval "$(./shell.py test --dry-run)"
-  be.bootstrap
+  ./app.py python bootstrap_local_dev
 
-citygroves.be.flake8:
+cg.be.flake8:
   extends:
     - .python-base
-  only:
-    changes:
-      - citygroves/backend/**/*.py
-      - citygroves/backend/.bin/backend.flake8
+#  only:
+#    changes:
+#      - citygroves/backend/**/*.py
+#      - citygroves/backend/.bin/backend.flake8
   script:
-    - *bootstrap-backend
-    - be.test-devops
-
-citygroves.be.test-devops:
-  extends:
-    - .python-base
-  only:
-    changes:
-      - citygroves/backend/**/*
-      - citygroves/backend/shell.py
-  script:
-    - *bootstrap-backend
+    - cd backend
     - eval "$(./shell.py test --dry-run)"
+    - ./app.py python flake8
 
-citygroves.be.mypy:
+cg.be.test-devops:
   extends:
     - .python-base
-  only:
-    changes:
-      - citygroves/backend/**/*.py
-      - citygroves/backend/.bin/backend.mypy
+#  only:
+#    changes:
+#      - citygroves/backend/**/*
+#      - citygroves/backend/shell
+  script:
+    - cd backend
+    - eval "$(./shell.py test --dry-run)"
+    - ./app.py python test_devops
+
+cg.be.mypy:
+  extends:
+    - .python-base
+#  only:
+#    changes:
+#      - citygroves/backend/**/*.py
+#      - citygroves/backend/.bin/backend.mypy
   script:
     - *bootstrap-backend
-    - be.mypy
+    - ./app.py python mypy
 
-citygroves.be.test:
+cg.be.test:
   extends:
     - .python-base
-  only:
-    changes:
-      - citygroves/backend/flesh/**/*
+#  only:
+#    changes:
+#      - citygroves/backend/flesh/**/*
   script:
     - *bootstrap-backend
-    - be.test
+    - ./app.py python test
 
-
-citygroves.be.deploy-to-test:
+cg.be.deploy-to-test:
   extends:
     - .python-base
-  only:
-    changes:
-      - citygroves/**/*
+#  only:
+#    changes:
+#      - citygroves/**/*
 
   image: aux.registry.local/kube-cg-ci:latest
   stage: deploy-test
   services:
     - name: docker:18.09.9-dind
-      command: ['--insecure-registry=aux.registry.local']
+      command: ['--insecure-registry=citygroves.registry.test']
 
   variables:
     DOCKER_HOST: "tcp://127.0.0.1:2375"
@@ -69,13 +70,12 @@ citygroves.be.deploy-to-test:
     - cd $PROJECT_DIR
     - eval "$(./shell.py test --dry-run)"
     - cp "$TEST_KUBECONFIG" envs/test/kubeconfig.yaml
-    - cg.add-hosts
+    - ./cluster.py add_hosts
     - helm init --client-only
     - helm repo update
-    - cg.cluster reset
-    - cg.cluster system deploy
-    - cg.cluster aux deploy
+    - ./cluster.py system deploy
+    - ./cluster.py aux deploy
     - cd backend
     - eval "$(./shell.py test --dry-run)"
     - helm delete --purge $CG_HELM_RELEASE_NAME || true
-    - be.deploy
+    - ./app.py deploy

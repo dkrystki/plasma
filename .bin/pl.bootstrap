@@ -1,15 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -eo pipefail
 
-if [[ -n "$CI_JOB_ID" ]]
+cd "$PL_MONOREPO_ROOT"
+
+if [ -n "$CI_JOB_ID" ]
 then
   apt update
   apt install sudo -y
 fi
 
-sudo apt install gettext-base -y
+#Install pyenv
+if [ ! -d "$PYENV_ROOT" ] && [ -z "$CI_JOB_ID" ]
+then
+  sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev -y
+  git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
+  eval "$(pyenv init -)"
+  pyenv install "$PL_PYTHON_VER"
+  pyenv global "$PL_PYTHON_VER"
+fi
 
-pip install poetry==$PL_POETRY_VER
+pip3 install poetry=="$PL_POETRY_VER"
 
 poetry config virtualenvs.in-project true
 poetry config virtualenvs.create true

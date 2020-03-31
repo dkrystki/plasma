@@ -2,21 +2,16 @@ ARG PYTHON_VER_MAJOR
 ARG PYTHON_VER_MINOR
 ARG PYTHON_VER_PATCH
 ARG DEBIAN_VER
-FROM python:$PYTHON_VER_MAJOR.$PYTHON_VER_MINOR-slim-$DEBIAN_VER
+FROM aux.registry.local/local/flesh/appgen-prebuild:latest
 
 ARG PYTHON_VER_MAJOR
 ARG PYTHON_VER_MINOR
 ARG PYTHON_VER_PATCH
-
-ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
-ENV SHELL /bin/bash
-ENV STAGE local
+ARG POETRY_VER
 
 WORKDIR /srv
 
-RUN pip3 install poetry
+RUN pip3 install poetry==$POETRY_VER
 
 COPY citygroves/appgen/flesh/pyproject.toml pyproject.toml
 COPY citygroves/appgen/flesh/poetry.lock poetry.lock

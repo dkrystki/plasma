@@ -1,11 +1,16 @@
-import pl.devops
+from dataclasses import dataclass
+
+from pl.apps import App
+from pl.devops import run
 
 
-class GitlabRunner(pl.devops.App):
-    class Sets(pl.devops.App.Sets):
+class GitlabRunner(App):
+    @dataclass
+    class Sets(App.Sets):
         pass
 
-    class Links(pl.devops.App.Links):
+    @dataclass
+    class Links(App.Links):
         pass
 
     def __init__(self, se: Sets, li: Links):
@@ -15,7 +20,7 @@ class GitlabRunner(pl.devops.App):
     def deploy(self) -> None:
         super().deploy()
 
-        pl.devops.run("helm repo add gitlab https://charts.gitlab.io")
+        run("helm repo add gitlab https://charts.gitlab.io")
         self.runner.install(chart="gitlab/gitlab-runner", version="0.12.0")
 
     def delete(self) -> None:

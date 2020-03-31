@@ -8,7 +8,7 @@ ENV STAGE local
 
 WORKDIR /srv
 COPY comm/docker/debug.sh /tmp/debug.sh
-COPY citygroves/appgen/docker /tmp/docker
+COPY citygroves/frontend/docker /tmp/docker
 RUN bash /tmp/debug.sh
 
 COPY citygroves/frontend/flesh/package.json package.json

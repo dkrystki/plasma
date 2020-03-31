@@ -1,12 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 sys.path.append("../../")
 
-from importlib import import_module
-from plasma.shell import parser
-
 
 if __name__ == "__main__":
+    from importlib import import_module
+    from plasma.comm.python.pl.shell import parser
+
     args = parser.parse_args(sys.argv[1:])
 
     env = import_module(f"env_{args.stage}").Env()

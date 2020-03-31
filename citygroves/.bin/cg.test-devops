@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -eou pipefail
 
-cd "$CG_PROJECT_ROOT/tests/test_devops"
+cd "$CG_PROJECT_ROOT"
+eval "$(./shell.py test --dry-run)"
+
+cd "tests/test_devops"
 pytest

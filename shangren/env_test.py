@@ -23,11 +23,11 @@ class Env(plasma.shangren.env_comm.Env):
         super().activate()
 
         try:
-            self.cluster.address = subprocess.check_output(f"""kubectl describe nodes {self.cluster.name} | """
+            self.cluster.ip = subprocess.check_output(f"""kubectl describe nodes {self.cluster.name} | """
                                                       """grep -oP "InternalIP:  \K.*" """,
                                                       shell=True, stderr=subprocess.PIPE).decode("utf-8")
-            self.cluster.address = self.cluster.address.strip()
+            self.cluster.ip = self.cluster.ip.strip()
         except subprocess.CalledProcessError:
             pass
 
-        os.environ["CG_CLUSTER_ADDRESS"] = self.cluster.address
+        os.environ["CG_CLUSTER_IP"] = self.cluster.ip

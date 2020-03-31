@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+cd $CG_BIN_PATH
+
+ngrok start frontend backend keycloak --config=ngrok.yaml --authtoken=$CG_NGROK_AUTH_TOKEN

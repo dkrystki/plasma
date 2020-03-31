@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -eou pipefail
-cd $PL_MONOREPO_ROOT
-
-pytest comm/python/tests

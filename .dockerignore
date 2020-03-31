@@ -2,8 +2,5 @@
 **/.venv/
 *.egg-info/
 **/Dockerfile.*
-**/hostess
-**/helm
-**/kubectl
-**/kind
-**/skaffold
+**/.deps
+**/.pyenv/

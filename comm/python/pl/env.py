@@ -1,19 +1,37 @@
-from pathlib import Path
+import pathlib
 import os
 from tempfile import NamedTemporaryFile
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+
+
+class Path(pathlib.PosixPath):
+    def rel(self) -> pathlib.Path:
+        """
+        Return relavive Path
+        :return:
+        """
+        monorepo_root = pathlib.PosixPath(os.path.realpath(__file__)).parents[3]
+        return self.relative_to(monorepo_root)
 
 
 class Env:
+    name: str = "plasma"
     project_code: str = "PL"
     project_name: str = "Plasma"
-    project_root: Path
+    project_root: Path = Path()
+    project_comm: Path = Path()
+    monorepo_root: Path = Path()
+    app_root: Path = Path()
+    app_src: Path = Path()
+    app_name: str = ""
+    comm_root: Path = Path()
     emoji: str = ""
     kubeconfig: str
     poetry_ver: str = "1.0.3"
     python_ver_major: int = 3
     python_ver_minor: int = 8
     python_ver_patch: int = 1
+    python_ver: str = ""
     skaffold_ver: str = "1.3.1"
     kubectl_ver: str = "1.17.0"
     debian_ver: str = "buster"
@@ -24,9 +42,10 @@ class Env:
     stage: str = ""
     debug: bool = False
     bin_path: Path = Path()
+    deps_path: Path = Path()
 
     class Cluster:
-        address: str = ""
+        ip: str = ""
         name: str = ""
         kubernetes_ver: str = ""
 
@@ -42,18 +61,45 @@ class Env:
 
     def __init__(self) -> None:
         self.envs_before: Dict[str, Any] = os.environ.copy()
-        self.monorepo_root: Path = Path(os.path.realpath(__file__)).parents[3]
-        self.project_root = self.monorepo_root
 
-        self.name: str = "plasma"
+        if not self.monorepo_root != Path():
+            self.monorepo_root = Path(os.path.realpath(__file__)).parents[3]
+
+        if not self.project_root != Path():
+            self.project_root = self.monorepo_root
+
+        if not self.app_root != Path():
+            self.app_root = self.project_root
+
+        if not self.app_root != Path():
+            self.app_src = self.app_root / "flesh"
+
+        if not self.comm_root != Path():
+            self.comm_root = self.monorepo_root / "comm"
+
+        self.pyenv_root = self.monorepo_root / ".pyenv"
+
+        if not self.bin_path != Path():
+            self.bin_path = self.app_root / Path(".bin")
+
+        if not self.deps_path != Path():
+            self.deps_path = self.app_root / Path(".deps")
+
+        if not self.python_ver:
+            self.python_ver = f"{self.python_ver_major}.{self.python_ver_minor}.{self.python_ver_patch}"
 
         self.registry = self.__class__.Registry()
         self.cluster = self.__class__.Cluster()
         self.aux_cluster = self.__class__.AuxCluster()
 
     def activate(self) -> None:
-        self._set_environ("BIN_PATH", str(self.project_root/self.bin_path))
+        self.bin_path.mkdir(exist_ok=True)
+        self._set_environ("BIN_PATH", str(self.bin_path))
+        self.deps_path.mkdir(exist_ok=True)
+        self._set_environ("DEPS_PATH", str(self.deps_path))
         self._set_environ("PROJECT_ROOT", str(self.project_root))
+        self._set_environ("APP_ROOT", str(self.app_root))
+        self._set_environ("APP_SRC", str(self.app_src))
         self._set_environ("PROJECT_NAME", str(self.project_root))
         self._set_environ("PROJECT_CODE", self.project_code)
         self._set_environ("STAGE", self.stage)
@@ -71,16 +117,12 @@ class Env:
         self._set_environ("KIND_VER", self.kind_ver)
         self._set_environ("DOCKER_VER", self.docker_ver)
 
-        if self.cluster.name:
-            self._set_environ("CLUSTER_NAME", self.cluster.name)
+        self._set_environ("CLUSTER_NAME", self.cluster.name)
+        self._set_environ("CLUSTER_IP", self.cluster.ip)
+        self._set_environ("KUBERNETES_VER", str(self.cluster.kubernetes_ver))
 
-        if self.cluster.address:
-            self._set_environ("CLUSTER_ADDRESS", self.cluster.address)
-
-        if self.cluster.kubernetes_ver:
-            self._set_environ("KUBERNETES_VER", str(self.cluster.kubernetes_ver))
-
-        os.environ["AU_CLUSTER_ADDRESS"] = self.aux_cluster.address
+        if self.aux_cluster.ip:
+            os.environ["AU_CLUSTER_ADDRESS"] = self.aux_cluster.ip
 
         self._set_environ("REGISTRY_ADDRESS", self.registry.address)
         self._set_environ("REGISTRY_USERNAME", self.registry.username)
@@ -91,23 +133,25 @@ class Env:
             os.environ["PYTHONPATH"] = ""
 
         os.environ["PL_MONOREPO_ROOT"] = str(self.monorepo_root)
-        os.environ["PL_COMM_ROOT"] = str(self.monorepo_root / "comm")
-        os.environ["PATH"] = f"{str(self.monorepo_root)}/.bin:{os.environ['PATH']}"
+        os.environ["PL_COMM_ROOT"] = str(self.comm_root)
+        os.environ["PATH"] = f"{str(self.bin_path)}:{os.environ['PATH']}"
+        os.environ["PATH"] = f"{str(self.deps_path)}:{os.environ['PATH']}"
         os.environ["PATH"] = f"{str(self.monorepo_root)}/.venv/bin:{os.environ['PATH']}"
         os.environ["PATH"] = f"{os.environ[f'{self.project_code}_BIN_PATH']}:{os.environ['PATH']}"
         os.environ["KUBECONFIG"] = str(self.project_root / f"envs/{self.stage}/kubeconfig.yaml")
         os.environ["PYTHONPATH"] = f"{str(self.monorepo_root)}/comm/python:{os.environ['PYTHONPATH']}"
         os.environ["PYTHONPATH"] = f"{str(self.monorepo_root.parent)}:{os.environ['PYTHONPATH']}"
         os.environ["PLASMA_DEBUG"] = str(self.debug)
+        os.environ["PYENV_ROOT"] = str(self.pyenv_root)
+        os.environ["PATH"] = f"{str(self.pyenv_root/'bin')}:{os.environ['PATH']}"
 
-    def as_string(self, add_export: bool = True) -> str:
+    def as_string(self, add_export: bool = True, ignore_unchanged: bool = True) -> str:
         lines: List[str] = []
 
         for key, value in os.environ.items():
-            if key in self.envs_before:
-                if value == self.envs_before[key]:
+            if ignore_unchanged:
+                if key in self.envs_before and value == self.envs_before[key]:
                     continue
-
             if "BASH_FUNC_" not in key:
                 lines.append(f'{"export" if add_export else ""} {key}="{value}";')
 
@@ -128,7 +172,11 @@ class Env:
         with NamedTemporaryFile(mode='w+', buffering=True, delete=True) as tmprc:
             tmprc.write('source ~/.bashrc\n')
             # that's the only way to modify the prompt
-            tmprc.write(self.as_string())
+            if self.pyenv_root.exists():
+                tmprc.write('eval "$(pyenv init -)"\n')
+                tmprc.write('pyenv global "$PL_PYTHON_VER" > /dev/null\n')
+
+            tmprc.write(self.as_string(ignore_unchanged=False))
             tmprc.write(f'PS1={self.emoji}\({self.name}\)$PS1\n')
 
             os.system(f"bash --rcfile {tmprc.name}")
@@ -138,4 +186,11 @@ class Env:
         :param name: Without namespace.
         :param value:
         """
-        os.environ[f"{self.project_code}_{name}"] = value
+        if value:
+            os.environ[f"{self.project_code}_{name}"] = value
+
+    def in_project_root(self, func):
+        def wrapper(*args, **kwargs):
+            os.chdir(str(self.project_root))
+            func(*args, **kwargs)
+        return wrapper

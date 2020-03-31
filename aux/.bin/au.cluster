@@ -1,7 +1,0 @@
-#!/usr/bin/env python
-import fire
-
-if __name__ == "__main__":
-    from aux.cluster import get_current_cluster
-
-    fire.Fire(get_current_cluster())

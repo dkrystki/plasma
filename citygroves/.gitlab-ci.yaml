@@ -6,12 +6,36 @@ include:
   - '/citygroves/.gitlab-ci-comm.yaml'
   - '/citygroves/backend/.gitlab-ci.yaml'
 
-citygroves.test-devops:
+cg.test-devops:
   extends:
     - .python-base
-  only:
-    changes:
-      - citygroves/**/*
+#  only:
+#    changes:
+#      - citygroves/**/*
   stage: test
   script:
-    - cg.test-devops
+    - ./cluster.py python test_devops
+
+cg.flake8:
+  extends:
+    - .python-base
+#  only:
+#    changes:
+#      - citygroves/**/*.py
+  stage: test
+  script:
+    - ./cluster.py python flake8
+
+cg.test-bootstrap:
+  extends:
+    - .python-base
+  image: aux.registry.local/ubuntu-cg-ci
+  stage: test
+  before_script:
+    - unset CI_JOB_ID  # making think CI that this is not CI
+    - eval "$(./shell.py --dry-run)"
+    - pl.bootstrap
+    - cd citygroves
+    - eval "$(./shell.py local --dry-run)"
+  script:
+    - ./cluster.py bootstrap_local_dev

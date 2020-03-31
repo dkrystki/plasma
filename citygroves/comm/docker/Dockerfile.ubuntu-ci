@@ -1,0 +1,12 @@
+FROM ubuntu:18.04
+
+RUN mkdir /srv/plasma
+WORKDIR /srv/plasma
+
+RUN apt update
+RUN apt install python3 git python3-pip sudo -y
+RUN apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev -y
+
+COPY . /srv/plasma
+
+CMD ["tail", "-f", "/dev/null"]

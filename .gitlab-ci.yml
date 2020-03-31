@@ -6,7 +6,7 @@ stages:
 include:
   - '/citygroves/.gitlab-ci.yaml'
 
-plasma.test:
+pl.test:
 #  only:
 #    changes:
 #      - comm
@@ -14,7 +14,7 @@ plasma.test:
 #      - ./*.py
   image: aux.registry.local/python-cg-ci:latest
   cache:
-    key: ${CI_COMMIT_REF_SLUG}
+    key: ${CI_COMMIT_REF_SLUG}:${CI_JOB_NAME}
     paths:
       - .venv
   before_script:
@@ -23,4 +23,4 @@ plasma.test:
 
   stage: test
   script:
-    - pl.test
+    - ./monorepo.py test

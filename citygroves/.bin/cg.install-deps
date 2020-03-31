@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 set -eou pipefail
 
-# $1 = where to install
-
-pl.install-kind "$CG_KIND_VER" "$1"
-pl.install-kubectl "$CG_KUBECTL_VER" "$1"
-pl.install-skaffold "$CG_SKAFFOLD_VER" "$1"
-pl.install-helm "$CG_HELM_VER" "$1"
-pl.install-hostess "$1"
+pl.install-kind "$CG_KIND_VER" "$CG_BIN_PATH"
+pl.install-kubectl "$CG_KUBECTL_VER" "$CG_BIN_PATH"
+pl.install-skaffold "$CG_SKAFFOLD_VER" "$CG_BIN_PATH"
+pl.install-helm "$CG_HELM_VER" "$CG_BIN_PATH"
+pl.install-hostess "$CG_BIN_PATH"

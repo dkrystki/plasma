@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-source "$PLASMA_COMM_ROOT"/bash/tele/tele.sh $@

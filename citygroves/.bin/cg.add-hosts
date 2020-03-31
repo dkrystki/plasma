@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -eou pipefail
-
-echo "Adding hosts to /etc/hosts file"
-sudo hostess add "citygroves.registry.$CG_STAGE" "$CG_CLUSTER_ADDRESS"
-sudo hostess add "citygroves.keycloak.$CG_STAGE" "$CG_CLUSTER_ADDRESS"
-sudo hostess add "citygroves.frontend.$CG_STAGE" "$CG_CLUSTER_ADDRESS"
-sudo hostess add "citygroves.backend.$CG_STAGE" "$CG_CLUSTER_ADDRESS"
-sudo hostess add "aux.registry.local" "$AU_CLUSTER_ADDRESS"

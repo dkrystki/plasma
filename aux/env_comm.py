@@ -23,19 +23,29 @@ class Env(plasma.env.Env):
     ngrok_authtoken: str = ""
 
     class Cluster:
-        address: str = ""
-        name: str = ""
+        address: str
+        name: str
         kubernetes_ver: str = "1.15"
 
     class Registry:
+        ip: str
         address: str
         username: str
         password: str
 
+    class Graylog:
+        address: str
+
+    class Sentry:
+        address: str
+
     def __init__(self) -> None:
         super().__init__()
         self.project_root = Path(os.path.realpath(__file__)).parent
-        self.name: str = "aux"
+        self.name: str = "au"
+
+        self.graylog = self.__class__.Graylog()
+        self.sentry = self.__class__.Sentry()
 
     def activate(self) -> None:
         super().activate()

@@ -7,6 +7,8 @@ data:
   setup1.sql: |
     CREATE USER keycloak WITH PASSWORD 'password';
     CREATE DATABASE keycloak WITH OWNER keycloak;
+    GRANT USAGE ON SCHEMA public TO keycloak;
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO keycloak;
 
     CREATE USER backend WITH PASSWORD 'password';
     CREATE DATABASE backend WITH OWNER backend;

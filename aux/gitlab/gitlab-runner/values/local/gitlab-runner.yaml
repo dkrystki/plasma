@@ -75,31 +75,31 @@ runners:
   ## Build Container specific configuration
   ##
   builds:
-    cpuLimit: 1.5
-    memoryLimit: 1Gi
-    cpuRequests: 1
-    memoryRequests: 700Mi
+    cpuLimit: 700m
+    memoryLimit: 700Mi
+    cpuRequests: 500m
+    memoryRequests: 500Mi
 
   ## Service Container specific configuration
   ##
   services:
-    cpuLimit: 1
+    cpuLimit: 700m
     memoryLimit: 700Mi
-    cpuRequests: 800m
+    cpuRequests: 500m
     memoryRequests: 500Mi
 
   ## Helper Container specific configuration
   ##
   helpers:
-    cpuLimit: 700m
-    # memoryLimit: 256Mi
-    cpuRequests: 500m
-    memoryRequests: 256Mi
+    cpuLimit: 250m
+    memoryLimit: 250Mi
+    cpuRequests: 200m
+    memoryRequests: 200Mi
 
 
 ## list of hosts and IPs that will be injected into the pod's hosts file
 hostAliases:
- - ip: "192.168.0.101"
+ - ip: "127.0.0.1"
    hostnames:
    - "aux.registry.local"
 
