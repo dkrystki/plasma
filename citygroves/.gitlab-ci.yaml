@@ -9,6 +9,9 @@ include:
 citygroves.test-devops:
   extends:
     - .python-base
+  only:
+    changes:
+      - citygroves/**/*
   stage: test
   script:
     - cg.test-devops

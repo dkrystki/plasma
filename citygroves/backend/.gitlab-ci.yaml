@@ -5,14 +5,13 @@
   eval "$(./shell.py test --dry-run)"
   be.bootstrap
 
-
 citygroves.be.flake8:
   extends:
     - .python-base
-#  only:
-#    changes:
-#      - citygroves/backend/**/*.py
-#      - citygroves/backend/.bin/backend.flake8
+  only:
+    changes:
+      - citygroves/backend/**/*.py
+      - citygroves/backend/.bin/backend.flake8
   script:
     - *bootstrap-backend
     - be.test-devops
@@ -20,10 +19,10 @@ citygroves.be.flake8:
 citygroves.be.test-devops:
   extends:
     - .python-base
-#  only:
-#    changes:
-#      - citygroves/backend/env_*.py
-#      - citygroves/backend/shell.py
+  only:
+    changes:
+      - citygroves/backend/**/*
+      - citygroves/backend/shell.py
   script:
     - *bootstrap-backend
     - eval "$(./shell.py test --dry-run)"
@@ -31,10 +30,10 @@ citygroves.be.test-devops:
 citygroves.be.mypy:
   extends:
     - .python-base
-#  only:
-#    changes:
-#      - citygroves/backend/**/*.py
-#      - citygroves/backend/.bin/backend.mypy
+  only:
+    changes:
+      - citygroves/backend/**/*.py
+      - citygroves/backend/.bin/backend.mypy
   script:
     - *bootstrap-backend
     - be.mypy
@@ -42,9 +41,9 @@ citygroves.be.mypy:
 citygroves.be.test:
   extends:
     - .python-base
-#  only:
-#    changes:
-#      - citygroves/backend/**/*.py
+  only:
+    changes:
+      - citygroves/backend/flesh/**/*
   script:
     - *bootstrap-backend
     - be.test
@@ -53,9 +52,9 @@ citygroves.be.test:
 citygroves.be.deploy-to-test:
   extends:
     - .python-base
-#  only:
-#    changes:
-#      - citygroves/backend/**/*
+  only:
+    changes:
+      - citygroves/**/*
 
   image: aux.registry.local/kube-cg-ci:latest
   stage: deploy-test
