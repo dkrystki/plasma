@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../../.venv/bin/python3
 import sys
 sys.path.append("../../../")
 
@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args(sys.argv[1:])
 
-    env = import_module(f"env_{args.stage}").Env()
+    env = import_module(f"plasma.citygroves.frontend.env_{args.stage}").FrontendEnv()
 
     if args.save:
         env.dump_dot_env()

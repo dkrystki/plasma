@@ -2,8 +2,6 @@ import os
 
 import pytest
 
-from pathlib import Path
-
 from plasma.comm.python.pl.devops import run, CommandError
 
 
@@ -64,10 +62,5 @@ class TestRun:
 
 
 def test_shell(env):
-    os.chdir(str(env.monorepo_root))
     run("./shell.py --dry-run")
-    run("./shell.py --dry-run --save")
 
-    assert Path(".env").exists()
-
-    Path(".env").unlink()

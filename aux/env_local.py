@@ -1,31 +1,21 @@
-import plasma.aux.env_comm
+from dataclasses import dataclass
+
+from plasma.aux.env_comm import AuxEnvComm
 import subprocess
 
 
-class Env(plasma.aux.env_comm.Env):
-    emoji: str = "🐣"
-    stage: str = "local"
-
-    class Registry(plasma.aux.env_comm.Env.Registry):
-        ip: str
-        address: str = "aux.registry.local"
-        username: str = "user"
-        password: str = "password"
-
-    class Cluster(plasma.aux.env_comm.Env.Cluster):
-        ip: str
-        name: str = "aux-local"
-
-    class Graylog(plasma.aux.env_comm.Env.Graylog):
-        address: str = "aux.graylog.local"
-
-    class Sentry(plasma.aux.env_comm.Env.Sentry):
-        address: str = "aux.sentry.local"
-
-    def __init__(self) -> None:
+@dataclass
+class AuxEnv(AuxEnvComm):
+    def __init__(self):
+        self.stage = "local"
+        self.emoji = "🐣"
         super().__init__()
+        self.graylog = AuxEnvComm.Graylog(address="aux.graylog.local")
+        self.sentry = AuxEnvComm.Sentry(address="aux.sentry.local")
+        self.registry = AuxEnvComm.Registry(address="aux.registry.local",
+                                       username="user",
+                                       password="password")
 
         ip: str = subprocess.check_output("hostname -I", shell=True).split()[0].decode("utf-8")
-
-        self.cluster.ip = ip
-        self.registry.ip = ip
+        self.device.ip = ip
+        self.device.name = "auxiliary-local"

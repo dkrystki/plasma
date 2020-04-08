@@ -50,7 +50,7 @@ class Cluster(pl.devops.Cluster):
 
 
 def get_current_cluster() -> Cluster:
-    current_env = import_module(f"env_{environ.str('CG_STAGE')}").Env()
+    current_env = import_module(f"env_{environ.str('CG_STAGE')}").ClusterEnv()
     cluster = Cluster(env=current_env)
     return cluster
 

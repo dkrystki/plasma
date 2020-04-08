@@ -19,7 +19,7 @@ class Sentry(App):
         super().__init__(se, li)
 
     def dump_data(self) -> None:
-        os.chdir(str(self.se.app_root))
+        os.chdir(str(self.se.root))
 
         logger.info("♻️Dumping sentry")
 
@@ -31,7 +31,7 @@ class Sentry(App):
         logger.info("♻️Dumping sentry done\n")
 
     def seed(self) -> None:
-        os.chdir(str(self.se.app_root))
+        os.chdir(str(self.se.root))
 
         logger.info("🌱Seeding sentry")
 

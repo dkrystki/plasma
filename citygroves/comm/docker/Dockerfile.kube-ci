@@ -14,7 +14,7 @@ WORKDIR /srv
 COPY . plasma
 
 WORKDIR /srv/plasma
-RUN eval "$(./shell.py --dry-run)" && pl.bootstrap
+RUN eval "$(./shell.py --dry-run)" && ./bootstrap
 
 WORKDIR /srv/plasma/citygroves
 

@@ -1,21 +1,22 @@
-from pathlib import Path
+from plasma.comm.python.pl.apps import AppEnv
+from plasma.env import Path
 import os
 
-import plasma.env
 
-
-class Env(plasma.env.Env):
-    helm_release_name = "citygroves-frontend"
-    app_name = "frontend"
+class FrontendEnvComm(AppEnv):
+    helm_release_name: str = None
+    app_name: str = None
+    prebuild: bool = None
 
     def __init__(self) -> None:
+        self.root = Path(os.path.realpath(__file__)).parent
+        self.python = self.cluster.python
+
+        self.name: str = "fe"
+        self.app_name = "frontend"
+
         super().__init__()
 
-        self.app_root: Path = Path(os.path.realpath(__file__)).parent
-        self.app_src: Path = self.app_root / "flesh"
-        self.name: str = "fe"
+        self.helm_release_name = "citygroves-frontend"
 
-    def activate(self) -> None:
-        super().activate()
-
-        self._set_environ("HELM_RELEASE_NAME", str(self.helm_release_name))
+        self.dockerfile_templ = self.cluster.comm / "docker/Dockerfile.node.templ"

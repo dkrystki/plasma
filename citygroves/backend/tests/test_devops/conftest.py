@@ -1,14 +1,12 @@
-import shutil
-from pathlib import Path
+import os
 
+from citygroves.backend.env_test import BackendEnv
 from pytest import fixture
-
-from environ import Env
-environ = Env()
 
 
 @fixture
-def copy_shell():
-    shutil.copy(Path(environ.str("CG_PROJECT_ROOT")) / "shell.py", "./shell.py")
-    yield
-    Path("./shell.py").unlink()
+def env():
+    env = BackendEnv()
+    env.activate()
+    os.chdir(str(env.root))
+    return env

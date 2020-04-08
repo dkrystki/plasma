@@ -4,17 +4,14 @@ sys.path.append("../")
 
 import sys
 
-from plasma.comm.python.pl.env import Env
+from plasma import env
 from plasma.comm.python.pl.shell import parser
 
 
 if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
 
-    env = Env()
-
-    if args.save:
-        env.dump_dot_env()
+    env = env.PlasmaEnv()
 
     if args.dry_run:
         env.print_envs()

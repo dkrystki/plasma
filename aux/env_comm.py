@@ -1,51 +1,37 @@
+from dataclasses import dataclass, fields
 from pathlib import Path
 import os
-import plasma.env
+
+from plasma.comm.python.pl import cluster, env
+from plasma.env import PlasmaEnv
 
 
-class Env(plasma.env.Env):
-    project_code: str = "AU"
-    project_name: str = "aux"
-    project_root: Path
-    emoji: str
-    stage: str
-    kubeconfig: str
-    poetry_ver: str = "1.0.3"
-    python_ver_major: int = 3
-    python_ver_minor: int = 8
-    python_ver_patch: int = 1
-    skaffold_ver: str = "1.6.0"
-    kubectl_ver: str = "1.17.0"
-    helm_ver: str = "2.15.2"
-    debian_ver: str = "buster"
-    docker_ver: str = "18.09.9"
-    bin_path: Path = Path(".bin")
-    ngrok_authtoken: str = ""
+@dataclass
+class AuxEnvComm(cluster.ClusterEnv):
+    @dataclass
+    class Graylog(env.BaseEnv):
+        address: str = None
 
-    class Cluster:
-        address: str
-        name: str
-        kubernetes_ver: str = "1.15"
+    @dataclass
+    class Sentry(env.BaseEnv):
+        address: str = None
 
-    class Registry:
-        ip: str
-        address: str
-        username: str
-        password: str
-
-    class Graylog:
-        address: str
-
-    class Sentry:
-        address: str
+    graylog: Graylog = None
+    sentry: Sentry = None
 
     def __init__(self) -> None:
+        self.root = Path(os.path.realpath(__file__)).parent
+        self.name = "au"
         super().__init__()
-        self.project_root = Path(os.path.realpath(__file__)).parent
-        self.name: str = "au"
 
-        self.graylog = self.__class__.Graylog()
-        self.sentry = self.__class__.Sentry()
-
-    def activate(self) -> None:
-        super().activate()
+        self.device = self.Device(k8s_ver="1.15")
+        self.skaffold_ver = "1.6.0"
+        self.kubectl_ver = "1.17.0"
+        self.helm_ver = "2.15.2"
+        self.kind_ver = "0.7.0"
+        self.debian_ver = "buster"
+        self.docker_ver = "18.09.9"
+        self.python = self.Python(poetry_ver="1.0.3",
+                                  ver_major=3, ver_minor=8, ver_patch=1,
+                                  pyenv_root=self.root / ".pyenv")
+        self.plasma = PlasmaEnv()

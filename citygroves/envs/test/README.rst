@@ -1,1 +1,1 @@
-Local cluster kubeconfig.yaml is stored here
+Staging cluster kubeconfig.yaml is stored here

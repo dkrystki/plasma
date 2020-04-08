@@ -19,7 +19,7 @@ class Graylog(App):
         super().__init__(se, li)
 
     def seed(self) -> None:
-        os.chdir(str(self.se.app_root))
+        os.chdir(str(self.se.root))
 
         logger.info("🌱Seeding graylog")
 
@@ -32,7 +32,7 @@ class Graylog(App):
         logger.info("👌Seeding graylog done")
 
     def dump_data(self) -> None:
-        os.chdir(str(self.se.app_root))
+        os.chdir(str(self.se.root))
 
         logger.info("♻️Dumping graylog♻")
 

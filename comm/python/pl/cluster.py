@@ -1,25 +1,96 @@
 import collections
 import os
+import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import OrderedDict
+from typing import OrderedDict, Optional
 
-import pl.env
+from . import env
 from jinja2 import Template
 from loguru import logger
 
-from pl import apps
+from . import apps
 
 import environ
-from pl.devops import run
-from pl.kube import Namespace
+from .devops import run
+from .kube import Namespace
 
 environ = environ.Env()
 
 
+@dataclass
+class ClusterEnv(env.Env):
+    @dataclass
+    class Device(env.BaseEnv):
+        k8s_ver: str = None
+        name: str = None
+        ip: str = ""
+
+    @dataclass
+    class Registry(env.BaseEnv):
+        address: str = None
+        username: str = None
+        password: str = None
+        ip: str = ""
+
+    skaffold_ver: str = None
+    kubectl_ver: str = None
+    helm_ver: str = None
+    kind_ver: str = None
+    debian_ver: str = None
+    docker_ver: str = None
+    device: Device = None
+    registry: Registry = None
+    plasma: env.Env = None
+    deps_path: Path = None
+
+    def __init__(self):
+        super().__init__()
+
+        self.deps_path = self.root / Path(".deps")
+        self.kubeconfig = self.root / f"envs/{self.stage}/kubeconfig.yaml"
+        self.comm: Path = self.root / "comm"
+
+    def activate(self) -> None:
+        super().activate()
+
+        self.deps_path.mkdir(exist_ok=True)
+        self._set_environ("DEPS_PATH", str(self.deps_path))
+
+        self._set_environ("STAGE", self.stage)
+        self._set_environ("EMOJI", self.emoji)
+
+        self._set_environ("PROJECT_ROOT", str(self.root))
+        self._set_environ("PROJECT_NAME", str(self.name))
+
+        self._set_environ("DEBIAN_VER", self.debian_ver)
+        self._set_environ("SKAFFOLD_VER", self.skaffold_ver)
+        self._set_environ("KUBECTL_VER", self.kubectl_ver)
+        self._set_environ("HELM_VER", self.helm_ver)
+        self._set_environ("KIND_VER", self.kind_ver)
+        self._set_environ("DOCKER_VER", self.docker_ver)
+
+        self._set_environ("DEVICE_NAME", self.device.name)
+        self._set_environ("DEVICE_IP", self.device.ip)
+        self._set_environ("DEVICE_K8S_VER", str(self.device.k8s_ver))
+
+        self._set_environ("REGISTRY_ADDRESS", self.registry.address)
+        self._set_environ("REGISTRY_USERNAME", self.registry.username)
+        self._set_environ("REGISTRY_PASSWORD", self.registry.password)
+        self._set_environ("REGISTRY_IP", self.registry.ip)
+
+        os.environ["PATH"] = f"{str(self.deps_path)}:{os.environ['PATH']}"
+        os.environ["KUBECONFIG"] = str(self.kubeconfig)
+
+        self.plasma.activate()
+
+    def chdir_to_cluster_root(self) -> None:
+        os.chdir(str(self.root))
+
+
 class ClusterDevice:
-    def __init__(self, env: pl.env.Env):
+    def __init__(self, env: ClusterEnv):
         self.env = env
 
     def bootstrap(self) -> None:
@@ -29,8 +100,8 @@ class ClusterDevice:
         logger.info("Initializing helm")
         run(f""" 
         helm init --wait --tiller-connection-timeout 600
-        kubectl apply -f {self.env.comm_root}/k8s/ingress-rbac.yaml
-        kubectl apply -f {self.env.comm_root}/k8s/rbac-storage-provisioner.yaml
+        kubectl apply -f {self.env.plasma.comm}/k8s/ingress-rbac.yaml
+        kubectl apply -f {self.env.plasma.comm}/k8s/rbac-storage-provisioner.yaml
         kubectl create serviceaccount -n kube-system tiller
         kubectl create clusterrolebinding tiller-cluster-admin \\
             --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
@@ -43,7 +114,7 @@ class ClusterDevice:
 
 
 class Kind(ClusterDevice):
-    def __init__(self, env: pl.env.Env):
+    def __init__(self, env: ClusterEnv):
         super().__init__(env)
 
     def bootstrap(self) -> None:
@@ -58,27 +129,26 @@ class Kind(ClusterDevice):
 
         Path(environ.str("KUBECONFIG")).unlink(missing_ok=True)
         run(f"""
-        kind delete cluster --name={self.env.cluster.name}
-        kind create cluster --config={str(kind_file)} --name={self.env.cluster.name}
-        docker exec {self.env.cluster.name}-control-plane bash -c "echo \\"{self.env.registry.ip} \\
+        kind delete cluster --name={self.env.device.name}
+        kind create cluster --config={str(kind_file)} --name={self.env.device.name}
+        docker exec {self.env.device.name}-control-plane bash -c "echo \\"{self.env.registry.ip} \\
         {self.env.registry.address}\\" >> /etc/hosts" 
         # For some reason dns resolution doesn't work on CI. This line fixes it
-        docker exec {self.env.cluster.name}-control-plane \\
+        docker exec {self.env.device.name}-control-plane \\
         bash -c "echo \\"nameserver 8.8.8.8\\" >> /etc/resolv.conf" 
         """, progress_bar=True)
 
         self._post_bootstrap()
 
     def get_ip(self) -> str:
-        ip = run(f"""
-            kubectl describe nodes {self.env.cluster.name} | \\
-            grep -oP "InternalIP:  \K.*" 
-            """)[0]
+        result = run(f"""kubectl describe nodes {self.env.device.name}""")
+        ip_phrase = re.search(r"InternalIP: .*", "\n".join(result)).group(0)
+        ip = ip_phrase.split(":")[1].strip()
         return ip.strip()
 
 
 class Microk8s(ClusterDevice):
-    def __init__(self, env: pl.env.Env):
+    def __init__(self, env: env.Env):
         super().__init__(env)
 
     def bootstrap(self) -> None:
@@ -89,7 +159,7 @@ class Microk8s(ClusterDevice):
         Path(environ.str("KUBECONFIG")).unlink(missing_ok=True)
         run(f"""
         sudo snap remove microk8s
-        sudo snap install microk8s --classic --channel="{self.env.cluster.kubernetes_ver}"/stable
+        sudo snap install microk8s --classic --channel="{self.env.device.k8s_ver}"/stable
         sudo sed -i "s/local.insecure-registry.io/{self.env.registry.address}/g" \\ 
             /var/snap/microk8s/current/args/containerd-template.toml
         sudo sed -i "s/http:\/\/localhost:32000/http:\/\/{self.env.registry.address}/g" \\
@@ -131,9 +201,17 @@ class Cluster:
     class Links:
         device: ClusterDevice
 
-    def __init__(self, li: Links, env: pl.env.Env) -> None:
+    @dataclass
+    class Sets:
+        deploy_ingress: bool = True
+
+    def __init__(self, li: Links, se: Sets, env: ClusterEnv) -> None:
+        from pl.apps.ingress import Ingress
+        from pl.apps.registry import Registry
+
         from kubernetes import client, config
         self.li = li
+        self.se = se
         self.env = env
 
         self.namespaces: OrderedDict[str, Namespace] = collections.OrderedDict()
@@ -145,6 +223,12 @@ class Cluster:
         self.python = apps.PythonUtils(se=apps.PythonUtils.Sets(),
                                        li=apps.PythonUtils.Links(env=self.env))
 
+        self.system = self.create_namespace("system")
+        if self.se.deploy_ingress:
+            self.system.create_app("ingress", Ingress)
+
+        self.system.create_app("registry", Registry)
+
     def is_ci_job(self) -> bool:
         return "CI_JOB_ID" in environ
 
@@ -155,7 +239,7 @@ class Cluster:
             return "sudo"
 
     def chdir_to_project_root(self) -> None:
-        os.chdir(str(self.env.project_root))
+        os.chdir(str(self.env.root))
 
     def create_namespace(self, name) -> Namespace:
         namespace = Namespace(
@@ -169,12 +253,22 @@ class Cluster:
         self.namespaces[name] = namespace
         return namespace
 
+    def prebuild_all(self) -> None:
+        logger.info("Prebuilding images.")
+
     def deploy(self) -> None:
         self.chdir_to_project_root()
         run("helm repo update")
 
+        self.system.deploy()
+
+        self.prebuild_all()
+
         n: Namespace
         for n in self.namespaces.values():
+            if n.name == "system":
+                continue
+
             n.deploy()
 
     def add_hosts(self):
@@ -283,3 +377,7 @@ class Cluster:
         self.add_hosts()
 
         logger.info("Cluster is ready")
+
+    def test_bootstrap(self) -> None:
+        os.chdir(str(self.env.root / "tests/test_bootstrap"))
+        run("poetry run pytest -s", print_output=True)

@@ -19,7 +19,7 @@ pl.test:
       - .venv
   before_script:
     - eval $(./shell.py --dry-run)
-    - pl.bootstrap
+    - ./bootstrap
 
   stage: test
   script:

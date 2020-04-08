@@ -5,13 +5,13 @@ from kubernetes import client
 from loguru import logger
 
 import environ
-from pl.apps import App
-from pl.devops import run, CommandError
+from .devops import run, CommandError
 
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from env import Env
+    from .apps import App
 
 environ = environ.Env()
 
@@ -104,19 +104,19 @@ class Namespace:
     def __init__(self, li: Links, name: str) -> None:
         self.li = li
         self.name = name
-        self.apps: Dict[str, App] = {}
+        self.apps: Dict[str, "App"] = {}
 
-    def create_app(self, name: str, app_cls: Type[App], extra_links: Dict[str, Any] = None) -> Any:
-        app_root = self.li.env.project_root
+    def create_app(self, name: str, app_cls: Type["App"], extra_links: Dict[str, Any] = None) -> Any:
+        root = self.li.env.root
         if self.name != "flesh":
-            app_root /= self.name
-        app_root /= name
+            root /= self.name
+        root /= name
 
         if not extra_links:
             extra_links = {}
 
         app = app_cls(
-            se=app_cls.Sets(name=name, app_root=app_root),
+            se=app_cls.Sets(name=name, root=root),
             li=app_cls.Links(namespace=self, **extra_links)
         )
         self.apps[app.se.name] = app

@@ -113,5 +113,11 @@ env_*.py
 
 .pyenv
 
-**/Dockerfile.*
+**/Dockerfile.local*
+**/Dockerfile.stage*
+**/Dockerfile.test*
+**/Dockerfile.prod*
+
 **/skaffold.*.yaml
+
+**/kind.*.yaml

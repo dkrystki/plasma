@@ -2,16 +2,16 @@ FROM {{ base_image }}
 
 WORKDIR /srv
 
-RUN pip3 install poetry=={{ env.poetry_ver }}
+RUN pip3 install poetry=={{ env.cluster.python.poetry_ver }}
 
-COPY {{ env.app_src.rel() }}/pyproject.toml pyproject.toml
-COPY citygroves/backend/flesh/poetry.lock poetry.lock
+COPY {{ env.src.rel() }}/pyproject.toml pyproject.toml
+COPY {{ env.src.rel() }}/poetry.lock poetry.lock
 
 RUN poetry config virtualenvs.create false
 RUN poetry config virtualenvs.in-project false
 RUN poetry install
 
-COPY {{ env.project_name }}/{{ env.app_name }}/flesh .
+COPY {{ env.src.rel() }} .
 
-COPY comm/python/pl /usr/local/lib/python{{ env.python_ver_major }}.{{ env.python_ver_minor }}/pl
-COPY {{ env.project_comm.rel() }} /usr/local/lib/python{{ env.python_ver_major }}.{{ env.python_ver_minor }}/{{ env.project_code.lower() }}_comm
+COPY comm/python/pl /usr/local/lib/python{{ env.cluster.python.ver_major }}.{{ env.cluster.python.ver_minor }}/pl
+COPY {{ env.cluster.comm.rel() }} /usr/local/lib/python{{ env.cluster.python.ver_major }}.{{ env.cluster.python.ver_minor }}/{{ env.cluster.name }}_comm

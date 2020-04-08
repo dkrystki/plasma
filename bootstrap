@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eo pipefail
 
-cd "$PL_MONOREPO_ROOT"
 
 if [ -n "$CI_JOB_ID" ]
 then
@@ -9,14 +8,15 @@ then
   apt install sudo -y
 fi
 
+pip3 install dataclasses --user
+eval $(./shell.py --dry-run)
+
 #Install pyenv
 if [ ! -d "$PYENV_ROOT" ] && [ -z "$CI_JOB_ID" ]
 then
   sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev -y
   git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
-  eval "$(pyenv init -)"
   pyenv install "$PL_PYTHON_VER"
-  pyenv global "$PL_PYTHON_VER"
 fi
 
 pip3 install poetry=="$PL_POETRY_VER"

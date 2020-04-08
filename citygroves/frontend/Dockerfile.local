@@ -1,15 +1,6 @@
-FROM node:13.5.0-stretch-slim
-
-ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
-ENV SHELL /bin/bash
-ENV STAGE local
+FROM aux.registry.local/local/flesh/frontend-prebuild
 
 WORKDIR /srv
-COPY comm/docker/debug.sh /tmp/debug.sh
-COPY citygroves/frontend/docker /tmp/docker
-RUN bash /tmp/debug.sh
 
 COPY citygroves/frontend/flesh/package.json package.json
 COPY citygroves/frontend/flesh/yarn.lock yarn.lock

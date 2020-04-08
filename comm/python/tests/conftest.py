@@ -1,10 +1,13 @@
+import os
+
 from pytest import fixture
-from plasma.env import Env
+from plasma.env import PlasmaEnv
 
 
 @fixture
 def env():
-    env = Env()
+    env = PlasmaEnv()
     env.activate()
+    os.chdir(str(env.root))
     return env
 

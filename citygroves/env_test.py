@@ -1,53 +1,38 @@
-from plasma.env import Path
+import re
 
 import plasma.citygroves.env_comm
-import os
-import subprocess
+from plasma.comm.python.pl.env import Path
 
-from plasma.citygroves import env_comm
+from plasma.comm.python.pl.devops import run, CommandError
+from plasma.aux.env_local import AuxEnv
 
 
-class Env(plasma.citygroves.env_comm.Env):
-    emoji: str = "🛠️"
-    stage: str = "test"
-
-    class Registry(env_comm.Env.Registry):
-        ip: str
-        address: str = "citygroves.registry.test"
-        username: str = "user"
-        password: str = "password"
-
-    class Cluster(env_comm.Env.Cluster):
-        ip: str = ""
-        name: str = "citygroves-test"
-
-    class Keycloak(env_comm.Env.Keycloak):
-        address: str = "citygroves.keycloak.test"
-
-    class Backend(env_comm.Env.Backend):
-        address: str = "citygroves.backend.test"
-
-    class Appgen(env_comm.Env.Appgen):
-        address: str = "citygroves.appgen.test"
-
-    class Frontend(env_comm.Env.Frontend):
-        address: str = "citygroves.frontend.test"
-
+class CitygrovesEnv(plasma.citygroves.env_comm.CitygrovesEnvComm):
     def __init__(self) -> None:
+        self.stage = "test"
+        self.emoji = "🛠"
         super().__init__()
+        self.registry = CitygrovesEnv.Registry(address="citygroves.registry.test",
+                                               username="user",
+                                               password="password")
+
+        self.keycloak = CitygrovesEnv.Keycloak(address="citygroves.keycloak.test")
+        self.backend = CitygrovesEnv.Backend(address="citygroves.backend.test")
+        self.frontend = CitygrovesEnv.Frontend(address="citygroves.frontend.test")
+        self.appgen = CitygrovesEnv.Appgen(address="citygroves.appgen.test")
+
+        self.aux = AuxEnv()
 
         self.deps_path = Path("/usr/local/bin")
 
         try:
-            self.cluster.ip = subprocess.check_output(f"""kubectl describe nodes {self.cluster.name} | """
-                                                      """grep -oP "InternalIP:  \K.*" """,  # noqa: W605
-                                                      shell=True, stderr=subprocess.PIPE).decode("utf-8")
-            self.cluster.ip = self.cluster.ip.strip()
-        except subprocess.CalledProcessError:
-            pass
+            result = run(f"""kubectl describe nodes {self.device.name}""")
+            ip_phrase = re.search(r"InternalIP: .*", "\n".join(result)).group(0)
+            ip = ip_phrase.split(":")[1].strip()
 
-        self.registry.ip = self.cluster.ip
+            self.device.ip = ip
+            self.registry.ip = ip
 
-    def activate(self) -> None:
-        super().activate()
-        os.environ["CG_CLUSTER_IP"] = self.cluster.ip
+        except CommandError:
+            self.device.ip = ""
+            self.registry.ip = ""

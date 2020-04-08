@@ -16,7 +16,7 @@ from tqdm import tqdm
 from housing.models import Room
 from tenants.models import Person, Tenant
 
-sys.path.append(os.environ["CG_APP_SRC"])
+sys.path.append(os.environ["BE_APP_SRC"])
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")

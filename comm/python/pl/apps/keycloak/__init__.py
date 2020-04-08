@@ -37,7 +37,7 @@ class Keycloak(App):
         self.li.namespace.helm(self.se.name).delete()
 
     def dump(self) -> None:
-        os.chdir(str(self.se.app_root))
+        os.chdir(str(self.se.root))
 
         logger.info("Dumping keycloak database.")
 
@@ -47,7 +47,7 @@ class Keycloak(App):
         logger.info("Dumped.")
 
     def seed(self) -> None:
-        os.chdir(str(self.se.app_root))
+        os.chdir(str(self.se.root))
 
         logger.info("Restoring keycloak database from dump.")
 

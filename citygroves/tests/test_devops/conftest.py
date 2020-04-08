@@ -1,14 +1,12 @@
-import shutil
-from pathlib import Path
+import os
 
 from pytest import fixture
-
-from environ import Env
-environ = Env()
+from plasma.citygroves.env_test import CitygrovesEnv
 
 
 @fixture
-def copy_shell():
-    shutil.copy(Path(environ.str("CG_PROJECT_ROOT")) / "shell.py", "./shell.py")
-    yield
-    Path("./shell.py").unlink()
+def env():
+    env = CitygrovesEnv()
+    env.activate()
+    os.chdir(str(env.root))
+    return env

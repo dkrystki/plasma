@@ -1,20 +1,16 @@
 from pathlib import Path
+from typing import List
 
 import pytest
-import subprocess
 
-from environ import Env
-environ = Env()
+from pl.devops import run
 
 
-@pytest.mark.parametrize("stage", ["test", "local", "stage", "prod"])
-def test_envs(stage, copy_shell):
-    output: str = subprocess.check_output(f"./shell.py {stage}", shell=True)
-    assert output == b""
+@pytest.mark.parametrize("stage", ["test", "local"])
+def test_shell(env, stage):
+    output: List[str] = run(f"./shell.py {stage} --dry-run")
+    assert len(output)
 
-    output: str = subprocess.check_output(f"./shell.py {stage} --dry-run", shell=True)
-    assert output != b""
-
-    output: str = subprocess.check_output(f"./shell.py {stage} --dry-run --save", shell=True)
+    output: List[str] = run(f"./shell.py {stage} --dry-run --save")
     Path(f".env_{stage}").unlink()
-    assert output != b""
+    assert len(output) != 0
