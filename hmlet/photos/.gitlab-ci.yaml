@@ -5,6 +5,15 @@
   eval "$(./shell.py test --dry-run)"
   ./app.py python bootstrap_local_dev
 
+
+ht.ps.flake8:
+  extends:
+    - .ht.python-base
+  script:
+    - cd photos
+    - eval "$(./shell.py test --dry-run)"
+    - ./app.py python flake8
+
 ht.ps.test-devops:
   extends:
     - .ht.python-base

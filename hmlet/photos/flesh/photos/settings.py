@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import sys
-
 import environ
 
 environ = environ.Env()
@@ -61,8 +59,7 @@ ROOT_URLCONF = 'photos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,7 +96,6 @@ else:
             "PORT": environ.str("DB_PORT"),
         }
     }
-
 
 
 # Password validation

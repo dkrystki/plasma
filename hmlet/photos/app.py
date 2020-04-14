@@ -3,7 +3,6 @@ import fire
 from importlib import import_module
 from dataclasses import dataclass
 
-from hmlet.env_comm import HmletEnvComm
 from hmlet.photos.env_comm import PhotosEnvComm
 from pl.apps import Skaffold, DockerUtils, AppPythonUtils
 

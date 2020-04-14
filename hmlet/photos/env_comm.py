@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Optional
 
 from plasma.comm.python.pl.apps import AppEnv
 from plasma.comm.python.pl.env import BaseEnv

@@ -26,5 +26,3 @@ class PhotosViewSet(
 
     search_fields = ['=user__username']
     ordering_fields = ['publish_date']
-
-
