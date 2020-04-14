@@ -38,9 +38,6 @@ spec:
           image: {{ .Values.image }}
           command: ["/bin/sh", "-c"]
           args:
-            - python manage.py migrate;
-              python manage.py loaddata housing/fixtures/units.yaml;
-              python manage.py loaddata housing/fixtures/rooms.yaml;
             {{- with .Values.initCmds }}
               {{- toYaml . | nindent 14 }}
             {{- end }}

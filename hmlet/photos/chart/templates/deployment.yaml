@@ -26,7 +26,7 @@ spec:
           image: {{ .Values.image }}
 
           command: ["/bin/sh", "-c"]
-          args: ["python manage.py runserver 0.0.0.0:8000"]
+          args: ['python manage.py runserver 0.0.0.0:8000']
           imagePullPolicy: {{ .Values.pullPolicy }}
           ports:
             - name: http
