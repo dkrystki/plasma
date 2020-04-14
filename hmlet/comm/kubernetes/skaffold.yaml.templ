@@ -1,0 +1,32 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: {{ env.app_name }}
+build:
+  tagPolicy:
+    envTemplate:
+      {% raw %}
+      template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
+      {% endraw %}
+  artifacts:
+  - image: {{ image_name }}
+    docker:
+      dockerfile: {{ env.root.rel() }}/Dockerfile.{{ env.stage }}
+    context: {{ env.cluster.plasma.root }}
+    sync:
+      infer:
+        - 'backend/flesh/**/*.py'
+        - '**/.idea/**'
+  local:
+    push: true
+
+deploy:
+  helm:
+    releases:
+      - name: {{ env.helm_release_name }}
+        chartPath: chart
+        namespace: flesh
+        valuesFiles:
+          - values/{{ env.stage }}/{{ env.app_name }}.yaml
+        values:
+          image: {{ image_name }}

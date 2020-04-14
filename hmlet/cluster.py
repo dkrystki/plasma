@@ -4,19 +4,14 @@ import fire
 from dataclasses import dataclass
 from importlib import import_module
 
-from citygroves.appgen.app import Appgen
-from citygroves.backend.app import Backend
-from citygroves.frontend.app import Frontend
 from hmlet.env_comm import HmletEnvComm
 from pl.apps import PythonUtils
 
-from pl.apps.keycloak import Keycloak
+from pl.apps.minio import Minio
 from pl.apps.postgres import Postgres
-from pl.apps.redis import Redis
 from pl import cluster
 from pl.devops import run
 
-import citygroves.env_comm
 import environ
 
 environ = environ.Env()
@@ -43,6 +38,7 @@ class Hmlet(cluster.Cluster):
         self.flesh = self.create_namespace("flesh")
 
         self.aux.create_app("postgresql", Postgres)
+        self.aux.create_app("minio", Minio)
 
     def install_deps(self) -> None:
         super().install_deps()
@@ -93,7 +89,7 @@ class Hmlet(cluster.Cluster):
 
 
 def get_current_cluster() -> Hmlet:
-    env = import_module(f"env_{environ.str('HT_STAGE')}").CitygrovesEnv()
+    env = import_module(f"plasma.hmlet.env_{environ.str('HT_STAGE')}").HmletEnv()
 
     device = None
     if env.stage in ["local", "test"]:

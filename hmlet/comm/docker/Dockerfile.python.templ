@@ -1,0 +1,17 @@
+FROM {{ base_image }}
+
+WORKDIR /srv
+
+RUN pip3 install poetry=={{ env.cluster.python.poetry_ver }}
+
+COPY {{ env.src.rel() }}/pyproject.toml pyproject.toml
+COPY {{ env.src.rel() }}/poetry.lock poetry.lock
+
+RUN poetry config virtualenvs.create false
+RUN poetry config virtualenvs.in-project false
+RUN poetry install
+
+COPY {{ env.src.rel() }} .
+
+COPY comm/python/pl /usr/local/lib/python{{ env.cluster.python.ver_major }}.{{ env.cluster.python.ver_minor }}/pl
+COPY {{ env.cluster.comm.rel() }} /usr/local/lib/python{{ env.cluster.python.ver_major }}.{{ env.cluster.python.ver_minor }}/{{ env.cluster.name }}_comm

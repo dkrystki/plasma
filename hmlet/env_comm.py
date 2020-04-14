@@ -38,4 +38,4 @@ class HmletEnvComm(cluster.ClusterEnv):
         self.plasma.activate()
 
         super().activate()
-        os.environ["CG_NGROK_AUTH_TOKEN"] = self.ngrok_authtoken
+        self._set_environ("NGROK_AUTH_TOKEN", self.ngrok_authtoken)
