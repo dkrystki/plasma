@@ -1,0 +1,17 @@
+---
+include:
+  - '/hmlet/.gitlab-ci-comm.yaml'
+
+ht.test-devops:
+  extends:
+    - .cg.python-base
+  stage: test
+  script:
+    - ./cluster.py python test_devops
+
+ht.flake8:
+  extends:
+    - .cg.python-base
+  stage: test
+  script:
+    - ./cluster.py python flake8

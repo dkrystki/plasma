@@ -5,6 +5,7 @@ stages:
 
 include:
   - '/citygroves/.gitlab-ci.yaml'
+  - '/hmlet/.gitlab-ci.yaml'
 
 pl.test:
 #  only:

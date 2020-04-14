@@ -1,16 +1,16 @@
 ---
-.cg.python-base:
+.ht.python-base:
+
   cache:
     key: ${CI_COMMIT_REF_SLUG}:${CI_JOB_NAME}
     paths:
       - .venv
       - .pyenv
-      - citygroves/.deps
-      - citygroves/backend/flesh/.venv
-      - citygroves/appgen/flesh/.venv
-  image: aux.registry.local/python-cg-ci:latest
+      - hmlet/.deps
+      - hmlet/photos/flesh/.venv
+  image: aux.registry.local/python-ht-ci:latest
   before_script:
     - eval "$(./shell.py --dry-run)"
     - ./bootstrap
-    - cd citygroves
+    - cd hmlet
     - eval "$(./shell.py test --dry-run)"

@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+import fire
+
+from dataclasses import dataclass
+from importlib import import_module
+
+from citygroves.appgen.app import Appgen
+from citygroves.backend.app import Backend
+from citygroves.frontend.app import Frontend
+from hmlet.env_comm import HmletEnvComm
+from pl.apps import PythonUtils
+
+from pl.apps.keycloak import Keycloak
+from pl.apps.postgres import Postgres
+from pl.apps.redis import Redis
+from pl import cluster
+from pl.devops import run
+
+import citygroves.env_comm
+import environ
+
+environ = environ.Env()
+
+
+class Hmlet(cluster.Cluster):
+    @dataclass
+    class Links(cluster.Cluster.Links):
+        pass
+
+    @dataclass
+    class Sets(cluster.Cluster.Sets):
+        pass
+
+    def __init__(self, li: Links, se: Sets, env: HmletEnvComm):
+        super().__init__(li, se, env)
+
+        self.env = env
+
+        self.python = PythonUtils(se=PythonUtils.Sets(),
+                                  li=PythonUtils.Links(env=self.env))
+
+        self.aux = self.create_namespace("aux")
+        self.flesh = self.create_namespace("flesh")
+
+        self.aux.create_app("postgresql", Postgres)
+
+    def install_deps(self) -> None:
+        super().install_deps()
+        self.install_hostess()
+        self.install_kubectl()
+        self.install_helm()
+        self.install_skaffold()
+        self.install_kind()
+
+    def bootstrap_local_dev(self) -> None:
+        self.install_deps()
+        self.prebuild_all()
+
+    def add_hosts(self):
+        super().add_hosts()
+
+        cluster_ip = self.li.device.get_ip()
+
+        run(f"""
+            {self.sudo()} hostess add {self.env.photos.address} {cluster_ip}
+            """)
+
+    def prebuild_all(self):
+        super().prebuild_all()
+
+    def build_ci_images(self):
+        run(f"""
+            docker login aux.registry.local --username {self.env.aux.registry.username} \\
+                -p{self.env.aux.registry.password}
+
+            docker build -f {self.env.comm}/docker/Dockerfile.python-ci \\
+              -t python-ht-ci {self.env.plasma.root} \\
+              --build-arg PYTHON_VER_MAJOR={self.env.python.ver_major} \\
+              --build-arg PYTHON_VER_MINOR={self.env.python.ver_minor} \\
+              --build-arg PYTHON_VER_PATCH={self.env.python.ver_patch} \\
+              --build-arg DEBIAN_VER={self.env.debian_ver}
+            docker tag python-ht-ci {self.env.aux.registry.address}/python-ht-ci
+            docker push {self.env.aux.registry.address}/python-ht-ci
+
+            docker build -f {self.env.comm}/docker/Dockerfile.kube-ci -t kube-ht-ci {self.env.plasma.root} \\
+              --build-arg PYTHON_VER_MAJOR={self.env.python.ver_major} \\
+              --build-arg PYTHON_VER_MINOR={self.env.python.ver_minor} \\
+              --build-arg PYTHON_VER_PATCH={self.env.python.ver_patch} \\
+              --build-arg DEBIAN_VER={self.env.debian_ver}
+            docker tag kube-ht-ci {self.env.aux.registry.address}/kube-ht-ci
+            docker push {self.env.aux.registry.address}/kube-ht-ci
+            """, print_output=True)
+
+
+def get_current_cluster() -> Hmlet:
+    env = import_module(f"env_{environ.str('HT_STAGE')}").CitygrovesEnv()
+
+    device = None
+    if env.stage in ["local", "test"]:
+        device = cluster.Kind(env)
+
+    citygroves = Hmlet(li=Hmlet.Links(device=device),
+                       se=Hmlet.Sets(deploy_ingress=True),
+                       env=env)
+    return citygroves
+
+
+if __name__ == "__main__":
+    fire.Fire(get_current_cluster())

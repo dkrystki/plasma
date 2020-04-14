@@ -7,7 +7,7 @@
 
 cg.be.flake8:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/backend/**/*.py
@@ -19,7 +19,7 @@ cg.be.flake8:
 
 cg.be.test-devops:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/backend/**/*
@@ -31,7 +31,7 @@ cg.be.test-devops:
 
 cg.be.mypy:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/backend/**/*.py
@@ -42,7 +42,7 @@ cg.be.mypy:
 
 cg.be.test:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/backend/flesh/**/*
@@ -52,7 +52,7 @@ cg.be.test:
 
 cg.be.deploy-to-test:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/**/*

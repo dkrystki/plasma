@@ -8,7 +8,7 @@ include:
 
 cg.test-devops:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/**/*
@@ -18,7 +18,7 @@ cg.test-devops:
 
 cg.flake8:
   extends:
-    - .python-base
+    - .cg.python-base
 #  only:
 #    changes:
 #      - citygroves/**/*.py
