@@ -1,0 +1,21 @@
+---
+
+.bootstrap-photos: &bootstrap-photos |
+  cd photos
+  eval "$(./shell.py test --dry-run)"
+  ./app.py python bootstrap_local_dev
+
+ht.ps.test-devops:
+  extends:
+    - .ht.python-base
+  script:
+    - cd photos
+    - eval "$(./shell.py test --dry-run)"
+    - ./app.py python test_devops
+
+ht.ps.test:
+  extends:
+    - .ht.python-base
+  script:
+    - *bootstrap-photos
+    - ./app.py python test

@@ -102,8 +102,8 @@ def get_current_cluster() -> Hmlet:
         device = cluster.Kind(env)
 
     hmlet = Hmlet(li=Hmlet.Links(device=device),
-                       se=Hmlet.Sets(deploy_ingress=True),
-                       env=env)
+                  se=Hmlet.Sets(deploy_ingress=True),
+                  env=env)
     return hmlet
 
 
