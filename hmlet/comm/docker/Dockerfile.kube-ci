@@ -16,7 +16,7 @@ COPY . plasma
 WORKDIR /srv/plasma
 RUN eval "$(./shell.py --dry-run)" && ./bootstrap
 
-WORKDIR /srv/plasma/citygroves
+WORKDIR /srv/plasma/hmlet
 
 # Install docker
 RUN apt update
@@ -24,7 +24,7 @@ RUN apt install apt-transport-https ca-certificates curl gnupg2 software-propert
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 RUN apt update
-RUN eval "$(./shell.py test --dry-run)" && apt install docker-ce-cli=5:$CG_DOCKER_VER~3-0~debian-$CG_DEBIAN_VER -y
+RUN eval "$(./shell.py test --dry-run)" && apt install docker-ce-cli=5:$HT_DOCKER_VER~3-0~debian-$HT_DEBIAN_VER -y
 
 RUN eval "$(./shell.py test --dry-run)" && ./cluster.py install_kind
 RUN eval "$(./shell.py test --dry-run)" && ./cluster.py install_kubectl

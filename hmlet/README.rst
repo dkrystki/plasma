@@ -70,11 +70,11 @@ An example flow would be as follows:
 
 .. code-block:: console
 
-    user@user:/plasma$ ./shell.py
+    user@pc:/plasma$ ./shell.py
     (pl)user@pc:/plasma$ pl.bootstrap
     (pl)user@pc:/plasma$ cd hmlet
     (pl)user@pc:/plasma/hmlet$ ./shell.py local  # activates local environment
-    🐣(ht)user@pc:/plasma/hmlet$ ./cluster.py bootstrap_local_dev  # install dependencies as helm or kubectl
+    🐣(ht)user@pc:/plasma/hmlet$ ./cluster.py python bootstrap_local_dev  # install dependencies as helm or kubectl
     🐣(ht)user@pc:/plasma/hmlet$ ./cluster.py bootstrap  # bootstraps local kubernetes in docker (kind) cluster
     🐣(ht)user@pc:/plasma/hmlet$ ./cluster.py deploy  # deploy all apps
     🐣(ht)user@pc:/plasma/hmlet$ ./cluster.py add_hosts  # add hosts to /etc/hosts file
@@ -100,10 +100,7 @@ Current stage is indicated by emoji in the shell prompt.
     🔥 productions
 
 
-Development
------------
-
-To bootstrap local development environment
-
 Requirements
 ############
+
+Docker

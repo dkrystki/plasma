@@ -302,9 +302,9 @@ class Skaffold(App):
         registry = self.env.cluster.registry
         logger.info("Building and deploying using skaffold.")
 
-        os.environ["CG_IMAGE_NAME"] = self.env.image_name
+        os.environ["PL_IMAGE_NAME"] = self.env.image_name
         image_tag: str = datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
-        os.environ["CG_IMAGE_TAG"] = image_tag
+        os.environ["PL_IMAGE_TAG"] = image_tag
 
         image = f"{self.env.image_name}:{image_tag}"
 

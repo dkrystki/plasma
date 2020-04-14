@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from importlib import import_module
 
 from hmlet.env_comm import HmletEnvComm
+from hmlet.photos.app import Photos
 from pl.apps import PythonUtils
 
 from pl.apps.minio import Minio
@@ -40,6 +41,8 @@ class Hmlet(cluster.Cluster):
         self.aux.create_app("postgresql", Postgres)
         self.aux.create_app("minio", Minio)
 
+        self.photos: Photos = self.flesh.create_app("photos", Photos)
+
     def install_deps(self) -> None:
         super().install_deps()
         self.install_hostess()
@@ -50,6 +53,8 @@ class Hmlet(cluster.Cluster):
 
     def bootstrap_local_dev(self) -> None:
         self.install_deps()
+        self.photos.python.bootstrap_local_dev()
+
         self.prebuild_all()
 
     def add_hosts(self):
@@ -59,6 +64,7 @@ class Hmlet(cluster.Cluster):
 
         run(f"""
             {self.sudo()} hostess add {self.env.photos.address} {cluster_ip}
+            {self.sudo()} hostess add {self.env.registry.address} {cluster_ip}
             """)
 
     def prebuild_all(self):
@@ -95,10 +101,10 @@ def get_current_cluster() -> Hmlet:
     if env.stage in ["local", "test"]:
         device = cluster.Kind(env)
 
-    citygroves = Hmlet(li=Hmlet.Links(device=device),
+    hmlet = Hmlet(li=Hmlet.Links(device=device),
                        se=Hmlet.Sets(deploy_ingress=True),
                        env=env)
-    return citygroves
+    return hmlet
 
 
 if __name__ == "__main__":

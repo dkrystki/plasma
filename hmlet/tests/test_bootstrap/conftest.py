@@ -2,13 +2,13 @@ from typing import List
 
 import pl.devops
 from pytest import fixture
-from citygroves.env_test import Env
+from hmlet.env_test import HmletEnv
 
 import environ
 
 environ = environ.Env()
 
-env = Env()
+env = HmletEnv()
 
 
 class Container:

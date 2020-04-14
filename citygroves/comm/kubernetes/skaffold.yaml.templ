@@ -6,7 +6,7 @@ build:
   tagPolicy:
     envTemplate:
       {% raw %}
-      template: "{{.CG_IMAGE_NAME}}:{{.CG_IMAGE_TAG}}"
+      template: "{{.PL_IMAGE_NAME}}:{{.PL_IMAGE_TAG}}"
       {% endraw %}
   artifacts:
   - image: {{ image_name }}
