@@ -90,7 +90,7 @@ class Env(BaseEnv):
         os.environ["PYTHONPATH"] = f"{str(self.root.parent)}:{os.environ['PYTHONPATH']}"
         os.environ["PLASMA_DEBUG"] = str(self.debug)
 
-    def as_string(self, add_export: bool = True, ignore_unchanged: bool = True) -> str:
+    def as_string(self, ignore_unchanged: bool = True) -> List[str]:
         lines: List[str] = []
 
         for key, value in os.environ.items():
@@ -98,25 +98,30 @@ class Env(BaseEnv):
                 if key in self.envs_before and value == self.envs_before[key]:
                     continue
             if "BASH_FUNC_" not in key:
-                lines.append(f'{"export" if add_export else ""} {key}="{value}";')
+                lines.append(f'{key}="{value}"')
 
-        return "\n".join(lines)
+        return lines
 
     def print_envs(self) -> None:
         self.activate()
-        print(self.as_string())
+        content = "".join([f"export {line}\n" for line in self.as_string()])
+        print(content)
 
     def dump_dot_env(self) -> None:
         self.activate()
         path = Path(f".env{'_' if self.stage else ''}{self.stage}")
-        path.write_text(self.as_string(add_export=False))
+        content = "\n".join(self.as_string())
+        path.write_text(content)
 
     def shell(self) -> None:
         self.activate()
 
         with NamedTemporaryFile(mode='w+', buffering=True, delete=True) as tmprc:
             tmprc.write('source ~/.bashrc\n')
-            tmprc.write(self.as_string(ignore_unchanged=False))
+            tmprc.write("")
+            content = ";\n".join(self.as_string(ignore_unchanged=True))
+            tmprc.write(content)
+            tmprc.write("\n")
             tmprc.write(f'PS1={self.emoji}\({self.name}\)$PS1\n')
 
             os.system(f"bash --rcfile {tmprc.name}")

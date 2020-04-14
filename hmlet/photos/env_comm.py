@@ -41,3 +41,5 @@ class PhotosEnvComm(AppEnv):
         self._set_environ("MINIO_STORAGE_SECRET_KEY", self.minio.secret_key)
         self._set_environ("MINIO_STORAGE_MEDIA_BUCKET_NAME", self.minio.media_bucket_name)
         self._set_environ("MINIO_STORAGE_STATIC_BUCKET_NAME", self.minio.static_bucket_name)
+
+        os.environ["PATH"] = f"{str(self.src)}/.venv/bin:{os.environ['PATH']}"
