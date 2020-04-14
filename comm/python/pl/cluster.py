@@ -129,14 +129,19 @@ class Kind(ClusterDevice):
 
         Path(environ.str("KUBECONFIG")).unlink(missing_ok=True)
         run(f"""
-        kind delete cluster --name={self.env.device.name}
-        kind create cluster --config={str(kind_file)} --name={self.env.device.name}
-        docker exec {self.env.device.name}-control-plane bash -c "echo \\"{self.env.registry.ip} \\
-        {self.env.registry.address}\\" >> /etc/hosts" 
-        # For some reason dns resolution doesn't work on CI. This line fixes it
-        docker exec {self.env.device.name}-control-plane \\
-        bash -c "echo \\"nameserver 8.8.8.8\\" >> /etc/resolv.conf" 
-        """, progress_bar=True)
+            kind delete cluster --name={self.env.device.name}
+            kind create cluster --config={str(kind_file)} --name={self.env.device.name}
+            """, progress_bar=True)
+
+        ip = self.get_ip()
+
+        run(f"""
+            docker exec {self.env.device.name}-control-plane bash -c "echo \\"{ip} \\
+            {self.env.registry.address}\\" >> /etc/hosts" 
+            # For some reason dns resolution doesn't work on CI. This line fixes it
+            docker exec {self.env.device.name}-control-plane \\
+            bash -c "echo \\"nameserver 8.8.8.8\\" >> /etc/resolv.conf" 
+            """, progress_bar=True)
 
         self._post_bootstrap()
 

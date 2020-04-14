@@ -18,7 +18,7 @@ import environ
 
 environ = environ.Env()
 
-
+@dataclass
 class AppEnv(Env):
     app_name: str = None
     src: Path = None

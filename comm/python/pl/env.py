@@ -27,7 +27,7 @@ class BaseEnv:
             attr: Any = getattr(self, f.name)
             if attr is None:
                 # TODO: sometimes prints double dots
-                raise RuntimeError(f'Env variable "{parent_name}{f.name}" is not set!')
+                raise RuntimeError(f'Env variable "{parent_name}.{f.name}" is not set!')
             elif issubclass(type(attr), BaseEnv):
                 attr._validate(parent_name=f"{parent_name}.{f.name}.")
 
