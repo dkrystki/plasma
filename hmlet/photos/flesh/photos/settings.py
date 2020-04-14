@@ -149,6 +149,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = './static_files/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 if environ.str("HT_STAGE") in ("stage", "prod"):
     DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
     STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
