@@ -69,6 +69,7 @@ class App:
         os.chdir(str(self.se.root))
 
     def deploy(self) -> None:
+        # TODO: only create when needed
         self.li.namespace.create()
         logger.info(f"🚀Deploying {self.se.name}.")
         self.chdir_to_root()

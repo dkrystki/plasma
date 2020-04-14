@@ -126,7 +126,6 @@ class Namespace:
         return self.name in [n.metadata.name for n in self.li.kube.list_namespace().items]
 
     def deploy(self) -> None:
-        self.create()
         for n, a in self.apps.items():
             a.deploy()
 
