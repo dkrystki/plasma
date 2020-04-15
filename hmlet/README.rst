@@ -22,10 +22,10 @@ SQLite because of speed benefits(when run locally)
 
 Code Highlighs
 ##############
-Django app root:
-Api client Source code:
-E2E test source code:
-unit tests source code:
+Django app root: https://gitlab.com/damian.krystkiewicz/plasma/-/tree/master/hmlet/photos/flesh
+Api client Source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/comm/python/ht/api_clients/photos.py
+E2E test source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/tests/test_e2e/test_all.py
+unit tests source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/photos/flesh/tests/core/test_views.py
 
 
 What is the monorepo?
@@ -215,4 +215,4 @@ SecretKey: SecretKey
 
 CI
 ##
-I have added linters as well tests to the CI.
+Linters as well tests have been added to the CI.
