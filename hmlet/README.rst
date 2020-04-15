@@ -20,6 +20,14 @@ As a storage I chose Minio which is compatible with S3 and is served inside the 
 I chose Postresql as a database engine for all the environments. Unit tests are run on
 SQLite because of speed benefits(when run locally)
 
+Code Highlighs
+##############
+Django app root:
+Api client Source code:
+E2E test source code:
+unit tests source code:
+
+
 What is the monorepo?
 ---------------------
 Monorepo is a software engineering strategy where code for many project
@@ -121,47 +129,42 @@ The only dependency needed is Docker, other tools or libraries are downloaded du
 Staging and testing
 ###################
 Staging environment has been deployed to a AWS kubernetes cluster.
-
 In order to ease testing and further development an api client has been implemented.
 
-Example end to end test would be as follow:
+Example end to end test would be as follows:
 
 .. code-block:: python
 
     from typing import List
 
-from ht.api_clients.photos import Photo
+    from ht.api_clients.photos import Photo
 
 
-def test_creating_deleting_listing(env, photos_api_client):
-    to_del_photos: List[Photo] = photos_api_client.photos.list()
+    def test_creating_deleting_listing(env, photos_api_client):
+        to_del_photos: List[Photo] = photos_api_client.photos.list()
 
-    # delete existing
-    for p in to_del_photos:
-        photos_api_client.photos.delete(p)
+        # delete existing
+        for p in to_del_photos:
+            photos_api_client.photos.delete(p)
 
-    assert len(photos_api_client.photos.list()) == 0
+        assert len(photos_api_client.photos.list()) == 0
 
-    photo = Photo(name="TestPhoto",
-                  draft=False,
-                  caption="Test caption",
-                  image=str(env.root / "tests/test_e2e/data/test_image.png"))
-    photos_api_client.photos.create(photo)
+        photo = Photo(name="TestPhoto",
+                      draft=False,
+                      caption="Test caption",
+                      image=str(env.root / "tests/test_e2e/data/test_image.png"))
+        photos_api_client.photos.create(photo)
 
-    photo = Photo(name="TestPhoto2",
-                  draft=True,
-                  caption="Test caption2",
-                  image=str(env.root / "tests/test_e2e/data/test_image.png"))
-    photos_api_client.photos.create(photo)
-    photo1 = photos[0]
-    photo2 = photos[1]
+        photo = Photo(name="TestPhoto2",
+                      draft=True,
+                      caption="Test caption2",
+                      image=str(env.root / "tests/test_e2e/data/test_image.png"))
+        photos_api_client.photos.create(photo)
+        photo1 = photos[0]
+        photo2 = photos[1]
 
-    assert len(photos_api_client.photos.list()) == 2
+        assert len(photos_api_client.photos.list()) == 2
 
-
-Api client Source code:
-E2E test source code:
-unit tests source code:
 
 Manual testing results
 ######################
@@ -183,3 +186,26 @@ Only thumbnail photos are served.
 .. figure:: doc/debug.png
 
     Photos fetched using the api client
+
+Staging endpoints
+#################
+
+After running :code:`./shell.py stage` and :code:`./cluster add_hosts` following
+hostnames become available on a local machine:
+
+.. code-block::
+
+    hmlet.photos.stage  # The Django app
+    hmlet.minio.stage  # The minio server
+
+Public access is also possible using following ips and ports:
+
+.. code-block::
+
+
+      # The Django app
+    18.141.8.98:52302  # The minio server
+
+Django admin logins:
+username: admin
+password: admin

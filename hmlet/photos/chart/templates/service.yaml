@@ -14,3 +14,21 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "chart.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "chart.name" . }}-public
+  labels:
+{{ include "chart.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.publicService.type }}
+  {{- with .Values.publicService.ports }}
+  ports:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+
+  selector:
+    app.kubernetes.io/name: {{ include "chart.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

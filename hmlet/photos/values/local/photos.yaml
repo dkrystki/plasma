@@ -16,6 +16,16 @@ service:
       port: 80
       targetPort: 8000
 
+publicService:
+  type: LoadBalancer
+  ports:
+    - name: http
+      nodePort: 31520
+      targetPort: 8000
+      port: 80
+      protocol: TCP
+
+
 nodeSelector: {}
 
 tolerations: []
