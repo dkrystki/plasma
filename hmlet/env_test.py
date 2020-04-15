@@ -13,6 +13,7 @@ class HmletEnv(HmletEnvComm):
         super().__init__()
 
         self.photos = HmletEnv.Photos(address="hmlet.photos.test")
+        self.minio = HmletEnv.Minio(address="hmlet.minio.test")
 
         self.aux = AuxEnv()  # Auxiliary cluster's registry is used for caching
 

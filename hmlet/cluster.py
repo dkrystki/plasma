@@ -65,10 +65,12 @@ class Hmlet(cluster.Cluster):
         run(f"""
             {self.sudo()} hostess add {self.env.photos.address} {cluster_ip}
             {self.sudo()} hostess add {self.env.registry.address} {cluster_ip}
+            {self.sudo()} hostess add {self.env.minio.address} {cluster_ip}
             """)
 
     def prebuild_all(self):
         super().prebuild_all()
+        self.photos.docker.prebuild()
 
     def build_ci_images(self):
         run(f"""

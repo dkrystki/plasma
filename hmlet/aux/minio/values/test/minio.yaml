@@ -136,7 +136,7 @@ service:
 ##
 
 ingress:
-  enabled: false
+  enabled: true
   labels: {}
     # node-role.kubernetes.io/ingress: platform
 
@@ -150,7 +150,7 @@ ingress:
     # nginx.ingress.kubernetes.io/whitelist-source-range: 0.0.0.0/0
   path: /
   hosts:
-    - chart-example.local
+    - hmlet.minio.test
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -217,11 +217,6 @@ defaultBucket:
 ## Create multiple buckets after minio install
 ## Enabling `defaultBucket` will take priority over this list
 ##
-buckets:
-  - name: gitlab-cache
-    policy: none
-    purge: false
-
 
 ## Additional Annotations for the Kubernetes Batch (make-bucket-job)
 makeBucketJob:

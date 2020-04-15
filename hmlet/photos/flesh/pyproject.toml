@@ -15,6 +15,9 @@ requests = "^2.23.0"
 djangorestframework_simplejwt = "^4.4.0"
 django-minio-storage = "^0.3.7"
 django-versatileimagefield = "^2.0"
+fire = "^0.3.1"
+loguru = "^0.4.1"
+psycopg2-binary = "^2.8.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.1"

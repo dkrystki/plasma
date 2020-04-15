@@ -38,6 +38,7 @@ spec:
           image: {{ .Values.image }}
           command: ["/bin/sh", "-c"]
           args:
+            -
             {{- with .Values.initCmds }}
               {{- toYaml . | nindent 14 }}
             {{- end }}

@@ -14,8 +14,8 @@ class PhotosEnv(PhotosEnvComm):
 
         self.minio = PhotosEnvComm.Minio(
             endpoint="minio.aux",
-            access_key='KBP6WXGPS387090EZMG8',
-            secret_key='DRjFXylyfMqn2zilAr33xORhaYz5r9e8r37XPz3A',
+            access_key="AccessKey",
+            secret_key="SecretKey",
             media_bucket_name="media",
             static_bucket_name="static"
         )

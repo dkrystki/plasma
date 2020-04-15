@@ -6,7 +6,7 @@ from pathlib import Path
 from jinja2 import Template
 from loguru import logger
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict, Any
 
 if TYPE_CHECKING:
     from ..cluster import ClusterEnv
@@ -75,6 +75,9 @@ class App:
         logger.info(f"🚀Deploying {self.se.name}.")
         self.chdir_to_root()
 
+    def terminal(self) -> None:
+        pass
+
     def delete(self) -> None:
         logger.info(f"Delete {self.se.name}.")
         self.chdir_to_root()
@@ -93,7 +96,7 @@ class Image:
         self.li = li
         self.se = se
 
-    def push(self):
+    def push(self) -> None:
         env = self.li.env
         run(f"""
             docker login {env.cluster.registry.address} \\
@@ -284,7 +287,7 @@ class Skaffold(App):
         )
         self.skaffold_file = Path(f"skaffold.{self.env.stage}.yaml")
 
-    def render(self) -> None:
+    def render(self, extra_context: Dict[str, Any] = None) -> None:
         self.chdir_to_root()
 
         self.dockerfile.render()
@@ -294,6 +297,10 @@ class Skaffold(App):
             "env": self.env,
             "image_name": self.env.image_name,
         }
+
+        if extra_context:
+            context.update(extra_context)
+
         self.skaffold_file.write_text(template.render(**context))
 
     def deploy(self) -> None:
@@ -316,10 +323,15 @@ class Skaffold(App):
             skaffold deploy -f {str(self.skaffold_file)} --images {image}
             """, print_output=True)
 
-    def skaffold(self) -> None:
-        self.render()
+    def dev(self) -> None:
+        self.render(
+            {
+                "dev": True
+            }
+        )
         registry = self.env.cluster.registry
+
         run(f"""
             docker login {registry.address} --username {registry.username} -p{registry.password}
-            skaffold dev -f {str(self.skaffold_file)}
+            skaffold dev -f {str(self.skaffold_file)} --verbosity debug
             """, print_output=True)

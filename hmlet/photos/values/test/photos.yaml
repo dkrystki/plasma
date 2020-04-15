@@ -32,11 +32,13 @@ ingress:
 
 
 initCmds:
-  - python manage.py migrate
+  python manage.py migrate;
+  python cli.py create_test_user user password;
+  python cli.py create_super_user admin admin;
 
 db:
   name: photos
-  user: postgres
+  user: photos
   password: cGFzc3dvcmQ=
   host: postgresql.aux
   port: 5432

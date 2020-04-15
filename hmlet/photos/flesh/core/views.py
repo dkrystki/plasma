@@ -1,6 +1,7 @@
 import logging
 
 from rest_framework import mixins, viewsets
+from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 
 from core import serializers
@@ -23,6 +24,7 @@ class PhotosViewSet(
     serializer_class = serializers.PhotoSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     permission_classes = (IsAuthenticated,)
+    parser_classes = [MultiPartParser]
 
     search_fields = ['=user__username']
     ordering_fields = ['publish_date']

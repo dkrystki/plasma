@@ -81,6 +81,7 @@ class ClusterEnv(env.Env):
         self._set_environ("REGISTRY_IP", self.registry.ip)
 
         os.environ["PATH"] = f"{str(self.deps_path)}:{os.environ['PATH']}"
+        os.environ["PYTHONPATH"] = f"{str(self.comm)}/python:{os.environ['PATH']}"
         os.environ["KUBECONFIG"] = str(self.kubeconfig)
 
         self.plasma.activate()

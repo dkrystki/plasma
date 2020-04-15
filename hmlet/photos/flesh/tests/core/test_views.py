@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List
+from typing import List, Dict, Any
 
 import pytest
 from django.conf import settings
@@ -48,16 +48,18 @@ class TestPhotos:
         response = self.client.get(reverse("v1:photos-list"))
         assert response.status_code == 200
 
-        instance: List[Photo] = response.data.serializer.instance
-        assert len(instance) == 2
+        data: List[Photo] = response.data
+        assert len(data) == 2
 
     def test_ordering(self, photo_factory):
         newer_photo: Photo = photo_factory()
         older_photo: Photo = photo_factory()
 
+        newer_photo.name = "NewerPhoto"
         newer_photo.publish_date = datetime(2020, 3, 15, 20, 45, 40)
         newer_photo.save()
 
+        older_photo.name = "OlderPhoto"
         older_photo.publish_date = datetime(2020, 3, 12, 20, 45, 40)
         older_photo.save()
 
@@ -66,18 +68,18 @@ class TestPhotos:
         response = self.client.get(asc_url, content_type="application/json")
         assert response.status_code == 200
 
-        instance: List[Photo] = response.data.serializer.instance
-        assert instance[0] == newer_photo
-        assert instance[1] == older_photo
+        data: List[Dict[str, Any]] = response.data
+        assert data[0]["name"] == newer_photo.name
+        assert data[1]["name"] == older_photo.name
 
         # Test descending
         desc_url = f'{reverse("v1:photos-list")}?ordering=publish_date'
         response = self.client.get(desc_url, content_type="application/json")
         assert response.status_code == 200
 
-        instance: List[Photo] = response.data.serializer.instance
-        assert instance[0] == older_photo
-        assert instance[1] == newer_photo
+        data: List[Dict[str, Any]] = response.data
+        assert data[0]["name"] == older_photo.name
+        assert data[1]["name"] == newer_photo.name
 
     def test_filtering(self, photo_factory, user_factory):
         photo1: Photo = photo_factory()
@@ -93,9 +95,9 @@ class TestPhotos:
         response = self.client.get(url, content_type="application/json")
         assert response.status_code == 200
 
-        instance: List[Photo] = response.data.serializer.instance
-        assert len(instance) == 1
-        assert instance[0].user == photo1.user
+        data: List[Dict[str, Any]] = response.data
+        assert len(data) == 1
+        assert data[0]["username"] == photo1.user.username
 
     def test_image_resized(self, sample_image_factory, sample_photo_payload):
         sample_photo_payload["image"] = sample_image_factory(2024, 2024)
@@ -103,6 +105,6 @@ class TestPhotos:
         response = self.client.post(reverse("v1:photos-list"), sample_photo_payload)
         assert response.status_code == 201
 
-        instance: List[Photo] = response.data.serializer.instance
-        assert instance.thumbnail.width == settings.IMAGE_SERVE_SIZE[0]
-        assert instance.thumbnail.height == settings.IMAGE_SERVE_SIZE[1]
+        photo = Photo.objects.first()
+        assert photo.thumbnail.width == settings.IMAGE_SERVE_SIZE[0]
+        assert photo.thumbnail.height == settings.IMAGE_SERVE_SIZE[1]

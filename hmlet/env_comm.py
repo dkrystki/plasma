@@ -12,7 +12,12 @@ class HmletEnvComm(cluster.ClusterEnv):
     class Photos(env.BaseEnv):
         address: str = None
 
+    @dataclass
+    class Minio(env.BaseEnv):
+        address: str = None
+
     photos: Photos = None
+    minio: Photos = None
     aux: plasma.aux.env_comm.AuxEnvComm = None
     ngrok_authtoken: str = None
 

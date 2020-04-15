@@ -11,9 +11,17 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
+import sys
 
-environ = environ.Env()
+from environ import Env
+
+environ = Env()
+
+is_unit_test = "test" in sys.argv[0] or "test_coverage" in sys.argv[0]
+
+if is_unit_test:
+    os.environ["HT_STAGE"] = "unit_test"
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +36,10 @@ SECRET_KEY = '-zvb+1j&=#)#%&i%8o&(o12xh8ihu8#$z%1vmexz36kb)x0$$3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+if environ.str("HT_STAGE") in ("stage", "prod"):
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     'minio_storage',
     'rest_framework',
     "core"
@@ -78,7 +90,7 @@ WSGI_APPLICATION = 'photos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if environ.str("HT_STAGE") in ("local", "test"):
+if environ.str("HT_STAGE") in ("local", "unit_test"):
     DATABASES = {
         "default": {
             "NAME": os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -89,11 +101,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": environ.str("DB_NAME"),
-            "USER": environ.str("DB_USER"),
-            "PASSWORD": environ.str("DB_PASSWORD"),
-            "HOST": environ.str("DB_HOST"),
-            "PORT": environ.str("DB_PORT"),
+            "NAME": environ.str("PS_DB_NAME"),
+            "USER": environ.str("PS_DB_USER"),
+            "PASSWORD": environ.str("PS_DB_PASSWORD"),
+            "HOST": environ.str("PS_DB_HOST"),
+            "PORT": environ.str("PS_DB_PORT"),
         }
     }
 
@@ -143,13 +155,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = './static_files/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-if environ.str("HT_STAGE") in ("stage", "prod"):
+if environ.str("HT_STAGE") in ("test", "stage", "prod"):
     DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
     STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
     MINIO_STORAGE_ENDPOINT = environ.str("PS_MINIO_STORAGE_ENDPOINT")
@@ -161,4 +173,4 @@ if environ.str("HT_STAGE") in ("stage", "prod"):
     MINIO_STORAGE_STATIC_BUCKET_NAME = environ.str("PS_MINIO_STORAGE_STATIC_BUCKET_NAME")
     MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
 
-IMAGE_SERVE_SIZE = (512, 512)
+IMAGE_SERVE_SIZE = (128, 128)
