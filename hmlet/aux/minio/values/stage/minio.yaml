@@ -116,10 +116,9 @@ persistence:
 ##
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   clusterIP: ~
   port: 80
-  nodePort: 52303
 
   ## List of IP addresses at which the Prometheus server service is available
   ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips

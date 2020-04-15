@@ -198,14 +198,21 @@ hostnames become available on a local machine:
     hmlet.photos.stage  # The Django app
     hmlet.minio.stage  # The minio server
 
-Public access is also possible using following ips and ports:
+Public access is also possible using following ips:
 
 .. code-block::
 
-
-      # The Django app
-    18.141.8.98:52302  # The minio server
+    18.138.187.28  # The Django app
+    13.250.174.103  # The minio server
 
 Django admin logins:
 username: admin
 password: admin
+
+Minio logins:
+AccessKey: AccessKey
+SecretKey: SecretKey
+
+CI
+##
+I have added linters as well tests to the CI.
