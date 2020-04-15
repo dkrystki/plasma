@@ -11,6 +11,7 @@ class PhotosEnvComm(AppEnv):
     @dataclass
     class Minio(BaseEnv):
         endpoint: str = None
+        public_endpoint: str = None
         access_key: str = None
         secret_key: str = None
         media_bucket_name: str = None

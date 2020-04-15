@@ -18,6 +18,7 @@ class TestPhotos:
         response = self.client.post(reverse("v1:photos-list"), sample_photo_payload)
         assert response.status_code == 201
         assert Photo.objects.all().count() == 1
+        photo: Photo = Photo.objects.first()  # noqa: F841
 
     def test_delete(self, sample_photo):
         response = self.client.delete(reverse("v1:photos-detail", kwargs={"pk": sample_photo.pk}))

@@ -6,6 +6,19 @@ Design decisions
 ----------------
 Devops is entirely handled in python and I used monorepo approach to
 reuse as much code as possible.
+I have been implementing this methodology as a side project and planning to publish a
+package when finished. It is quiet usable currently and saved me a lot of time
+during implementing this project.
+
+For deployment to local, test and staging environments I have chosen to use Kubernetes
+because of it's seamless workflow.
+Local and test clusters are deployed localy to KIND (Kubernetes in docker) clusters.
+Interaction between python devops scripts and clusters are executed using kubectl,
+helm, skaffold and telepresence.
+
+As a storage I chose Minio which is compatible with S3 and is served inside the kubernetes cluster.
+I chose Postresql as a database engine for all the environments. Unit tests are run on
+SQLite because of speed benefits(when run locally)
 
 What is the monorepo?
 ---------------------
@@ -102,5 +115,71 @@ Current stage is indicated by emoji in the shell prompt.
 
 Requirements
 ############
+The only dependency needed is Docker, other tools or libraries are downloaded during bootstrap.
 
-Docker
+
+Staging and testing
+###################
+Staging environment has been deployed to a AWS kubernetes cluster.
+
+In order to ease testing and further development an api client has been implemented.
+
+Example end to end test would be as follow:
+
+.. code-block:: python
+
+    from typing import List
+
+from ht.api_clients.photos import Photo
+
+
+def test_creating_deleting_listing(env, photos_api_client):
+    to_del_photos: List[Photo] = photos_api_client.photos.list()
+
+    # delete existing
+    for p in to_del_photos:
+        photos_api_client.photos.delete(p)
+
+    assert len(photos_api_client.photos.list()) == 0
+
+    photo = Photo(name="TestPhoto",
+                  draft=False,
+                  caption="Test caption",
+                  image=str(env.root / "tests/test_e2e/data/test_image.png"))
+    photos_api_client.photos.create(photo)
+
+    photo = Photo(name="TestPhoto2",
+                  draft=True,
+                  caption="Test caption2",
+                  image=str(env.root / "tests/test_e2e/data/test_image.png"))
+    photos_api_client.photos.create(photo)
+    photo1 = photos[0]
+    photo2 = photos[1]
+
+    assert len(photos_api_client.photos.list()) == 2
+
+
+Api client Source code:
+E2E test source code:
+unit tests source code:
+
+Manual testing results
+######################
+After running above code 2 photos are created.
+Only thumbnail photos are served.
+
+.. figure:: doc/minio.png
+
+    Images are being uploaded to the minio server
+
+.. figure:: doc/django_admin.png
+
+    Photos are being created in django app
+
+.. figure:: doc/django_admin_details.png
+
+    Photo details
+
+.. figure:: doc/debug.png
+
+    Photos fetched using the api client

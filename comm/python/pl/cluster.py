@@ -154,7 +154,7 @@ class Kind(ClusterDevice):
 
 
 class Microk8s(ClusterDevice):
-    def __init__(self, env: env.Env):
+    def __init__(self, env: ClusterEnv):
         super().__init__(env)
 
     def bootstrap(self) -> None:
@@ -162,7 +162,7 @@ class Microk8s(ClusterDevice):
 
         logger.info("Creating microk8s cluster")
 
-        Path(environ.str("KUBECONFIG")).unlink(missing_ok=True)
+        self.env.kubeconfig.unlink(missing_ok=True)
         run(f"""
         sudo snap remove microk8s
         sudo snap install microk8s --classic --channel="{self.env.device.k8s_ver}"/stable
@@ -194,12 +194,26 @@ class Microk8s(ClusterDevice):
 
 class AwsCluster(ClusterDevice):
     def bootstrap(self) -> None:
-        """eksctl create cluster --name prod --region ap-southeast-1 --nodegroup-name standard-workers
-        --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 1 --ssh-access --ssh-public-key
-         ~/.ssh/id_rsa.pub --managed"""
+        logger.info("Creating aws cluster")
+
+        self.env.kubeconfig.unlink(missing_ok=True)
+
+        run(f"eksctl delete cluster=--name {self.env.device.name}", ignore_errors=True)
+        run(f"""
+        eksctl create cluster --name={self.env.device.name} --region=ap-southeast-1 --nodegroup-name=standard-workers \\
+        --node-type=t3.medium --nodes=1 --nodes-min=1 --nodes-max=1 --ssh-access \\
+        --version={self.env.device.k8s_ver[:-2]} \\
+         --ssh-public-key=~/.ssh/id_rsa.pub --managed
+        eksctl utils write-kubeconfig --cluster={self.env.device.name} --kubeconfig={str(self.env.kubeconfig)}
+        """, print_output=True)
+
+        self._post_bootstrap()
 
     def get_ip(self) -> str:
-        return ""
+        result = run(f"""kubectl describe nodes""")
+        ip_phrase = re.search(r"ExternalIP: .*", "\n".join(result)).group(0)
+        ip = ip_phrase.split(":")[1].strip()
+        return ip.strip()
 
 
 class Cluster:

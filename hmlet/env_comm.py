@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from plasma.comm.python.pl import cluster, env
 from plasma.env import Path, PlasmaEnv
 import os
-import plasma.aux.env_comm
 
 
 @dataclass
@@ -18,7 +17,6 @@ class HmletEnvComm(cluster.ClusterEnv):
 
     photos: Photos = None
     minio: Photos = None
-    aux: plasma.aux.env_comm.AuxEnvComm = None
     ngrok_authtoken: str = None
 
     def __init__(self) -> None:

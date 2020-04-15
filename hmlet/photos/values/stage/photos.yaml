@@ -13,6 +13,7 @@ service:
   type: ClusterIP
   ports:
     - name: http
+      externalPort: 52302
       port: 80
       targetPort: 8000
 
@@ -26,7 +27,7 @@ ingress:
   enabled: True
 
   hosts:
-    - host: hmlet.photos.test
+    - host: hmlet.photos.stage
       paths:
         - "/"
 

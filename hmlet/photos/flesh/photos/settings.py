@@ -36,7 +36,7 @@ SECRET_KEY = '-zvb+1j&=#)#%&i%8o&(o12xh8ihu8#$z%1vmexz36kb)x0$$3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-if environ.str("HT_STAGE") in ("stage", "prod"):
+if environ.str("HT_STAGE") in ["prod"]:
     ALLOWED_HOSTS = []
 else:
     ALLOWED_HOSTS = ["*"]
@@ -155,16 +155,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if environ.str("HT_STAGE") in ("test", "stage", "prod"):
     DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
     STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
     MINIO_STORAGE_ENDPOINT = environ.str("PS_MINIO_STORAGE_ENDPOINT")
+    MINIO_STORAGE_STATIC_URL = environ.str("PS_MINIO_PUBLIC_ENDPOINT") + "/static/"
     MINIO_STORAGE_ACCESS_KEY = environ.str("PS_MINIO_STORAGE_ACCESS_KEY")
     MINIO_STORAGE_SECRET_KEY = environ.str("PS_MINIO_STORAGE_SECRET_KEY")
     MINIO_STORAGE_USE_HTTPS = False
@@ -172,5 +170,7 @@ if environ.str("HT_STAGE") in ("test", "stage", "prod"):
     MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
     MINIO_STORAGE_STATIC_BUCKET_NAME = environ.str("PS_MINIO_STORAGE_STATIC_BUCKET_NAME")
     MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
+else:
+    MINIO_PUBLIC_ENDPOINT = ""
 
 IMAGE_SERVE_SIZE = (128, 128)

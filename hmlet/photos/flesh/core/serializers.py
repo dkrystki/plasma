@@ -1,6 +1,8 @@
 from datetime import datetime
 
+from django.conf import settings
 from django.contrib.auth.models import User
+from furl import furl
 from pytz import UTC
 from rest_framework import serializers
 
@@ -13,7 +15,7 @@ class PhotoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     image = serializers.ImageField(write_only=True)
-    thumbnail = serializers.ImageField(read_only=True)
+    thumbnail = serializers.SerializerMethodField(read_only=True)
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), default=serializers.CurrentUserDefault(),
                                               write_only=True)
     username = serializers.SerializerMethodField(read_only=True)
@@ -26,3 +28,8 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     def get_username(self, obj):
         return obj.user.username
+
+    def get_thumbnail(self, obj):
+        path = furl(obj.thumbnail.url).path
+        url = furl(settings.MINIO_PUBLIC_ENDPOINT).add(path=path)
+        return str(url)

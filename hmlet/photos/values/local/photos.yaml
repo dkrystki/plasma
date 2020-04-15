@@ -35,6 +35,7 @@ initCmds:
   python manage.py migrate;
   python cli.py create_test_user user password;
   python cli.py create_super_user admin admin;
+  python manage.py collectstatic --no-input;
 
 db:
   name: photos

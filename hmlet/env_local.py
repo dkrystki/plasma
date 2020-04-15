@@ -1,5 +1,6 @@
 import re
 
+from aux.env_comm import AuxEnvComm
 from plasma.hmlet.env_comm import HmletEnvComm
 from aux.env_local import AuxEnv
 
@@ -7,6 +8,8 @@ from plasma.comm.python.pl.devops import run, CommandError
 
 
 class HmletEnv(HmletEnvComm):
+    aux: AuxEnvComm = None
+
     def __init__(self) -> None:
         self.stage = "local"
         self.emoji = "🐣"

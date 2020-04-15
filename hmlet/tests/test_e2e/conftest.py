@@ -1,7 +1,7 @@
 from pytest import fixture
 from ht.api_clients import photos
 
-from plasma.hmlet.env_test import HmletEnv
+from plasma.hmlet.env_stage import HmletEnv
 
 
 @fixture

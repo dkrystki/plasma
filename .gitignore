@@ -103,6 +103,7 @@ node_modules/
 env_*.py
 !env_comm.py
 !env_test.py
+!env_stage.py
 !env_local.py
 .env*
 

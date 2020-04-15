@@ -60,12 +60,10 @@ class Hmlet(cluster.Cluster):
     def add_hosts(self):
         super().add_hosts()
 
-        cluster_ip = self.li.device.get_ip()
-
         run(f"""
-            {self.sudo()} hostess add {self.env.photos.address} {cluster_ip}
-            {self.sudo()} hostess add {self.env.registry.address} {cluster_ip}
-            {self.sudo()} hostess add {self.env.minio.address} {cluster_ip}
+            {self.sudo()} hostess add {self.env.photos.address} {self.env.device.ip}
+            {self.sudo()} hostess add {self.env.registry.address} {self.env.device.ip}
+            {self.sudo()} hostess add {self.env.minio.address} {self.env.device.ip}
             """)
 
     def prebuild_all(self):
@@ -99,9 +97,11 @@ class Hmlet(cluster.Cluster):
 def get_current_cluster() -> Hmlet:
     env = import_module(f"plasma.hmlet.env_{environ.str('HT_STAGE')}").HmletEnv()
 
-    device = None
+    device: cluster.ClusterDevice
     if env.stage in ["local", "test"]:
         device = cluster.Kind(env)
+    else:
+        device = cluster.AwsCluster(env)
 
     hmlet = Hmlet(li=Hmlet.Links(device=device),
                   se=Hmlet.Sets(deploy_ingress=True),

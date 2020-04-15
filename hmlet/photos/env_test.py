@@ -14,6 +14,7 @@ class PhotosEnv(PhotosEnvComm):
 
         self.minio = PhotosEnvComm.Minio(
             endpoint="minio.aux",
+            public_endpoint="http://hmlet.minio.test",
             access_key="AccessKey",
             secret_key="SecretKey",
             media_bucket_name="media",
