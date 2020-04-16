@@ -161,8 +161,9 @@ if environ.str("HT_STAGE") in ("test", "stage", "prod"):
     DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
     STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
     MINIO_STORAGE_ENDPOINT = environ.str("PS_MINIO_STORAGE_ENDPOINT")
-    MINIO_STORAGE_STATIC_URL = environ.str("PS_MINIO_PUBLIC_ENDPOINT") + "/static/"
-    MINIO_STORAGE_MEDIA_URL = environ.str("PS_MINIO_PUBLIC_ENDPOINT") + "/media/"
+    MINIO_PUBLIC_ENDPOINT = environ.str("PS_MINIO_PUBLIC_ENDPOINT")
+    MINIO_STORAGE_STATIC_URL = MINIO_PUBLIC_ENDPOINT + "/static/"
+    MINIO_STORAGE_MEDIA_URL = MINIO_PUBLIC_ENDPOINT + "/media/"
     MINIO_STORAGE_ACCESS_KEY = environ.str("PS_MINIO_STORAGE_ACCESS_KEY")
     MINIO_STORAGE_SECRET_KEY = environ.str("PS_MINIO_STORAGE_SECRET_KEY")
     MINIO_STORAGE_USE_HTTPS = False

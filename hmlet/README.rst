@@ -7,25 +7,25 @@ Design decisions
 Devops is entirely handled in python and I used monorepo approach to
 reuse as much code as possible.
 I have been implementing this methodology as a side project and planning to publish a
-package when finished. It is quiet usable currently and saved me a lot of time
+package when finished. It is quite usable currently and saved me a lot of time
 during implementing this project.
 
 For deployment to local, test and staging environments I have chosen to use Kubernetes
 because of it's seamless workflow.
-Local and test clusters are deployed localy to KIND (Kubernetes in docker) clusters.
-Interaction between python devops scripts and clusters are executed using kubectl,
+Local and test clusters are deployed localy to KIND (Kubernetes in Docker) clusters.
+Interaction between python devops scripts and clusters is achieved using kubectl,
 helm, skaffold and telepresence.
 
-As a storage I chose Minio which is compatible with S3 and is served inside the kubernetes cluster.
+As a storage I chose Minio which is compatible with S3 and is served inside the kubernetes cluster and
 I chose Postresql as a database engine for all the environments. Unit tests are run on
-SQLite because of speed benefits(when run locally)
+SQLite because of speed benefits (when run locally)
 
 Code Highlighs
 ##############
-Django app root: https://gitlab.com/damian.krystkiewicz/plasma/-/tree/master/hmlet/photos/flesh
-Api client Source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/comm/python/ht/api_clients/photos.py
-E2E test source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/tests/test_e2e/test_all.py
-unit tests source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/photos/flesh/tests/core/test_views.py
+| Django app root: https://gitlab.com/damian.krystkiewicz/plasma/-/tree/master/hmlet/photos/flesh
+| Api client Source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/comm/python/ht/api_clients/photos.py
+| E2E test source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/tests/test_e2e/test_all.py
+| unit tests source code: https://gitlab.com/damian.krystkiewicz/plasma/-/blob/master/hmlet/photos/flesh/tests/core/test_views.py
 
 
 What is the monorepo?
@@ -109,7 +109,7 @@ Current stage can be changed using :code:`"./shell.py {stage}"`. This will chang
 environmental variables to according cluster.
 Environments are configured in env_*.py files and available from python code as a regular package or
 environmental variables
-All of the comands will be run against this stage. For example. Running :code:`{app_code}.terminal` command will open a
+All of the comands will be run against this stage. For example. Running :code:`./app.py terminal` command will open a
 terminal to a pod for the current stage.
 Current stage is indicated by emoji in the shell prompt.
 
@@ -120,6 +120,8 @@ Current stage is indicated by emoji in the shell prompt.
     🤖 staging
     🔥 productions
 
+| Current app or cluster is indicated using two letter code in parenthesis.
+| In instance (ht) - hmlet cluster, (ps) - photos app.
 
 Requirements
 ############
@@ -128,14 +130,34 @@ The only dependency needed is Docker, other tools or libraries are downloaded du
 
 Staging and testing
 ###################
-Staging environment has been deployed to a AWS kubernetes cluster.
+Staging environment has been deployed to a AWS kubernetes cluster and is available publicly.
+
+| http://18.138.187.28  # The Django app
+| http://13.250.174.103  # The minio server
+
+| Django admin logins:
+| username: admin
+| password: admin
+
+| Minio logins:
+| AccessKey: AccessKey
+| SecretKey: SecretKey
+
+| Uploaded image:
+| http://13.250.174.103/media/thumb_test_image_QkUriGG.png
+
+Services can also be accessed using hostnames after running :code:`./shell.py stage` and :code:`./cluster add_hosts`
+
+| http://hmlet.photos.stage  # The Django app
+| http://hmlet.minio.stage  # The minio server
+
+API client
+##########
 In order to ease testing and further development an api client has been implemented.
 
 Example end to end test would be as follows:
 
 .. code-block:: python
-
-    from typing import List
 
     from ht.api_clients.photos import Photo
 
@@ -149,21 +171,27 @@ Example end to end test would be as follows:
 
         assert len(photos_api_client.photos.list()) == 0
 
-        photo = Photo(name="TestPhoto",
-                      draft=False,
-                      caption="Test caption",
-                      image=str(env.root / "tests/test_e2e/data/test_image.png"))
-        photos_api_client.photos.create(photo)
+        photo_to_create1 = Photo(name="TestPhoto1",
+                                 draft=False,
+                                 caption="Test caption1",
+                                 image=str(env.root / "tests/test_e2e/data/test_image.png"))
+        photos_api_client.photos.create(photo_to_create1)
 
-        photo = Photo(name="TestPhoto2",
-                      draft=True,
-                      caption="Test caption2",
-                      image=str(env.root / "tests/test_e2e/data/test_image.png"))
-        photos_api_client.photos.create(photo)
-        photo1 = photos[0]
-        photo2 = photos[1]
+        photo_to_create2 = Photo(name="TestPhoto2",
+                                 draft=True,
+                                 caption="Test caption2",
+                                 image=str(env.root / "tests/test_e2e/data/test_image.png"))
+        photos_api_client.photos.create(photo_to_create2)
 
-        assert len(photos_api_client.photos.list()) == 2
+        fetched_photos: List[Photo] = photos_api_client.photos.list()
+        fetched_photo1: Photo = fetched_photos[0]
+        assert fetched_photo1.name == photo_to_create1.name
+
+        fetched_photo2: Photo = fetched_photos[1]
+        assert fetched_photo2.name == photo_to_create2.name
+
+        assert len(fetched_photos) == 2
+
 
 
 Manual testing results
@@ -187,31 +215,6 @@ Only thumbnail photos are served.
 
     Photos fetched using the api client
 
-Staging endpoints
-#################
-
-After running :code:`./shell.py stage` and :code:`./cluster add_hosts` following
-hostnames become available on a local machine:
-
-.. code-block::
-
-    hmlet.photos.stage  # The Django app
-    hmlet.minio.stage  # The minio server
-
-Public access is also possible using following ips:
-
-.. code-block::
-
-    18.138.187.28  # The Django app
-    13.250.174.103  # The minio server
-
-Django admin logins:
-username: admin
-password: admin
-
-Minio logins:
-AccessKey: AccessKey
-SecretKey: SecretKey
 
 CI
 ##
