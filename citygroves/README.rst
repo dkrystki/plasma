@@ -1,32 +1,62 @@
 ===============================================
-Shangren - Cryptocurrency auto trading platform
+Citygroves - Property management tool
 ===============================================
 
-Shangren (Shāngrén) stands for chinese 商人 which means trader. It's a side project of mine that I'm currently working on.
-Shangren fetches live cryptocurrency data that is used to predict cryptocurrency prices and to make good trade decisions with a little supervision.
-Data is being saved for further analysis and backtesting which helps refine AI overtime and could make the ultimate passive income solution in the future.
+prerequisites
+-------------
+Docker has to be installed and added to sudo group so it can be run without root privileges.
 
 
-Development
+Set up
 -----------
-Shangren uses docker to create an isolated development environment so your system is not being polluted.
+1) Bootstrap monorepo
 
-Requirements
-############
-In order to run local development you have to have Docker and Docker Compose installed.
-telepresence
-minikube
-
-Starting things up
-##################
 .. code-block:: console
 
-    docker-compose up -d
+    git clone https://github.com/dkrystki/plasma.git
+    cd plasma
+    sudo apt install python3-pip
+    ./bootstrap
 
-Logging into microservices
-################################
+2) Install dependencies
+
 .. code-block:: console
 
-    ./bin/terminal
+    cd citygroves
+    ./shell.py
+    ./cluster.py install_deps
 
-The code is synchronised between a docker container and the host using volumes so any changes ( ``pipenv install`` etc ) will be affected on the host.
+3) Edit docker's daemon.json file and add following line to it:
+
+.. code-block:: console
+
+    "insecure-registries" : ["citygroves.registry.local"]
+
+
+restart docker daemon
+
+4) Bootstrap
+
+.. code-block:: console
+
+    ./cluster.py bootstrap
+
+5) Deploy
+
+.. code-block:: console
+
+    ./cluster.py deploy
+
+6) go to:
+
+.. code-block:: console
+
+    http://citygroves.frontend.local
+
+
+7) log in:
+
+.. code-block:: console
+
+    login: test@test.pl
+    password: password

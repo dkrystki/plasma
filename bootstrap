@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eo pipefail
 
-
 if [ -n "$CI_JOB_ID" ]
 then
   apt update

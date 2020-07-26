@@ -69,13 +69,12 @@ class Citygroves(cluster.Cluster):
         super().add_hosts()
 
         cluster_ip = self.li.device.get_ip()
-
         run(f"""
-            {self.sudo()} hostess add {self.env.registry.address} {cluster_ip}
-            {self.sudo()} hostess add {self.env.keycloak.address} {cluster_ip}
-            {self.sudo()} hostess add {self.env.backend.address} {cluster_ip}
-            {self.sudo()} hostess add {self.env.appgen.address} {cluster_ip}
-            {self.sudo()} hostess add {self.env.frontend.address} {cluster_ip}
+             {self.sudo()} env "PATH=$PATH" hostess add {self.env.registry.address} {cluster_ip}
+             {self.sudo()} env "PATH=$PATH" hostess add {self.env.keycloak.address} {cluster_ip}
+             {self.sudo()} env "PATH=$PATH" hostess add {self.env.backend.address} {cluster_ip}
+             {self.sudo()} env "PATH=$PATH" hostess add {self.env.appgen.address} {cluster_ip}
+             {self.sudo()} env "PATH=$PATH" hostess add {self.env.frontend.address} {cluster_ip}
             """)
 
     def prebuild_all(self):

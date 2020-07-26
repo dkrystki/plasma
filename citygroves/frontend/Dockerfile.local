@@ -1,4 +1,4 @@
-FROM aux.registry.local/local/flesh/frontend-prebuild
+FROM citygroves.registry.local/local/frontend-prebuild:latest
 
 WORKDIR /srv
 

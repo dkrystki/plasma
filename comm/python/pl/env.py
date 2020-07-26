@@ -136,18 +136,3 @@ class Env(BaseEnv):
 
     def chdir_to_monorepo_root(self) -> None:
         os.chdir(str(self.root))
-
-    def _clear_kwargs(self, kwargs: Dict[str, Any]):
-        """
-        Remove kwargs that aren't in the base class.
-        Has to be called before passing kwargs to base dataclass init.
-        (We don't want to pass kwargs that are defined in the given base dataclass)
-
-        :param kwargs:
-        :return:
-        """
-        base_fields = [f.name for f in fields(self.__class__.__mro__[2])]
-        for k in list(kwargs.keys()):
-            if k not in base_fields:
-                kwargs.pop(k)
-

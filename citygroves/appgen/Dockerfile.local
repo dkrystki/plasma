@@ -1,4 +1,4 @@
-FROM aux.registry.local/local/flesh/appgen-prebuild
+FROM citygroves.registry.local/local/appgen-prebuild:latest
 
 WORKDIR /srv
 

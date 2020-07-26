@@ -7,7 +7,7 @@ gitlabUrl: https://gitlab.com/
 ## be retrieved from your GitLab instance.
 ## ref: https://docs.gitlab.com/ee/ci/runners/
 ##
-runnerRegistrationToken: "xYrB_ZexEssb8ZjTG5Pd"
+runnerRegistrationToken: "zEPrGsMwCcGbUYhEEMzP"
 
 ## Set the certsSecretName in order to pass custom certificates for GitLab Runner to use
 ## Provide resource name for a Kubernetes Secret Object in the same namespace,
