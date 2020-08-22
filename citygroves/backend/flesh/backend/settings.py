@@ -42,7 +42,7 @@ SECRET_KEY = "m*t!qg*b#o#e)xla3@o*r$ytt@vdy5w=*0$v()y2uswcqtyb9i"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["citygroves.frontend.local", "citygroves.backend.local"]
 
 
 INSTALLED_APPS = [
@@ -63,6 +63,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    'ip_restriction.IpWhitelister',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -71,6 +72,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+ALLOW_ADMIN = True
+ALLOWED_ADMIN_IPS = ['192.168.0.7']
 
 ROOT_URLCONF = "backend.urls"
 CORS_ORIGIN_ALLOW_ALL = True

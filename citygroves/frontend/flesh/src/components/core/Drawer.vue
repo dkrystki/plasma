@@ -12,6 +12,7 @@
       <v-container align-start fill-height tag="v-list">
         <v-container>
           <v-list-item avatar>
+
             <v-list-item-avatar color="white">
               <v-img
                       :src="logo"
@@ -19,6 +20,7 @@
                       contain
               />
             </v-list-item-avatar>
+
             <v-list-item-title class="title">
               Manager
             </v-list-item-title>
@@ -31,6 +33,7 @@
                   avatar
                   class="v-list-item"
           >
+
             <v-list-item-action>
               <v-icon>{{ link.icon }}</v-icon>
             </v-list-item-action>
@@ -38,6 +41,12 @@
                     v-text="link.text"
             />
           </v-list-item>
+          <v-switch
+        v-model="$vuetify.theme.dark"
+        hide-details
+        inset
+        label="Theme Dark"
+      ></v-switch>
         </v-container>
       </v-container>
     </v-img>

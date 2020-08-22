@@ -1,8 +1,15 @@
 <template>
   <v-card v-if="person !== null">
+    <p v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
+    </p>
     <v-card-title>
       <h4 class="title">Personal information</h4>
     </v-card-title>
+
     <v-card-text>
       <v-row>
         <v-col cols="12" md="6">
@@ -44,6 +51,7 @@
         },
         data() {
             return {
+              errors: [],
                 first_name: "",
                 last_name: "",
                 email: "",
@@ -52,6 +60,7 @@
                 person: null
             };
         },
+
         async created() {
             this.refresh();
         },
@@ -62,13 +71,75 @@
             }
         },
         methods: {
+          checkForm: function () {
+              this.errors = [];
+
+              let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+
+
+              if (!this.person.first_name) {
+                this.errors.push('First name required');
+              }
+
+              if (this.person.first_name.length > 30) {
+                this.errors.push('First name too long');
+              }
+
+              if (this.person.first_name.length <= 1) {
+                this.errors.push('First name too short');
+              }
+
+              if (!this.person.last_name) {
+                this.errors.push('Last name required');
+              }
+
+              if (this.person.last_name.length <= 1) {
+                this.errors.push('Last name too short');
+              }
+
+              if (this.person.last_name.length > 30) {
+                this.errors.push('Last name too long');
+              }
+
+              if (!this.person.phone) {
+                this.errors.push('Phone required');
+              }
+
+              if (this.person.phone.length < 8) {
+                this.errors.push('Phone too short');
+              }
+
+              if (this.person.phone.length > 9) {
+                this.errors.push('Phone too long');
+              }
+
+              if (!this.person.phone) {
+                this.errors.push('DOB require');
+              }
+
+              if (!this.person.email) {
+                this.errors.push('Email required');
+              }
+
+              if (this.person.email.length > 30) {
+                this.errors.push('Email too long');
+              }
+
+              else if (!reg.test(this.person.email)) {
+                this.errors.push('Please enter correct email');
+              }
+
+              return !this.erros;
+
+            },
             onChange() {
                 this.person.first_name = this.first_name;
                 this.person.last_name = this.last_name;
                 this.person.email = this.email;
                 this.person.phone = this.phone;
                 this.person.dob = this.dob;
-                this.person.save();
+                if (this.checkForm())
+                  this.person.save();
             },
             async refresh() {
                 this.loading = true;

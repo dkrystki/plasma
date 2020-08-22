@@ -33,6 +33,7 @@ isort = {version = "^4.3.21", allow-prereleases = true}
 pytest-timeout = "^1.3.4"
 django = "^3.0.5"
 requests_jwt = "^0.5.3"
+django-admin-ip-whitelist = "^0.1.1"
 
 [tool.poetry.dev-dependencies]
 

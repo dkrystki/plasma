@@ -249,6 +249,14 @@ Django = ">=1.11"
 
 [[package]]
 category = "main"
+description = "A Django middleware to restrict incoming IPs to a Django project."
+name = "django-ip-restriction"
+optional = false
+python-versions = "*"
+version = "1.1.1"
+
+[[package]]
+category = "main"
 description = "Web APIs for Django, made easy."
 name = "djangorestframework"
 optional = false
@@ -1070,7 +1078,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d33275ed56c4764a31409225c1f3d28d500a1e1dc5313209d9af21634cd2b12c"
+content-hash = "1e970e352746a0730ae5e83c0e0bba73a6a1ab77d69f6eb59a9870b2b4dea186"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1157,6 +1165,10 @@ django-extensions = [
 django-filter = [
     {file = "django-filter-2.2.0.tar.gz", hash = "sha256:c3deb57f0dd7ff94d7dce52a047516822013e2b441bed472b722a317658cfd14"},
     {file = "django_filter-2.2.0-py3-none-any.whl", hash = "sha256:558c727bce3ffa89c4a7a0b13bc8976745d63e5fd576b3a9a851650ef11c401b"},
+]
+django-ip-restriction = [
+    {file = "django-ip-restriction-1.1.1.tar.gz", hash = "sha256:8b10c2ef6de43f99d850c4e7bd0a984ebf82f65e8c6fff0de48e092ade7c8d93"},
+    {file = "django_ip_restriction-1.1.1-py3-none-any.whl", hash = "sha256:56808533162f9a193706eccbd954ddcd1643e0973f88e176ae5b297a92c56a27"},
 ]
 djangorestframework = [
     {file = "djangorestframework-3.11.0-py3-none-any.whl", hash = "sha256:05809fc66e1c997fd9a32ea5730d9f4ba28b109b9da71fccfa5ff241201fd0a4"},
@@ -1477,6 +1489,7 @@ redis = [
     {file = "redis-3.4.1.tar.gz", hash = "sha256:0dcfb335921b88a850d461dc255ff4708294943322bd55de6cfd68972490ca1f"},
 ]
 requests = [
+    {file = "requests-2.23.0-py2.7.egg", hash = "sha256:5d2d0ffbb515f39417009a46c14256291061ac01ba8f875b90cad137de83beb4"},
     {file = "requests-2.23.0-py2.py3-none-any.whl", hash = "sha256:43999036bfa82904b6af1d99e4882b560e5e2c68e5c4b0aa03b655f3d7d73fee"},
     {file = "requests-2.23.0.tar.gz", hash = "sha256:b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6"},
 ]
